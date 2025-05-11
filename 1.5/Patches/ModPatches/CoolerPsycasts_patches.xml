@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Cooler Psycasts</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!--awaken my masters-->
+				<li Class="PatchOperationConditional">
+					<xpath>/Defs/AbilityDef[defName="CoolPsycasts_Awaken"]/comps/li[@Class="CoolPsycasts.CompProperties_AbilityRemoveHediffs"]/hediffDefs</xpath>
+					<match Class="PatchOperationAdd">
+						<xpath>/Defs/AbilityDef[defName="CoolPsycasts_Awaken"]/comps/li[@Class="CoolPsycasts.CompProperties_AbilityRemoveHediffs"]/hediffDefs</xpath>
+						<value>
+							<li>HVP_Sterility</li>
+							<li>HVP_TransientParalysis</li>
+						</value>
+					</match>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

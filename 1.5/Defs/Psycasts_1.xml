@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_Agonize</defName>
+    <label>agonize</label>
+    <description>Stimulate pain pathways in the target's nervous system for a short time. Affected mechanoids lose processing power instead.\n\n Multiple casts on the same target do not stack.</description>
+    <level>1</level>
+    <iconPath>Things/Mote/IncapIcon</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>14</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.01</Ability_PsyfocusCost>
+      <Ability_Duration>125</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>HVP_PsychicAgony</hediffDef>
+        <durationMultiplier>PsychicSensitivity</durationMultiplier>
+        <psychic>True</psychic>
+        <goodwillImpact>-15</goodwillImpact>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_EnergyTransfer</defName>
+    <label>energy transfer</label>
+    <description>Transfer half of the first target's restfulness or mechanoid energy to the second target. Less effective if the first target has reduced psychic sensitivity. The recipient will gain more energy if the donor is smaller than it, or less if the donor is larger.</description>
+    <level>1</level>
+    <iconPath>Things/Item/Resource/Milk</iconPath>
+    <writeCombatLog>False</writeCombatLog>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>14</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.04</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.1</warmupTime>
+      <range>19.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityTransferEnergy">
+        <compClass>HautsPsycasts.CompAbilityEffect_TransferEnergy</compClass>
+        <affectedMeters>
+		  <li>Rest</li>
+		  <li MayRequire="Ludeon.RimWorld.Biotech">MechEnergy</li>
+		</affectedMeters>
+		<baseFractionTransferred>0.5</baseFractionTransferred>
+        <psychic>True</psychic>
+        <goodwillImpact>-10</goodwillImpact>
+        <destination>Selected</destination>
+        <requiresLineOfSight>True</requiresLineOfSight>
+        <range>19.9</range>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>5</clamorRadius>
+        <destClamorType>Ability</destClamorType>
+        <destClamorRadius>5</destClamorRadius>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_SinkholeSkip</defName>
+    <label>sinkhole skip</label>
+    <description>Use a skipgate to excavate a pocket underneath the target patch of ground, rendering it unstable. This acts like a trap, stunning whoever triggers it. Larger pawns are less affected.\n\nCannot be placed adjacent to other traps. Each sinkhole will naturally collapse on its own after 5 days.</description>
+    <level>1</level>
+    <iconPath>Things/Mote/Stun</iconPath>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>12</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.01</Ability_PsyfocusCost>
+      <Ability_Duration>5000</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>2</warmupTime>
+      <range>11.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilitySpawnAlliedBuilding">
+        <thingDef>HVP_TrapSinkhole</thingDef>
+        <allowOnBuildings>False</allowOnBuildings>
+        <sound>Psycast_Skip_Exit</sound>
+		<isTrap>true</isTrap>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_Stifle</defName>
+    <label>stifle</label>
+    <description>Disrupt the target's psychic presence, lowering its psychic sensitivity by an amount equal to half the caster's. If the target was already affected by Stifle, the stronger instance will take effect with its duration refreshed.</description>
+    <level>1</level>
+    <iconPath>UI/Icons/HostilityResponse/Ignore</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>8</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.06</Ability_PsyfocusCost>
+      <Ability_Duration>250</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsFramework.CompProperties_AbilityGiveHediffCasterStatScalingSeverity">
+        <compClass>HautsFramework.CompAbilityEffect_GiveHediffCasterStatScalingSeverity</compClass>
+        <hediffDef>HVP_StifleBuff</hediffDef>
+        <psychic>True</psychic>
+        <goodwillImpact>-15</goodwillImpact>
+		<casterStatToScaleFrom>PsychicSensitivity</casterStatToScaleFrom>
+		<severity>0.5</severity>
+		<replacesLessSevereHediff>true</replacesLessSevereHediff>
+		<refreshesMoreSevereHediff>true</refreshesMoreSevereHediff>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_Surestep</defName>
+    <label>surestep</label>
+    <description>Psychically guide the target's movement, slightly increasing their moving capacity and immunizing them to slowdown caused by different terrain types.</description>
+    <level>1</level>
+    <iconPath>UI/Icons/HostilityResponse/Flee</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>14</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.01</Ability_PsyfocusCost>
+      <Ability_Duration>125</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>29.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>HVP_SurestepBuff</hediffDef>
+        <durationMultiplier>PsychicSensitivity</durationMultiplier>
+        <psychic>True</psychic>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="WordOfBase">
+    <defName>HVP_WordOfWarning</defName>
+    <label>word of warning</label>
+    <description>Speak vague, ominous words to someone while subconsciously implanting a prediction of the next danger they will face. When the target would next take damage while conscious, this forewarning will allow them to negate the damage completely.</description>
+    <level>1</level>
+    <iconPath>Things/Mote/ColonistFleeing</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.1</Ability_PsyfocusCost>
+      <Ability_Duration>5000</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>3</warmupTime>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>HVP_AndSoForewarned</hediffDef>
+        <durationMultiplier>PsychicSensitivity</durationMultiplier>
+        <psychic>True</psychic>
+      </li>
+      <li Class="CompProperties_AbilitySocialInteraction">
+        <interactionDef>HVP_WordOfWarning</interactionDef>
+      </li>
+    </comps>
+  </AbilityDef>
+
+</Defs>

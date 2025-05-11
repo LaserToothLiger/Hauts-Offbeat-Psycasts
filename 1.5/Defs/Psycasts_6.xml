@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_EvictionSkip</defName>
+    <label>evict</label>
+    <description>Envelop the target in an uncontrolled skipgate which lacks most of the usual safeguards. It teleports the target somewhere far across the planet (or possibly even further beyond), removing it from the sphere of immediate concern.\n\nUnlike other skip abilities, weight, size, and lack of psychic sensitivity do not affect whether an object is targetable.</description>
+    <level>6</level>
+    <iconPath>UI/Buttons/AbandonSpecificCount</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+	<showCastingProgressBar>true</showCastingProgressBar>
+    <statBases>
+      <Ability_EntropyGain>70</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.025</Ability_PsyfocusCost><!--minimum cost-->
+    </statBases>
+    <verbProperties>
+      <warmupTime>2.5</warmupTime>
+      <range>29.9</range>
+      <targetParams>
+        <canTargetSelf>False</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+        <canTargetBuildings>True</canTargetBuildings>
+        <canTargetItems>True</canTargetItems>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityEvict">
+		<fleck1>PsycastSkipInnerExit</fleck1>
+		<fleck2>PsycastSkipOuterRingExit</fleck2>
+		<sound>Psycast_Skip_Exit</sound>
+		<fleckScale>1</fleckScale>
+        <goodwillImpact>-100</goodwillImpact>
+		<maxBodySize>-1</maxBodySize><!--If you set this to a value > 0, then it will actually do something-->
+		<respectsSkipResistance>false</respectsSkipResistance><!--no lol, otherwise it'd be useless vs bosses-->
+		<killChance>0.05</killChance><!--the chance a victim is actually, truly gone forever, as opposed to merely despawned and thus somewhere out in the 'world'. This could range from Evict sending the victim to a different rim world, all the way to
+									dropping them in a black hole. Who knows! killChance only applies to pawns; non-pawn things are always destroyed.-->
+		<psyfocusCostPerVictimSize>
+		  <points>
+            <li>(0.1, 0.025)</li>
+            <li>(1, 0.075)</li>
+            <li>(4, 0.2)</li>
+            <li>(10, 0.6)</li>
+          </points>
+		</psyfocusCostPerVictimSize>
+      </li>
+    </comps>
+	<modExtensions>
+      <li Class="HautsFramework.PsycastCanTargetDeaf" />
+    </modExtensions>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="HVMP_PsycastBaseCall">
+    <defName>HVP_FortuneCall</defName>
+    <label>fortune call</label>
+    <description>Convince higher powers within the psychic field to arrange for one or more positive events to occur within the next 2-24 hours. The more psychic sensitivity the caster has, the more good events will happen. After casting, the caster will fall into a 2-day coma.</description>
+    <level>6</level>
+    <iconPath>UI/Commands/ViewQuest</iconPath>
+    <hostile>false</hostile>
+    <targetRequired>False</targetRequired>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <stunTargetWhileCasting>False</stunTargetWhileCasting>
+    <statBases>
+      <Ability_PsyfocusCost>0.8</Ability_PsyfocusCost>
+      <Ability_Duration>2000</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>6</warmupTime>
+      <nonInterruptingSelfCast>true</nonInterruptingSelfCast>
+	  <range>0</range>
+      <drawAimPie>False</drawAimPie>
+      <requireLineOfSight>False</requireLineOfSight>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+        <canTargetPawns>false</canTargetPawns>
+        <canTargetBuildings>false</canTargetBuildings>
+        <canTargetAnimals>false</canTargetAnimals>
+        <canTargetHumans>false</canTargetHumans>
+        <canTargetMechs>false</canTargetMechs>
+		<canTargetMutants>false</canTargetMutants>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityArrangeFortune">
+        <compClass>HautsPsycasts.CompAbilityEffect_ArrangeFortune</compClass>
+		<delayTicks>5000~60000</delayTicks>
+		<excludedGoodEvents>
+		  <li>SelfTame</li>
+		</excludedGoodEvents>
+		<eventPerStatCurve>
+		  <points>
+            <li>(0, 1)</li>
+            <li>(1, 1)</li>
+            <li>(3, 3)</li>
+            <li>(5, 4)</li>
+            <li>(7.5, 5)</li>
+            <li>(12, 6)</li>
+          </points>
+		</eventPerStatCurve>
+		<statScalar>PsychicSensitivity</statScalar>
+      </li>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>PsychicComa</hediffDef>
+        <onlyApplyToSelf>True</onlyApplyToSelf>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="HVMP_PsycastBaseCall">
+    <defName>HVP_HiveCall</defName>
+    <label>hive call</label>
+    <description>Psychically irritate a subterranean insectoid colony, causing an infestation to surface around the target point. The more psychic sensitivity the caster has, the more insectoids will respond to the call.\n\nNo insectoids will surface if the target region is too cold, or if there are already more than 150 hives on the map.</description>
+    <level>6</level>
+    <iconPath>World/WorldObjects/Expanding/Insects</iconPath>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>50</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.05</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>44.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilitySpawnInfestation">
+        <compClass>HautsPsycasts.CompAbilityEffect_SpawnInfestation</compClass>
+		<hivePerStatCurve>
+		  <points>
+            <li>(0, 3)</li>
+            <li>(1, 7)</li>
+            <li>(3, 15)</li>
+            <li>(5, 20)</li>
+            <li>(85, 100)</li>
+          </points>
+		</hivePerStatCurve>
+		<statScalar>PsychicSensitivity</statScalar>
+		<maxHivesPerMap>150</maxHivesPerMap>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_RejuvenationSkip</defName>
+    <label>rejuvenation skip</label>
+    <description>Suffuses the target with healing archites. It gradually heals wounds, removes scars, and even regrows lost body parts, but it is slow and decreases in potency each day. It is also calorie-intensive, leaving the target perpetually exhausted, hungry, sluggish, and pained. The effect ends prematurely if the target takes any damage.</description>
+    <level>6</level>
+    <iconPath>Things/Item/Special/MechSerumHealer</iconPath>
+    <writeCombatLog>false</writeCombatLog>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>50</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.25</Ability_PsyfocusCost>
+      <Ability_Duration>5000</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>2</warmupTime>
+      <range>19.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+		<canTargetMechs>False</canTargetMechs>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class = "CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>HVP_Rejuvenation</hediffDef>
+        <psychic>True</psychic>
+      </li>
+      <li Class="CompProperties_AbilityEffecterOnTarget">
+        <effecterDef>Skip_Exit</effecterDef>
+        <maintainForTicks>60</maintainForTicks>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDefs>
+          <li>PsycastSkipInnerExit</li>
+          <li>PsycastSkipOuterRingExit</li>
+        </fleckDefs>
+        <sound>Psycast_Skip_Exit</sound>
+        <preCastTicks>5</preCastTicks>
+		<scale>0.45</scale>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_Stuporzone</defName>
+    <label>stuporzone</label>
+    <description>Generate a persistent deformation in the psychic manifold at the target point, which suppresses the consciousness of anyone within.</description>
+    <level>6</level>
+    <iconPath>Things/Building/Misc/PsychicSuppressor</iconPath>
+    <hostile>true</hostile>
+    <writeCombatLog>True</writeCombatLog>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <statBases>
+      <Ability_EntropyGain>60</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.06</Ability_PsyfocusCost>
+      <Ability_Duration>42</Ability_Duration>
+      <Ability_EffectRadius>5.9</Ability_EffectRadius>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>14.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilitySpawn">
+        <thingDef>HVP_StuporzoneActual</thingDef>
+        <allowOnBuildings>True</allowOnBuildings>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="WordOfBase">
+    <defName>HVP_WordOfMelding</defName>
+    <label>word of melding</label>
+    <description>Speak about becoming one with another while using psychic suggestion to lull the listener into a coma. Until the listener's coma is broken, the other's consciousness is boosted. The benefit of this ability can stack up to ten times.\n\nThe neural architecture of children is too plastic to lull into a coma.</description>
+    <level>6</level>
+    <iconPath>Things/Building/Misc/MultiAnalyzer</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.5</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>2</warmupTime>
+      <targetParams>
+        <canTargetAnimals>False</canTargetAnimals>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetMechs>False</canTargetMechs>
+		<neverTargetIncapacitated>true</neverTargetIncapacitated>
+		<canTargetBuildings>false</canTargetBuildings>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsFramework.CompProperties_AbilityGiveHediffPaired">
+        <compClass>HautsPsycasts.CompAbilityEffect_Melding</compClass>
+        <hediffToTarg>HVP_MeldingComa</hediffToTarg>
+		<replaceExistingTarg>true</replaceExistingTarg>
+		<hediffToDest>HVP_MeldingBuff</hediffToDest>
+		<replaceExistingDest>false</replaceExistingDest>
+		<severityDest>1</severityDest>
+		<overridePreviousSeverityDest>false</overridePreviousSeverityDest>
+        <psychic>True</psychic>
+        <applicableToMechs>False</applicableToMechs>
+        <destination>Selected</destination>
+		<range>20</range>
+		<applyToTarget>true</applyToTarget>
+		<applyToDest>true</applyToDest>
+		<canStackDest>true</canStackDest>
+      </li>
+      <li Class="CompProperties_AbilitySocialInteraction">
+        <interactionDef>HVP_WordOfMelding</interactionDef>
+        <goodwillImpact>-45</goodwillImpact>
+		<canApplyToUnconscious>true</canApplyToUnconscious>
+		<canApplyToAsleep>true</canApplyToAsleep>
+		<canApplyToMentallyBroken>true</canApplyToMentallyBroken>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+</Defs>

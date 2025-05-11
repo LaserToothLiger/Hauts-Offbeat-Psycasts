@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationConditional"><!--deserter quest outpost has +4 psytrainers-->
+		<xpath>/Defs/QuestScriptDef[defName="Intro_Deserter"]/root[@Class="QuestNode_Sequence"]/nodes/li[@Class="QuestNode_SetItemStashContents"]/categories</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/QuestScriptDef[defName="Intro_Deserter"]/root[@Class="QuestNode_Sequence"]/nodes/li[@Class="QuestNode_SetItemStashContents"]</xpath>
+			<value>
+				<categories>
+					<li>
+					  <category>NeurotrainersPsycast</category>
+					  <amount>4</amount>
+					</li>
+				</categories>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>/Defs/QuestScriptDef[defName="Intro_Deserter"]/root[@Class="QuestNode_Sequence"]/nodes/li[@Class="QuestNode_SetItemStashContents"]/categories</xpath>
+			<value>
+				<li>
+				  <category>NeurotrainersPsycast</category>
+				  <amount>4</amount>
+				</li>
+			</value>
+		</match>
+	</Operation>
+</Patch>

@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_LightningStrike</defName>
+    <label>lightning strike</label>
+    <description>Use a precise series of skipgates to greatly alter the electric charge of the targeted point, prompting an immediate lightning strike. Unlike natural lightning, this directed attack is capable of slightly injuring mechanoids.</description>
+    <level>3</level>
+    <iconPath>Weather/LightningBolt</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>26</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
+      <Ability_EffectRadius>1.9</Ability_EffectRadius>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityLightningStrike">
+        <compClass>HautsPsycasts.CompAbilityEffect_LightningStrike</compClass>
+		<damage>14</damage>
+		<armorPenetration>1.25</armorPenetration>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="HVMP_PsycastBaseLink">
+    <defName>HVP_PsyphonLink</defName>
+    <label>psyphon link</label>
+    <description>Rapidly gain psyfocus by siphoning it from the target psycaster. This effect will end prematurely if the target runs out of psyfocus.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a psyphon link to.</description>
+    <level>3</level>
+    <iconPath>Things/Mote/PsychicEntropy</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>20</Ability_EntropyGain></statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>19.9</range>
+      <targetParams>
+        <canTargetSelf>False</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsFramework.CompProperties_AbilityGiveHediffPaired">
+        <compClass>HautsPsycasts.CompAbilityEffect_Psyphon</compClass>
+        <hediffToTarg>HVP_PsyphonSucker</hediffToTarg>
+		<overridePreviousLinkTargetTarg>true</overridePreviousLinkTargetTarg>
+		<replaceExistingTarg>true</replaceExistingTarg>
+		<hediffToDest>HVP_HiddenPsyphonMaintainer</hediffToDest>
+		<overridePreviousLinkTargetDest>true</overridePreviousLinkTargetDest>
+		<replaceExistingDest>false</replaceExistingDest>
+		<canStackDest>true</canStackDest>
+        <psychic>True</psychic>
+        <goodwillImpact>-15</goodwillImpact>
+        <destination>Caster</destination>
+		<applyToTarget>true</applyToTarget>
+		<applyToDest>true</applyToDest>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <!--this requires some commented-out C# code, so don't uncomment it. if I need to make a 1.6 version, this will not be present. I'm just saving this for posterity
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_Ravage</defName>
+    <label>ravage</label>
+    <description>Psychically drive mechanites around the target into a frenzy, causing rapid cuts and abrasions. The mechanites will stop attacking if the target is downed. Gains +50% damage per mechanite condition the target has (including mechanite diseases and the effects of certain other psycasts).\n\nDeals +50% damage against luciferium addicts and unnatural entities, and +25% against archite xenotypes, due to their mechanite-sustained physiologies.</description>
+    <level>3</level>
+    <iconPath>Things/Projectile/Bullet_Shotgun</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>25</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
+      <Ability_Duration>12</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>19.9</range>
+      <targetParams>
+        <canTargetSelf>False</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+		<canTargetBuildings>True</canTargetBuildings>
+		<canTargetItems>True</canTargetItems>
+      </targetParams>
+    </verbProperties>
+    <comps>
+	  <li Class="HautsPsycasts.CompProperties_AbilityInflame">
+        <compClass>HautsPsycasts.CompAbilityEffect_Inflame</compClass>
+        <durationMultiplier>PsychicSensitivity</durationMultiplier>
+        <psychic>True</psychic>
+        <goodwillImpact>-100</goodwillImpact>
+		<baseDamage>4~6</baseDamage>
+		<damageType>Cut</damageType>
+		<baseArmorPen>0.1</baseArmorPen>
+		<dmgVsArchitesFactor>0.25</dmgVsArchitesFactor>
+		<dmgVsEntitiesFactor>0.5</dmgVsEntitiesFactor>
+		<tickPeriodicity>60</tickPeriodicity>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>-->
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_Replicate</defName>
+    <label>replicate</label>
+    <description>Teleports in a copy of the targeted resource item from somewhere else in the cosmos.\n\nItems worth more than 350 silver can't be replicated. If the target is an item stack exceeding 500 silver in value, the replica will be smaller in order to be at or under 500 silver in value.</description>
+    <level>3</level>
+    <iconPath>UI/Buttons/GiftMode</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.35</Ability_PsyfocusCost>
+      <Ability_Duration>250</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>2</warmupTime>
+      <range>19.9</range>
+      <targetParams>
+        <canTargetItems>true</canTargetItems>
+		<canTargetBuildings>false</canTargetBuildings>
+		<canTargetPawns>false</canTargetPawns>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityReplicate">
+        <compClass>HautsPsycasts.CompAbilityEffect_Replicate</compClass>
+        <psychic>True</psychic>
+		<allowedItemCategories>
+		  <li>FoodRaw</li>
+		  <li>Manufactured</li>
+		  <li>ResourcesRaw</li>
+		  <li>Chunks</li>
+		</allowedItemCategories>
+		<marketValueLimitItem>350</marketValueLimitItem><!--originally implemented so you can't just ignore Anomaly content forever once you get 1 shard and just dupe it over and over, but has other uses-->
+		<marketValueLimitStack>500</marketValueLimitStack>
+		<fleckDefs>
+          <li>PsycastSkipInnerExit</li>
+          <li>PsycastSkipOuterRingExit</li>
+        </fleckDefs>
+        <scale>0.9</scale>
+        <sound>Psycast_Skip_Exit</sound>
+        <preCastTicks>5</preCastTicks>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="HVMP_PsycastBaseLink">
+    <defName>HVP_Shield</defName>
+    <label>shield</label>
+    <description>Use subatomic skipgates to excite electromagnetic fields, creating a projectile repulsion field around the target. This shield can absorb up to 60 damage, but doesn't block anything a regular shield wouldn't and is just as susceptible to EMPs. It also does not regenerate. However, the target will still be able to use ranged weapons.</description>
+    <level>3</level>
+    <iconPath>Things/Pawn/Humanlike/Apparel/ShieldBelt/ShieldBelt</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>25</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.10</Ability_PsyfocusCost>
+      <Ability_Duration>42</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.7</warmupTime>
+      <range>19.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>HVP_PsychicShield</hediffDef>
+        <psychic>True</psychic>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_Tremorzone</defName>
+    <label>tremorzone</label>
+    <description>Use a skipgate to periodically induce upheaval in the ground near the target point. This repeatedly staggers anyone nearby (unless they are floating), and stuns turrets.</description>
+    <level>3</level>
+    <iconPath>Things/Building/Natural/SteamGeyser</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <statBases>
+      <Ability_EntropyGain>24</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
+      <Ability_Duration>125</Ability_Duration>
+      <Ability_EffectRadius>5.9</Ability_EffectRadius>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.25</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilitySpawn">
+        <thingDef>HVP_TremorzoneActual</thingDef>
+        <allowOnBuildings>True</allowOnBuildings>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_VaultSkip</defName>
+    <label>vault skip</label>
+    <description>Skips all nearby items into a distant vault unreachable by regular means. The caster may later retrieve all items from the vault at once. Every 10 objects (or stacks of objects) stored in this way consume 1% psyfocus per day.\n\nIf the caster dies with items stored in the vault, the vault’s contents will be returned to the caster’s location, but roughly one-third of the items may be lost.</description>
+    <level>3</level>
+    <iconPath>Things/Building/Door/DoorSimple_MenuIcon</iconPath>
+    <targetRequired>False</targetRequired>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <writeCombatLog>false</writeCombatLog>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <showCastingProgressBar>True</showCastingProgressBar>
+    <statBases>
+      <Ability_PsyfocusCost>0.2</Ability_PsyfocusCost>
+      <Ability_EffectRadius>4.9</Ability_EffectRadius>
+    </statBases>
+    <verbProperties>
+      <warmupTime>4</warmupTime>
+      <range>4.9</range>
+      <drawAimPie>False</drawAimPie>
+      <requireLineOfSight>False</requireLineOfSight>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>HautsPsycasts.CompAbilityEffect_VaultSkip</compClass>
+        <hediffDef>HVP_Hammerspace</hediffDef>
+        <psychic>True</psychic>
+        <onlyApplyToSelf>True</onlyApplyToSelf>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastSkipFlashEntry</fleckDef>
+		<scale>4.9</scale>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+</Defs>

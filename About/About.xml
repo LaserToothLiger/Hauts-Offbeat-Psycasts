@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+    <name>Hauts' Offbeat Psycasts</name>
+    <author>Hautarche</author>
+    <packageId>Hautarche.HautsPsycasts</packageId>
+    <supportedVersions>
+		<li>1.5</li>
+    </supportedVersions>
+	<description>Provides six new psycasts for each level of psycasting. It's roughly an even split between "combat" and "utility" psycasts, though some utility casts can be used cleverly in combat.
+	
+To make it easier to get specific psycasts, the mod options let you increase the number of psytrainers that exotic traders sell, or increase the number of psycasts learned at each level.
+
+Also buffs the Flashstorm psycast (can be disabled in mod options).
+
+See the full descriptions here: https://docs.google.com/document/d/1p9qs5bZcG81I1lDf-MkCGc3xYOvKKLKvJ9PBct6y7xg/edit?usp=sharing
+    </description>
+	<modIconPath IgnoreIfNoMatchingField="True">HautsLogo_Draft0</modIconPath>
+	<modDependencies>
+        <li>
+            <packageId>brrainz.harmony</packageId>
+            <displayName>Harmony</displayName>
+            <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+            <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077</steamWorkshopUrl>
+        </li>
+		<li>
+			<packageId>Ludeon.RimWorld.Royalty</packageId>
+			<displayName>Royalty</displayName>
+		</li>
+		<li>
+			<packageId>Hautarche.HautsFramework</packageId>
+			<displayName>Hauts Framework</displayName>
+			<!--<steamWorkshopUrl></steamWorkshopUrl>-->
+			<downloadUrl>https://drive.google.com/drive/u/2/folders/1NHDZpL4TDIqgiq2ofa1f-1dXN8VUVG5u?fbclid=IwZXh0bgNhZW0CMTEAAR1UzkYW6Fj1VbcShQ0xB6JOt-WUbze81UWVjyXZFtyAqLKEoqVJUCWGqHo_aem_0-eVh1myTUvt2VXpuvK-ZQ</downloadUrl>
+		</li>
+	</modDependencies>
+	<incompatibleWith>
+	  <li>VanillaExpanded.VPsycastsE</li>
+	</incompatibleWith>
+	<loadAfter>
+		<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+		<li>Ludeon.RimWorld.Royalty</li>
+		<li>Hautarche.HautsFramework</li>
+	</loadAfter>
+</ModMetaData>

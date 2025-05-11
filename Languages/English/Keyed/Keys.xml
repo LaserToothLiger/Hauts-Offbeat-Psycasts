@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<LanguageData>
+<!--Initialization-->
+<HVP_Initialize>[Hauts' Offbeat Psycasts] active.</HVP_Initialize>
+<!--effect activations-->
+<HVP_WarningBlock>Forewarned!</HVP_WarningBlock><!--floating text shown when the Word of Warning buff negates damage-->
+<HVP_RemovedHediff>Word of Sterility removed the {0} condition from {1}!</HVP_RemovedHediff>
+<!--UI: Button labels-->
+<HVP_NoParalysisLabel>Cancel paralysis links</HVP_NoParalysisLabel>
+<HVP_NoParalysisText>Destroys all paralysis links being maintained by this caster.</HVP_NoParalysisText>
+<HVP_RecallLabel>Recall {PAWN_nameDef}</HVP_RecallLabel>
+<HVP_RecallText>Teleports {PAWN_nameDef} to the linked tether skipgate.</HVP_RecallText>
+<HVP_RecallTextFantasy>Teleports {PAWN_nameDef} to the linked tether portal.</HVP_RecallTextFantasy>
+<HVP_NoPsyphonLabel>Cancel psyphon links</HVP_NoPsyphonLabel>
+<HVP_NoPsyphonText>Destroys all psyphon links being maintained by this caster.</HVP_NoPsyphonText>
+<HVP_NoBoosterLabel>Cancel booster links</HVP_NoBoosterLabel>
+<HVP_NoBoosterText>Destroys all booster links being maintained by this caster.</HVP_NoBoosterText>
+<HVP_StorageDumpLabel>Retrieve items in vault skip</HVP_StorageDumpLabel>
+<HVP_StorageDumpText>Skips all items stored by vault Skip to the caster's location.</HVP_StorageDumpText>
+<HVP_UndoRJLabel>End rejuvenation</HVP_UndoRJLabel>
+<HVP_UndoRJText>Ends the effects of the rejuvenation skip on {PAWN_nameDef}.</HVP_UndoRJText>
+<HVP_UndoRJTextFantasy>Ends the effects of the rejuvenation spell on {PAWN_nameDef}.</HVP_UndoRJTextFantasy>
+<!--UI: targeting-->
+<HVP_MeldInto>Psychically meld to</HVP_MeldInto>
+<HVP_Meld>Induce psychic melding of</HVP_Meld>
+<HVP_EvictionSkipCosts>Psyfocus cost per pawn body size or building footprint size</HVP_EvictionSkipCosts>
+<HVP_EvictionSkipCostsF>Mana cost per pawn body size or building footprint size</HVP_EvictionSkipCostsF>
+<!--UI: Invalid target-->
+<HVP_CannotTransfer>Cannot perform transfer</HVP_CannotTransfer>
+<HVP_NoTransferrableEnergy>has no need for sleep or energy</HVP_NoTransferrableEnergy><!--use Energy Transfer on a first or second pawn w/o the rest or mech-energy needs-->
+<HVP_NoTransferrableSkills>has no skills</HVP_NoTransferrableSkills><!--use Skill Transfer on a first or second pawn w/o any skills or w/o any enabled skills-->
+<HVP_NoLowerSkills>donor has no better-level skills than recipient</HVP_NoLowerSkills><!--use Skill Transfer on a second pawn whose skills are all on par or better than the first pawn's-->
+<HVP_TargetAlreadyTethered>target is already affected by tether skip</HVP_TargetAlreadyTethered><!--use Tether Skip on someone affected by Tether Skip-->
+<HVP_NotGoodDropSpot>aerial drops cannot land at the target location</HVP_NotGoodDropSpot><!--use Drop Pod Call on a location where pods either can't land or can't drop their contents-->
+<HVP_RoofedLightning>lightning cannot strike under a roof</HVP_RoofedLightning><!--use Lightning Strike on a roofed cell-->
+<HVP_NotAPsycaster>target must be a psycaster</HVP_NotAPsycaster><!--use Psyphon Link on a non-caster-->
+<HVP_NotAPsycasterF>target must be a spellcaster</HVP_NotAPsycasterF><!--use Psyphon Link on a non-caster-->
+<HVP_WrongItemType>target must be a chunk, resource, or raw food item</HVP_WrongItemType><!--use Replicate on an item outside its prohibited categories-->
+<HVP_ItemTooExpensive>too valuable (limit {0} silver value)</HVP_ItemTooExpensive><!--use Replicate on an item exceeding its arbitrary base market value limit-->
+<HVP_TargetLacksStealables>target has nothing to steal</HVP_TargetLacksStealables><!--use Skiptheft on a target with no stealable weapon, no stealable apparel, and no inventory-->
+<HVP_NotAChunk>must use a chunk</HVP_NotAChunk><!--make a non-chunk object Meteoroid Skip's 1st target-->
+<HVP_MeteorMountain>overhead mountain blocks meteoroids</HVP_MeteorMountain><!--put Meteoroid Skip's 2nd target on a roof that can block drop pods and other skyfalling objects-->
+<HVP_TooManyHivesOnMap>too many hives already spawned</HVP_TooManyHivesOnMap><!--use Hive Call when there are 150 or more hives on the map-->
+<HVP_HiveBlocked>insufficient room for a hive there</HVP_HiveBlocked><!--use Hive Call on an occupied space-->
+<HVP_HiveTooCold>too cold for hives to spawn there</HVP_HiveTooCold><!--use Hive Call on a space of -17oC or lower-->
+<HVP_InvincibleRoof>targeted roof is unmodifiable</HVP_InvincibleRoof><!--use Mountain Skip on a roof type that can't collapse, of which the only example is the "void metal ceiling" from Anomaly's metal hell-->
+<HVP_WhereYouGonnaPutThatRoofEh>target space cannot support a roof</HVP_WhereYouGonnaPutThatRoofEh><!--use Mountain Skip on a cell with no adjacent roofs OR too far from roof supports-->
+<HVP_YoureUnderground>can't be used in an underground map</HVP_YoureUnderground><!--use Mountain Skip in one of Anomaly's underground environments or in metalhell-->
+<HVP_MustBeVincible>target must be destructible</HVP_MustBeVincible><!--use Evict on an object w/o hit points-->
+<HVP_CommandPsycastNotEnoughPsyfocusForSize>{PSYCASTNAME} needs {0} psyfocus to evict the target but {CASTERNAME} only has {1} psyfocus.</HVP_CommandPsycastNotEnoughPsyfocusForSize><!--Evict scaling psyfocus cost-->
+<HVP_CommandPsycastNotEnoughPsyfocusForSizeF>{PSYCASTNAME} needs {0} mana to evict the target but {CASTERNAME} only has {1} mana.</HVP_CommandPsycastNotEnoughPsyfocusForSizeF>
+<!--UI: Vault Skip hediff tooltip-->
+<HVP_StoringTheFollowing>Storing the following:</HVP_StoringTheFollowing>
+<HVP_AndYetMoreStored>... and {0} more</HVP_AndYetMoreStored>
+<!--UI: bad news-->
+<HVP_DropPodDefault>The summoned drop pod depressurized during atmospheric entry, rendering its contents to ash.</HVP_DropPodDefault><!--Drop Pod Call ash outcome-->
+<HVP_PsyphonBroken>The psyphon link established by {0} was broken by {1}, stunning both of them.</HVP_PsyphonBroken><!--when Psyphon Link ends prematurely due to targeting a non-consenting psycaster-->
+<HVP_VaultDeath>Due to the death of {PAWN_nameDef}, everything {PAWN_pronoun} was carrying in {PAWN_possessive} vault skip was ejected.</HVP_VaultDeath><!--when a pawn with a Vault Skip hediff dies-->
+<HVP_VaultDeathNoWarranty>Some items have been irretrievably lost.</HVP_VaultDeathNoWarranty><!--when a pawn with a Vault Skip hediff dies AND at least one item was consequently lost-->
+<HVP_PsychicKidnapping>A psycaster belonging to the {0} faction used Word of Safety to kidnap {1}.</HVP_PsychicKidnapping>
+<!--Mod settings-->
+<HVP_SettingPSM>Amount of psytrainers sold by traders</HVP_SettingPSM>
+<HVP_TooltipPsytrainerSaleMulti>Scales the amount of psytrainers traders will sell; at 2x, a trader who would ordinarily sell 1-3 psytrainers will sell 2-6. This won't cause traders who don't sell psytrainers to start doing so.</HVP_TooltipPsytrainerSaleMulti>
+<HVT_SettingPLPL>Psycasts learned per psylink level</HVT_SettingPLPL>
+<HVP_TooltipSettingPLPL>Whenever a pawn gains a psylink level, they will gain this many psycasts (1 is normal). This will not apply retroactively.</HVP_TooltipSettingPLPL>
+<HVP_SettingBuffFlashstorm>Buff the "Flashstorm" psycast</HVP_SettingBuffFlashstorm>
+<HVP_TooltipBuffFlashstorm>Dramatically increases the number of lightning strikes caused by the Flashstorm psycast, and causes some of them to have increased damage and armor penetration. Does not affect natural flashstorms. Does not retroactively apply to Flashstorms that have already been cast.</HVP_TooltipBuffFlashstorm>
+</LanguageData>

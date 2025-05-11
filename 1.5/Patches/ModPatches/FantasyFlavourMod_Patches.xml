@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		  <li>RPG Adventure Flavour Pack</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!--level 1 psycasts-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Agonize"]/description</xpath>
+					<value>
+						<description>Wrack the target with pain for a short time. Affected constructs lose mental coherence instead.\n\n Multiple casts on the same target do not stack.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsychicAgony"]/label</xpath>
+					<value>
+						<label>mystic agony</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsychicAgony"]/description</xpath>
+					<value>
+						<description>Magically-induced pain.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsychicAgonyMech"]/label</xpath>
+					<value>
+						<label>mystic agony</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsychicAgonyMech"]/description</xpath>
+					<value>
+						<description>Magically-induced pain. On constructs, this instead weakens their mental essence.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Stifle"]/description</xpath>
+					<value>
+						<description>Wrap the target in an anti-magic shell, lowering its magical sensitivity by an amount equal to half the caster's. If the target was already affected by Stifle, the stronger instance will take effect with its duration refreshed.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_StifleBuff"]/label</xpath>
+					<value>
+						<label>mystic stifling</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_StifleBuff"]/description</xpath>
+					<value>
+						<description>An anti-magic shell dampens this character's magic sensitivity.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_SinkholeSkip"]/label</xpath>
+					<value>
+						<label>sinkhole</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_SinkholeSkip"]/description</xpath>
+					<value>
+						<description>Geomantically excavate a pocket underneath the target patch of ground, rendering it unstable. This acts like a trap, stunning whoever triggers it. Larger pawns are less affected.\n\nCannot be placed adjacent to other traps. Each sinkhole will naturally collapse on its own after 5 days.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Surestep"]/description</xpath>
+					<value>
+						<description>Mystically guide the target's movement, increasing their moving capacity and immunizing them to slowdown caused by different terrain types.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_SurestepBuff"]/description</xpath>
+					<value>
+						<description>Magically-induced optimization of movement, increasing movement capacities and nullifying terrain pathing costs.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_EnergyTransfer"]/description</xpath>
+					<value>
+						<description>Transfer half of the first target's restfulness or animation energy to the second target. Less effective if the first target has reduced magic sensitivity.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/InteractionDef[defName = "HVP_WordOfWarning"]/logRulesInitiator/rulesStrings/li</xpath>
+					<value>
+						<li>r_logentry->[INITIATOR_nameDef] relayed a vision of future harm to [RECIPIENT_nameDef].</li>
+					</value>
+				</li>
+				<!--level 2 psycasts-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Carezone"]/description</xpath>
+					<value>
+						<description>Erect a healing ward at the target point. The local spirits will not only aid those within in recovering from injury and disease, they will also clean away filth.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_CarezoneBuff"]/label</xpath>
+					<value>
+						<label>carezone ward</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_CarezoneBuff"]/description</xpath>
+					<value>
+						<description>The healing influence of a carezone ward.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_ParalysisLink"]/description</xpath>
+					<value>
+						<description>Maintain an astral connection to the target which will, after a certain point, cause the target to become paralyzed. This process incurs arcane load over time, and it will stop if the target moves too far away or the caster is rendered incapable of spellcasting.\n\nTargets with more hit points or lower magical sensitivity take longer to paralyze.\n\nCosts 1 arcane load per second.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_ParalyzingBuildup"]/label</xpath>
+					<value>
+						<label>paralysis link</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_ParalyzingBuildup"]/description</xpath>
+					<value>
+						<description>Astral emanations from a nearby spellcaster will induce paralysis. Taking out the spellcaster or moving far enough away will terminate the buildup before it can take effect.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_TransientParalysis"]/label</xpath>
+					<value>
+						<label>astral paralysis</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_TransientParalysis"]/description</xpath>
+					<value>
+						<description>A state of paralysis brought about by the Paralysis Link psycast.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Replicate"]/description</xpath>
+					<value>
+						<description>Manifests a copy of the targeted resource item from pure aether.\n\nItems worth more than 350 silver can't be replicated. If the target is an item stack exceeding 500 silver in value, the manifestation will be smaller in order to be at or under 500 silver in value.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Sensitize"]/description</xpath>
+					<value>
+						<description>Transfer a quarter of the caster's magical sensitivity to the target. If the target was already affected by Sensitize, the stronger instance will take effect with its duration refreshed.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_SensitizeBuff"]/label</xpath>
+					<value>
+						<label>magical sensitization</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_SensitizeBuff"]/description</xpath>
+					<value>
+						<description>Enhanced magical sensitivity lent by a spellcaster.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_SensitizeNerf"]/label</xpath>
+					<value>
+						<label>magical desensitization</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_SensitizeNerf"]/description</xpath>
+					<value>
+						<description>By casting the Sensitize spell, this character has temporarily lost some magical sensitivity.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_TetherSkip"]/label</xpath>
+					<value>
+						<label>tether portal</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_TetherSkip"]/description</xpath>
+					<value>
+						<description>Generate a quiescent portal at the target's current location. Once its duration expires, the target leaves the current map, or the caster wills it, the target is immediately returned through the portal, causing it to close.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_TetherSkipbound"]/label</xpath>
+					<value>
+						<label>tethered portal</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_TetherSkipbound"]/description</xpath>
+					<value>
+						<description>A link to a dormant portal. After 1 day has elapsed - or when the spellcaster who created the portal wills it - this character will be sent back through the portal, causing it to vanish.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_WordOfContemplation"]/description</xpath>
+					<value>
+						<description>Recite litany from the arcane mysteries to lull the target into a trancelike state. While in this state, the target will meditate and rest more effectively, but will feel disconnected from their body, reducing consciousness.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_ContemplateThis"]/description</xpath>
+					<value>
+						<description>A magically-induced state of enhanced metaphysical connectivity. This improves the efficacy of meditation and rest, but draws the soul away from the physical body, reducing consciousness.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/InteractionDef[defName = "HVP_WordOfContemplation"]/logRulesInitiator/rulesStrings/li</xpath>
+					<value>
+						<li>r_logentry->[INITIATOR_nameDef] recited a litany of arcane words which lulled [RECIPIENT_nameDef] into a trancelike, mana-receptive state.</li>
+					</value>
+				</li>
+				<!--level 3 psycasts-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_LightningStrike"]/description</xpath>
+					<value>
+						<description>Call down a stream of elemental lightning to strike the target point. Unlike natural lightning, this directed attack is capable of slightly injuring constructs.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_PsyphonLink"]/label</xpath>
+					<value>
+						<label>manaleech link</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_PsyphonLink"]/description</xpath>
+					<value>
+						<description>Rapidly gain mana by siphoning it from the target spellcaster. This effect will end prematurely if the target runs out of mana.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a manaleech link to.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsyphonSucker"]/label</xpath>
+					<value>
+						<label>manaleech link (victim)</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsyphonSucker"]/description</xpath>
+					<value>
+						<description>Mana is being transferred out of this character to another spellcaster.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Shield"]/description</xpath>
+					<value>
+						<description>Envelop the target in a mystic ward. This ward can absorb up to 60 damage, but it only blocks explosions and projectiles, and lightning can dispel it instantly. Unlike certain other kinds of wards, it does not regenerate.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsychicShield"]/label</xpath>
+					<value>
+						<label>shield ward</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsychicShield"]/description</xpath>
+					<value>
+						<description>A projectile-repelling ward generated by skipgates. It will attempt to stop incoming projectiles or shrapnel, but does nothing against melee attacks or heat. It breaks apart instantly if hit by directed lightning, and it does not regenerate.\n\nThis ward takes damage after any wards generated by equipment. Since it is nearly skintight, it is possible to fire ranged weapons through it.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Tremorzone"]/description</xpath>
+					<value>
+						<description>Enrage the spirits of the earth underneath the target point, causing periodic upheaval around it. This repeatedly staggers anyone nearby (unless they are floating), and also stuns emplaced weapons.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_VaultSkip"]/label</xpath>
+					<value>
+						<label>pocket vault</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_VaultSkip"]/description</xpath>
+					<value>
+						<description>Shunts all nearby items into a vault demiplane. The caster may later retrieve all items from the vault at once. Every 10 objects (or stacks of objects) stored in this way consume 1% mana per day.\n\nIf the caster dies with items stored in the vault, the vault’s contents will be returned to the caster’s location, but roughly one-third of the items may be lost.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_Hammerspace"]/label</xpath>
+					<value>
+						<label>pocket vault</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_Hammerspace"]/description</xpath>
+					<value>
+						<description>Can store a large amount of items, though every 20 items drains 1% mana per day. Click the provided button to unload all of them at once.</description>
+					</value>
+				</li>
+				<!--level 4 psycasts-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_BoosterLink"]/description</xpath>
+					<value>
+						<description>Maintain an astral connection to the target which hones its mind, boosting moving and manipulation capacities. This process incurs arcane load over time, and it will stop if the target moves too far away, the target is downed for more than 4 seconds, or the caster is rendered incapable of spellcasting.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_BoosterBuff"]/description</xpath>
+					<value>
+						<description>An astrally-induced mental boost to movement and manipulation capacities. Scales with magical sensitivity.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_DropPodCall"]/label</xpath>
+					<value>
+						<label>glider call</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_DropPodCall"]/description</xpath>
+					<value>
+						<description>Beckon the winds to blow random gliders to the targeted location. Each usually contains a small amount of resources or leaves behind steel slag, with a slight chance for a small animal instead.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_DropPodCrashShock"]/description</xpath>
+					<value>
+						<description>A brief state of disorientation brought on by an unexpectedly bumpy glider landing.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Flare"]/description</xpath>
+					<value>
+						<description>Briefly swell with mystic power. The next spell cast within 2 hours will not incur arcane load and will have 80% of its mana cost refunded; if it is a teleportation spell, its range will also be extended.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_FlareBuff"]/label</xpath>
+					<value>
+						<label>arcane manaflare</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_FlareBuff"]/description</xpath>
+					<value>
+						<description>A temporarily enhanced connection to the flows of magic. Makes the next spell cheaper (and, if it is a teleportation spell, longer-ranged).</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_MountainSkip"]/label</xpath>
+					<value>
+						<label>earthshape</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Skiptheft"]/label</xpath>
+					<value>
+						<label>arcane theft</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Skiptheft"]/description</xpath>
+					<value>
+						<description>Teleport a random item carried or worn by the target into the caster's possession, slightly damaging it. If the target is hostile, this will preferentially steal their weapon, then their apparel, then things in their inventory; otherwise, the priority of items to steal is reversed. Stealing worn apparel, wielded weapons, or from a member of a magically-advanced faction will worsen relations with the target's faction.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_TurretSkip"]/label</xpath>
+					<value>
+						<label>defensive conjuration</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_TurretSkip"]/description</xpath>
+					<value>
+						<description>Conjure an elaborate clockwork contraption which fires projectiles at nearby enemies. It will vanish after 1 hour - unless it is about to explode.</description>
+					</value>
+				</li>
+				<!--level 5 psycasts-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_FluxPulse"]/label</xpath>
+					<value>
+						<label>elemental pulse</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_FluxPulse"]/description</xpath>
+					<value>
+						<description>Suffuse the area around the target point with the elements of cold, fire, and lightning. Lightning stuns golems and other animate constructs; fire and cold cause heatstroke, hypothermia, and possibly burns.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsychicThermalFlux"]/label</xpath>
+					<value>
+						<label>elemental conflux</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_PsychicThermalFlux"]/description</xpath>
+					<value>
+						<description>A suffusion of elemental essences can cause simultaneous freezing and burning.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_MeteoroidSkip"]/label</xpath>
+					<value>
+						<label>arcane catapult</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_MeteoroidSkip"]/description</xpath>
+					<value>
+						<description>Teleport the target chunk far into the sky and then send it crashing down on the target point with magically-enhanced force. Chunks made of more durable materials will cause more damage.\n\nShields that block catapult fire also block chunks "fired" by this spell.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_ReavingSkip"]/description</xpath>
+					<value>
+						<description>Cause a portion of the target's body to simply vanish. Deals quadruple damage to buildings, and ignores any level of incoming damage factor other than total invulnerability.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_ThermalPinhole"]/label</xpath>
+					<value>
+						<label>sun wisp</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_ThermalPinhole"]/description</xpath>
+					<value>
+						<description>Generate a small ball of peaceful sunlight. It will hover in place, providing enough light to work by and grow plants in, as well as suppressing nearby fires and adjusting the local temperature to that of a lukewarm day.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_WordOfSafety"]/description</xpath>
+					<value>
+						<description>Incant while close to the target to form a protective ward around it. This ward reduces incoming damage, slows bleeding, and improves resistance to toxins and disease. Additionally, when the target is next downed, the ward will enter a brief state of increased potency, and it will also teleport the target to a nearby unoccupied bed if possible.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_GetToSafety"]/description</xpath>
+					<value>
+						<description>A ward which reinforces bodily integrity. When downed, this effect will temporarily double, and this character will teleport to the nearest bed appropriate to their level of freedom (free, prisoner, or slave), prioritizing medical beds.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_Intervened"]/label</xpath>
+					<value>
+						<label>safeguard ward</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_Intervened"]/description</xpath>
+					<value>
+						<description>A fully activated Word of Safety ward. It has enhanced protective potency but will burn out soon.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/InteractionDef[defName = "HVP_WordOfSafety"]/logRulesInitiator/rulesStrings/li</xpath>
+					<value>
+						<li>r_logentry->[INITIATOR_nameDef] uttered a powerful abjurative spell which manifested a protective ward around [RECIPIENT_nameDef].</li>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_WordOfSterility"]/description</xpath>
+					<value>
+						<description>Speak to the target, invoking the spirits of wellness. The target will be cured of one overdose, disease, toxic effect, or non-luciferium addiction. However, it will also strain the target's body, causing a coma for three days and lingering discomfort for three days after that.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/InteractionDef[defName = "HVP_WordOfSterility"]/logRulesInitiator/rulesStrings/li</xpath>
+					<value>
+						<li>r_logentry->[INITIATOR_nameDef] spoke a greater word of healing, curing [RECIPIENT_nameDef] of an adverse health condition.</li>
+					</value>
+				</li>
+				<!--level 6 psycasts-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_EvictionSkip"]/description</xpath>
+					<value>
+						<description>Banish the target somewhere far, far away, removing it from the sphere of immediate concern.\n\nUnlike other conjuration spells, weight, size, and lack of magical sensitivity do not affect whether an object is targetable.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_FortuneCall"]/description</xpath>
+					<value>
+						<description>Pluck the strands of fate to cause a positive event within the next 2-24 hours. After casting, the caster will fall into a 2-day coma.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_HiveCall"]/description</xpath>
+					<value>
+						<description>Beckon to the dark powers of the earth, causing an infestation to surface around the target point. The more magic sensitivity the caster has, the more insectoids will respond to the call.\n\nNo insectoids will surface if the target region is too cold, or if there are already more than 150 hives on the map.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_RejuvenationSkip"]/label</xpath>
+					<value>
+						<label>rejuvenate</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_RejuvenationSkip"]/description</xpath>
+					<value>
+						<description>Envelops the target in potent healing magic. It gradually heals wounds, removes scars, and even regrows lost body parts, but it decreases in potency each day. It also leaves the target perpetually exhausted, hungry, sluggish, and pained. The effect ends prematurely if the target takes any damage.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_Rejuvenation"]/label</xpath>
+					<value>
+						<label>mystic rejuvenation</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_Rejuvenation"]/description</xpath>
+					<value>
+						<description>A potent but gradual healing magic. It will be lost if the patient takes any damage.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_Stuporzone"]/description</xpath>
+					<value>
+						<description>Create a profane astral disturbance that ripples throughout the target region, dimming the minds of anyone inside.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_StuporDebuff"]/label</xpath>
+					<value>
+						<label>stuporzone hex</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName = "HVP_WordOfMelding"]/description</xpath>
+					<value>
+						<description>Speak about becoming one with another while extracting mental essence from the listener to place it into a coma. The other target gains some of that mental essence, boosting its consciousness, though if the coma should ever be undone that essence will return to the listener. The benefit of this ability can stack up to ten times.\n\nThe souls of children have a quality that renders them immune to this magic.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_MeldingComa"]/label</xpath>
+					<value>
+						<label>spiritual melding (coma)</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_MeldingComa"]/description</xpath>
+					<value>
+						<description>Due to being spiritually melded to another being, this character is in a persistent vegetative state. Most of its mental essence has been co-opted to boost the consciousness of the being it is melded to.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_MeldingBuff"]/label</xpath>
+					<value>
+						<label>spiritual melding</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_MeldingBuff"]/description</xpath>
+					<value>
+						<description>The mental essences of other entities are being used to boost the consciousness of this character.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/RecipeDef[defName = "HVP_CureMelding"]/label</xpath>
+					<value>
+						<label>end melding coma</label>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/RecipeDef[defName = "HVP_CureMelding"]/description</xpath>
+					<value>
+						<description>Uses potent healing reagents to recall the mental essences which were excised by the Word of Melding spell, ending the coma with no ill effects for the patient.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/InteractionDef[defName = "HVP_WordOfMelding"]/logRulesInitiator/rulesStrings/li</xpath>
+					<value>
+						<li>r_logentry->[INITIATOR_nameDef] spiritually melded [RECIPIENT_nameDef] into the mind of another.</li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

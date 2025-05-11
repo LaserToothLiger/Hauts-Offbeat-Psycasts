@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_FluxPulse</defName>
+    <label>flux pulse</label>
+    <description>Use microscopic skipgates to suffuse the area around the target point with a mix of extremely hot and cold particles. This releases an EMP, and can cause heatstroke, hypothermia, and possibly burns.</description>
+    <level>5</level>
+    <iconPath>UI/Commands/TempLower</iconPath>
+    <hostile>true</hostile>
+    <writeCombatLog>True</writeCombatLog>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+	<canUseAoeToGetTargets>false</canUseAoeToGetTargets>
+    <statBases>
+      <Ability_EntropyGain>30</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.035</Ability_PsyfocusCost>
+      <Ability_EffectRadius>3.9</Ability_EffectRadius>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityFleckAndFlux">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+        <hediffDef>HVP_PsychicThermalFlux</hediffDef>
+        <psychic>True</psychic>
+		<severity>1</severity>
+        <goodwillImpact>-55</goodwillImpact>
+        <applyGoodwillImpactToLodgers>False</applyGoodwillImpactToLodgers>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_MeteoroidSkip</defName>
+    <label>meteoroid skip</label>
+    <description>Teleport the target chunk into the gravity well of a distant neutron star to vastly accelerate it, then quickly teleport it back to a position far above the starting point. It will land with explosive force shortly thereafter. Chunks made of more durable materials will cause more damage.\n\nShields that block mortar fire also block meteoroids.</description>
+    <level>5</level>
+    <iconPath>Things/Skyfaller/Meteorite</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <showPsycastEffects>False</showPsycastEffects>
+	<hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>40</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.04</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.4</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetItems>True</canTargetItems>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class = "HautsPsycasts.CompProperties_AbilityMSkip">
+        <compClass>HautsPsycasts.CompAbilityEffect_MSkip</compClass>
+        <destination>Selected</destination>
+        <requiresLineOfSight>True</requiresLineOfSight>
+		<skyfaller>HVP_Meteoroid</skyfaller>
+        <range>24.9</range>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>10</clamorRadius>
+        <destClamorType>Ability</destClamorType>
+        <destClamorRadius>10</destClamorRadius>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_ReavingSkip</defName>
+    <label>reave</label>
+    <description>Skip a portion of the target away from the rest of its body. Deals quadruple damage to buildings, and ignores any level of incoming damage factor other than total invulnerability.</description>
+    <level>5</level>
+    <iconPath>UI/Designators/Slaughter</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>25</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.45</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetSelf>False</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+        <canTargetBuildings>True</canTargetBuildings>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityEffecterOnTarget">
+        <effecterDef>Skip_Exit</effecterDef>
+        <maintainForTicks>60</maintainForTicks>
+        <scale>0.42</scale>
+      </li>
+      <li Class="HautsPsycasts.CompProperties_AbilityReave">
+        <compClass>HautsPsycasts.CompAbilityEffect_Reave</compClass>
+		<damageDef>Hauts_SkipFrag</damageDef>
+		<damageToPawns>35</damageToPawns>
+		<damageToBuildings>140</damageToBuildings>
+		<fleck1>PsycastSkipInnerExit</fleck1>
+		<fleck2>PsycastSkipOuterRingExit</fleck2>
+		<sound>Psycast_Skip_Exit</sound>
+		<fleckScale>0.3</fleckScale>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_ThermalPinhole</defName>
+    <label>thermal pinhole</label>
+    <description>Generate a system of microscopic skipgates linked to both a nearby star and the chilly atmospheres or hydrospheres of nearby lifeless moons and planets. This system reactively regulates the temperature, pushing out solar material to warm or freezing materials to cool, and even reacts to nearby flames, rapidly extinguishing them and snuffing out explosive wicks. It also produces a steady light that is both bright enough to work in and grow plants with.</description>
+    <level>5</level>
+    <iconPath>Things/Building/Production/LampSun</iconPath>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>25</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.5</Ability_PsyfocusCost>
+      <Ability_EffectRadius>5.8</Ability_EffectRadius>
+      <Ability_Duration>5000</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilitySpawn">
+        <thingDef>HVP_ThermoPinhole</thingDef>
+        <allowOnBuildings>False</allowOnBuildings>
+      </li>
+      <li Class="CompProperties_AbilityEffecterOnTarget">
+        <effecterDef>Skip_Exit</effecterDef>
+        <maintainForTicks>60</maintainForTicks>
+        <scale>0.42</scale>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDefs>
+          <li>PsycastSkipInnerExit</li>
+          <li>PsycastSkipOuterRingExit</li>
+        </fleckDefs>
+        <scale>0.42</scale>
+        <sound>Psycast_Skip_Exit</sound>
+        <preCastTicks>5</preCastTicks>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="WordOfBase">
+    <defName>HVP_WordOfSafety</defName>
+    <label>word of safety</label>
+    <description>Calibrate a reactive skipgate and psychically reprogram nearby medical mechanites by speaking to the target. The mechanites make the target less vulnerable to damage, slower to bleed, and less susceptible to toxins or disease. Additionally, when the target is next downed, the mechanites will enter a brief state of increased potency, and the target will be skipped to a nearby unoccupied bed if possible.</description>
+    <level>5</level>
+    <iconPath>Things/Mote/HealingCross</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_PsyfocusCost>0.6</Ability_PsyfocusCost>
+      <Ability_Duration>5000</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>2</warmupTime>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+		<canTargetMechs>False</canTargetMechs>
+        <neverTargetHostileFaction>False</neverTargetHostileFaction>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>HautsPsycasts.CompAbilityEffect_Intervention</compClass>
+        <hediffDef>HVP_GetToSafety</hediffDef>
+        <durationMultiplier>PsychicSensitivity</durationMultiplier>
+        <psychic>True</psychic>
+      </li>
+      <li Class="CompProperties_AbilitySocialInteraction">
+        <interactionDef>HVP_WordOfSafety</interactionDef>
+		<canApplyToUnconscious>true</canApplyToUnconscious>
+		<canApplyToAsleep>true</canApplyToAsleep>
+		<canApplyToMentallyBroken>true</canApplyToMentallyBroken>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="WordOfBase">
+    <defName>HVP_WordOfSterility</defName>
+    <label>word of sterility</label>
+    <description>Calibrate a system of skipgates by speaking to the target. The target will be flooded with short-lived medical mechanites that clear out one overdose, disease, toxic effect, or non-luciferium addiction; however, this will also put the target into a coma for three days, followed by pain-inducing discomfort for three days after that.</description>
+    <level>5</level>
+    <iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_PsyfocusCost>0.7</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>2</warmupTime>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+		<canTargetMechs>False</canTargetMechs>
+        <neverTargetHostileFaction>True</neverTargetHostileFaction>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilitySterilize">
+        <compClass>HautsPsycasts.CompAbilityEffect_Sterilize</compClass>
+        <unaffectedAddictionsOrDiseases>
+		  <li>LuciferiumAddiction</li>
+		</unaffectedAddictionsOrDiseases>
+        <otherAffectedHediffs>
+		  <li>CryptosleepSickness</li>
+		  <li>FoodPoisoning</li>
+		  <li>ToxicBuildup</li>
+		  <li>DrugOverdose</li>
+		  <li>ResurrectionSickness</li>
+		  <li MayRequire="Ludeon.RimWorld.Biotech">ToxGasExposure</li>
+		  <li>VEF_ToxicBuildup</li>
+		  <li MayRequire="SirMashedPotato.Ashlands">Mashed_Ashlands_AshBuildup</li>
+		  <li MayRequire="sarg.alphabiomes">AB_SporesAllergy</li>
+		  <li MayRequire="Dubwise.Rimatomics">FatalRad</li>
+		  <li MayRequire="Dubwise.Rimatomics">RimatomicsRadiation</li>
+		  <li MayRequire="Dubwise.Rimatomics">RadiationIncurable</li>
+		  <li MayRequire="phil42.allergies">P42_AnaphylacticShock</li>
+		  <li MayRequire="phil42.allergies">P42_TightThroat</li>
+		  <li MayRequire="phil42.allergies">P42_PinkEye</li>
+		  <li MayRequire="phil42.allergies">P42_ChronicSinusitis</li>
+		  <li MayRequire="phil42.allergies">P42_AllergenBuildup</li>
+		  <li MayRequire="phil42.allergies">Asthma</li>
+		</otherAffectedHediffs>
+		<addsHediff>HVP_Sterility</addsHediff>
+      </li>
+      <li Class="CompProperties_AbilitySocialInteraction">
+        <interactionDef>HVP_WordOfSterility</interactionDef>
+		<canApplyToUnconscious>true</canApplyToUnconscious>
+		<canApplyToAsleep>true</canApplyToAsleep>
+		<canApplyToMentallyBroken>true</canApplyToMentallyBroken>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+</Defs>

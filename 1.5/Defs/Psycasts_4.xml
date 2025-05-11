@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <AbilityDef ParentName="HVMP_PsycastBaseLink">
+    <defName>HVP_BoosterLink</defName>
+    <label>booster link</label>
+    <description>Bathe the target in psychic frequencies which hone its mind, boosting moving and manipulation capacities. This process incurs neural heat over time, and it will stop if the target moves too far away, the target is downed for more than 4 seconds, or the caster is rendered incapable of psycasting.</description>
+    <level>4</level>
+    <iconPath>Things/Item/Resource/Chemfuel</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>10</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetSelf>False</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsFramework.CompProperties_AbilityGiveHediffPaired">
+        <compClass>HautsFramework.CompAbilityEffect_GiveHediffPaired</compClass>
+        <hediffToTarg>HVP_BoosterBuff</hediffToTarg>
+		<overridePreviousLinkTargetTarg>true</overridePreviousLinkTargetTarg>
+		<replaceExistingTarg>true</replaceExistingTarg>
+		<hediffToDest>HVP_HiddenBoostMaintainer</hediffToDest>
+		<overridePreviousLinkTargetDest>true</overridePreviousLinkTargetDest>
+		<replaceExistingDest>false</replaceExistingDest>
+		<canStackDest>true</canStackDest>
+        <psychic>True</psychic>
+        <destination>Caster</destination>
+		<applyToTarget>true</applyToTarget>
+		<applyToDest>true</applyToDest>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="HVMP_PsycastBaseCall">
+    <defName>HVP_DropPodCall</defName>
+    <label>drop pod call</label>
+    <description>Divert drop pods from orbital storage to the targeted location. The drop pods have a small chance to contain a small animal, but can otherwise contain resources or leave behind slag. The more psychic sensitivity the caster has, the more drop pods are spawned.</description>
+    <level>4</level>
+    <iconPath>Things/Special/DropPod</iconPath>
+    <hostile>false</hostile>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.25</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>39.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityDropPod">
+        <compClass>HautsPsycasts.CompAbilityEffect_DropPod</compClass>
+		<weightings>
+		  <li><key>resources</key><value>10</value></li>
+		  <li><key>slag</key><value>9</value></li>
+		  <li><key>animal</key><value>1</value></li>
+		  <!--<li><key>burnup</key><value>1</value></li>at present, because I am lazy, the keys are just strings instead of being like, the names of code or whatever. only the strings "resources", "slag", and "animal" do anything; anything else returns the fallback event, which is the pod burning up on entry and spraying ash on the floor-->
+		</weightings>
+		<podPerStatCurve>
+		  <points>
+            <li>(0, 1)</li>
+            <li>(1, 1)</li>
+            <li>(1.5, 2)</li>
+            <li>(2.5, 3)</li>
+            <li>(4, 4)</li>
+            <li>(8, 6)</li>
+            <li>(12, 8)</li>
+          </points>
+		</podPerStatCurve>
+		<statScalar>PsychicSensitivity</statScalar>
+		<giveHediffToPassengers>HVP_DropPodCrashShock</giveHediffToPassengers>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_Flare</defName>
+    <label>flare</label>
+    <description>Briefly swell with psychic power. The next psycast within 2 hours will not incur neural heat and will have 80% of its psyfocus cost refunded; if it is a skip psycast, its range will also be extended.</description>
+    <level>4</level>
+    <cooldownTicksRange>180000</cooldownTicksRange>
+    <iconPath>Things/Item/Special/PsylinkNeuroformer</iconPath>
+    <hostile>false</hostile>
+    <targetRequired>False</targetRequired>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <stunTargetWhileCasting>False</stunTargetWhileCasting>
+    <statBases>
+      <Ability_EntropyGain>0</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0</Ability_PsyfocusCost>
+      <Ability_Duration>84</Ability_Duration>
+      <Ability_EffectRadius>0</Ability_EffectRadius>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <nonInterruptingSelfCast>true</nonInterruptingSelfCast>
+	  <range>0</range>
+      <drawAimPie>False</drawAimPie>
+      <requireLineOfSight>False</requireLineOfSight>
+      <targetParams>
+        <canTargetSelf>true</canTargetSelf>
+        <canTargetPawns>false</canTargetPawns>
+        <canTargetBuildings>false</canTargetBuildings>
+        <canTargetAnimals>false</canTargetAnimals>
+        <canTargetHumans>false</canTargetHumans>
+        <canTargetMechs>false</canTargetMechs>
+		<canTargetMutants>false</canTargetMutants>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>HautsPsycasts.CompAbilityEffect_Unleash</compClass>
+        <hediffDef>HVP_FlareBuff</hediffDef>
+        <onlyApplyToSelf>True</onlyApplyToSelf>
+        <replaceExisting>false</replaceExisting>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_MountainSkip</defName>
+    <label>mountain skip</label>
+    <description>Teleport a large mass of rock. This can turn a targeted thin rock roof into overhead mountain. It can also turn overhead mountain, other roof types, or empty spaces adjacent to roofs into thin rock roof.</description>
+    <level>4</level>
+    <iconPath>Things/Mote/TempRoof</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.8</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>15</warmupTime>
+      <range>9.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityRoofSkip">
+        <disallowedWeathers>
+		  <li MayRequire="Ludeon.RimWorld.Anomaly">Underground</li>
+		  <li MayRequire="Ludeon.RimWorld.Anomaly">Undercave</li>
+		  <li MayRequire="Ludeon.RimWorld.Anomaly">MetalHell</li>
+		</disallowedWeathers>
+      </li>
+      <li Class="CompProperties_AbilityEffecterOnTarget">
+        <effecterDef>Skip_Exit</effecterDef>
+        <maintainForTicks>60</maintainForTicks>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDefs>
+          <li>PsycastSkipInnerExit</li>
+          <li>PsycastSkipOuterRingExit</li>
+        </fleckDefs>
+        <sound>Psycast_Skip_Exit</sound>
+        <preCastTicks>5</preCastTicks>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_Skiptheft</defName>
+    <label>skiptheft</label>
+    <description>Skip a random item carried or worn by the target into the caster's possession, slightly damaging it. If the target is hostile, this will preferentially steal their weapon, then their apparel, then things in their inventory; otherwise, the priority of items to steal is reversed. Stealing worn apparel, wielded weapons, or from a member of an ultratech faction will worsen relations with the target's faction.</description>
+    <level>4</level>
+    <iconPath>UI/Commands/FormCaravan</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>20</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.13</Ability_PsyfocusCost>
+      <Ability_Duration>250</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetSelf>False</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilitySkipTheft">
+        <compClass>HautsPsycasts.CompAbilityEffect_SkipTheft</compClass>
+        <goodwillDamageIfCaughtStealing>-15</goodwillDamageIfCaughtStealing>
+		<damageToStolenThing>10~25</damageToStolenThing>
+      </li>
+      <li Class="CompProperties_AbilityEffecterOnTarget">
+        <effecterDef>Skip_Exit</effecterDef>
+        <maintainForTicks>60</maintainForTicks>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDefs>
+          <li>PsycastSkipInnerExit</li>
+          <li>PsycastSkipOuterRingExit</li>
+        </fleckDefs>
+        <sound>Psycast_Skip_Exit</sound>
+        <preCastTicks>5</preCastTicks>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_TurretSkip</defName>
+    <label>turret skip</label>
+    <description>Skip a mini-slugger turret from the storage of a mechanoid fleet to the target location, and psychically reprogram it to only target the caster's enemies. After 2 hours, a skipgate will teleport the turret back - unless it is about to explode.\n\nUnlike a conventionally deployed mini-slugger, this turret is oddly more accurate.</description>
+    <level>4</level>
+    <iconPath>Things/Building/Mech/TurretMechMini_Base</iconPath>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>30</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.03</Ability_PsyfocusCost>
+      <Ability_EffectRadius>44.9</Ability_EffectRadius>
+      <Ability_Duration>84</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilitySpawnAlliedBuilding">
+        <thingDef>HVP_SkippedTurret</thingDef>
+        <allowOnBuildings>False</allowOnBuildings>
+        <sound>Psycast_Skip_Exit</sound>
+		<isTrap>false</isTrap>
+      </li>
+      <li Class="CompProperties_AbilityEffecterOnTarget">
+        <effecterDef>Skip_Exit</effecterDef>
+        <maintainForTicks>60</maintainForTicks>
+        <scale>0.42</scale>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDefs>
+          <li>PsycastSkipInnerExit</li>
+          <li>PsycastSkipOuterRingExit</li>
+        </fleckDefs>
+        <sound>Psycast_Skip_Exit</sound>
+        <preCastTicks>5</preCastTicks>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+</Defs>

@@ -1,0 +1,927 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <!--level 1:
+  agonize-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_PsychicAgony</defName>
+    <label>psychic agony</label>
+    <description>Psychically-induced pain.</description>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <painOffset>0.2</painOffset>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HautsFramework.HediffCompProperties_PhylumMorphsHediff">
+		<hediffIfMech>HVP_PsychicAgonyMech</hediffIfMech>
+	  </li>
+	</comps>
+  </HediffDef>
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_PsychicAgonyMech</defName>
+    <label>psychic agony</label>
+    <description>Psychically-induced pain. On mechanoids, this manifests as a reduction in processing power.</description>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+		<capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.1</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  <!--stifle-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_StifleBuff</defName>
+    <label>psychic stifling</label>
+    <description>Loud psychic signals dampen this character's psychic presence.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+		<statOffsets>
+		  <PsychicSensitivity>-1</PsychicSensitivity>
+		</statOffsets>
+		<multiplyStatChangesBySeverity>true</multiplyStatChangesBySeverity>
+      </li>
+    </stages>
+  </HediffDef>
+  <!--surestep-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_SurestepBuff</defName>
+    <label>surestep</label>
+    <description>Psychically-induced optimization of movement, increasing movement capacities and nullifying terrain pathing costs.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <postFactor>1.03</postFactor>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="AnimalBehaviours.HediffCompProperties_Floating"/>
+	</comps>
+  </HediffDef>
+  <!--word of warning-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_AndSoForewarned</defName>
+    <label>word of warning</label>
+    <description>Negates the next instance of damage taken. Does not work if asleep or unconscious.</description>
+	<hediffClass>HautsFramework.Hediff_PreDamageModification</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<comps>
+	  <li Class="HautsPsycasts.HediffCompProperties_Forewarned">
+		<chance>1</chance>
+		<severityOnHit>-1</severityOnHit>
+		<damageScalesSeverityLoss>false</damageScalesSeverityLoss>
+		<priority>1400</priority>
+		<throwText>true</throwText>
+		<textToThrow>HVP_WarningBlock</textToThrow>
+		<mustBeConscious>true</mustBeConscious>
+	  </li>
+	</comps>
+  </HediffDef>
+  
+  <!--level 2:
+  carezone-->
+  <HediffDef>
+    <defName>HVP_CarezoneBuff</defName>
+    <label>psychic carezone</label>
+    <description>Medical aid rendered by mechanites under the influence of a carezone psycast.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9,0.9,0.953)</defaultLabelColor>
+    <initialSeverity>0.1</initialSeverity>
+    <maxSeverity>0.1</maxSeverity>
+    <stages>
+      <li>
+		<statOffsets>
+		  <ImmunityGainSpeed>0.1</ImmunityGainSpeed>
+		  <InjuryHealingFactor>0.25</InjuryHealingFactor>
+		  <P42_AllergicSensitivity MayRequire="phil42.allergies">-0.10</P42_AllergicSensitivity>
+		</statOffsets>
+        <totalBleedFactor>0.75</totalBleedFactor>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-24</severityPerDay>
+      </li>
+    </comps>
+  </HediffDef>
+  <!--paralysis link-->
+  <HediffDef>
+    <defName>HVP_HiddenParalysisMaintainer</defName>
+    <label>paralyzing signal</label>
+    <description>Generates Paralysis Link's paralyzing effect on the victim.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<initialSeverity>0.001</initialSeverity>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+	<comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+	    <removeLinkedHediffOnRemoval>true</removeLinkedHediffOnRemoval>
+	  </li>
+	  <li Class="HautsPsycasts.HediffCompProperties_LinkBuildEntropy">
+        <casterEntropyGainPerSecond>1</casterEntropyGainPerSecond>
+		<severityPerLink>1</severityPerLink>
+		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
+		<casterMustBeConscious>true</casterMustBeConscious>
+		<maxDistance>30</maxDistance>
+		<customMote>HVP_Mote_ParalysisBeam</customMote>
+		<ticksToNextDamage>180</ticksToNextDamage><!--it doesn't actually do damage, but it counts as an attack for a few purposes, most notably making wild animals fight-or-fly. this is the "rate of fire" for notifying the victim it's being attacked-->
+	    <icon>Things/Mote/PsycastSkipFlash</icon>
+		<buttonLabel>HVP_NoParalysisLabel</buttonLabel>
+		<buttonTooltip>HVP_NoParalysisText</buttonTooltip>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>HVP_ParalyzingBuildup</defName>
+    <label>psychic paralysis link</label>
+    <description>Psychic emanations from a nearby psycaster will induce paralysis. Taking out the psycaster or moving far enough away will terminate the buildup before it can take effect.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+	<initialSeverity>0.001</initialSeverity>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <postFactor>0.95</postFactor>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <postFactor>0.95</postFactor>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+	<comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+        <removeLinkedHediffOnRemoval>false</removeLinkedHediffOnRemoval>
+	  </li>
+      <li Class="HautsFramework.HediffCompProperties_StatScalingSeverityPerDay">
+	    <stat>PsychicSensitivity</stat>
+		<baseSeverityPerDay>60000</baseSeverityPerDay>
+	  </li>
+      <li Class="HautsPsycasts.HediffCompProperties_Paralysis">
+        <alternativeHediff>HVP_TransientParalysis</alternativeHediff>
+		<mechStunTime>2400~2600</mechStunTime>
+		<ifAbove>true</ifAbove>
+		<ifBelow>false</ifBelow>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>HVP_TransientParalysis</defName>
+    <label>psychic paralysis</label>
+    <description>A state of paralysis brought about by the Paralysis Link psycast.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.01</setMax>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>7500</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+    </comps>
+  </HediffDef>
+  <!--sensitize-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_SensitizeBuff</defName>
+    <label>psychic sensitization</label>
+    <description>Enhanced psychic sensitivity lent by a psycaster.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+		<statOffsets>
+		  <PsychicSensitivity>1</PsychicSensitivity>
+		</statOffsets>
+		<multiplyStatChangesBySeverity>true</multiplyStatChangesBySeverity>
+      </li>
+    </stages>
+	<comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+        <removeLinkedHediffOnRemoval>false</removeLinkedHediffOnRemoval>
+        <addedSeverityToLinkedHediffOnRemoval>-1</addedSeverityToLinkedHediffOnRemoval>
+      </li>
+	</comps>
+  </HediffDef>
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_SensitizeNerf</defName>
+    <label>psychic desensitization</label>
+    <description>By casting the Sensitize psycast, this character has temporarily lost some psychic sensitivity.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <initialSeverity>1</initialSeverity>
+    <stages>
+      <li>
+		<statFactors>
+		  <PsychicSensitivity>0.75</PsychicSensitivity>
+		</statFactors>
+		<multiplyStatChangesBySeverity>true</multiplyStatChangesBySeverity>
+      </li>
+    </stages>
+	<comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+        <removeLinkedHediffOnRemoval>true</removeLinkedHediffOnRemoval>
+      </li>
+	</comps>
+  </HediffDef>
+  <!--tetherskip-->
+  <HediffDef>
+    <defName>HVP_TetherSkipbound</defName>
+    <label>tether skip</label>
+    <description>A link to a dormant skipgate. After 1 day has elapsed - or when the psycaster who created the skipgate wills it - this character will be teleported back to the skipgate's position, causing it to vanish.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+	    <removeLinkedHediffOnRemoval>false</removeLinkedHediffOnRemoval>
+	  </li>
+	  <li Class="HautsPsycasts.HediffCompProperties_TetherVictim">
+		<maxDistance>99999</maxDistance>
+		<requireLinkOnOtherPawn>false</requireLinkOnOtherPawn>
+		<customMote>HVP_Mote_TetherBeam</customMote>
+		<tetherAnchor>HVP_TetherAnchor</tetherAnchor>
+		<fleckEntry>PsycastSkipFlashEntry</fleckEntry>
+		<soundEntry>Psycast_Skip_Entry</soundEntry>
+		<fleckExit1>PsycastSkipInnerExit</fleckExit1>
+		<fleckExit2>PsycastSkipOuterRingExit</fleckExit2>
+		<soundExit>Psycast_Skip_Exit</soundExit>
+        <stunTicks>18~60</stunTicks>
+      </li>
+      <li Class="HediffCompProperties_Disappears">
+        <showRemainingTime>True</showRemainingTime>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_TetherSkipMaintainer</defName>
+    <label>tetherskip leash</label>
+    <description>Enables the caster to recall the targets of their Tether Skips.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HautsPsycasts.HediffCompProperties_LinkRevoker">
+	    <removeLinkedHediffOnRemoval>true</removeLinkedHediffOnRemoval>
+	    <icon>Things/Mote/PsycastSkipFlash</icon>
+		<buttonLabel>HVP_RecallLabel</buttonLabel>
+		<buttonTooltip>HVP_RecallText</buttonTooltip>
+		<buttonTooltipFantasy>HVP_RecallTextFantasy</buttonTooltipFantasy>
+	  </li>
+	</comps>
+  </HediffDef>
+  <!--word of contemplation-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_ContemplateThis</defName>
+    <label>word of contemplation</label>
+    <description>A psychically-induced state in which one's inner world becomes much easier to explore. This improves the efficacy of meditation and rest, but draws the consciousness away from the physical body.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <statOffsets>
+		  <MeditationFocusGain>0.35</MeditationFocusGain>
+		  <RestRateMultiplier>0.5</RestRateMultiplier>
+		</statOffsets>
+		<capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <postFactor>0.7</postFactor>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  
+  <!--level 3:
+  drop pod call-->
+  <HediffDef>
+    <defName>HVP_DropPodCrashShock</defName>
+    <label>crashlanding shock</label>
+    <description>A brief state of disorientation brought on by an unexpected and bumpy drop pod landing.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.01</setMax>
+          </li>
+        </capMods>
+		<becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>220~1000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+  </HediffDef>
+  <!--psyphon link-->
+  <HediffDef>
+    <defName>HVP_PsyphonSucker</defName>
+    <label>psyphon link (victim)</label>
+    <description>Psyfocus is being transferred out of this character to another psycaster.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+	    <removeLinkedHediffOnRemoval>false</removeLinkedHediffOnRemoval>
+	  </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>HVP_HiddenPsyphonMaintainer</defName>
+    <label>psyphon signal</label>
+    <description>Generates Psyphon Link's psyfocus-draining effect on the victim.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<initialSeverity>0.001</initialSeverity>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+	<comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+	    <removeLinkedHediffOnRemoval>true</removeLinkedHediffOnRemoval>
+	  </li>
+	  <li Class="HautsPsycasts.HediffCompProperties_Psyphon">
+        <casterEntropyGainPerSecond>0</casterEntropyGainPerSecond>
+		<severityPerLink>1</severityPerLink>
+		<victimEntropyPerSecond>12</victimEntropyPerSecond>
+		<psyfocusPerInterval>0.02</psyfocusPerInterval>
+		<intervalsTilUnwillingEnd>6</intervalsTilUnwillingEnd>
+		<stunTicksOnUnwillingEnd>180~200</stunTicksOnUnwillingEnd>
+		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
+		<casterMustBeConscious>true</casterMustBeConscious>
+		<maxDistance>30</maxDistance>
+		<customMote>HVP_Mote_PsyphonBeam</customMote>
+		<ticksToNextDamage>60</ticksToNextDamage>
+		<countsAsAttack>true</countsAsAttack>
+	    <icon>Things/Mote/PsycastSkipFlash</icon>
+		<buttonLabel>HVP_NoPsyphonLabel</buttonLabel>
+		<buttonTooltip>HVP_NoPsyphonText</buttonTooltip>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  <!--shield-->
+  <HediffDef ParentName="HVT_TraitHediffBase">
+	<defName>HVP_PsychicShield</defName>
+	<hediffClass>HautsFramework.Hediff_PreDamageModification</hediffClass>
+	<label>psychic shield</label>
+	<description>A projectile-repulsion field generated by skipgates. It will attempt to stop incoming projectiles or shrapnel, but does nothing against melee attacks or heat. It breaks apart instantly if hit by an EMP, and it does not regenerate.\n\nThis shield takes damage after any shields generated by equipment. Since it is nearly skintight, it is possible to fire ranged weapons through it.</description>
+	<initialSeverity>0.001</initialSeverity>
+	<comps>
+	  <li Class="HautsFramework.HediffCompProperties_DamageNegationShield">
+		<chance>1</chance>
+		<severityOnHit>-1</severityOnHit>
+		<minSeverityToWork>0.001</minSeverityToWork>
+		<damageScalesSeverityLoss>true</damageScalesSeverityLoss>
+		<soundOnBlock>EnergyShield_AbsorbDamage</soundOnBlock>
+		<fleckOnBlock>ExplosionFlash</fleckOnBlock>
+		<instantlyOverwhelmedBy>EMP</instantlyOverwhelmedBy>
+		<destroyIfOverwhelmed>true</destroyIfOverwhelmed><!--once depleted, it's gone-->
+		<energyOnReset>60</energyOnReset><!--however, it should start at full strength-->
+		<baseEnergyRechargeRate>0</baseEnergyRechargeRate>
+		<baseMaxEnergy>60</baseMaxEnergy>
+		<maxEnergyScalar>VEF_EnergyShieldEnergyMaxFactor</maxEnergyScalar>
+		<breakEffect>Shield_Break</breakEffect>
+		<visualRange>1.2~1.5</visualRange>
+		<priority>10010</priority>
+		<reactsToOther>false</reactsToOther><!--only reacts to ranged and explosive damage, just like a normal shield-->
+		<shouldUseIncomingDamageFactor>false</shouldUseIncomingDamageFactor>
+		<noCostIfInvincible>false</noCostIfInvincible>
+	  </li>
+	  <li Class="HautsFramework.HediffCompProperties_MoteConditionalShield">
+		<mote>HVP_PsychicShieldGraphic</mote>
+		<scale>1</scale>
+		<minDrawFactor>1.2</minDrawFactor>
+		<maxDrawFactor>1.5</maxDrawFactor>
+		<randomRotation>true</randomRotation>
+		<validRange>0.001~9999999</validRange>
+	  </li>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>2500</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+	  <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  <!--vault skip-->
+  <HediffDef>
+    <defName>HVP_Hammerspace</defName>
+    <label>vault skipgate</label>
+    <description>Can store a large amount of items, though every 20 items drains 1% psyfocus per day. Click the provided button to unload all of them at once.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<minSeverity>0.001</minSeverity>
+    <stages>
+      <li>
+	  </li>
+	  <li>
+        <minSeverity>0.002</minSeverity>
+		<statOffsets>
+          <Hauts_PsyfocusRegenRate>-0.01</Hauts_PsyfocusRegenRate>
+        </statOffsets>
+		<multiplyStatChangesBySeverity>true</multiplyStatChangesBySeverity>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HautsPsycasts.HediffCompProperties_Hammerspace">
+	    <dumpIcon>Things/Mote/PsycastSkipFlash</dumpIcon>
+		<eachItemLostOnDeathChance>0.35</eachItemLostOnDeathChance>
+		<lostChanceIfNonPlayer>0.05</lostChanceIfNonPlayer>
+		<severityPerThing>0.1</severityPerThing>
+		<displayLimit>20</displayLimit>
+		<fleckDump1>PsycastSkipInnerExit</fleckDump1>
+		<fleckDump2>PsycastSkipOuterRingExit</fleckDump2>
+		<soundOnDump>Psycast_Skip_Exit</soundOnDump>
+	  </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  
+  <!--level 4
+  booster link-->
+  <HediffDef>
+    <defName>HVP_HiddenBoostMaintainer</defName>
+    <label>booster signal</label>
+    <description>Generates Booster Link's empowering effect on the victim.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<initialSeverity>0.001</initialSeverity>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+	<comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+	    <removeLinkedHediffOnRemoval>true</removeLinkedHediffOnRemoval>
+	  </li>
+	  <li Class="HautsPsycasts.HediffCompProperties_LinkBuildEntropy">
+        <casterEntropyGainPerSecond>2.5</casterEntropyGainPerSecond>
+		<severityPerLink>1</severityPerLink>
+		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
+		<casterMustBeConscious>true</casterMustBeConscious>
+		<maxDistance>60</maxDistance>
+		<customMote>HVP_Mote_BoosterBeam</customMote>
+		<countsAsAttack>false</countsAsAttack><!--well it's just not-->
+	    <icon>Things/Mote/PsycastSkipFlash</icon>
+		<buttonLabel>HVP_NoBoosterLabel</buttonLabel>
+		<buttonTooltip>HVP_NoBoosterText</buttonTooltip>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>HVP_BoosterBuff</defName>
+    <label>booster link</label>
+    <description>A psychically-induced mental boost to movement and manipulation capacities. Scales with psychic sensitivity.</description>
+	<hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Manipulation</capacity>
+            <postFactor>1.2</postFactor>
+          </li>
+          <li>
+            <capacity>Moving</capacity>
+            <postFactor>1.2</postFactor>
+          </li>
+        </capMods>
+        <capacityFactorEffectMultiplier>PsychicSensitivity</capacityFactorEffectMultiplier>
+      </li>
+    </stages>
+	<comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+	    <removeLinkedHediffOnRemoval>false</removeLinkedHediffOnRemoval>
+	  </li>
+      <li Class="HautsFramework.HediffCompProperties_DisappearsWhileDowned">
+	    <ticksSpentDownedToStop>240</ticksSpentDownedToStop>
+	  </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  <!--flare-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_FlareBuff</defName>
+    <label>psychic powerflare</label>
+    <description>A temporarily enhanced connection to the psychic field which makes the next psycast cheaper (and, if it is a skip psycast, longer-ranged).</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+	    <statOffsets>
+		  <Hauts_PsycastFocusRefund>0.8</Hauts_PsycastFocusRefund>
+		  <Hauts_SkipcastRangeFactor>0.25</Hauts_SkipcastRangeFactor>
+		</statOffsets>
+		<statFactors>
+		  <PsychicEntropyGain>0.05</PsychicEntropyGain>
+		</statFactors>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HautsFramework.HediffCompProperties_ChangeSeverityOnVerbUse">
+		<setSeverity>0.0</setSeverity>
+		<specificVerbType>Verb_CastPsycast</specificVerbType>
+	  </li>
+	</comps>
+  </HediffDef>
+  
+  <!--level 5
+  flux pulse-->
+  <HediffDef>
+    <defName>HVP_PsychicThermalFlux</defName>
+    <label>psychic thermal flux</label>
+    <description>Some parts of the body are being roasted, while others are being chilled.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+	<scenarioCanAdd>false</scenarioCanAdd>
+	<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
+    <defaultLabelColor>(0.8, 0.18, 0.0)</defaultLabelColor>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <stages>
+      <li>
+        <statOffsets>
+		  <ComfyTemperatureMin>200</ComfyTemperatureMin>
+		  <ComfyTemperatureMax>-200</ComfyTemperatureMax>
+		</statOffsets>
+		<multiplyStatChangesBySeverity>true</multiplyStatChangesBySeverity>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-16</severityPerDay>
+        <showDaysToRecover>true</showDaysToRecover>
+      </li>
+	  <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  <!--word of safety-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_GetToSafety</defName>
+    <label>word of safety</label>
+    <description>Reinforcement of bodily integrity due to psychically commanded mechanites. When downed, this effect will temporarily double, and this character will teleport to the nearest bed appropriate to their level of freedom (free, prisoner, or slave), prioritizing medical beds.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+	  <li>
+		<statFactors>
+		  <IncomingDamageFactor>0.75</IncomingDamageFactor>
+		</statFactors>
+		<statOffsets>
+		  <ImmunityGainSpeed>0.125</ImmunityGainSpeed>
+		  <ToxicResistance>0.125</ToxicResistance>
+		</statOffsets>
+        <totalBleedFactor>0.5</totalBleedFactor>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HautsPsycasts.HediffCompProperties_Intervention">
+		<hediffOnDowned>HVP_Intervened</hediffOnDowned>
+		<fleckEntry>PsycastSkipFlashEntry</fleckEntry>
+		<soundEntry>Psycast_Skip_Entry</soundEntry>
+		<fleckExit1>PsycastSkipInnerExit</fleckExit1>
+		<fleckExit2>PsycastSkipOuterRingExit</fleckExit2>
+		<soundExit>Psycast_Skip_Exit</soundExit>
+        <stunTicks>2</stunTicks>
+	  </li>
+	</comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>HVP_Intervened</defName>
+    <label>psychic safeguard</label>
+    <description>An attempt by short-lived medical mechanites to maintain the patient's condition.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<initialSeverity>3</initialSeverity>
+	<maxSeverity>3</maxSeverity>
+    <stages>
+	  <li>
+		<statFactors>
+		  <IncomingDamageFactor>0.5</IncomingDamageFactor>
+		</statFactors>
+		<statOffsets>
+		  <ImmunityGainSpeed>0.25</ImmunityGainSpeed>
+		  <ToxicResistance>0.25</ToxicResistance>
+		</statOffsets>
+        <totalBleedFactor>0</totalBleedFactor>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HediffCompProperties_SeverityPerDay">
+		<severityPerDay>-24</severityPerDay>
+		<showDaysToRecover>true</showDaysToRecover>
+	  </li>
+	</comps>
+  </HediffDef>
+  <!--word of sterility-->
+  <HediffDef>
+    <defName>HVP_Sterility</defName>
+    <label>word of sterility aftermath</label>
+    <description>System shock caused by the chemicals unleashed during the nigh-instantaneous "sterilization" of a harmful medical condition. The coma lasts for three days, but discomfort persists for up to three days after that.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+	<initialSeverity>6</initialSeverity>
+	<maxSeverity>6</maxSeverity>
+    <stages>
+	  <li>
+        <painOffset>0.2</painOffset>
+      </li>
+	  <li>
+        <minSeverity>3</minSeverity>
+		<capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+	  </li>
+    </stages>
+	<comps>
+	  <li Class="HediffCompProperties_SeverityPerDay">
+		<severityPerDay>-1</severityPerDay>
+		<showDaysToRecover>true</showDaysToRecover>
+	  </li>
+	</comps>
+  </HediffDef>
+  
+  <!--level 6
+  rj skip-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_Rejuvenation</defName>
+    <label>psychic rejuvenation</label>
+    <description>Mysterious restorative influence from an archotech. It gets less potent each day, and it will be lost if the patient takes any damage.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<initialSeverity>5</initialSeverity>
+	<maxSeverity>5</maxSeverity>
+    <stages>
+      <li>
+        <totalBleedFactor>0</totalBleedFactor>
+		<painOffset>0.25</painOffset>
+		<capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <postFactor>0.65</postFactor>
+          </li>
+          <li>
+            <capacity>Manipulation</capacity>
+            <postFactor>0.65</postFactor>
+          </li>
+        </capMods>
+		<hungerRateFactor>1.25</hungerRateFactor>
+		<statFactors>
+		  <RestFallRateFactor>1.25</RestFallRateFactor>
+		  <ThirstRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.25</ThirstRateMultiplier>
+		  <HygieneRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.25</HygieneRateMultiplier>
+		  <BladderRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.25</BladderRateMultiplier>
+		</statFactors>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HautsPsycasts.HediffCompProperties_RJ">
+		<severityPerDay>-1</severityPerDay>
+		<showDaysToRecover>false</showDaysToRecover>
+		<ticksToNextHeal>2500</ticksToNextHeal>
+		<healPerSeverity>0.5</healPerSeverity>
+	    <icon>Things/Mote/PsycastSkipFlash</icon>
+		<buttonLabel>HVP_UndoRJLabel</buttonLabel>
+		<buttonTooltip>HVP_UndoRJText</buttonTooltip>
+		<buttonTooltipFantasy>HVP_UndoRJTextFantasy</buttonTooltipFantasy>
+		<hediffOnRemoval>HVP_RejuvenationAftermath</hediffOnRemoval>
+	  </li>
+	</comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>HVP_RejuvenationAftermath</defName>
+    <label>rejuvenation skip aftermath</label>
+    <description>Lingering physiological complications from exposure to a supernatural rejuvenation effect.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+	<initialSeverity>60</initialSeverity>
+	<maxSeverity>60</maxSeverity>
+    <stages>
+      <li>
+		<painOffset>0.1</painOffset>
+		<hungerRateFactor>1.1</hungerRateFactor>
+		<statFactors>
+		  <RestFallRateFactor>1.1</RestFallRateFactor>
+		  <ThirstRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.1</ThirstRateMultiplier>
+		  <HygieneRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.1</HygieneRateMultiplier>
+		  <BladderRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.1</BladderRateMultiplier>
+		</statFactors>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HediffCompProperties_SeverityPerDay">
+		<severityPerDay>-1</severityPerDay>
+		<showDaysToRecover>true</showDaysToRecover>
+	  </li>
+	</comps>
+  </HediffDef>
+  <!--stuporzone-->
+  <HediffDef ParentName="DiseaseBase">
+    <defName>HVP_StuporDebuff</defName>
+    <label>psychic stuporzone</label>
+    <description>Muddled coordination and reasoning due to being in a stuporzone.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <hediffClass>HediffWithComps</hediffClass>
+    <initialSeverity>0.1</initialSeverity>
+    <maxSeverity>0.1</maxSeverity>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMaxCurveOverride>
+              <points>
+                <li>0, 1</li>
+                <li>1, 0.5</li>
+              </points>
+            </setMaxCurveOverride>
+            <setMaxCurveEvaluateStat>PsychicSensitivity</setMaxCurveEvaluateStat>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-24</severityPerDay>
+      </li>
+    </comps>
+  </HediffDef>
+  <!--word of melding-->
+  <HediffDef>
+    <defName>HVP_MeldingComa</defName>
+    <label>psychic melding (coma)</label>
+    <description>Due to being psychically melded to another being, this character is in a persistent vegetative state. Most of its brainpower has been co-opted to boost the consciousness of the being it is melded to.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <setMax>0.1</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+	    <removeLinkedHediffOnRemoval>false</removeLinkedHediffOnRemoval>
+	    <addedSeverityToLinkedHediffOnRemoval>-1</addedSeverityToLinkedHediffOnRemoval>
+	  </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+    </comps>
+  </HediffDef>
+  <HediffDef>
+    <defName>HVP_MeldingBuff</defName>
+    <label>psychic melding</label>
+    <description>The minds of other entities are being used to boost the consciousness of this character.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<initialSeverity>0</initialSeverity>
+	<maxSeverity>10</maxSeverity>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+	  </li>
+	  <li>
+        <minSeverity>1</minSeverity>
+		<label>1x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>1.1</postFactor></li>
+        </capMods>
+      </li>
+	  <li>
+        <minSeverity>2</minSeverity>
+        <label>2x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>1.2</postFactor></li>
+        </capMods>
+      </li>
+	  <li>
+        <minSeverity>3</minSeverity>
+        <label>3x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>1.3</postFactor></li>
+        </capMods>
+      </li>
+	  <li>
+        <minSeverity>4</minSeverity>
+        <label>4x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>1.4</postFactor></li>
+        </capMods>
+      </li>
+	  <li>
+        <minSeverity>5</minSeverity>
+        <label>5x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>1.5</postFactor></li>
+        </capMods>
+      </li>
+	  <li>
+        <minSeverity>6</minSeverity>
+        <label>6x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>1.6</postFactor></li>
+        </capMods>
+      </li>
+	  <li>
+        <minSeverity>7</minSeverity>
+        <label>7x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>1.7</postFactor></li>
+        </capMods>
+      </li>
+	  <li>
+        <minSeverity>8</minSeverity>
+        <label>8x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>1.8</postFactor></li>
+        </capMods>
+      </li>
+	  <li>
+        <minSeverity>9</minSeverity>
+        <label>9x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>1.9</postFactor></li>
+        </capMods>
+      </li>
+	  <li>
+        <minSeverity>10</minSeverity>
+        <label>10x</label>
+		<capMods>
+          <li><capacity>Consciousness</capacity><postFactor>2</postFactor></li>
+        </capMods>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HautsFramework.HediffCompProperties_PairedHediff">
+	    <removeLinkedHediffOnRemoval>true</removeLinkedHediffOnRemoval>
+	    <addSeverityOnLostHediff>-1</addSeverityOnLostHediff>
+	  </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  
+</Defs>
