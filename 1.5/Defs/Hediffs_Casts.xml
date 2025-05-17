@@ -706,7 +706,7 @@
   <HediffDef ParentName="PsycastHediffBase">
     <defName>HVP_Rejuvenation</defName>
     <label>psychic rejuvenation</label>
-    <description>Mysterious restorative influence from an archotech. It gets less potent each day, and it will be lost if the patient takes any damage.</description>
+    <description>Mysterious restorative influence from an archotech. It gets less potent each day, and it will be lost if the patient takes any damage. It also greatly increases the risk of developing cancer.</description>
     <isBad>false</isBad>
 	<everCurableByItem>false</everCurableByItem>
 	<initialSeverity>5</initialSeverity>
@@ -732,6 +732,13 @@
 		  <HygieneRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.25</HygieneRateMultiplier>
 		  <BladderRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.25</BladderRateMultiplier>
 		</statFactors>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>25</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+        </hediffGivers>
       </li>
     </stages>
 	<comps>
@@ -751,7 +758,7 @@
   <HediffDef>
     <defName>HVP_RejuvenationAftermath</defName>
     <label>rejuvenation skip aftermath</label>
-    <description>Lingering physiological complications from exposure to a supernatural rejuvenation effect.</description>
+    <description>Lingering physiological complications from exposure to a supernatural rejuvenation effect. It increases the risk of developing cancer.</description>
     <hediffClass>HediffWithComps</hediffClass>
 	<initialSeverity>60</initialSeverity>
 	<maxSeverity>60</maxSeverity>
@@ -765,6 +772,13 @@
 		  <HygieneRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.1</HygieneRateMultiplier>
 		  <BladderRateMultiplier MayRequire="Dubwise.DubsBadHygiene">1.1</BladderRateMultiplier>
 		</statFactors>
+        <hediffGivers>
+          <li Class="HediffGiver_Random">
+            <hediff>Carcinoma</hediff>
+            <mtbDays>80</mtbDays>
+            <canAffectAnyLivePart>true</canAffectAnyLivePart>
+          </li>
+        </hediffGivers>
       </li>
     </stages>
 	<comps>

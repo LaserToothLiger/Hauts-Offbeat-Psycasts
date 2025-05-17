@@ -1875,18 +1875,7 @@ namespace HautsPsycasts
     {
         protected override void Impact()
         {
-            bool doExplosion = true;
-            List<Thing> highShields = base.Map.listerThings.ThingsInGroup(ThingRequestGroup.ProjectileInterceptor);
-            for (int i = 0; i < highShields.Count; i++)
-            {
-                CompProjectileInterceptor cpi = highShields[i].TryGetComp<CompProjectileInterceptor>();
-                if (cpi != null && cpi.Active && base.Position.InHorDistOf(highShields[i].PositionHeld, cpi.Props.radius))
-                {
-                    doExplosion = false;
-                    break;
-                }
-            }
-            if (doExplosion)
+            if (HautsUtility.CanBeHitByAirToSurface(base.Position, base.Map, false))
             {
                 if (this.chunk == null)
                 {

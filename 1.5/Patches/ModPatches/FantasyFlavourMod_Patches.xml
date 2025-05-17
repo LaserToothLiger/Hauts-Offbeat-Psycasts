@@ -501,7 +501,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_RejuvenationSkip"]/description</xpath>
 					<value>
-						<description>Envelops the target in potent healing magic. It gradually heals wounds, removes scars, and even regrows lost body parts, but it decreases in potency each day. It also leaves the target perpetually exhausted, hungry, sluggish, and pained. The effect ends prematurely if the target takes any damage.</description>
+						<description>Envelops the target in potent healing magic. It gradually heals wounds, removes scars, and even regrows lost body parts, but it decreases in potency each day. It also leaves the target perpetually exhausted, hungry, sluggish, and pained. The effect ends prematurely if the target takes any damage. It also greatly increases the risk of developing cancer.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
