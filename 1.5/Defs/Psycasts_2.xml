@@ -47,7 +47,7 @@
     </comps>
   </AbilityDef>
   
-  <AbilityDef ParentName="HVMP_PsycastBaseLink">
+  <AbilityDef ParentName="HVP_PsycastBaseLink">
     <defName>HVP_ParalysisLink</defName>
     <label>paralysis link</label>
     <description>Bathe the target in psychic frequencies which will, after a certain point, suffuse the target's body and induce paralysis. This process incurs neural heat over time, and it will stop if the target moves too far away or the caster is rendered incapable of psycasting.\n\nTargets with more hit points or lower psychic sensitivity take longer to paralyze.\n\nCosts 1 neural heat per second.</description>

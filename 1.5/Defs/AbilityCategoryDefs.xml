@@ -5,7 +5,7 @@
     <defName>HVMP_Linkcast</defName>
     <displayOrder>3</displayOrder>
   </AbilityCategoryDef>
-	  <AbilityDef Name="HVMP_PsycastBaseLink" ParentName="PsycastBase" Abstract="True">
+	  <AbilityDef Name="HVP_PsycastBaseLink" ParentName="PsycastBase" Abstract="True">
 		<category>HVMP_Linkcast</category>
 	  </AbilityDef>
   
@@ -13,7 +13,7 @@
     <defName>HVMP_Callcast</defName>
     <displayOrder>4</displayOrder>
   </AbilityCategoryDef>
-	  <AbilityDef Name="HVMP_PsycastBaseCall" ParentName="PsycastBase" Abstract="True">
+	  <AbilityDef Name="HVP_PsycastBaseCall" ParentName="PsycastBase" Abstract="True">
 		<category>HVMP_Callcast</category>
 	  </AbilityDef>
   

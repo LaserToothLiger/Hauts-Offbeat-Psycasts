@@ -189,6 +189,10 @@
 		<ifBelow>false</ifBelow>
       </li>
       <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	  <li Class="HautsFramework.HediffCompProperties_MoteConditional">
+		<mote>HVP_ParalysisVictimMote</mote>
+		<scale>1</scale>
+	  </li>
 	</comps>
   </HediffDef>
   <HediffDef>
@@ -374,6 +378,10 @@
 	    <removeLinkedHediffOnRemoval>false</removeLinkedHediffOnRemoval>
 	  </li>
       <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	  <li Class="HautsFramework.HediffCompProperties_MoteConditional">
+		<mote>HVP_PsyphonVictimMote</mote>
+		<scale>1</scale>
+	  </li>
 	</comps>
   </HediffDef>
   <HediffDef>
@@ -555,6 +563,10 @@
 	    <ticksSpentDownedToStop>240</ticksSpentDownedToStop>
 	  </li>
       <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	  <li Class="HautsFramework.HediffCompProperties_MoteConditional">
+		<mote>HVP_BoosterVictimMote</mote>
+		<scale>1</scale>
+	  </li>
 	</comps>
   </HediffDef>
   <!--flare-->

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   
-  <AbilityDef ParentName="HVMP_PsycastBaseLink">
+  <AbilityDef ParentName="HVP_PsycastBaseLink">
     <defName>HVP_BoosterLink</defName>
     <label>booster link</label>
     <description>Bathe the target in psychic frequencies which hone its mind, boosting moving and manipulation capacities. This process incurs neural heat over time, and it will stop if the target moves too far away, the target is downed for more than 4 seconds, or the caster is rendered incapable of psycasting.</description>
@@ -43,7 +43,7 @@
     </comps>
   </AbilityDef>
   
-  <AbilityDef ParentName="HVMP_PsycastBaseCall">
+  <AbilityDef ParentName="HVP_PsycastBaseCall">
     <defName>HVP_DropPodCall</defName>
     <label>drop pod call</label>
     <description>Divert drop pods from orbital storage to the targeted location. The drop pods have a small chance to contain a small animal, but can otherwise contain resources or leave behind slag. The more psychic sensitivity the caster has, the more drop pods are spawned.</description>

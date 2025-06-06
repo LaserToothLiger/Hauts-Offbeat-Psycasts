@@ -130,8 +130,27 @@
     <graphicData>
       <shaderType>MoteGlow</shaderType>
       <texPath>Things/Mote/PsychicLinkLine</texPath>
+      <color>(1, 0.9216, 0.7882, 1)</color>
+	  <!--<drawSize>(0.35,1)</drawSize>-->
     </graphicData>
   </ThingDef>
+	  <ThingDef ParentName="MoteBase">
+		<defName>HVP_ParalysisVictimMote</defName>
+		<thingClass>MoteAttached</thingClass>
+		<altitudeLayer>MoteOverhead</altitudeLayer>
+		<mote>
+			<fadeInTime>3</fadeInTime>
+			<fadeOutTime>3</fadeOutTime>
+			<solidTime>0.25</solidTime>
+			<needsMaintenance>true</needsMaintenance>
+		</mote>
+		<graphicData>
+		  <graphicClass>Graphic_Single</graphicClass>
+		  <color>(1,0.92,0.4,0.7)</color>
+		  <texPath>Things/Mote/YellowSparkFlash</texPath>
+		  <drawSize>4</drawSize>
+		</graphicData>
+	  </ThingDef>
   <ThingDef ParentName="MoteBase">
     <defName>HVP_Mote_TetherBeam</defName>
     <thingClass>MoteDualAttached</thingClass>
@@ -146,7 +165,7 @@
     </mote>
     <graphicData>
       <shaderType>MoteGlow</shaderType>
-      <texPath>Things/Mote/PsychicLinkLine</texPath>
+      <texPath>Things/Mote/PsychicLinkLine</texPath> <!--PsycastSkipLine is not quite what we're looking for...-->
     </graphicData>
   </ThingDef>
   <ThingDef ParentName="MoteBase">
@@ -164,8 +183,26 @@
     <graphicData>
       <shaderType>MoteGlow</shaderType>
       <texPath>Things/Mote/PsychicLinkLine</texPath>
+      <color>(0.3922, 0.902, 0.4941, 1)</color>
     </graphicData>
   </ThingDef>
+	  <ThingDef ParentName="MoteBase">
+		<defName>HVP_PsyphonVictimMote</defName>
+		<thingClass>MoteAttached</thingClass>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<fadeInTime>1.05</fadeInTime>
+			<fadeOutTime>1.05</fadeOutTime>
+			<solidTime>0.05</solidTime>
+			<needsMaintenance>true</needsMaintenance>
+		</mote>
+		<graphicData>
+		  <graphicClass>Graphic_Single</graphicClass>
+		  <color>(0.4,0.9,0.5,0.5)</color>
+		  <texPath>Things/Mote/FeedbackExtinguish</texPath>
+		  <drawSize>1</drawSize>
+		</graphicData>
+	  </ThingDef>
   <ThingDef ParentName="MoteBase">
     <defName>HVP_Mote_BoosterBeam</defName>
     <thingClass>MoteDualAttached</thingClass>
@@ -180,9 +217,29 @@
     </mote>
     <graphicData>
       <shaderType>MoteGlow</shaderType>
-      <texPath>Things/Mote/PsychicLinkLine</texPath>
+      <texPath>UI/Overlays/ThickLine</texPath>
+      <color>(1, 0.5, 0.5, 0.25)</color>
+	  <drawSize>(0.25,1)</drawSize>
     </graphicData>
   </ThingDef>
+	  <ThingDef ParentName="MoteBase">
+		<defName>HVP_BoosterVictimMote</defName>
+		<thingClass>MoteAttached</thingClass>
+		<altitudeLayer>Projectile</altitudeLayer>
+		<mote>
+			<fadeInTime>1.05</fadeInTime>
+			<fadeOutTime>1.05</fadeOutTime>
+			<solidTime>0.05</solidTime>
+			<needsMaintenance>true</needsMaintenance>
+		</mote>
+		<graphicData>
+		  <graphicClass>Graphic_Single</graphicClass>
+		  <color>(1,0.8,0.8,1)</color>
+		  <texPath>UI/Overlays/ArrowGhost</texPath>
+		  <drawSize>1</drawSize>
+		  <drawOffset>(0,0,0.37)</drawOffset>
+		</graphicData>
+	  </ThingDef>
   <ThingDef ParentName="MoteBase">
     <defName>HVP_Mote_ControlBeam</defName>
     <thingClass>MoteDualAttached</thingClass>

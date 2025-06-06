@@ -51,7 +51,7 @@
     </modExtensions>
   </AbilityDef>
   
-  <AbilityDef ParentName="HVMP_PsycastBaseCall">
+  <AbilityDef ParentName="HVP_PsycastBaseCall">
     <defName>HVP_FortuneCall</defName>
     <label>fortune call</label>
     <description>Convince higher powers within the psychic field to arrange for one or more positive events to occur within the next 2-24 hours. The more psychic sensitivity the caster has, the more good events will happen. After casting, the caster will fall into a 2-day coma.</description>
@@ -114,7 +114,7 @@
     </comps>
   </AbilityDef>
   
-  <AbilityDef ParentName="HVMP_PsycastBaseCall">
+  <AbilityDef ParentName="HVP_PsycastBaseCall">
     <defName>HVP_HiveCall</defName>
     <label>hive call</label>
     <description>Psychically irritate a subterranean insectoid colony, causing an infestation to surface around the target point. The more psychic sensitivity the caster has, the more insectoids will respond to the call.\n\nNo insectoids will surface if the target region is too cold, or if there are already more than 150 hives on the map.</description>

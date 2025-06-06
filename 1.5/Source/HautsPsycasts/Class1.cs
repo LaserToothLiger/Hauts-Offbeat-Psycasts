@@ -501,6 +501,7 @@ namespace HautsPsycasts
                             pawnSkill2.Learn(pawnSkill2.XpRequiredForLevelUp, true,true);
                         }
                     }
+                    HautsUtility.LearnLanguage(pawn2,pawn,0.05f);
                 }
             }
         }

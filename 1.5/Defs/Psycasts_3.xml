@@ -33,7 +33,7 @@
     </comps>
   </AbilityDef>
   
-  <AbilityDef ParentName="HVMP_PsycastBaseLink">
+  <AbilityDef ParentName="HVP_PsycastBaseLink">
     <defName>HVP_PsyphonLink</defName>
     <label>psyphon link</label>
     <description>Rapidly gain psyfocus by siphoning it from the target psycaster. This effect will end prematurely if the target runs out of psyfocus.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a psyphon link to.</description>
@@ -167,7 +167,7 @@
     </comps>
   </AbilityDef>
   
-  <AbilityDef ParentName="HVMP_PsycastBaseLink">
+  <AbilityDef ParentName="PsycastBase">
     <defName>HVP_Shield</defName>
     <label>shield</label>
     <description>Use subatomic skipgates to excite electromagnetic fields, creating a projectile repulsion field around the target. This shield can absorb up to 60 damage, but doesn't block anything a regular shield wouldn't and is just as susceptible to EMPs. It also does not regenerate. However, the target will still be able to use ranged weapons.</description>

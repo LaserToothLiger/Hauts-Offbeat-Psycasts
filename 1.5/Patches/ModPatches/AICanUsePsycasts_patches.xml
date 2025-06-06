@@ -8,13 +8,13 @@
 			<operations>
 				<!--links should be castable-->
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/AbilityDef[@ParentName="HVMP_PsycastBaseLink"]</xpath>
+					<xpath>Defs/AbilityDef[@ParentName="HVP_PsycastBaseLink"]</xpath>
 					<value>
 						<aiCanUse>true</aiCanUse>
 					</value>
 				</li>
 				<li Class="PatchOperationAdd">
-					<xpath>Defs/AbilityDef[@ParentName="HVMP_PsycastBaseCall"]</xpath>
+					<xpath>Defs/AbilityDef[@ParentName="HVP_PsycastBaseCall"]</xpath>
 					<value>
 						<aiCanUse>true</aiCanUse>
 					</value>
