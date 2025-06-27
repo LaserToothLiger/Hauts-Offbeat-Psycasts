@@ -69,7 +69,7 @@
       </li>
     </stages>
 	<comps>
-	  <li Class="AnimalBehaviours.HediffCompProperties_Floating"/>
+	  <li Class="VEF.AnimalBehaviours.HediffCompProperties_Floating"/>
 	</comps>
   </HediffDef>
   <!--word of warning-->
@@ -157,7 +157,7 @@
   <HediffDef>
     <defName>HVP_ParalyzingBuildup</defName>
     <label>psychic paralysis link</label>
-    <description>Psychic emanations from a nearby psycaster will induce paralysis. Taking out the psycaster or moving far enough away will terminate the buildup before it can take effect.</description>
+    <description>Psychic emanations from a nearby psycaster will induce paralysis. Taking out the psycaster or moving more than 30 cells away will terminate the buildup before it can take effect.</description>
     <hediffClass>HediffWithComps</hediffClass>
 	<initialSeverity>0.001</initialSeverity>
     <stages>
@@ -370,7 +370,7 @@
   <HediffDef>
     <defName>HVP_PsyphonSucker</defName>
     <label>psyphon link (victim)</label>
-    <description>Psyfocus is being transferred out of this character to another psycaster.</description>
+    <description>Psyfocus is being transferred out of this character to another psycaster. Moving further than 30 cells away will end this effect.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <isBad>false</isBad>
 	<everCurableByItem>false</everCurableByItem>
@@ -875,70 +875,70 @@
         <minSeverity>1</minSeverity>
 		<label>1x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.1</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.06</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>2</minSeverity>
         <label>2x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.2</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.12</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>3</minSeverity>
         <label>3x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.3</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.18</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>4</minSeverity>
         <label>4x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.4</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.24</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>5</minSeverity>
         <label>5x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.5</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.3</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>6</minSeverity>
         <label>6x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.6</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.36</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>7</minSeverity>
         <label>7x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.7</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.42</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>8</minSeverity>
         <label>8x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.8</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.48</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>9</minSeverity>
         <label>9x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.9</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.54</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>10</minSeverity>
         <label>10x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>2</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.6</postFactor></li>
         </capMods>
       </li>
     </stages>
@@ -946,6 +946,7 @@
 	  <li Class="HautsFramework.HediffCompProperties_PairedHediff">
 	    <removeLinkedHediffOnRemoval>true</removeLinkedHediffOnRemoval>
 	    <addSeverityOnLostHediff>-1</addSeverityOnLostHediff>
+		<invalidateLinksIfSuspended>true</invalidateLinksIfSuspended><!--sticking your mindsacs in cryptosleep is NOT KOSHER. their brains are frozen, so you don't get brainjuice from them-->
 	  </li>
       <li Class="HediffCompProperties_DisappearsOnDeath"/>
 	</comps>

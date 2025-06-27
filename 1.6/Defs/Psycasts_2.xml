@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_Carezone</defName>
+    <label>carezone</label>
+    <description>Skip a mass of medical mechanites to the target point. This leaves a persistent deformation in the psychic manifold at that point, which compels the mechanites to assist anyone nearby, as well as to clean up nearby filth.</description>
+    <level>2</level>
+    <iconPath>Things/Mote/Clean</iconPath>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.15</Ability_PsyfocusCost>
+      <Ability_EffectRadius>3.45</Ability_EffectRadius>
+      <Ability_Duration>5000</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>19.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilitySpawn">
+        <thingDef>HVP_CarezoneActual</thingDef>
+        <allowOnBuildings>True</allowOnBuildings>
+      </li>
+      <li Class="CompProperties_AbilityEffecterOnTarget">
+        <effecterDef>Skip_Exit</effecterDef>
+        <maintainForTicks>60</maintainForTicks>
+        <scale>0.42</scale>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDefs>
+          <li>PsycastSkipInnerExit</li>
+          <li>PsycastSkipOuterRingExit</li>
+        </fleckDefs>
+        <scale>0.68</scale>
+        <sound>Psycast_Skip_Exit</sound>
+        <preCastTicks>5</preCastTicks>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="HVP_PsycastBaseLink">
+    <defName>HVP_ParalysisLink</defName>
+    <label>paralysis link</label>
+    <description>Bathe the target in psychic frequencies which will, after a certain point, suffuse the target's body and induce paralysis. This process incurs neural heat over time, and it will stop if the target moves more than 30 cells away or the caster is rendered incapable of psycasting.\n\nTargets with more hit points or lower psychic sensitivity take longer to paralyze.\n\nCosts 1 neural heat per second.</description>
+    <level>2</level>
+    <iconPath>Things/Mote/SleepZ</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>10</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetSelf>False</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsFramework.CompProperties_AbilityGiveHediffPaired">
+        <compClass>HautsFramework.CompAbilityEffect_GiveHediffPaired</compClass>
+        <hediffToTarg>HVP_ParalyzingBuildup</hediffToTarg>
+		<overridePreviousLinkTargetTarg>true</overridePreviousLinkTargetTarg>
+		<replaceExistingTarg>true</replaceExistingTarg>
+		<hediffToDest>HVP_HiddenParalysisMaintainer</hediffToDest>
+		<overridePreviousLinkTargetDest>true</overridePreviousLinkTargetDest>
+		<replaceExistingDest>false</replaceExistingDest>
+		<canStackDest>true</canStackDest>
+        <psychic>True</psychic>
+        <goodwillImpact>-45</goodwillImpact>
+        <destination>Caster</destination>
+		<applyToTarget>true</applyToTarget>
+		<applyToDest>true</applyToDest>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_Sensitize</defName>
+    <label>sensitize</label>
+    <description>Transfer a quarter of the caster's psychic sensitivity to the target. If the target was already affected by Sensitize, the stronger instance will take effect with its duration refreshed.</description>
+    <level>2</level>
+    <iconPath>Things/Building/Misc/AnimusStone</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>10</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
+      <Ability_Duration>250</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetSelf>False</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilitySensitize">
+        <compClass>HautsPsycasts.CompAbilityEffect_Sensitize</compClass>
+        <hediffDef>HVP_SensitizeBuff</hediffDef>
+		<severity>0.25</severity>
+		<casterStatToScaleFrom>PsychicSensitivity</casterStatToScaleFrom>
+		<replacesLessSevereHediff>true</replacesLessSevereHediff>
+		<refreshesMoreSevereHediff>true</refreshesMoreSevereHediff>
+		<hediffToSelf>HVP_SensitizeNerf</hediffToSelf>
+		<severitySelf>1</severitySelf>
+        <psychic>True</psychic>
+        <goodwillImpact>-15</goodwillImpact>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+	<modExtensions>
+      <li Class="HautsFramework.PsycastCanTargetDeaf" />
+    </modExtensions>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_SkillTransfer</defName>
+    <label>skill transfer</label>
+    <description>Transfer a higher skill level from the first target to the second target, prioritizing skills with the highest level disparity (ignoring aptitudes). Can only affect skills which both targets can use.</description>
+    <level>2</level>
+    <iconPath>Things/Item/Special/MechSerumNeurotrainer</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.25</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>5</warmupTime>
+      <range>19.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityTransferSkills">
+        <compClass>HautsPsycasts.CompAbilityEffect_TransferSkills</compClass>
+        <psychic>True</psychic>
+        <goodwillImpact>-45</goodwillImpact>
+        <destination>Selected</destination>
+        <requiresLineOfSight>True</requiresLineOfSight>
+        <range>19.9</range>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>10</clamorRadius>
+        <destClamorType>Ability</destClamorType>
+        <destClamorRadius>10</destClamorRadius>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_TetherSkip</defName>
+    <label>tetherskip</label>
+    <description>Generate a quiescent skipgate at the target's current location. Once its duration expires, the target leaves the current map, or the caster wills it, the skipgate activates, returning the target to its location at time of cast.</description>
+    <level>2</level>
+    <iconPath>UI/Overlays/Rope</iconPath>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>20</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
+      <Ability_Duration>1000</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetPawns>True</canTargetPawns>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityTetherSkip">
+        <compClass>HautsPsycasts.CompAbilityEffect_TetherSkip</compClass>
+        <hediffToTarg>HVP_TetherSkipbound</hediffToTarg>
+		<linkHediffTarg>false</linkHediffTarg><!--for visual purposes, the target's hediff should link to the quiescent skipgate-->
+		<replaceExistingTarg>false</replaceExistingTarg>
+		<hediffToDest>HVP_TetherSkipMaintainer</hediffToDest>
+		<replaceExistingDest>false</replaceExistingDest>
+		<overridePreviousDurationTarg>true</overridePreviousDurationTarg>
+		<overridePreviousDurationDest>true</overridePreviousDurationDest>
+        <psychic>True</psychic>
+        <goodwillImpact>-45</goodwillImpact>
+        <destination>Caster</destination>
+		<applyToTarget>true</applyToTarget>
+		<applyToDest>true</applyToDest>
+		<maxBodySize>3.5</maxBodySize>
+      </li>
+      <li Class="CompProperties_AbilityEffecterOnTarget">
+        <effecterDef>Skip_Exit</effecterDef>
+        <maintainForTicks>60</maintainForTicks>
+        <scale>0.42</scale>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDefs>
+          <li>PsycastSkipInnerExit</li>
+          <li>PsycastSkipOuterRingExit</li>
+        </fleckDefs>
+        <scale>0.42</scale>
+        <sound>Psycast_Skip_Exit</sound>
+        <preCastTicks>5</preCastTicks>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="WordOfBase">
+    <defName>HVP_WordOfContemplation</defName>
+    <label>word of contemplation</label>
+    <description>Recite a litany of strange, archotechnic words with an underlying psychic suggestion to lull the target into a trancelike state. While in this state, the target will meditate and rest more effectively, but will feel disconnected from their body, reducing consciousness.</description>
+    <level>2</level>
+    <iconPath>Things/Mote/Meditate</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_PsyfocusCost>0.5</Ability_PsyfocusCost>
+      <Ability_Duration>5000</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>2</warmupTime>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>HVP_ContemplateThis</hediffDef>
+        <durationMultiplier>PsychicSensitivity</durationMultiplier>
+        <psychic>True</psychic>
+      </li>
+      <li Class="CompProperties_AbilitySocialInteraction">
+        <interactionDef>HVP_WordOfContemplation</interactionDef>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+</Defs>

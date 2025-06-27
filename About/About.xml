@@ -5,6 +5,7 @@
     <packageId>Hautarche.HautsPsycasts</packageId>
     <supportedVersions>
 		<li>1.5</li>
+		<li>1.6</li>
     </supportedVersions>
 	<description>Provides six new psycasts for each level of psycasting. It's roughly an even split between "combat" and "utility" psycasts, though some utility casts can be used cleverly in combat.
 	
@@ -14,7 +15,7 @@ Also buffs the Flashstorm psycast (can be disabled in mod options).
 
 See the full descriptions here: https://docs.google.com/document/d/1p9qs5bZcG81I1lDf-MkCGc3xYOvKKLKvJ9PBct6y7xg/edit?usp=sharing
     </description>
-	<modIconPath IgnoreIfNoMatchingField="True">HautsLogo_Draft0</modIconPath>
+	<modIconPath IgnoreIfNoMatchingField="True">UI/HautsLogo_Draft0</modIconPath>
 	<modDependencies>
         <li>
             <packageId>brrainz.harmony</packageId>

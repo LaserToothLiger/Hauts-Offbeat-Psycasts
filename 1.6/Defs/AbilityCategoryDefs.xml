@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <AbilityCategoryDef>
+    <defName>HVMP_Linkcast</defName>
+    <displayOrder>3</displayOrder>
+  </AbilityCategoryDef>
+	  <AbilityDef Name="HVP_PsycastBaseLink" ParentName="PsycastBase" Abstract="True">
+		<category>HVMP_Linkcast</category>
+	  </AbilityDef>
+  
+  <AbilityCategoryDef>
+    <defName>HVMP_Callcast</defName>
+    <displayOrder>4</displayOrder>
+  </AbilityCategoryDef>
+	  <AbilityDef Name="HVP_PsycastBaseCall" ParentName="PsycastBase" Abstract="True">
+		<category>HVMP_Callcast</category>
+	  </AbilityDef>
+  
+</Defs>

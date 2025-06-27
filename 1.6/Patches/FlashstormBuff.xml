@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationConditional"><!--handles most of the flashstorm changes-->
+		<xpath>/Defs/AbilityDef[defName="Flashstorm"]/comps/li[@Class="CompProperties_AbilityFlashstorm"]</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/AbilityDef[defName="Flashstorm"]/comps</xpath>
+			<value>
+				<li Class="HautsPsycasts.CompProperties_AbilityBetterFlashstorm">
+					<compClass>HautsPsycasts.CompAbilityEffect_BetterFlashstorm</compClass>
+					<randomStrikePeriodicity>40~50</randomStrikePeriodicity>
+					<targetedStrikePeriodicity>100~120</targetedStrikePeriodicity>
+					<damage>14</damage>
+					<armorPenetration>1.25</armorPenetration>
+					<initialStrikeDelay>30~90</initialStrikeDelay>
+				</li>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationReplace">
+			<xpath>/Defs/AbilityDef[defName="Flashstorm"]/comps/li[@Class="CompProperties_AbilityFlashstorm"]</xpath>
+			<value>
+				<li Class="HautsPsycasts.CompProperties_AbilityBetterFlashstorm">
+					<compClass>HautsPsycasts.CompAbilityEffect_BetterFlashstorm</compClass>
+					<randomStrikePeriodicity>40~50</randomStrikePeriodicity>
+					<targetedStrikePeriodicity>100~120</targetedStrikePeriodicity>
+					<damage>14</damage>
+					<armorPenetration>1.25</armorPenetration>
+					<initialStrikeDelay>30~90</initialStrikeDelay>
+				</li>
+			</value>
+		</match>
+	</Operation>
+	<Operation Class="PatchOperationReplace"><!--range buff-->
+		<xpath>/Defs/AbilityDef[defName="Flashstorm"]/verbProperties/range</xpath>
+		<value>
+		  <range>44.9</range>
+		</value>
+	</Operation>
+</Patch>
