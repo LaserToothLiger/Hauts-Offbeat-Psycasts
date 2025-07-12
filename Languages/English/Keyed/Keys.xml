@@ -31,32 +31,33 @@
 <HVP_NoTransferrableSkills>has no skills</HVP_NoTransferrableSkills><!--use Skill Transfer on a first or second pawn w/o any skills or w/o any enabled skills-->
 <HVP_NoLowerSkills>donor has no better-level skills than recipient</HVP_NoLowerSkills><!--use Skill Transfer on a second pawn whose skills are all on par or better than the first pawn's-->
 <HVP_TargetAlreadyTethered>target is already affected by tether skip</HVP_TargetAlreadyTethered><!--use Tether Skip on someone affected by Tether Skip-->
-<HVP_NotGoodDropSpot>aerial drops cannot land at the target location</HVP_NotGoodDropSpot><!--use Drop Pod Call on a location where pods either can't land or can't drop their contents-->
 <HVP_RoofedLightning>lightning cannot strike under a roof</HVP_RoofedLightning><!--use Lightning Strike on a roofed cell-->
 <HVP_NotAPsycaster>target must be a psycaster</HVP_NotAPsycaster><!--use Psyphon Link on a non-caster-->
 <HVP_NotAPsycasterF>target must be a spellcaster</HVP_NotAPsycasterF><!--use Psyphon Link on a non-caster-->
 <HVP_WrongItemType>target must be a chunk, resource, or raw food item</HVP_WrongItemType><!--use Replicate on an item outside its prohibited categories-->
 <HVP_ItemTooExpensive>too valuable (limit {0} silver value)</HVP_ItemTooExpensive><!--use Replicate on an item exceeding its arbitrary base market value limit-->
+<HVP_InSpaceNoOneCanHearYouQuake>no ground at target point</HVP_InSpaceNoOneCanHearYouQuake><!--use Tremorzone on the emptiness of outer space-->
+<HVP_NotGoodDropSpot>aerial drops cannot land at the target location</HVP_NotGoodDropSpot><!--use Drop Pod Call on a location where pods either can't land or can't drop their contents-->
 <HVP_TargetLacksStealables>target has nothing to steal</HVP_TargetLacksStealables><!--use Skiptheft on a target with no stealable weapon, no stealable apparel, and no inventory-->
 <HVP_NotAChunk>must use a chunk</HVP_NotAChunk><!--make a non-chunk object Meteoroid Skip's 1st target-->
 <HVP_MeteorMountain>overhead mountain blocks meteoroids</HVP_MeteorMountain><!--put Meteoroid Skip's 2nd target on a roof that can block drop pods and other skyfalling objects-->
-<HVP_TooManyHivesOnMap>too many hives already spawned</HVP_TooManyHivesOnMap><!--use Hive Call when there are 150 or more hives on the map-->
-<HVP_HiveBlocked>insufficient room for a hive there</HVP_HiveBlocked><!--use Hive Call on an occupied space-->
-<HVP_HiveTooCold>too cold for hives to spawn there</HVP_HiveTooCold><!--use Hive Call on a space of -17oC or lower-->
 <HVP_InvincibleRoof>targeted roof is unmodifiable</HVP_InvincibleRoof><!--use Mountain Skip on a roof type that can't collapse, of which the only example is the "void metal ceiling" from Anomaly's metal hell-->
 <HVP_WhereYouGonnaPutThatRoofEh>target space cannot support a roof</HVP_WhereYouGonnaPutThatRoofEh><!--use Mountain Skip on a cell with no adjacent roofs OR too far from roof supports-->
 <HVP_YoureUnderground>can't be used in an underground map</HVP_YoureUnderground><!--use Mountain Skip in one of Anomaly's underground environments or in metalhell-->
 <HVP_MustBeVincible>target must be destructible</HVP_MustBeVincible><!--use Evict on an object w/o hit points-->
 <HVP_CommandPsycastNotEnoughPsyfocusForSize>{PSYCASTNAME} needs {0} psyfocus to evict the target but {CASTERNAME} only has {1} psyfocus.</HVP_CommandPsycastNotEnoughPsyfocusForSize><!--Evict scaling psyfocus cost-->
 <HVP_CommandPsycastNotEnoughPsyfocusForSizeF>{PSYCASTNAME} needs {0} mana to evict the target but {CASTERNAME} only has {1} mana.</HVP_CommandPsycastNotEnoughPsyfocusForSizeF>
+<HVP_TooManyHivesOnMap>too many hives already spawned</HVP_TooManyHivesOnMap><!--use Hive Call when there are 150 or more hives on the map-->
+<HVP_HiveBlocked>insufficient room for a hive there</HVP_HiveBlocked><!--use Hive Call on an occupied space-->
+<HVP_HiveTooCold>too cold for hives to spawn there</HVP_HiveTooCold><!--use Hive Call on a space of -17oC or lower-->
 <!--UI: Vault Skip hediff tooltip-->
 <HVP_StoringTheFollowing>Storing the following:</HVP_StoringTheFollowing>
 <HVP_AndYetMoreStored>... and {0} more</HVP_AndYetMoreStored>
 <!--UI: bad news-->
-<HVP_DropPodDefault>The summoned drop pod depressurized during atmospheric entry, rendering its contents to ash.</HVP_DropPodDefault><!--Drop Pod Call ash outcome-->
 <HVP_PsyphonBroken>The psyphon link established by {0} was broken by {1}, stunning both of them.</HVP_PsyphonBroken><!--when Psyphon Link ends prematurely due to targeting a non-consenting psycaster-->
 <HVP_VaultDeath>Due to the death of {PAWN_nameDef}, everything {PAWN_pronoun} was carrying in {PAWN_possessive} vault skip was ejected.</HVP_VaultDeath><!--when a pawn with a Vault Skip hediff dies-->
 <HVP_VaultDeathNoWarranty>Some items have been irretrievably lost.</HVP_VaultDeathNoWarranty><!--when a pawn with a Vault Skip hediff dies AND at least one item was consequently lost-->
+<HVP_DropPodDefault>The summoned drop pod depressurized during atmospheric entry, rendering its contents to ash.</HVP_DropPodDefault><!--Drop Pod Call ash outcome-->
 <HVP_PsychicKidnapping>A psycaster belonging to the {0} faction used Word of Safety to kidnap {1}.</HVP_PsychicKidnapping>
 <!--Mod settings-->
 <HVP_SettingPSM>Amount of psytrainers sold by traders</HVP_SettingPSM>

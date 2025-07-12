@@ -19,6 +19,7 @@
     <verbProperties>
       <warmupTime>0.2</warmupTime>
       <range>24.9</range>
+      <useableInVacuum>false</useableInVacuum>
       <targetParams>
         <canTargetPawns>False</canTargetPawns>
         <canTargetLocations>True</canTargetLocations>
@@ -226,6 +227,7 @@
     </verbProperties>
     <comps>
       <li Class="CompProperties_AbilitySpawn">
+        <compClass>HautsPsycasts.CompAbilityEffect_SpawnTZ</compClass>
         <thingDef>HVP_TremorzoneActual</thingDef>
         <allowOnBuildings>True</allowOnBuildings>
       </li>

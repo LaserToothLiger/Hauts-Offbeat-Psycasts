@@ -1027,6 +1027,32 @@ namespace HautsPsycasts
             FleckMaker.Static(target.Cell, this.parent.pawn.Map, def, this.Props.scale);
         }
     }
+    public class CompAbilityEffect_SpawnTZ : CompAbilityEffect_Spawn
+    {
+        public new CompProperties_AbilitySpawn Props
+        {
+            get
+            {
+                return (CompProperties_AbilitySpawn)this.props;
+            }
+        }
+        public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
+        {
+            if (target.Cell.IsValid)
+            {
+                TerrainDef td = target.Cell.GetTerrain(this.parent.pawn.Map);
+                if (td != null && td.exposesToVacuum)
+                {
+                    if (throwMessages)
+                    {
+                        Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + "HVP_InSpaceNoOneCanHearYouQuake".Translate(), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
+                    }
+                    return false;
+                }
+            }
+            return base.Valid(target, throwMessages);
+        }
+    }
     public class CompProperties_AuraStaggerer : CompProperties_AuraEmitter
     {
         public CompProperties_AuraStaggerer()

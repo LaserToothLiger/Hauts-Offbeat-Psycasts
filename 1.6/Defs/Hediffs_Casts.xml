@@ -864,6 +864,7 @@
     <description>The minds of other entities are being used to boost the consciousness of this character.</description>
     <hediffClass>HediffWithComps</hediffClass>
     <isBad>false</isBad>
+	<allowMothballIfLowPriorityWorldPawn>true</allowMothballIfLowPriorityWorldPawn>
 	<everCurableByItem>false</everCurableByItem>
 	<initialSeverity>0</initialSeverity>
 	<maxSeverity>10</maxSeverity>
@@ -875,70 +876,70 @@
         <minSeverity>1</minSeverity>
 		<label>1x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.06</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.1</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>2</minSeverity>
         <label>2x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.12</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.2</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>3</minSeverity>
         <label>3x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.18</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.3</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>4</minSeverity>
         <label>4x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.24</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.4</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>5</minSeverity>
         <label>5x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.3</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.5</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>6</minSeverity>
         <label>6x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.36</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.6</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>7</minSeverity>
         <label>7x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.42</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.7</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>8</minSeverity>
         <label>8x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.48</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.8</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>9</minSeverity>
         <label>9x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.54</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>1.9</postFactor></li>
         </capMods>
       </li>
 	  <li>
         <minSeverity>10</minSeverity>
         <label>10x</label>
 		<capMods>
-          <li><capacity>Consciousness</capacity><postFactor>1.6</postFactor></li>
+          <li><capacity>Consciousness</capacity><postFactor>2</postFactor></li>
         </capMods>
       </li>
     </stages>
