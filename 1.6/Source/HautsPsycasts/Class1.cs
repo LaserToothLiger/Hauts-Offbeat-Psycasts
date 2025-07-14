@@ -1987,7 +1987,7 @@ namespace HautsPsycasts
             }
             if (this.effecter != null)
             {
-                effecter.EffectTick(this.parent, this.parent);
+                this.effecter.EffectTick(this.parent, this.parent);
             }
             if (this.parent.IsHashIntervalTick(60) && this.ShouldPushHeatNow)
             {

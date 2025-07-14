@@ -403,7 +403,7 @@
 			<airTime>0.08~0.16</airTime>
 			<rotationRate>-240~240</rotationRate>
 			<speed>7.2~24</speed>
-			<angle>135~225</angle>
+			<angle>0~359</angle>
 			<positionRadius>0.02</positionRadius>
 		  </li>
 		</children>
