@@ -60,6 +60,7 @@
     <verbProperties>
       <warmupTime>0.2</warmupTime>
       <range>39.9</range>
+      <useableInVacuum>false</useableInVacuum>
       <targetParams>
         <canTargetPawns>False</canTargetPawns>
         <canTargetLocations>True</canTargetLocations>
