@@ -444,6 +444,7 @@
 		<baseMaxEnergy>60</baseMaxEnergy>
 		<maxEnergyScalar>VEF_EnergyShieldEnergyMaxFactor</maxEnergyScalar>
 		<breakEffect>Shield_Break</breakEffect>
+		<reactsToShieldBypassers>false</reactsToShieldBypassers>
 		<visualRange>1.2~1.5</visualRange>
 		<priority>10010</priority>
 		<reactsToOther>false</reactsToOther><!--only reacts to ranged and explosive damage, just like a normal shield-->
