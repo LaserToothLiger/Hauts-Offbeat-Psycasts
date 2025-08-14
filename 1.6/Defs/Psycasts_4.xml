@@ -166,6 +166,8 @@
       <li Class="CompProperties_AbilityEffecterOnTarget">
         <effecterDef>Skip_Exit</effecterDef>
         <maintainForTicks>60</maintainForTicks>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>15</clamorRadius>
       </li>
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDefs>
@@ -218,6 +220,8 @@
         </fleckDefs>
         <sound>Psycast_Skip_Exit</sound>
         <preCastTicks>5</preCastTicks>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>10</clamorRadius>
       </li>
     </comps>
   </AbilityDef>
@@ -251,6 +255,8 @@
         <allowOnBuildings>False</allowOnBuildings>
         <sound>Psycast_Skip_Exit</sound>
 		<isTrap>false</isTrap>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>15</clamorRadius>
       </li>
       <li Class="CompProperties_AbilityEffecterOnTarget">
         <effecterDef>Skip_Exit</effecterDef>

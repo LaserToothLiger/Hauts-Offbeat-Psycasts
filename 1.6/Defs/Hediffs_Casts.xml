@@ -16,13 +16,14 @@
 	<comps>
 	  <li Class="HautsFramework.HediffCompProperties_PhylumMorphsHediff">
 		<hediffIfMech>HVP_PsychicAgonyMech</hediffIfMech>
+		<hediffIfDrone>HVP_PsychicAgonyMech</hediffIfDrone>
 	  </li>
 	</comps>
   </HediffDef>
   <HediffDef ParentName="PsycastHediffBase">
     <defName>HVP_PsychicAgonyMech</defName>
     <label>psychic agony</label>
-    <description>Psychically-induced pain. On mechanoids, this manifests as a reduction in processing power.</description>
+    <description>Psychically-induced reduction in processing power.</description>
 	<everCurableByItem>false</everCurableByItem>
     <stages>
       <li>

@@ -44,6 +44,8 @@
             <li>(10, 0.6)</li>
           </points>
 		</psyfocusCostPerVictimSize>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>20</clamorRadius>
       </li>
     </comps>
 	<modExtensions>
@@ -191,6 +193,8 @@
         <sound>Psycast_Skip_Exit</sound>
         <preCastTicks>5</preCastTicks>
 		<scale>0.45</scale>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>10</clamorRadius>
       </li>
     </comps>
   </AbilityDef>

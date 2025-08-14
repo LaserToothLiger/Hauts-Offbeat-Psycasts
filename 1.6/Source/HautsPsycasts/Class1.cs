@@ -376,7 +376,7 @@ namespace HautsPsycasts
         }
         protected override void TransformThis()
         {
-            if (this.Pawn.RaceProps.IsMechanoid && this.Pawn.stances != null)
+            if (this.Pawn.stances != null && (this.Pawn.RaceProps.IsDrone || this.Pawn.RaceProps.IsMechanoid))
             {
                 this.Pawn.stances.stunner.StunFor(this.Props.mechStunTime.RandomInRange, null);
             } else {
@@ -783,6 +783,10 @@ namespace HautsPsycasts
         }
         private void Recall(Hediff h)
         {
+            if (this.Pawn.Spawned)
+            {
+                GenClamor.DoClamor(this.Pawn, this.Pawn.Position, 10f, ClamorDefOf.Ability);
+            }
             h.pawn.health.RemoveHediff(h);
         }
         Texture2D uiIcon;

@@ -33,6 +33,8 @@
 		<severity>1</severity>
         <goodwillImpact>-55</goodwillImpact>
         <applyGoodwillImpactToLodgers>False</applyGoodwillImpactToLodgers>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>20</clamorRadius>
       </li>
     </comps>
   </AbilityDef>
@@ -110,6 +112,8 @@
 		<fleck2>PsycastSkipOuterRingExit</fleck2>
 		<sound>Psycast_Skip_Exit</sound>
 		<fleckScale>0.3</fleckScale>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>15</clamorRadius>
       </li>
     </comps>
   </AbilityDef>

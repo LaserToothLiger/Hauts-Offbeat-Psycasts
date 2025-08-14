@@ -30,6 +30,8 @@
         <compClass>HautsPsycasts.CompAbilityEffect_LightningStrike</compClass>
 		<damage>14</damage>
 		<armorPenetration>1.25</armorPenetration>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>25</clamorRadius>
       </li>
     </comps>
   </AbilityDef>
@@ -75,50 +77,6 @@
     </comps>
   </AbilityDef>
   
-  <!--this requires some commented-out C# code, so don't uncomment it. if I need to make a 1.6 version, this will not be present. I'm just saving this for posterity
-  <AbilityDef ParentName="PsycastBase">
-    <defName>HVP_Ravage</defName>
-    <label>ravage</label>
-    <description>Psychically drive mechanites around the target into a frenzy, causing rapid cuts and abrasions. The mechanites will stop attacking if the target is downed. Gains +50% damage per mechanite condition the target has (including mechanite diseases and the effects of certain other psycasts).\n\nDeals +50% damage against luciferium addicts and unnatural entities, and +25% against archite xenotypes, due to their mechanite-sustained physiologies.</description>
-    <level>3</level>
-    <iconPath>Things/Projectile/Bullet_Shotgun</iconPath>
-    <writeCombatLog>True</writeCombatLog>
-    <hostile>true</hostile>
-    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
-    <statBases>
-      <Ability_EntropyGain>25</Ability_EntropyGain>
-      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
-      <Ability_Duration>12</Ability_Duration>
-    </statBases>
-    <verbProperties>
-      <warmupTime>0.2</warmupTime>
-      <range>19.9</range>
-      <targetParams>
-        <canTargetSelf>False</canTargetSelf>
-        <canTargetAnimals>True</canTargetAnimals>
-		<canTargetBuildings>True</canTargetBuildings>
-		<canTargetItems>True</canTargetItems>
-      </targetParams>
-    </verbProperties>
-    <comps>
-	  <li Class="HautsPsycasts.CompProperties_AbilityInflame">
-        <compClass>HautsPsycasts.CompAbilityEffect_Inflame</compClass>
-        <durationMultiplier>PsychicSensitivity</durationMultiplier>
-        <psychic>True</psychic>
-        <goodwillImpact>-100</goodwillImpact>
-		<baseDamage>4~6</baseDamage>
-		<damageType>Cut</damageType>
-		<baseArmorPen>0.1</baseArmorPen>
-		<dmgVsArchitesFactor>0.25</dmgVsArchitesFactor>
-		<dmgVsEntitiesFactor>0.5</dmgVsEntitiesFactor>
-		<tickPeriodicity>60</tickPeriodicity>
-      </li>
-      <li Class="CompProperties_AbilityFleckOnTarget">
-        <fleckDef>PsycastPsychicEffect</fleckDef>
-      </li>
-    </comps>
-  </AbilityDef>-->
-  
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_Replicate</defName>
     <label>replicate</label>
@@ -161,6 +119,8 @@
         <scale>0.9</scale>
         <sound>Psycast_Skip_Exit</sound>
         <preCastTicks>5</preCastTicks>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>10</clamorRadius>
       </li>
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDef>PsycastPsychicEffect</fleckDef>
@@ -195,6 +155,8 @@
         <compClass>CompAbilityEffect_GiveHediff</compClass>
         <hediffDef>HVP_PsychicShield</hediffDef>
         <psychic>True</psychic>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>10</clamorRadius>
       </li>
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDef>PsycastPsychicEffect</fleckDef>
@@ -230,6 +192,8 @@
         <compClass>HautsPsycasts.CompAbilityEffect_SpawnTZ</compClass>
         <thingDef>HVP_TremorzoneActual</thingDef>
         <allowOnBuildings>True</allowOnBuildings>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>15</clamorRadius>
       </li>
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDef>PsycastPsychicEffect</fleckDef>
@@ -269,6 +233,8 @@
         <hediffDef>HVP_Hammerspace</hediffDef>
         <psychic>True</psychic>
         <onlyApplyToSelf>True</onlyApplyToSelf>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>25</clamorRadius>
       </li>
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDef>PsycastSkipFlashEntry</fleckDef>
