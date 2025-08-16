@@ -15,8 +15,7 @@
     </stages>
 	<comps>
 	  <li Class="HautsFramework.HediffCompProperties_PhylumMorphsHediff">
-		<hediffIfMech>HVP_PsychicAgonyMech</hediffIfMech>
-		<hediffIfDrone>HVP_PsychicAgonyMech</hediffIfDrone>
+		<hediffIfInorganic>HVP_PsychicAgonyMech</hediffIfInorganic>
 	  </li>
 	</comps>
   </HediffDef>

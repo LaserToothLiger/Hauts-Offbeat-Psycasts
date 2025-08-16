@@ -376,7 +376,7 @@ namespace HautsPsycasts
         }
         protected override void TransformThis()
         {
-            if (this.Pawn.stances != null && (this.Pawn.RaceProps.IsDrone || this.Pawn.RaceProps.IsMechanoid))
+            if (this.Pawn.stances != null && !this.Pawn.RaceProps.IsFlesh)
             {
                 this.Pawn.stances.stunner.StunFor(this.Props.mechStunTime.RandomInRange, null);
             } else {
