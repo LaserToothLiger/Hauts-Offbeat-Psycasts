@@ -712,6 +712,7 @@ namespace HautsPsycasts
                     if (this.AIShouldRecall(this.hediffs[i]))
                     {
                         this.Recall(this.hediffs[i]);
+                        break;
                     }
                 }
             }
@@ -2511,6 +2512,7 @@ namespace HautsPsycasts
         public float fleckScale;
         public float maxBodySize;
         public bool respectsSkipResistance;
+        public List<PawnKindDef> immunePawnKinds;
         public SimpleCurve psyfocusCostPerVictimSize;
     }
     public class CompAbilityEffect_Evict : CompAbilityEffect
@@ -2569,6 +2571,10 @@ namespace HautsPsycasts
             {
                 if (target.Thing is Pawn p)
                 {
+                    if (!this.Props.immunePawnKinds.NullOrEmpty() && this.Props.immunePawnKinds.Contains(p.kindDef))
+                    {
+                        return 6f;
+                    }
                     return this.Props.psyfocusCostPerVictimSize.Evaluate(p.BodySize);
                 } else if (target.Thing is Building b) {
                     return this.Props.psyfocusCostPerVictimSize.Evaluate(b.def.Size.x*b.def.Size.z);

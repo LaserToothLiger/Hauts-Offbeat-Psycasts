@@ -82,22 +82,6 @@
 						</value>
 					</match>
 				</li>
-				<!--Tetherskip has its own "AI" that snaps back victims once they get too far away, it's just off by default. we need to turn it on. this AI is slightly less complex about choosing when to recall than HIPAA's version-->
-				<li Class="PatchOperationConditional">
-					<xpath>/Defs/AbilityDef[defName="HVP_TetherSkip"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityTetherSkip"]/aiCanAutoRecall</xpath>
-					<nomatch Class="PatchOperationAdd">
-						<xpath>/Defs/AbilityDef[defName="HVP_TetherSkip"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityTetherSkip"]</xpath>
-						<value>
-							<aiCanAutoRecall>true</aiCanAutoRecall>
-						</value>
-					</nomatch>
-					<match Class="PatchOperationAdd">
-						<xpath>/Defs/AbilityDef[defName="HVP_TetherSkip"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityTetherSkip"]/aiCanAutoRecall</xpath>
-						<value>
-							<aiCanAutoRecall>true</aiCanAutoRecall>
-						</value>
-					</match>
-				</li>
 			</operations>
 		</match>
 	</Operation>
