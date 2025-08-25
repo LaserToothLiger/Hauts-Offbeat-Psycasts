@@ -213,8 +213,8 @@
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <statBases>
-      <Ability_EntropyGain>60</Ability_EntropyGain>
-      <Ability_PsyfocusCost>0.06</Ability_PsyfocusCost>
+      <Ability_EntropyGain>55</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.05</Ability_PsyfocusCost>
       <Ability_Duration>125</Ability_Duration>
       <Ability_EffectRadius>6.9</Ability_EffectRadius>
     </statBases>
