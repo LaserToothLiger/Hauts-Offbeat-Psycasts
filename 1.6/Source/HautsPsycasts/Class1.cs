@@ -705,7 +705,7 @@ namespace HautsPsycasts
         public override void CompPostTickInterval(ref float severityAdjustment, int delta)
         {
             base.CompPostTickInterval(ref severityAdjustment, delta);
-            if (this.Pawn.IsHashIntervalTick(15, delta) && this.hediffs != null)
+            if (this.Pawn.IsHashIntervalTick(15, delta) && !this.Pawn.IsColonistPlayerControlled && this.hediffs != null)
             {
                 for (int i = this.hediffs.Count - 1; i >= 0; i--)
                 {
