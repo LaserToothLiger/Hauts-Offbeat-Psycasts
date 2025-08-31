@@ -105,23 +105,26 @@ namespace HautsPsycasts
         }
         public static void HVP_TryGiveAbilityOfLevelPostfix(Hediff_Psylink __instance, int abilityLevel)
         {
-            int psycastsToAward = (int)HVP_Mod.settings.psycastsLearnedPerLevel - 1;
-            if (psycastsToAward > 0 && __instance.pawn.abilities != null)
+            if (abilityLevel <= 6)
             {
-                List<RimWorld.AbilityDef> psycastsOfLevel = new List<RimWorld.AbilityDef>();
-                foreach (RimWorld.AbilityDef a in DefDatabase<RimWorld.AbilityDef>.AllDefs)
+                int psycastsToAward = (int)HVP_Mod.settings.psycastsLearnedPerLevel - 1;
+                if (psycastsToAward > 0 && __instance.pawn.abilities != null)
                 {
-                    if (a.IsPsycast && a.level == abilityLevel && __instance.pawn.abilities.GetAbility(a) == null)
+                    List<RimWorld.AbilityDef> psycastsOfLevel = new List<RimWorld.AbilityDef>();
+                    foreach (RimWorld.AbilityDef a in DefDatabase<RimWorld.AbilityDef>.AllDefs)
                     {
-                        psycastsOfLevel.Add(a);
+                        if (a.IsPsycast && a.level == abilityLevel && __instance.pawn.abilities.GetAbility(a) == null)
+                        {
+                            psycastsOfLevel.Add(a);
+                        }
                     }
-                }
-                while (psycastsToAward > 0 && psycastsOfLevel.Count > 0)
-                {
-                    RimWorld.AbilityDef abilityDef = psycastsOfLevel.RandomElement();
-                    __instance.pawn.abilities.GainAbility(abilityDef);
-                    psycastsOfLevel.Remove(abilityDef);
-                    psycastsToAward--;
+                    while (psycastsToAward > 0 && psycastsOfLevel.Count > 0)
+                    {
+                        RimWorld.AbilityDef abilityDef = psycastsOfLevel.RandomElement();
+                        __instance.pawn.abilities.GainAbility(abilityDef);
+                        psycastsOfLevel.Remove(abilityDef);
+                        psycastsToAward--;
+                    }
                 }
             }
         }
