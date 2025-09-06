@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <!--level 8:
+  Targetzone-->
+  <ThingDef ParentName="EtherealThingBase">
+	<defName>HVP_TargetzoneActual</defName>
+	<label>targetzone center</label>
+	<thingClass>ThingWithComps</thingClass>
+	<tickerType>Normal</tickerType>
+	<drawerType>RealtimeOnly</drawerType>
+	<drawOffscreen>true</drawOffscreen>
+	<seeThroughFog>false</seeThroughFog>
+    <useHitPoints>false</useHitPoints>
+	<graphicData>
+	  <graphicClass>Graphic_Single</graphicClass>
+	  <texPath>Things/Mote/PsycastCast</texPath>
+	  <shaderType>MoteGlowDistorted</shaderType>
+	  <color>(222,252,214)</color>
+	  <drawSize>1</drawSize>
+	  <shaderParameters>
+		<_DistortionTex>/Other/Ripples</_DistortionTex>
+		<_distortionIntensity>0.05</_distortionIntensity>
+		<_DistortionScale>0.4</_DistortionScale>
+		<_distortionScrollSpeed>(0.07, 0.07, 0.0)</_distortionScrollSpeed>
+	  </shaderParameters>
+	</graphicData>
+	<comps>
+	  <li Class="CompProperties_DestroyAfterDelay">
+		<delayTicks>7500</delayTicks>
+	  </li>
+	  <li Class="HautsFramework.CompProperties_AuraEmitterHediff">
+		<hediffs>
+			<li>HVP_TargetzoneDebuff</li>
+		</hediffs>
+		<range>5</range>
+		<affectEnemies>true</affectEnemies>
+		<affectNeutrals>true</affectNeutrals>
+		<affectOwnFaction>true</affectOwnFaction>
+		<scanByPawnListerNotByGrid>false</scanByPawnListerNotByGrid>
+		<color>(0.204,0.608,0.3255)</color>
+	  </li>
+	</comps>
+  </ThingDef>
+  
+  <!--level 10:
+  tornado link-->
+  <ThingDef ParentName="EtherealThingBase">
+    <defName>HVP_LinkedTornado</defName>
+    <label>tornado</label>
+    <thingClass>HOP_CoolerPsycasts.LinkedTornado</thingClass>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <drawOffscreen>true</drawOffscreen>
+    <seeThroughFog>true</seeThroughFog>
+    <alwaysFlee>true</alwaysFlee>
+    <comps>
+      <li Class="CompProperties_WindSource" />
+    </comps>
+  </ThingDef>
+  
+</Defs>

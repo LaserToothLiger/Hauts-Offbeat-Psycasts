@@ -36,6 +36,11 @@ namespace HautsPsycasts
                           postfix: new HarmonyMethod(patchType, nameof(HVP_ThingSetMaker_GeneratePostfix)));
             harmony.Patch(AccessTools.Method(typeof(Hediff_Psylink), nameof(Hediff_Psylink.TryGiveAbilityOfLevel)),
                           postfix: new HarmonyMethod(patchType, nameof(HVP_TryGiveAbilityOfLevelPostfix)));
+            if (ModsConfig.IsActive("metalocif.coolerpsycasts"))
+            {
+                harmony.Patch(AccessTools.Method(typeof(Pawn), nameof(Pawn.Kill)),
+                               prefix: new HarmonyMethod(patchType, nameof(HVP_KillPrefix)));
+            }
             Log.Message("HVP_Initialize".Translate().CapitalizeFirst());
         }
         internal static object GetInstanceField(Type type, object instance, string fieldName)
@@ -128,6 +133,16 @@ namespace HautsPsycasts
                 }
             }
         }
+        public static bool HVP_KillPrefix(Pawn __instance)
+        {
+            if (__instance.story != null && __instance.story.traits.HasTrait(HVPDefOf.HVP_Squaddie))
+            {
+                HVPUtility.DisappearPawn(__instance);
+                HealthUtility.HealNonPermanentInjuriesAndRestoreLegs(__instance);
+                return false;
+            }
+            return true;
+        }
     }
 
     [DefOf]
@@ -139,8 +154,10 @@ namespace HautsPsycasts
         }
         public static GameConditionDef HVP_BetterFlashstorm;
         public static HediffDef HVP_Hammerspace;
+        public static HediffDef HVP_IShallLiveForever;
         public static QuestScriptDef HVP_DowsingQuest;
         public static QuestScriptDef HVP_DowsingQuest2;
+        public static TraitDef HVP_Squaddie;
     }
     //level 1
     public class Building_TrapStunner : Building_Trap
@@ -268,7 +285,7 @@ namespace HautsPsycasts
         }
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
         {
-            return this.HasAnyNeedCheck(this.selectedTarget) && this.HasAnyNeedCheck(target) && base.ValidateTarget(target, showMessages);
+            return target != this.selectedTarget && this.HasAnyNeedCheck(this.selectedTarget) && this.HasAnyNeedCheck(target) && base.ValidateTarget(target, showMessages);
         }
         public override bool CanHitTarget(LocalTargetInfo target)
         {
@@ -523,7 +540,7 @@ namespace HautsPsycasts
         }
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
         {
-            return this.HasAnyHigherSkills(target,this.selectedTarget) && base.ValidateTarget(target, showMessages);
+            return target != this.selectedTarget && this.HasAnyHigherSkills(target,this.selectedTarget) && base.ValidateTarget(target, showMessages);
         }
         public override bool CanHitTarget(LocalTargetInfo target)
         {
@@ -3053,7 +3070,7 @@ namespace HautsPsycasts
             }
             yield break;
         }
-        private void RemoveOthers()
+        protected virtual void RemoveOthers()
         {
             this.others.Clear();
         }
@@ -3207,6 +3224,23 @@ namespace HautsPsycasts
         {
             base.TimeInterval(deltaTime);
             this.exactRotation += this.rotationRate * deltaTime;
+        }
+    }
+    //oh-ho, what's this?
+    public class Hediff_ISLF : HediffWithComps
+    {
+        public override void Tick()
+        {
+            base.Tick();
+            if (this.pawn.Downed)
+            {
+                HVPUtility.DisappearPawn(this.pawn);
+            }
+        }
+        public override void PostRemoved()
+        {
+            base.PostRemoved();
+            HVPUtility.DisappearPawn(this.pawn);
         }
     }
     //flashstorm buff
@@ -3636,6 +3670,25 @@ namespace HautsPsycasts
                 }
             }
             return curableHediffs;
+        }
+        public static void DisappearPawn(Pawn pawn)
+        {
+            if (pawn.Spawned)
+            {
+                Map map = pawn.Map;
+                FleckCreationData dataStatic = FleckMaker.GetDataStatic(pawn.Position.ToVector3Shifted(), map, FleckDefOf.PsycastSkipInnerExit, 1f);
+                dataStatic.rotationRate = (float)Rand.Range(-30, 30);
+                dataStatic.rotation = (float)(90 * Rand.RangeInclusive(0, 3));
+                map.flecks.CreateFleck(dataStatic);
+                FleckCreationData dataStatic2 = FleckMaker.GetDataStatic(pawn.Position.ToVector3Shifted(), map, FleckDefOf.PsycastSkipOuterRingExit, 1f);
+                dataStatic2.rotationRate = (float)Rand.Range(-30, 30);
+                dataStatic2.rotation = (float)(90 * Rand.RangeInclusive(0, 3));
+                map.flecks.CreateFleck(dataStatic2);
+                SoundDefOf.Psycast_Skip_Exit.PlayOneShot(new TargetInfo(pawn.Position, map, false));
+                pawn.teleporting = true;
+                pawn.ExitMap(false, Rot4.Invalid);
+                pawn.Destroy();
+            }
         }
     }
     public class HVP_Settings : ModSettings

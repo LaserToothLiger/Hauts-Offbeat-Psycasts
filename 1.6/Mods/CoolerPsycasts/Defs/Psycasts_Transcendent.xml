@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <!--level 7-->
+  <AbilityDef ParentName="WordOfBase">
+    <defName>HVP_Datashock</defName>
+    <label>datashock</label>
+    <description>Make vast and precise alterations to the data contained in an object or creature. One of the following effects occurs, based on the nature of the target:
+\n-Turrets or drones are recruited
+\n-Biologicals not already in a mental state become confused
+\n-Mechanoids are stunned
+\n-Research benches grant research progress
+\n-Biocoded items have their biocode erased
+\n-Hackable items are hacked</description>
+    <level>7</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Datashock</iconPath>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.25</Ability_PsyfocusCost>
+      <Ability_EntropyGain>50</Ability_EntropyGain>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+		<canTargetMechs>True</canTargetMechs>
+        <canTargetBuildings>True</canTargetBuildings>
+		<canTargetItems>true</canTargetItems>
+        <neverTargetHostileFaction>False</neverTargetHostileFaction>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HOP_CoolerPsycasts.CompProperties_AbilityDatashock">
+        <compClass>HOP_CoolerPsycasts.CompAbilityEffect_Datashock</compClass>
+        <effectMultiplier>PsychicSensitivity</effectMultiplier><!--numeric, non-temporal effects scale w/ caster's psysens-->
+		<hackProgress>900</hackProgress>
+		<researchProgress>75</researchProgress>
+		<durationMultiplier>PsychicSensitivity</durationMultiplier><!--mental state and stun scale w/ victim's psysens-->
+		<mentalState>WanderConfused</mentalState>
+		<stunTicksVsNonDroneMechs>1400~1800</stunTicksVsNonDroneMechs>
+        <goodwillImpact>-55</goodwillImpact>
+        <psychic>True</psychic>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>50</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_PsyfocusTransfer</defName>
+    <label>psyfocus transfer</label>
+    <description>Transfer up to 50% psyfocus from one psycaster to another. The donor's loss is instant, while the recipient gains the psyfocus over a brief period.\n\nMultiple casts on the same recipient increase the amount of psyfocus the recipient will gain, but not the rate.</description>
+    <level>7</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_PsyfocusTransfer</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_EntropyGain>90</Ability_EntropyGain>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>19.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HOP_CoolerPsycasts.CompProperties_AbilityTransferPsyfocus">
+        <compClass>HOP_CoolerPsycasts.CompAbilityEffect_TransferPsyfocus</compClass>
+        <psychic>True</psychic>
+        <goodwillImpact>-45</goodwillImpact>
+        <destination>Selected</destination>
+        <requiresLineOfSight>True</requiresLineOfSight>
+        <range>19.9</range>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>10</clamorRadius>
+        <destClamorType>Ability</destClamorType>
+        <destClamorRadius>10</destClamorRadius>
+		<hediffToSelf>HVP_TransferredPsyfocus</hediffToSelf>
+		<maxPsyfocusStolen>0.5</maxPsyfocusStolen>
+		<maxPsyfocusReceived>0.5</maxPsyfocusReceived>
+		<severityPerStolenPsyfocus>2</severityPerStolenPsyfocus><!--you'd get 2 hours per 100% psyfocus stolen, since the hediff's severity depletes by 1 per hour-->
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>75</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  
+  <!--level 8-->
+  <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_Targetzone</defName>
+    <label>targetzone</label>
+    <description>Leave a persistent distortion in the psychic manifold around the target point, maximizing attack accuracy against anyone in its radius.</description>
+    <level>8</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Targetzone</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <statBases>
+      <Ability_PsyfocusCost>0.08</Ability_PsyfocusCost>
+      <Ability_EntropyGain>65</Ability_EntropyGain>
+      <Ability_Duration>125</Ability_Duration>
+      <Ability_EffectRadius>4.9</Ability_EffectRadius>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.25</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilitySpawn">
+        <thingDef>HVP_TargetzoneActual</thingDef>
+        <allowOnBuildings>True</allowOnBuildings>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>10</clamorRadius>
+      </li>
+      <li Class="CompProperties_AbilityEffecterOnTarget">
+        <effecterDef>Skip_Exit</effecterDef>
+        <maintainForTicks>60</maintainForTicks>
+        <scale>0.42</scale>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDefs>
+          <li>PsycastSkipInnerExit</li>
+          <li>PsycastSkipOuterRingExit</li>
+        </fleckDefs>
+        <scale>0.68</scale>
+        <sound>Psycast_Skip_Exit</sound>
+        <preCastTicks>5</preCastTicks>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>75</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  
+  <!--level 9-->
+  <AbilityDef ParentName="HVP_PsycastBaseCall">
+    <defName>HVP_SquadronCall</defName>
+    <label>squadron call</label>
+    <description>Summon rapid-response drop troopers from an orbital barge to the targeted location. These troopers are under the caster's control and will disappear after 6 hours or when downed. They may be slain without consequence.</description>
+    <level>9</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_SquadronCall</iconPath>
+    <hostile>false</hostile>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.2</Ability_PsyfocusCost>
+      <Ability_EntropyGain>110</Ability_EntropyGain>
+      <Ability_Duration>250</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>39.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HOP_CoolerPsycasts.CompProperties_AbilityDropSquad">
+        <compClass>HOP_CoolerPsycasts.CompAbilityEffect_DropSquad</compClass>
+		<pawnKinds>
+		  <li>AncientSoldier</li>
+		  <li>Empire_Fighter_Janissary</li>
+		  <li>Empire_Fighter_Champion</li>
+		</pawnKinds>
+		<podPerStatCurve>
+		  <points>
+            <li>(0, 1)</li>
+            <li>(1, 4)</li>
+            <li>(2.5, 9)</li>
+            <li>(6, 15)</li>
+            <li>(12, 20)</li>
+            <li>(20, 25)</li>
+          </points>
+		</podPerStatCurve>
+		<statScalar>PsychicSensitivity</statScalar>
+		<giveTraitToPassengers>HVP_Squaddie</giveTraitToPassengers>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>150</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="WordOfBase">
+    <defName>HVP_WordOfBlessing</defName>
+    <label>word of blessing</label>
+    <description>Speak a litany of flesh-warping archotechnic words to alter the cellular makeup of the target. This will grant a permanent buff of the target's choice. Only one blessing may be active on an entity at a time; choosing a new one replaces the previous one.</description>
+    <level>9</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_WordOfBlessing</iconPath>
+    <hostile>false</hostile>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_PsyfocusCost>0.8</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>2</warmupTime>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>HVP_WordOfBlessingSelf</hediffDef>
+        <psychic>True</psychic>
+      </li>
+      <li Class="CompProperties_AbilitySocialInteraction">
+        <interactionDef>HVP_WordOfBlessing</interactionDef>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>50</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  
+  <!--level 10-->
+  <AbilityDef ParentName="HVP_PsycastBaseLink">
+    <defName>HVP_TornadoLink</defName>
+    <label>tornado link</label>
+    <description>Use an alterable sequence of microscopic skipgates in the atmosphere to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 5 neural heat per second.</description>
+    <level>10</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_TornadoLink</iconPath>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>50</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.1</Ability_PsyfocusCost>
+      <Ability_EffectRadius>10</Ability_EffectRadius>
+      <Ability_Duration>125</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>44.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HOP_CoolerPsycasts.CompProperties_AbilitySpawnLinkedObject">
+        <thingDef>HVP_LinkedTornado</thingDef>
+        <allowOnBuildings>True</allowOnBuildings>
+		<linkHediff>HVP_HiddenTornadoMaintainer</linkHediff>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>200</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+</Defs>

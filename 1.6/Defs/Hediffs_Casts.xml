@@ -954,4 +954,50 @@
 	</comps>
   </HediffDef>
   
+  <!--level 9-->
+	<TraitDef>
+		<defName>HVP_Squaddie</defName>
+		<commonality>0</commonality>
+		<disabledWorkTags>AllWork</disabledWorkTags>
+		<degreeDatas>
+		  <li>
+			<label>eternal warrior</label>
+			<description>{PAWN_nameDef} lives only to fight at the direction of an especially powerful being.</description>
+			<statOffsets>
+			  <PainShockThreshold>1</PainShockThreshold>
+			  <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
+			</statOffsets>
+		  </li>
+		</degreeDatas>
+        <modExtensions>
+            <li Class="HautsFramework.TraitGrantedStuff">
+				<grantedHediffs>
+					<li>
+						<key>0</key><value><li>HVP_IShallLiveForever</li></value>
+					</li>
+				</grantedHediffs>
+            </li>
+			<li Class="HautsFramework.ExciseTraitExempt" />
+		</modExtensions>
+	</TraitDef>
+  <HediffDef ParentName="HVT_TraitHediffBase">
+	<defName>HVP_IShallLiveForever</defName>
+	<label>i shall have no fear</label>
+	<description>For the archotechs are by my side.</description>
+	<hediffClass>HautsPsycasts.Hediff_ISLF</hediffClass>
+	<isBad>false</isBad>
+	<initialSeverity>6</initialSeverity>
+	<stages>
+	  <li>
+		<becomeVisible>false</becomeVisible>
+	  </li>
+	</stages>
+	<comps>
+	  <li Class="HediffCompProperties_SeverityPerDay">
+		<severityPerDay>-24</severityPerDay>
+		<showDaysToRecover>true</showDaysToRecover>
+	  </li>
+	</comps>
+  </HediffDef>
+  
 </Defs>

@@ -301,7 +301,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_BoosterLink"]/description</xpath>
 					<value>
-						<description>Maintain an astral connection to the target which hones its mind, boosting moving and manipulation capacities. This process incurs arcane load over time, and it will stop if the target moves more than 60 cells away, the target is downed for more than 4 seconds, or the caster is rendered incapable of spellcasting.</description>
+						<description>Maintain an astral connection to the target which hones its mind, boosting moving and manipulation capacities. This process incurs arcane load over time, and it will stop if the target moves more than 60 cells away, the target is downed for more than 4 seconds, or the caster is rendered incapable of spellcasting.\n\nCosts 2.5 arcane load per second.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -575,6 +575,103 @@
 					<value>
 						<li>r_logentry->[INITIATOR_nameDef] spiritually melded [RECIPIENT_nameDef] into the mind of another.</li>
 					</value>
+				</li>
+				<li Class="PatchOperationFindMod">
+					<mods>
+					  <li>Cooler Psycasts</li>
+					</mods>
+					<match Class="PatchOperationSequence">
+						<operations>
+							<!--welcome to level 7-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_Datashock"]/label</xpath>
+								<value>
+									<label>word of shadows</label>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_Datashock"]/description</xpath>
+								<value>
+									<description>Whisper an arcane word to favorably affect an object or creature. One of the following effects occurs, based on the nature of the target:
+\n-Turrets or simple constructs are recruited
+\n-Living creatures not already in mental state a become confused
+\n-Golems are stunned
+\n-Research benches grant research progress
+\n-Soulbound items have soulbonds undone
+\n-Locked items are unlocked</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_PsyfocusTransfer"]/label</xpath>
+								<value>
+									<label>mana transfer</label>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_PsyfocusTransfer"]/description</xpath>
+								<value>
+									<description>Transfer up to 50% mana from one spellcaster to another. The donor's loss is instant, while the recipient gains the mana over a brief period.\n\nMultiple casts on the same recipient increase the amount of mana the recipient will gain, but not the rate.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName="HVP_TransferredPsyfocus"]/label</xpath>
+								<value>
+									<label>transferred mana</label>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName="HVP_TransferredPsyfocus"]/description</xpath>
+								<value>
+									<description>Mana transferred from another spellcaster.</description>
+								</value>
+							</li>
+							<!--level 8-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_Targetzone"]/description</xpath>
+								<value>
+									<description>Weave a malicious hex that settles on the target region, maximizing attack accuracy against anyone in its radius.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName="HVP_TargetzoneDebuff"]/label</xpath>
+								<value>
+									<label>targetzone hex</label>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName="HVP_TargetzoneDebuff"]/description</xpath>
+								<value>
+									<description>Attacks against this creature have maximized accuracy, guided along by death-craving spirits.</description>
+								</value>
+							</li>
+							<!--level 9-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_SquadronCall"]/label</xpath>
+								<value>
+									<label>valorous call</label>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_SquadronCall"]/description</xpath>
+								<value>
+									<description>Summon daring warriors from the heavens to the targeted location. They take orders from the caster, but will disappear after 6 hours or when downed. They may be slain without consequence.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_WordOfBlessing"]/description</xpath>
+								<value>
+									<description>Speak exaltant words of benediction, endowing a permanent buff of the target's choice upon it. Only one blessing may be active on an entity at a time; choosing a new one replaces the previous one.</description>
+								</value>
+							</li>
+							<!--level 10-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_TornadoLink"]/description</xpath>
+								<value>
+									<description>Channel the winds to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 5 arcane load per second.</description>
+								</value>
+							</li>
+						</operations>
+					</match>
 				</li>
 			</operations>
 		</match>

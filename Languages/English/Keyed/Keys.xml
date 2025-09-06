@@ -20,6 +20,8 @@
 <HVP_UndoRJLabel>End rejuvenation</HVP_UndoRJLabel>
 <HVP_UndoRJText>Ends the effects of the rejuvenation skip on {PAWN_nameDef}.</HVP_UndoRJText>
 <HVP_UndoRJTextFantasy>Ends the effects of the rejuvenation spell on {PAWN_nameDef}.</HVP_UndoRJTextFantasy>
+<HVP_NoTornadoLabel>Cancel tornado link</HVP_NoTornadoLabel>
+<HVP_NoTornadoText>Relinquishes control over the tornado currently linked to this caster. If the tornado is at least three hours old, this will destroy it; otherwise, it will roam around until it reaches three hours of age, then fade away.</HVP_NoTornadoText>
 <!--UI: targeting-->
 <HVP_MeldInto>Psychically meld to</HVP_MeldInto>
 <HVP_Meld>Induce psychic melding of</HVP_Meld>
