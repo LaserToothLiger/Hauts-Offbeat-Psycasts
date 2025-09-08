@@ -10,7 +10,7 @@
 \n-Biologicals not already in a mental state become confused
 \n-Mechanoids are stunned
 \n-Research benches grant research progress
-\n-Biocoded items have their biocode erased
+\n-Non-persona biocoded items have their biocode erased
 \n-Hackable items are hacked</description>
     <level>7</level>
     <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Datashock</iconPath>

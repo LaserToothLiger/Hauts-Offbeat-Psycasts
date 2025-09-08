@@ -72,6 +72,11 @@ namespace HOP_CoolerPsycasts
                         Find.ResearchManager.AddProgress(rpd, this.Props.researchProgress * this.parent.pawn.GetStatValue(this.Props.effectMultiplier), this.parent.pawn);
                     }
                 }
+                CompBladelinkWeapon cbw = t.TryGetComp<CompBladelinkWeapon>();
+                if (cbw != null)
+                {
+                    return;
+                }
                 CompBiocodable cbc = t.TryGetComp<CompBiocodable>();
                 if (cbc != null && cbc.Biocoded)
                 {
@@ -91,6 +96,11 @@ namespace HOP_CoolerPsycasts
             Thing t = target.Thing;
             if (t != null)
             {
+                CompBladelinkWeapon cbw = t.TryGetComp<CompBladelinkWeapon>();
+                if (cbw != null)
+                {
+                    return false;
+                }
                 CompBiocodable cbc = t.TryGetComp<CompBiocodable>();
                 if (cbc != null && cbc.Biocoded)
                 {
@@ -255,10 +265,14 @@ namespace HOP_CoolerPsycasts
                 PawnKindDef pkd = this.Props.pawnKinds.RandomElement();
                 ActiveTransporterInfo activeTransporterInfo = new ActiveTransporterInfo();
                 bool leaveSlag = false;
-                Pawn pawnToDrop = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pkd, null, PawnGenerationContext.NonPlayer, -1, false, false, false, true, false, 1f, false, true, false, true, true, false, false, false, false, 0f, 0f, null, 1f, null, null, null, null, null, null, null, null, null, null, null, ModsConfig.IdeologyActive ? this.parent.pawn.Ideo : null, false, false, false, false, null, null, null, null, null, 0f, DevelopmentalStage.Adult, null, null, null, false, false, false, -1, 0, false));
+                Pawn pawnToDrop = PawnGenerator.GeneratePawn(new PawnGenerationRequest(pkd, null, PawnGenerationContext.NonPlayer, -1, false, false, false, true, false, 1f, false, true, false, true, true, false, false, false, false, 1f, 1f, null, 1f, null, null, null, null, null, null, null, null, null, null, null, ModsConfig.IdeologyActive ? this.parent.pawn.Ideo : null, false, false, false, false, null, null, null, null, null, 0f, DevelopmentalStage.Adult, null, null, null, false, false, false, -1, 0, false));
                 if (pawnToDrop.story != null)
                 {
                     pawnToDrop.story.traits.GainTrait(new Trait(this.Props.giveTraitToPassengers,0,true));
+                }
+                if (pawnToDrop.apparel != null)
+                {
+                    pawnToDrop.apparel.LockAll();
                 }
                 pawnToDrop.SetFaction(f);
                 activeTransporterInfo.innerContainer.TryAdd(pawnToDrop, true);
