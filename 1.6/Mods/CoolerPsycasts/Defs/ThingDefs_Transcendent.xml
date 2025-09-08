@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   
-  <!--level 8:
+  <!--level 9:
   Targetzone-->
   <ThingDef ParentName="EtherealThingBase">
 	<defName>HVP_TargetzoneActual</defName>

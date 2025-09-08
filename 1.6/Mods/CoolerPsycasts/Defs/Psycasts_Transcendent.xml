@@ -108,11 +108,70 @@
   
   
   <!--level 8-->
+  <AbilityDef ParentName="HVP_PsycastBaseCall">
+    <defName>HVP_SquadronCall</defName>
+    <label>squadron call</label>
+    <description>Summon rapid-response drop troopers from an orbital barge to the targeted location. These troopers are under the caster's control and will disappear after 6 hours or when downed. They may be slain without consequence.</description>
+    <level>8</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_SquadronCall</iconPath>
+    <hostile>false</hostile>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.2</Ability_PsyfocusCost>
+      <Ability_EntropyGain>110</Ability_EntropyGain>
+      <Ability_Duration>250</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>39.9</range>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HOP_CoolerPsycasts.CompProperties_AbilityDropSquad">
+        <compClass>HOP_CoolerPsycasts.CompAbilityEffect_DropSquad</compClass>
+		<pawnKinds>
+		  <li>AncientSoldier</li>
+		  <li>Empire_Fighter_Janissary</li>
+		  <li>Empire_Fighter_Champion</li>
+		  <li>Empire_Fighter_Cataphract</li>
+		</pawnKinds>
+		<podPerStatCurve>
+		  <points>
+            <li>(0, 1)</li>
+            <li>(1, 4)</li>
+            <li>(2.5, 9)</li>
+            <li>(6, 15)</li>
+            <li>(12, 20)</li>
+            <li>(20, 25)</li>
+          </points>
+		</podPerStatCurve>
+		<statScalar>PsychicSensitivity</statScalar>
+		<giveTraitToPassengers>HVP_Squaddie</giveTraitToPassengers>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>150</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  
+  <!--level 9-->
+  
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_Targetzone</defName>
     <label>targetzone</label>
     <description>Leave a persistent distortion in the psychic manifold around the target point, maximizing attack accuracy against anyone in its radius.</description>
-    <level>8</level>
+    <level>9</level>
     <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Targetzone</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
@@ -160,64 +219,7 @@
 		<stopAtActivity>9999</stopAtActivity>
       </li>
     </comps>
-  </AbilityDef>
-  
-  
-  <!--level 9-->
-  <AbilityDef ParentName="HVP_PsycastBaseCall">
-    <defName>HVP_SquadronCall</defName>
-    <label>squadron call</label>
-    <description>Summon rapid-response drop troopers from an orbital barge to the targeted location. These troopers are under the caster's control and will disappear after 6 hours or when downed. They may be slain without consequence.</description>
-    <level>9</level>
-    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_SquadronCall</iconPath>
-    <hostile>false</hostile>
-    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
-    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
-    <statBases>
-      <Ability_PsyfocusCost>0.2</Ability_PsyfocusCost>
-      <Ability_EntropyGain>110</Ability_EntropyGain>
-      <Ability_Duration>250</Ability_Duration>
-    </statBases>
-    <verbProperties>
-      <warmupTime>1</warmupTime>
-      <range>39.9</range>
-      <targetParams>
-        <canTargetPawns>False</canTargetPawns>
-        <canTargetLocations>True</canTargetLocations>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="HOP_CoolerPsycasts.CompProperties_AbilityDropSquad">
-        <compClass>HOP_CoolerPsycasts.CompAbilityEffect_DropSquad</compClass>
-		<pawnKinds>
-		  <li>AncientSoldier</li>
-		  <li>Empire_Fighter_Janissary</li>
-		  <li>Empire_Fighter_Champion</li>
-		</pawnKinds>
-		<podPerStatCurve>
-		  <points>
-            <li>(0, 1)</li>
-            <li>(1, 4)</li>
-            <li>(2.5, 9)</li>
-            <li>(6, 15)</li>
-            <li>(12, 20)</li>
-            <li>(20, 25)</li>
-          </points>
-		</podPerStatCurve>
-		<statScalar>PsychicSensitivity</statScalar>
-		<giveTraitToPassengers>HVP_Squaddie</giveTraitToPassengers>
-      </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
-	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
-        <activityOffset>150</activityOffset>
-		<stopAtActivity>9999</stopAtActivity>
-      </li>
-    </comps>
-  </AbilityDef>
+  </AbilityDef>  
   
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfBlessing</defName>
@@ -255,7 +257,6 @@
       </li>
     </comps>
   </AbilityDef>
-  
   
   <!--level 10-->
   <AbilityDef ParentName="HVP_PsycastBaseLink">

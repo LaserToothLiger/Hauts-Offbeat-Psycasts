@@ -26,7 +26,7 @@
     </comps>
   </HediffDef>
   
-  <!--level 8:
+  <!--level 9:
   targetzone-->
   <HediffDef>
     <defName>HVP_TargetzoneDebuff</defName>
@@ -49,9 +49,7 @@
 		</li>
     </comps>
   </HediffDef>
-  
-  <!--level 9:
-  word of blessing-->
+  <!--word of blessing-->
   <HediffDef ParentName="HVT_TraitHediffBase">
     <defName>HVP_WordOfBlessingSelf</defName>
     <label>choose blessing</label>

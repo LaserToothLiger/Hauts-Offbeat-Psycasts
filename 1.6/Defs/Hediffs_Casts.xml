@@ -954,17 +954,19 @@
 	</comps>
   </HediffDef>
   
-  <!--level 9-->
+  <!--level 8-->
 	<TraitDef>
 		<defName>HVP_Squaddie</defName>
 		<commonality>0</commonality>
 		<disabledWorkTags>AllWork</disabledWorkTags>
+		<canBeSuppressed>false</canBeSuppressed>
 		<degreeDatas>
 		  <li>
 			<label>eternal warrior</label>
 			<description>{PAWN_nameDef} lives only to fight at the direction of an especially powerful being.</description>
 			<statOffsets>
 			  <PainShockThreshold>1</PainShockThreshold>
+			  <PsychicSensitivity>0.4</PsychicSensitivity>
 			  <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
 			</statOffsets>
 		  </li>
