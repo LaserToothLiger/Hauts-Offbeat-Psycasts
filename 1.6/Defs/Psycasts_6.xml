@@ -240,7 +240,7 @@
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfMelding</defName>
     <label>word of melding</label>
-    <description>Speak about becoming one with another while using psychic suggestion to lull the listener into a coma. Until the listener's coma is broken, the other's consciousness is boosted. The benefit of this ability can stack up to ten times.\n\nThe neural architecture of children is too plastic to lull into a coma.</description>
+    <description>Speak about becoming one with another while using psychic suggestion to lull the listener into a coma. Until the listener's coma is broken, the other's consciousness is boosted. The benefit of this ability can stack up to ten times.\n\nThe listener must be conscious, but can be downed. The neural architecture of children is too plastic to lull into a coma.</description>
     <level>6</level>
     <iconPath>Things/Building/Misc/MultiAnalyzer</iconPath>
     <hostile>false</hostile>
@@ -256,7 +256,7 @@
         <canTargetAnimals>False</canTargetAnimals>
         <canTargetSelf>True</canTargetSelf>
         <canTargetMechs>False</canTargetMechs>
-		<neverTargetIncapacitated>true</neverTargetIncapacitated>
+		<neverTargetIncapacitated>false</neverTargetIncapacitated>
 		<canTargetBuildings>false</canTargetBuildings>
       </targetParams>
     </verbProperties>

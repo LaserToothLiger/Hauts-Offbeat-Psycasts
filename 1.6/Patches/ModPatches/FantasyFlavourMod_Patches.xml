@@ -531,7 +531,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_WordOfMelding"]/description</xpath>
 					<value>
-						<description>Speak about becoming one with another while extracting mental essence from the listener to place it into a coma. The other target gains some of that mental essence, boosting its consciousness, though if the coma should ever be undone that essence will return to the listener. The benefit of this ability can stack up to ten times.\n\nThe souls of children have a quality that renders them immune to this magic.</description>
+						<description>Speak about becoming one with another while extracting mental essence from the listener to place it into a coma. The other target gains some of that mental essence, boosting its consciousness, though if the coma should ever be undone that essence will return to the listener. The benefit of this ability can stack up to ten times.\n\nThe listener must be conscious, but can be downed. The souls of children have a quality that renders them immune to this magic.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -584,24 +584,6 @@
 						<operations>
 							<!--welcome to level 7-->
 							<li Class="PatchOperationReplace">
-								<xpath>Defs/AbilityDef[defName="HVP_Datashock"]/label</xpath>
-								<value>
-									<label>word of shadows</label>
-								</value>
-							</li>
-							<li Class="PatchOperationReplace">
-								<xpath>Defs/AbilityDef[defName="HVP_Datashock"]/description</xpath>
-								<value>
-									<description>Whisper an arcane word to favorably affect an object or creature. One of the following effects occurs, based on the nature of the target:
-\n-Turrets or simple constructs are recruited
-\n-Living creatures not already in mental state a become confused
-\n-Golems are stunned
-\n-Research benches grant research progress
-\n-Soulbound items have soulbonds undone
-\n-Locked items are unlocked</description>
-								</value>
-							</li>
-							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName="HVP_PsyfocusTransfer"]/label</xpath>
 								<value>
 									<label>mana transfer</label>
@@ -610,7 +592,7 @@
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName="HVP_PsyfocusTransfer"]/description</xpath>
 								<value>
-									<description>Transfer up to 50% mana from one spellcaster to another. The donor's loss is instant, while the recipient gains the mana over a brief period.\n\nMultiple casts on the same recipient increase the amount of mana the recipient will gain, but not the rate.</description>
+									<description>Transfer up to 50% mana from one spellcaster to any spellcaster other than oneself. The donor's loss is instant, while the recipient gains the mana over a brief period.\n\nMultiple casts on the same recipient increase the amount of mana the recipient will gain, but not the rate.</description>
 								</value>
 							</li>
 							<li Class="PatchOperationReplace">
@@ -625,26 +607,25 @@
 									<description>Mana transferred from another spellcaster.</description>
 								</value>
 							</li>
-							<!--level 8-->
+							<!--say goodbye to level 7. hello level 8-->
 							<li Class="PatchOperationReplace">
-								<xpath>Defs/AbilityDef[defName="HVP_Targetzone"]/description</xpath>
+								<xpath>Defs/AbilityDef[defName="HVP_MarkingPulse"]/description</xpath>
 								<value>
-									<description>Weave a malicious hex that settles on the target region, maximizing attack accuracy against anyone in its radius.</description>
+									<description>Weave a malicious hex that affects everyone around the target point, maximizing attack accuracy against them.</description>
 								</value>
 							</li>
 							<li Class="PatchOperationReplace">
-								<xpath>Defs/HediffDef[defName="HVP_TargetzoneDebuff"]/label</xpath>
+								<xpath>Defs/HediffDef[defName="HVP_MarkingDebuff"]/label</xpath>
 								<value>
-									<label>targetzone hex</label>
+									<label>mystic marking</label>
 								</value>
 							</li>
 							<li Class="PatchOperationReplace">
-								<xpath>Defs/HediffDef[defName="HVP_TargetzoneDebuff"]/description</xpath>
+								<xpath>Defs/HediffDef[defName="HVP_MarkingDebuff"]/description</xpath>
 								<value>
 									<description>Attacks against this creature have maximized accuracy, guided along by death-craving spirits.</description>
 								</value>
 							</li>
-							<!--level 9-->
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName="HVP_SquadronCall"]/label</xpath>
 								<value>
@@ -657,13 +638,13 @@
 									<description>Summon daring warriors from the heavens to the targeted location. They take orders from the caster, but will disappear after 6 hours or when downed. They may be slain without consequence.</description>
 								</value>
 							</li>
+							<!--level 9-->
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName="HVP_WordOfBlessing"]/description</xpath>
 								<value>
 									<description>Speak exaltant words of benediction, endowing a permanent buff of the target's choice upon it. Only one blessing may be active on an entity at a time; choosing a new one replaces the previous one.</description>
 								</value>
 							</li>
-							<!--level 10-->
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName="HVP_TornadoLink"]/description</xpath>
 								<value>

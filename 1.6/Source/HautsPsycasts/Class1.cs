@@ -20,6 +20,7 @@ using Verse.Noise;
 using Verse.AI;
 using VEF.Abilities;
 using static System.Collections.Specialized.BitVector32;
+using System.Security.Cryptography;
 
 namespace HautsPsycasts
 {
@@ -2895,9 +2896,13 @@ namespace HautsPsycasts
         {
             return this.Valid(target, false);
         }
+        public override bool CanHitTarget(LocalTargetInfo target)
+        {
+            return base.CanHitTarget(target) && target != this.selectedTarget;
+        }
         public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
         {
-            return base.Valid(target, throwMessages) && target.Thing != null && target.Thing is Pawn p && p.DevelopmentalStage.Adult();
+            return base.Valid(target, throwMessages) && target.Thing != null && target.Thing is Pawn p && p.DevelopmentalStage.Adult() && p.health.capacities.GetLevel(PawnCapacityDefOf.Consciousness) > 0.3f;
         }
         public override TargetingParameters targetParams
         {

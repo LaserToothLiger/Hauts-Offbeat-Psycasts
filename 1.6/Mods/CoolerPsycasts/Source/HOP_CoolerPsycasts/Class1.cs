@@ -1,9 +1,11 @@
 ﻿using HautsFramework;
 using HautsPsycasts;
 using RimWorld;
+using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -182,7 +184,7 @@ namespace HOP_CoolerPsycasts
         }
         public override bool CanHitTarget(LocalTargetInfo target)
         {
-            return base.CanHitTarget(target) && this.HasPsyfocusBarCheck(target);
+            return base.CanHitTarget(target) && this.HasPsyfocusBarCheck(target) && target != this.parent.pawn;
         }
         public override bool Valid(LocalTargetInfo target, bool showMessages = true)
         {
@@ -796,5 +798,60 @@ namespace HOP_CoolerPsycasts
         private static readonly float ZOffsetBias = -4f * LinkedTornado.PartsDistanceFromCenter.min;
         public List<IntVec3> removedRoofsTmp = new List<IntVec3>();
         public static List<Thing> tmpThings = new List<Thing>();
+    }
+    public class CompProperties_AbilityVoidquake : CompProperties_AbilityEffect
+    {
+        public CompProperties_AbilityVoidquake()
+        {
+            this.compClass = typeof(CompAbilityEffect_Voidquake);
+        }
+        public IncidentDef incidentDef;
+        public MentalStateDef mentalState;
+        public HediffDef hediffMechs;
+        public HediffDef hediffEntities;
+    }
+    public class CompAbilityEffect_Voidquake : CompAbilityEffect
+    {
+        public new CompProperties_AbilityVoidquake Props
+        {
+            get
+            {
+                return (CompProperties_AbilityVoidquake)this.props;
+            }
+        }
+        public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
+        {
+            foreach (Pawn pawn in this.parent.pawn.Map.mapPawns.AllPawnsSpawned)
+            {
+                if (this.CanApplyEffects(pawn) && !pawn.Fogged() && pawn.Position.DistanceTo(this.parent.pawn.Position) > this.parent.def.EffectRadius)
+                {
+                    if (ModsConfig.AnomalyActive && (pawn.RaceProps.IsAnomalyEntity || pawn.IsMutant))
+                    {
+                        pawn.health.AddHediff(this.Props.hediffEntities,null);
+                    } else if (pawn.RaceProps.IsFlesh) {
+                        CompAbilityEffect_GiveMentalState.TryGiveMentalState(this.Props.mentalState, pawn, this.parent.def, StatDefOf.PsychicSensitivity, this.parent.pawn, false);
+                        RestUtility.WakeUp(pawn, true);
+                    } else {
+                        pawn.health.AddHediff(this.Props.hediffMechs, null);
+                    }
+                }
+            }
+            if (this.Props.incidentDef != null)
+            {
+                IIncidentTarget iit = this.parent.pawn.MapHeld ?? Find.Maps.RandomElement();
+                IncidentParms parms = StorytellerUtility.DefaultParmsNow(this.Props.incidentDef.category, iit);
+                parms.forced = true;
+                if (this.Props.incidentDef.pointsScaleable)
+                {
+                    parms = Find.Storyteller.storytellerComps.First((StorytellerComp x) => x is StorytellerComp_OnOffCycle || x is StorytellerComp_RandomMain).GenerateParms(this.Props.incidentDef.category, parms.target);
+                }
+                this.Props.incidentDef.Worker.TryExecute(parms);
+            }
+            base.Apply(target, dest);
+        }
+        private bool CanApplyEffects(Pawn p)
+        {
+            return !p.kindDef.isBoss && !p.Dead && !p.Suspended && (p.IsMutant || p.GetStatValue(StatDefOf.PsychicSensitivity, true, -1) > float.Epsilon);
+        }
     }
 }

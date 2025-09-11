@@ -1,64 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   
-  <!--level 7-->
-  <AbilityDef ParentName="WordOfBase">
-    <defName>HVP_Datashock</defName>
-    <label>datashock</label>
-    <description>Make vast and precise alterations to the data contained in an object or creature. One of the following effects occurs, based on the nature of the target:
-\n-Turrets or drones are recruited
-\n-Biologicals not already in a mental state become confused
-\n-Mechanoids are stunned
-\n-Research benches grant research progress
-\n-Non-persona biocoded items have their biocode erased
-\n-Hackable items are hacked</description>
-    <level>7</level>
-    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Datashock</iconPath>
-    <hostile>true</hostile>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
-    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
-    <statBases>
-      <Ability_PsyfocusCost>0.25</Ability_PsyfocusCost>
-      <Ability_EntropyGain>50</Ability_EntropyGain>
-    </statBases>
-    <verbProperties>
-      <warmupTime>1</warmupTime>
-      <targetParams>
-        <canTargetSelf>True</canTargetSelf>
-        <canTargetAnimals>True</canTargetAnimals>
-		<canTargetMechs>True</canTargetMechs>
-        <canTargetBuildings>True</canTargetBuildings>
-		<canTargetItems>true</canTargetItems>
-        <neverTargetHostileFaction>False</neverTargetHostileFaction>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="HOP_CoolerPsycasts.CompProperties_AbilityDatashock">
-        <compClass>HOP_CoolerPsycasts.CompAbilityEffect_Datashock</compClass>
-        <effectMultiplier>PsychicSensitivity</effectMultiplier><!--numeric, non-temporal effects scale w/ caster's psysens-->
-		<hackProgress>900</hackProgress>
-		<researchProgress>75</researchProgress>
-		<durationMultiplier>PsychicSensitivity</durationMultiplier><!--mental state and stun scale w/ victim's psysens-->
-		<mentalState>WanderConfused</mentalState>
-		<stunTicksVsNonDroneMechs>1400~1800</stunTicksVsNonDroneMechs>
-        <goodwillImpact>-55</goodwillImpact>
-        <psychic>True</psychic>
-      </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
-	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
-        <activityOffset>50</activityOffset>
-		<stopAtActivity>9999</stopAtActivity>
-      </li>
-    </comps>
-  </AbilityDef>
-  
   <AbilityDef ParentName="PsycastBase">
     <defName>HVP_PsyfocusTransfer</defName>
     <label>psyfocus transfer</label>
-    <description>Transfer up to 50% psyfocus from one psycaster to another. The donor's loss is instant, while the recipient gains the psyfocus over a brief period.\n\nMultiple casts on the same recipient increase the amount of psyfocus the recipient will gain, but not the rate.</description>
+    <description>Transfer up to 50% psyfocus from one psycaster to any psycaster other than oneself. The donor's loss is instant, while the recipient gains the psyfocus over a brief period.\n\nMultiple casts on the same recipient increase the amount of psyfocus the recipient will gain, but not the rate.</description>
     <level>7</level>
     <iconPath>PsycastAbilities_PlaceholderIcons/HVP_PsyfocusTransfer</iconPath>
     <writeCombatLog>True</writeCombatLog>
@@ -108,6 +54,50 @@
   
   
   <!--level 8-->
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_MarkingPulse</defName>
+    <label>marking pulse</label>
+    <description>Distort the psychic signatures of everyone around the target point, maximizing attack accuracy against them.</description>
+    <level>8</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Targetzone</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_PsyfocusCost>0.055</Ability_PsyfocusCost>
+      <Ability_EntropyGain>60</Ability_EntropyGain>
+      <Ability_Duration>30</Ability_Duration>
+      <Ability_EffectRadius>3.9</Ability_EffectRadius>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>24.9</range>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+        <canTargetAnimals>True</canTargetAnimals>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class = "CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>HVP_MarkingDebuff</hediffDef>
+        <onlyBrain>True</onlyBrain>
+        <psychic>True</psychic>
+        <goodwillImpact>-15</goodwillImpact>
+        <applyGoodwillImpactToLodgers>False</applyGoodwillImpactToLodgers>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsycastPsychicEffect</fleckDef>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>100</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
   <AbilityDef ParentName="HVP_PsycastBaseCall">
     <defName>HVP_SquadronCall</defName>
     <label>squadron call</label>
@@ -164,63 +154,7 @@
     </comps>
   </AbilityDef>
   
-  
-  <!--level 9-->
-  
-  <AbilityDef ParentName="PsycastBaseSkip">
-    <defName>HVP_Targetzone</defName>
-    <label>targetzone</label>
-    <description>Leave a persistent distortion in the psychic manifold around the target point, maximizing attack accuracy against anyone in its radius.</description>
-    <level>9</level>
-    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Targetzone</iconPath>
-    <writeCombatLog>True</writeCombatLog>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-    <statBases>
-      <Ability_PsyfocusCost>0.08</Ability_PsyfocusCost>
-      <Ability_EntropyGain>65</Ability_EntropyGain>
-      <Ability_Duration>125</Ability_Duration>
-      <Ability_EffectRadius>4.9</Ability_EffectRadius>
-    </statBases>
-    <verbProperties>
-      <warmupTime>0.25</warmupTime>
-      <range>24.9</range>
-      <targetParams>
-        <canTargetPawns>False</canTargetPawns>
-        <canTargetLocations>True</canTargetLocations>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="CompProperties_AbilitySpawn">
-        <thingDef>HVP_TargetzoneActual</thingDef>
-        <allowOnBuildings>True</allowOnBuildings>
-        <clamorType>Ability</clamorType>
-        <clamorRadius>10</clamorRadius>
-      </li>
-      <li Class="CompProperties_AbilityEffecterOnTarget">
-        <effecterDef>Skip_Exit</effecterDef>
-        <maintainForTicks>60</maintainForTicks>
-        <scale>0.42</scale>
-      </li>
-      <li Class="CompProperties_AbilityFleckOnTarget">
-        <fleckDefs>
-          <li>PsycastSkipInnerExit</li>
-          <li>PsycastSkipOuterRingExit</li>
-        </fleckDefs>
-        <scale>0.68</scale>
-        <sound>Psycast_Skip_Exit</sound>
-        <preCastTicks>5</preCastTicks>
-      </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
-	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
-        <activityOffset>75</activityOffset>
-		<stopAtActivity>9999</stopAtActivity>
-      </li>
-    </comps>
-  </AbilityDef>  
-  
+  <!--level 9-->  
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfBlessing</defName>
     <label>word of blessing</label>
@@ -258,19 +192,18 @@
     </comps>
   </AbilityDef>
   
-  <!--level 10-->
   <AbilityDef ParentName="HVP_PsycastBaseLink">
     <defName>HVP_TornadoLink</defName>
     <label>tornado link</label>
     <description>Use an alterable sequence of microscopic skipgates in the atmosphere to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 5 neural heat per second.</description>
-    <level>10</level>
+    <level>9</level>
     <iconPath>PsycastAbilities_PlaceholderIcons/HVP_TornadoLink</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
     <statBases>
-      <Ability_EntropyGain>50</Ability_EntropyGain>
-      <Ability_PsyfocusCost>0.1</Ability_PsyfocusCost>
+      <Ability_EntropyGain>40</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.06</Ability_PsyfocusCost>
       <Ability_EffectRadius>10</Ability_EffectRadius>
       <Ability_Duration>125</Ability_Duration>
     </statBases>
@@ -293,6 +226,65 @@
 	  </li>
 	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
         <activityOffset>200</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
+
+  <AbilityDef ParentName="PsycastBase">
+    <defName>HVP_Voidquake</defName>
+    <label>voidquake</label>
+    <description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged and living creatures will flee in fear - unless they are within the safe zone. The sunlight itself will dim briefly. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day psychic coma.\n\nUnlike a neuroquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
+    <level>10</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Datashock</iconPath>
+    <hotKey>Misc12</hotKey>
+    <jobDef>CastAbilityOnThingUninterruptible</jobDef>
+    <targetRequired>False</targetRequired>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <showPsycastEffects>False</showPsycastEffects>
+    <showCastingProgressBar>True</showCastingProgressBar>
+    <warmupMote>Mote_WarmupNeuroquake</warmupMote>
+    <warmupStartSound>Psycast_Neuroquake_CastStart</warmupStartSound>
+    <warmupSound>Psycast_Neuroquake_CastLoop</warmupSound>
+    <warmupPreEndSound>Psycast_Neuroquake_CastEnd</warmupPreEndSound>
+    <warmupPreEndSoundSeconds>5</warmupPreEndSoundSeconds>
+    <hostile>false</hostile>
+    <statBases>
+      <Ability_PsyfocusCost>0.7</Ability_PsyfocusCost>
+      <Ability_EffectRadius>12.9</Ability_EffectRadius>
+      <Ability_Duration>4800</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>12</warmupTime>
+      <range>12.9</range>
+      <drawAimPie>False</drawAimPie>
+      <requireLineOfSight>False</requireLineOfSight>
+      <targetParams>
+        <canTargetSelf>True</canTargetSelf>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HOP_CoolerPsycasts.CompProperties_AbilityVoidquake">
+        <screenShakeIntensity>2</screenShakeIntensity>
+		<incidentDef>Eclipse</incidentDef>
+		<mentalState>PanicFlee</mentalState>
+        <hediffMechs>HVP_VoidquakeMalus</hediffMechs>
+        <hediffEntities>HVP_VoidquakeBonus</hediffEntities>
+      </li>
+      <li Class="CompProperties_AbilityGiveHediff">
+        <compClass>CompAbilityEffect_GiveHediff</compClass>
+        <hediffDef>PsychicComa</hediffDef>
+        <onlyApplyToSelf>True</onlyApplyToSelf>
+      </li>
+      <li Class="CompProperties_AbilityFleckOnTarget">
+        <fleckDef>PsychicApplyNeuroquake</fleckDef>
+        <sound>Psycast_Neuroquake_Effect</sound>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>500</activityOffset>
 		<stopAtActivity>9999</stopAtActivity>
       </li>
     </comps>

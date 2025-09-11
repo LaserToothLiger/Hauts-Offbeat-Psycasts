@@ -26,30 +26,25 @@
     </comps>
   </HediffDef>
   
-  <!--level 9:
-  targetzone-->
-  <HediffDef>
-    <defName>HVP_TargetzoneDebuff</defName>
-    <label>psychic targetzone</label>
+  <!--level 8:
+  marking pulse-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_MarkingDebuff</defName>
+    <label>psychic mark</label>
     <description>Anyone attacking this creature receives psychic guidance, maximizing the accuracy of their attacks.</description>
-    <isBad>false</isBad>
-	<everCurableByItem>false</everCurableByItem>
-    <hediffClass>HediffWithComps</hediffClass>
-    <defaultLabelColor>(0.9,0.9,0.953)</defaultLabelColor>
-    <initialSeverity>0.1</initialSeverity>
-    <maxSeverity>0.1</maxSeverity>
+    <isBad>true</isBad>
     <stages>
+      <li>
+      </li>
     </stages>
     <comps>
-      <li Class="HediffCompProperties_SeverityPerDay">
-        <severityPerDay>-24</severityPerDay>
-      </li>
 		<li Class="VEF.Hediffs.HediffCompProperties_Targeting">
 			<alwaysHit>true</alwaysHit>
 		</li>
     </comps>
   </HediffDef>
-  <!--word of blessing-->
+  <!--level 9:
+  word of blessing-->
   <HediffDef ParentName="HVT_TraitHediffBase">
     <defName>HVP_WordOfBlessingSelf</defName>
     <label>choose blessing</label>
@@ -272,9 +267,7 @@
 	  </li>
     </stages>
   </HediffDef>
-  
-  <!--level 10:
-  tornado link-->
+  <!--tornado link-->
   <HediffDef>
     <defName>HVP_HiddenTornadoMaintainer</defName>
     <label>atmokinetic signal</label>
@@ -306,6 +299,42 @@
       </li>
       <li Class="HediffCompProperties_DisappearsOnDeath"/>
 	</comps>
+  </HediffDef>
+  
+  <!--level 10:
+  voidquake-->
+  <HediffDef>
+    <defName>HVP_VoidquakeMalus</defName>
+    <label>voidquake</label>
+    <description>Psychically-induced reduction in processing power.</description>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+		<capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.5</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVT_TraitHediffBase">
+    <defName>HVP_VoidquakeBonus</defName>
+    <label>voidquake</label>
+    <description>A stronger connection to the Void.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+		<capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>0.2</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
   </HediffDef>
   
 </Defs>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		  <li>Cooler Psycasts</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!--level 10-->
+				<li Class="PatchOperationFindMod">
+					<mods>
+					  <li>Anomaly</li>
+					</mods>
+					<match Class="PatchOperationReplace">
+						<xpath>Defs/AbilityDef[defName = "HVP_Voidquake"]/comps/li[@Class="HOP_CoolerPsycasts.CompProperties_AbilityVoidquake"]/incidentDef</xpath>
+						<value>
+							<incidentDef>UnnaturalDarkness</incidentDef>
+						</value>
+					</match>
+				</li>
+				<li Class="PatchOperationFindMod">
+					<mods>
+					  <li>RPG Adventure Flavour Pack</li>
+					</mods>
+					<match Class="PatchOperationFindMod">
+						<mods>
+						  <li>Anomaly</li>
+						</mods>
+						<match Class="PatchOperationReplace">
+							<xpath>Defs/AbilityDef[defName = "HVP_Voidquake"]/description</xpath>
+							<value>
+								<description>Briefly invoke the overwhelming power of the Void. Golems and other constructs will be permanently damaged, living creatures will flee in fear, and unnatural entities will become empowered - unless they are within the safe zone. An unnatural darkness will also descend over the region. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day coma.\n\nUnlike a mindquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
+							</value>
+						</match>
+						<nomatch Class="PatchOperationReplace">
+							<xpath>Defs/AbilityDef[defName = "HVP_Voidquake"]/description</xpath>
+							<value>
+								<description>Briefly invoke the overwhelming power of the Void. Golems and other constructs will be permanently damaged, and living creatures will flee in fear - unless they are within the safe zone. The very sunlight itself will briefly dim. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day coma.\n\nUnlike a mindquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
+							</value>
+						</nomatch>
+					</match>
+					<nomatch  Class="PatchOperationFindMod">
+						<mods>
+						  <li>Anomaly</li>
+						</mods>
+						<match Class="PatchOperationReplace">
+							<xpath>Defs/AbilityDef[defName = "HVP_Voidquake"]/description</xpath>
+							<value>
+								<description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged, living creatures will flee in fear, and unnatural entities will become empowered - unless they are within the safe zone. An unnatural darkness will also descend over the region. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day psychic coma.\n\nUnlike a neuroquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
+							</value>
+						</match>
+					</nomatch>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>
