@@ -154,7 +154,46 @@
     </comps>
   </AbilityDef>
   
-  <!--level 9-->  
+  <!--level 9-->
+  <AbilityDef ParentName="HVP_PsycastBaseLink">
+    <defName>HVP_TornadoLink</defName>
+    <label>tornado link</label>
+    <description>Use an alterable sequence of microscopic skipgates in the atmosphere to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 5 neural heat per second.</description>
+    <level>9</level>
+    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_TornadoLink</iconPath>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>40</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.06</Ability_PsyfocusCost>
+      <Ability_EffectRadius>10</Ability_EffectRadius>
+      <Ability_Duration>125</Ability_Duration>
+    </statBases>
+    <verbProperties>
+      <warmupTime>1</warmupTime>
+      <range>44.9</range>
+      <useableInVacuum>false</useableInVacuum>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HOP_CoolerPsycasts.CompProperties_AbilitySpawnLinkedObject">
+        <thingDef>HVP_LinkedTornado</thingDef>
+        <allowOnBuildings>True</allowOnBuildings>
+		<linkHediff>HVP_HiddenTornadoMaintainer</linkHediff>
+      </li>
+      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
+	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
+	  </li>
+	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
+        <activityOffset>200</activityOffset>
+		<stopAtActivity>9999</stopAtActivity>
+      </li>
+    </comps>
+  </AbilityDef>
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfBlessing</defName>
     <label>word of blessing</label>
@@ -192,44 +231,7 @@
     </comps>
   </AbilityDef>
   
-  <AbilityDef ParentName="HVP_PsycastBaseLink">
-    <defName>HVP_TornadoLink</defName>
-    <label>tornado link</label>
-    <description>Use an alterable sequence of microscopic skipgates in the atmosphere to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 5 neural heat per second.</description>
-    <level>9</level>
-    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_TornadoLink</iconPath>
-    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-    <hostile>true</hostile>
-    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
-    <statBases>
-      <Ability_EntropyGain>40</Ability_EntropyGain>
-      <Ability_PsyfocusCost>0.06</Ability_PsyfocusCost>
-      <Ability_EffectRadius>10</Ability_EffectRadius>
-      <Ability_Duration>125</Ability_Duration>
-    </statBases>
-    <verbProperties>
-      <warmupTime>1</warmupTime>
-      <range>44.9</range>
-      <targetParams>
-        <canTargetPawns>False</canTargetPawns>
-        <canTargetLocations>True</canTargetLocations>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="HOP_CoolerPsycasts.CompProperties_AbilitySpawnLinkedObject">
-        <thingDef>HVP_LinkedTornado</thingDef>
-        <allowOnBuildings>True</allowOnBuildings>
-		<linkHediff>HVP_HiddenTornadoMaintainer</linkHediff>
-      </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
-	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
-        <activityOffset>200</activityOffset>
-		<stopAtActivity>9999</stopAtActivity>
-      </li>
-    </comps>
-  </AbilityDef>
+  <!--level 10-->
 
   <AbilityDef ParentName="PsycastBase">
     <defName>HVP_Voidquake</defName>

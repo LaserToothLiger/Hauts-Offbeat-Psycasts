@@ -279,6 +279,9 @@
     <stages>
       <li>
         <becomeVisible>false</becomeVisible>
+		<damageFactors>
+		  <TornadoScratch>0.1</TornadoScratch>
+		</damageFactors>
       </li>
     </stages>
 	<comps>
