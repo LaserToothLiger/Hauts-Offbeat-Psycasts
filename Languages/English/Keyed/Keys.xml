@@ -61,6 +61,8 @@
 <HVP_VaultDeathNoWarranty>Some items have been irretrievably lost.</HVP_VaultDeathNoWarranty><!--when a pawn with a Vault Skip hediff dies AND at least one item was consequently lost-->
 <HVP_DropPodDefault>The summoned drop pod depressurized during atmospheric entry, rendering its contents to ash.</HVP_DropPodDefault><!--Drop Pod Call ash outcome-->
 <HVP_PsychicKidnapping>A psycaster belonging to the {0} faction used Word of Safety to kidnap {1}.</HVP_PsychicKidnapping>
+<!--UI: Word of Blessing menu-->
+<HVP_BlessingMenu>Choose a blessing to instill within {0}.</HVP_BlessingMenu>
 <!--Mod settings-->
 <HVP_SettingPSM>Amount of psytrainers sold by traders</HVP_SettingPSM>
 <HVP_TooltipPsytrainerSaleMulti>Scales the amount of psytrainers traders will sell; at 2x, a trader who would ordinarily sell 1-3 psytrainers will sell 2-6. This won't cause traders who don't sell psytrainers to start doing so.</HVP_TooltipPsytrainerSaleMulti>

@@ -108,9 +108,10 @@
 			<li>HVP_BlessingCharisma</li>
 			<li>HVP_BlessingStasis</li>
 		</hediffs>
+		<menuString>HVP_BlessingMenu</menuString>
         <onlyApplyToSelf>True</onlyApplyToSelf>
       </li>
-	  <li Class="CompProperties_AbilityRemoveHediff">
+	  <li Class = "CompProperties_AbilityRemoveHediff">
         <compClass>CompAbilityEffect_RemoveHediff</compClass>
 		<hediffDef>HVP_WordOfBlessingSelf</hediffDef>
 		<applyToSelf>true</applyToSelf>
