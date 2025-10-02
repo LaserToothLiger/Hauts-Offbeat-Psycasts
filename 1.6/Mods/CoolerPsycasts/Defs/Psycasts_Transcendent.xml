@@ -121,6 +121,7 @@
         <canTargetPawns>False</canTargetPawns>
         <canTargetLocations>True</canTargetLocations>
       </targetParams>
+	  <useableInPocketMaps>false</useableInPocketMaps>
     </verbProperties>
     <comps>
       <li Class="HOP_CoolerPsycasts.CompProperties_AbilityDropSquad">

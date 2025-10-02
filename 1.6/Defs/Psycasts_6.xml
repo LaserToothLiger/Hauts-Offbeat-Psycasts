@@ -79,6 +79,7 @@
 	  <range>0</range>
       <drawAimPie>False</drawAimPie>
       <requireLineOfSight>False</requireLineOfSight>
+	  <useableInPocketMaps>false</useableInPocketMaps>
       <targetParams>
         <canTargetSelf>true</canTargetSelf>
       </targetParams>
@@ -134,6 +135,7 @@
         <canTargetPawns>False</canTargetPawns>
         <canTargetLocations>True</canTargetLocations>
       </targetParams>
+	  <useableInPocketMaps>false</useableInPocketMaps>
     </verbProperties>
     <comps>
       <li Class="HautsPsycasts.CompProperties_AbilitySpawnInfestation">
