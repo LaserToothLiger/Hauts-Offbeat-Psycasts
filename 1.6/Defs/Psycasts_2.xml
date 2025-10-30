@@ -6,7 +6,7 @@
     <label>carezone</label>
     <description>Skip a mass of medical mechanites to the target point. This leaves a persistent deformation in the psychic manifold at that point, which compels the mechanites to assist anyone nearby, as well as to clean up nearby filth.</description>
     <level>2</level>
-    <iconPath>Things/Mote/Clean</iconPath>
+    <iconPath>Psycasts/HVP_Carezone</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>

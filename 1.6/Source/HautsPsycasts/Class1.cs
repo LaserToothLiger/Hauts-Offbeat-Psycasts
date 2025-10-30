@@ -156,8 +156,6 @@ namespace HautsPsycasts
         public static GameConditionDef HVP_BetterFlashstorm;
         public static HediffDef HVP_Hammerspace;
         public static HediffDef HVP_IShallLiveForever;
-        public static QuestScriptDef HVP_DowsingQuest;
-        public static QuestScriptDef HVP_DowsingQuest2;
         public static TraitDef HVP_Squaddie;
     }
     //level 1

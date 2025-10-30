@@ -519,7 +519,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_Stuporzone"]/description</xpath>
 					<value>
-						<description>Create a profane astral disturbance that ripples throughout the target region, dimming the minds of anyone inside.</description>
+						<description>Create a profane astral disturbance that ripples throughout the target region, dimming the senses and minds of anyone inside.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">

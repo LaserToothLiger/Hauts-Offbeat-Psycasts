@@ -806,7 +806,7 @@
   <HediffDef ParentName="DiseaseBase">
     <defName>HVP_StuporDebuff</defName>
     <label>psychic stuporzone</label>
-    <description>Muddled coordination and reasoning due to being in a stuporzone.</description>
+    <description>Muddled perception, coordination, and reasoning due to being in a stuporzone.</description>
     <isBad>false</isBad>
 	<everCurableByItem>false</everCurableByItem>
     <hediffClass>HediffWithComps</hediffClass>
@@ -817,6 +817,26 @@
         <capMods>
           <li>
             <capacity>Consciousness</capacity>
+            <setMaxCurveOverride>
+              <points>
+                <li>0, 1</li>
+                <li>1, 0.5</li>
+              </points>
+            </setMaxCurveOverride>
+            <setMaxCurveEvaluateStat>PsychicSensitivity</setMaxCurveEvaluateStat>
+          </li>
+          <li>
+            <capacity>Sight</capacity>
+            <setMaxCurveOverride>
+              <points>
+                <li>0, 1</li>
+                <li>1, 0.5</li>
+              </points>
+            </setMaxCurveOverride>
+            <setMaxCurveEvaluateStat>PsychicSensitivity</setMaxCurveEvaluateStat>
+          </li>
+          <li>
+            <capacity>Hearing</capacity>
             <setMaxCurveOverride>
               <points>
                 <li>0, 1</li>

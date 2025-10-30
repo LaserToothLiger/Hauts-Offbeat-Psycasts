@@ -20,4 +20,21 @@
 			</operations>
 		</match>
 	</Operation>
+	
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+		  <li>[SYR] Trait Value</li>
+		  <li>[SYR] Trait Value (Continued)</li>
+		</mods>
+		<match Class="PatchOperationAddModExtension">
+			<xpath>*/TraitDef[defName = "HVP_Squaddie"]</xpath>
+		  <value>
+			<li Class="SyrTraitValue.TraitValueExtension">
+			  <traitValues>
+				<li>25</li>
+			  </traitValues>
+			</li>
+		  </value>
+		</match>
+	</Operation>
 </Patch>

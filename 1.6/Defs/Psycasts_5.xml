@@ -170,7 +170,7 @@
     <label>word of safety</label>
     <description>Calibrate a reactive skipgate and psychically reprogram nearby medical mechanites by speaking to the target. The mechanites make the target less vulnerable to damage, slower to bleed, and less susceptible to toxins or disease. Additionally, when the target is next downed, the mechanites will enter a brief state of increased potency, and the target will be skipped to a nearby unoccupied bed if possible.</description>
     <level>5</level>
-    <iconPath>Things/Mote/HealingCross</iconPath>
+    <iconPath>Psycasts/HVP_WordOfSafety</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <statBases>

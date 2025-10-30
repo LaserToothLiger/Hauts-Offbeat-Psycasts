@@ -207,7 +207,7 @@
   <AbilityDef ParentName="PsycastBase">
     <defName>HVP_Stuporzone</defName>
     <label>stuporzone</label>
-    <description>Generate a persistent deformation in the psychic manifold at the target point, which suppresses the consciousness of anyone within.</description>
+    <description>Generate a persistent deformation in the psychic manifold at the target point, which suppresses the sight, hearing, and consciousness of anyone within.</description>
     <level>6</level>
     <iconPath>Things/Building/Misc/PsychicSuppressor</iconPath>
     <hostile>true</hostile>

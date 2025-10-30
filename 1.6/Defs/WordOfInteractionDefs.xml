@@ -29,7 +29,7 @@
     <label>word of safety</label>
     <workerClass>InteractionWorker</workerClass>
     <ignoreTimeSinceLastInteraction>True</ignoreTimeSinceLastInteraction>
-    <symbol>Things/Mote/SpeechSymbols/WordOfInspiration</symbol>
+    <symbol>WordInteractionBubbles/HVP_WordOfSafety</symbol>
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] bound a skipgate to [RECIPIENT_nameDef] that will rescue [RECIPIENT_objective] if at risk of death.</li>
