@@ -191,7 +191,7 @@
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
     <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
     <statBases>
-      <Ability_EntropyGain>20</Ability_EntropyGain>
+      <Ability_EntropyGain>15</Ability_EntropyGain>
       <Ability_PsyfocusCost>0.13</Ability_PsyfocusCost>
       <Ability_Duration>250</Ability_Duration>
     </statBases>

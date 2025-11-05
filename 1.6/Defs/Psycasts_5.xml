@@ -234,7 +234,7 @@
 		  <li>ToxicBuildup</li>
 		  <li>DrugOverdose</li>
 		  <li>ResurrectionSickness</li>
-		  <li MayRequire="Ludeon.RimWorld.Biotech">ToxGasExposure</li>
+		  <!--<li MayRequire="Ludeon.RimWorld.Biotech">ToxGasExposure</li>-->
 		  <li>VEF_ToxicBuildup</li>
 		  <li MayRequire="SirMashedPotato.Ashlands">Mashed_Ashlands_AshBuildup</li>
 		  <li MayRequire="sarg.alphabiomes">AB_SporesAllergy</li>
