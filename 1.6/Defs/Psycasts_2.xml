@@ -81,7 +81,7 @@
 		<replaceExistingDest>false</replaceExistingDest>
 		<canStackDest>true</canStackDest>
         <psychic>True</psychic>
-        <goodwillImpact>-45</goodwillImpact>
+        <goodwillImpact>-100</goodwillImpact>
         <destination>Caster</destination>
 		<applyToTarget>true</applyToTarget>
 		<applyToDest>true</applyToDest>
