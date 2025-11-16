@@ -105,11 +105,14 @@
         <compClass>HautsPsycasts.CompAbilityEffect_Replicate</compClass>
         <psychic>True</psychic>
 		<allowedItemCategories>
-		  <li>FoodRaw</li>
+		  <li>Foods</li>
 		  <li>Manufactured</li>
 		  <li>ResourcesRaw</li>
 		  <li>Chunks</li>
 		</allowedItemCategories>
+		<disallowedItemCategories>
+		  <li>EggsFertilized</li>
+		</disallowedItemCategories>
 		<marketValueLimitItem>350</marketValueLimitItem><!--originally implemented so you can't just ignore Anomaly content forever once you get 1 shard and just dupe it over and over, but has other uses-->
 		<marketValueLimitStack>500</marketValueLimitStack>
 		<fleckDefs>

@@ -947,6 +947,7 @@ namespace HautsPsycasts
     public class CompProperties_AbilityReplicate : CompProperties_AbilityEffect
     {
         public List<ThingCategoryDef> allowedItemCategories;
+        public List<ThingCategoryDef> disallowedItemCategories;
         public List<FleckDef> fleckDefs;
         public int preCastTicks;
         public float scale = 1f;
@@ -987,7 +988,7 @@ namespace HautsPsycasts
             bool fitsInCategories = false;
             if (target.Thing != null)
             {
-                if (!target.Thing.def.thingCategories.NullOrEmpty() && target.Thing.def.thingCategories.ContainsAny((ThingCategoryDef tcd) => this.Props.allowedItemCategories.Contains(tcd) || tcd.Parents.ToList().ContainsAny((ThingCategoryDef tcd2) => this.Props.allowedItemCategories.Contains(tcd2))))
+                if (!target.Thing.def.thingCategories.NullOrEmpty() && target.Thing.def.thingCategories.ContainsAny((ThingCategoryDef tcd) => this.Props.allowedItemCategories.Contains(tcd) || tcd.Parents.ToList().ContainsAny((ThingCategoryDef tcd2) => this.Props.allowedItemCategories.Contains(tcd2))) && (this.Props.disallowedItemCategories.NullOrEmpty() || (!target.Thing.def.thingCategories.ContainsAny((ThingCategoryDef tcd) => this.Props.disallowedItemCategories.Contains(tcd) || tcd.Parents.ToList().ContainsAny((ThingCategoryDef tcd2) => this.Props.disallowedItemCategories.Contains(tcd2))))))
                 {
                     fitsInCategories = true;
                 }
@@ -1604,6 +1605,7 @@ namespace HautsPsycasts
     {
         public IntRange damageToStolenThing;
         public int goodwillDamageIfCaughtStealing;
+        public float alertRaise;
     }
     public class CompAbilityEffect_SkipTheft : CompAbilityEffect
     {
@@ -1639,6 +1641,7 @@ namespace HautsPsycasts
                         this.StealEquipment(p);
                     }
                 }
+                HautsUtility.IncreaseAlertLevel(p,this.Props.alertRaise);
             }
         }
         public override bool Valid(LocalTargetInfo target, bool throwMessages = false)

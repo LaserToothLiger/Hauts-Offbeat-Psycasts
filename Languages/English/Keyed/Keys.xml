@@ -36,7 +36,7 @@
 <HVP_RoofedLightning>lightning cannot strike under a roof</HVP_RoofedLightning><!--use Lightning Strike on a roofed cell-->
 <HVP_NotAPsycaster>target must be a psycaster</HVP_NotAPsycaster><!--use Psyphon Link on a non-caster-->
 <HVP_NotAPsycasterF>target must be a spellcaster</HVP_NotAPsycasterF><!--use Psyphon Link on a non-caster-->
-<HVP_WrongItemType>target must be a chunk, resource, or raw food item</HVP_WrongItemType><!--use Replicate on an item outside its prohibited categories-->
+<HVP_WrongItemType>target must be a chunk, resource, or food item other than a fertilized egg</HVP_WrongItemType><!--use Replicate on an item outside its prohibited categories-->
 <HVP_ItemTooExpensive>too valuable (limit {0} silver value)</HVP_ItemTooExpensive><!--use Replicate on an item exceeding its arbitrary base market value limit-->
 <HVP_InSpaceNoOneCanHearYouQuake>no ground at target point</HVP_InSpaceNoOneCanHearYouQuake><!--use Tremorzone on the emptiness of outer space-->
 <HVP_NotGoodDropSpot>aerial drops cannot land at the target location</HVP_NotGoodDropSpot><!--use Drop Pod Call on a location where pods either can't land or can't drop their contents-->

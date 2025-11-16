@@ -183,7 +183,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_Skiptheft</defName>
     <label>skiptheft</label>
-    <description>Skip a random item carried or worn by the target into the caster's possession, slightly damaging it. If the target is hostile, this will preferentially steal their weapon, then their apparel, then things in their inventory; otherwise, the priority of items to steal is reversed. Stealing worn apparel, wielded weapons, or from a member of an ultratech faction will worsen relations with the target's faction.</description>
+    <description>Skip a random item carried or worn by the target into the caster's possession, slightly damaging it. If the target is hostile, this will preferentially steal their weapon, then their apparel, then things in their inventory; otherwise, the priority of items to steal is reversed. Stealing worn apparel, wielded weapons, or from a member of an ultratech faction will worsen relations with the target's faction.\n\nAlso raises the target's alert level by 5, making it more difficult to pickpocket them.</description>
     <level>4</level>
     <iconPath>UI/Commands/FormCaravan</iconPath>
     <hostile>false</hostile>
@@ -208,6 +208,7 @@
         <compClass>HautsPsycasts.CompAbilityEffect_SkipTheft</compClass>
         <goodwillDamageIfCaughtStealing>-15</goodwillDamageIfCaughtStealing>
 		<damageToStolenThing>10~25</damageToStolenThing>
+		<alertRaise>5</alertRaise>
       </li>
       <li Class="CompProperties_AbilityEffecterOnTarget">
         <effecterDef>Skip_Exit</effecterDef>
