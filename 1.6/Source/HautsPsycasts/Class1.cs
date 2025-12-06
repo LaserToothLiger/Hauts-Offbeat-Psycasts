@@ -892,11 +892,14 @@ namespace HautsPsycasts
         public override void CompPostTick(ref float severityAdjustment)
         {
             base.CompPostTick(ref severityAdjustment);
-            foreach (Thing t in this.others)
+            if (this.others != null)
             {
-                if (t is Pawn p && p.psychicEntropy != null)
+                foreach (Thing t in this.others)
                 {
-                    p.psychicEntropy.TryAddEntropy(this.Props.victimEntropyPerSecond / 60f, null, true, true);
+                    if (t is Pawn p && p.psychicEntropy != null)
+                    {
+                        p.psychicEntropy.TryAddEntropy(this.Props.victimEntropyPerSecond / 60f, null, true, true);
+                    }
                 }
             }
         }
@@ -2016,19 +2019,22 @@ namespace HautsPsycasts
             {
                 this.effecter.EffectTick(this.parent, this.parent);
             }
-            if (this.parent.IsHashIntervalTick(60) && this.ShouldPushHeatNow)
+            if (this.parent.IsHashIntervalTick(60))
             {
                 this.PushHeat(1f);
             }
         }
         public void PushHeat(float magnitude = 1f)
         {
-            float ambientTemperature = this.parent.AmbientTemperature;
-            if (ambientTemperature < this.Props.desiredTemperatureRange.min)
+            if (this.ShouldPushHeatNow)
             {
-                GenTemperature.PushHeat(this.parent.PositionHeld, this.parent.MapHeld, magnitude*Math.Min(this.Props.heatPerSecond, this.Props.desiredTemperatureRange.min - ambientTemperature));
-            } else if (ambientTemperature > this.Props.desiredTemperatureRange.max) {
-                GenTemperature.PushHeat(this.parent.PositionHeld, this.parent.MapHeld, magnitude * Math.Min(-this.Props.heatPerSecond, this.Props.desiredTemperatureRange.max - ambientTemperature));
+                float ambientTemperature = this.parent.AmbientTemperature;
+                if (ambientTemperature < this.Props.desiredTemperatureRange.min)
+                {
+                    GenTemperature.PushHeat(this.parent.PositionHeld, this.parent.MapHeld, magnitude * Math.Min(this.Props.heatPerSecond, this.Props.desiredTemperatureRange.min - ambientTemperature));
+                } else if (ambientTemperature > this.Props.desiredTemperatureRange.max) {
+                    GenTemperature.PushHeat(this.parent.PositionHeld, this.parent.MapHeld, magnitude * Math.Min(-this.Props.heatPerSecond, this.Props.desiredTemperatureRange.max - ambientTemperature));
+                }
             }
             foreach (Fire fire in GenRadial.RadialDistinctThingsAround(this.parent.Position, this.parent.Map, this.Props.fireRadius, true).OfType<Fire>().Distinct<Fire>())
             {
@@ -2416,6 +2422,7 @@ namespace HautsPsycasts
         public List<HediffDef> unaffectedAddictionsOrDiseases;
         public List<HediffDef> otherAffectedHediffs;
         public HediffDef addsHediff;
+        public int goodwillImpactOnIncapacitating;
     }
     public class CompAbilityEffect_Sterilize : CompAbilityEffect
     {
@@ -2431,6 +2438,7 @@ namespace HautsPsycasts
             base.Apply(target, dest);
             if (target.Thing != null && target.Thing is Pawn p)
             {
+                bool alreadyDowned = p.Downed;
                 List<Hediff> curableHediffs = HVPUtility.SterilizableHediffs(this.Props,p);
                 if (curableHediffs.Count > 0)
                 {
@@ -2444,6 +2452,18 @@ namespace HautsPsycasts
                     if (this.Props.addsHediff != null)
                     {
                         p.health.AddHediff(this.Props.addsHediff,bpr ?? null);
+                        if (!alreadyDowned)
+                        {
+                            if (p != null && !p.IsSlaveOfColony)
+                            {
+                                Faction casterFaction = this.parent.pawn.Faction;
+                                Faction homeFaction = p.HomeFaction;
+                                if (this.Props.goodwillImpactOnIncapacitating != 0 && casterFaction == Faction.OfPlayer && homeFaction != null && !homeFaction.HostileTo(casterFaction) && (this.Props.applyGoodwillImpactToLodgers || !p.IsQuestLodger()) && !p.IsQuestHelper())
+                                {
+                                    Faction.OfPlayer.TryAffectGoodwillWith(homeFaction, this.Props.goodwillImpactOnIncapacitating, true, true, HistoryEventDefOf.UsedHarmfulAbility, null);
+                                }
+                            }
+                        }
                     }
                 }
             }

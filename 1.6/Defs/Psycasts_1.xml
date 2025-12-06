@@ -87,7 +87,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_SinkholeSkip</defName>
     <label>sinkhole skip</label>
-    <description>Use a skipgate to excavate a pocket underneath the target patch of ground, rendering it unstable. This acts like a trap, stunning whoever triggers it. Larger pawns are less affected.\n\nCannot be placed adjacent to other traps. Each sinkhole will naturally collapse on its own after 5 days.</description>
+    <description>Use a skipgate to excavate a pocket underneath the target patch of ground, rendering it unstable. This acts like a trap, stunning whoever triggers it. Larger creatures are less affected.\n\nCannot be placed adjacent to other traps. Each sinkhole will naturally collapse on its own after 5 days.</description>
     <level>1</level>
     <iconPath>Things/Mote/Stun</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>

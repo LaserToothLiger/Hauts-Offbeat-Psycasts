@@ -64,7 +64,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_SinkholeSkip"]/description</xpath>
 					<value>
-						<description>Geomantically excavate a pocket underneath the target patch of ground, rendering it unstable. This acts like a trap, stunning whoever triggers it. Larger pawns are less affected.\n\nCannot be placed adjacent to other traps. Each sinkhole will naturally collapse on its own after 5 days.</description>
+						<description>Geomantically excavate a pocket underneath the target patch of ground, rendering it unstable. This acts like a trap, stunning whoever triggers it. Larger creatures are less affected.\n\nCannot be placed adjacent to other traps. Each sinkhole will naturally collapse on its own after 5 days.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -111,24 +111,6 @@
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/AbilityDef[defName = "HVP_ParalysisLink"]/description</xpath>
-					<value>
-						<description>Maintain an astral connection to the target which will, after a certain point, cause the target to become paralyzed. This process incurs arcane load over time, and it will stop if the target moves more than 30 cells away or the caster is rendered incapable of spellcasting.\n\nTargets with more hit points or lower magical sensitivity take longer to paralyze.\n\nCosts 1 arcane load per second.</description>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/HediffDef[defName = "HVP_ParalyzingBuildup"]/label</xpath>
-					<value>
-						<label>paralysis link</label>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/HediffDef[defName = "HVP_ParalyzingBuildup"]/description</xpath>
-					<value>
-						<description>Astral emanations from a nearby spellcaster will induce paralysis. Taking out the spellcaster or moving further than 30 cells away will terminate the buildup before it can take effect.</description>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
 					<xpath>Defs/HediffDef[defName = "HVP_TransientParalysis"]/label</xpath>
 					<value>
 						<label>astral paralysis</label>
@@ -137,7 +119,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/HediffDef[defName = "HVP_TransientParalysis"]/description</xpath>
 					<value>
-						<description>A state of paralysis brought about by the Paralysis Link psycast.</description>
+						<description>A state of paralysis brought about by the Paralysis Link spell.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -232,21 +214,9 @@
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/AbilityDef[defName = "HVP_PsyphonLink"]/description</xpath>
-					<value>
-						<description>Rapidly gain mana by siphoning it from the target spellcaster. This effect will end prematurely if the target runs out of mana, or if the target moves more than 30 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a manaleech link to.</description>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
 					<xpath>Defs/HediffDef[defName = "HVP_PsyphonSucker"]/label</xpath>
 					<value>
 						<label>manaleech link (victim)</label>
-					</value>
-				</li>
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/HediffDef[defName = "HVP_PsyphonSucker"]/description</xpath>
-					<value>
-						<description>Mana is being transferred out of this character to another spellcaster. Moving further than 30 cells away will end this effect.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -349,7 +319,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_MountainSkip"]/label</xpath>
 					<value>
-						<label>earthshape</label>
+						<label>mountainshape</label>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -404,7 +374,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_MeteoroidSkip"]/label</xpath>
 					<value>
-						<label>arcane catapult</label>
+						<label>arcane meteor</label>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -609,21 +579,9 @@
 							</li>
 							<!--say goodbye to level 7. hello level 8-->
 							<li Class="PatchOperationReplace">
-								<xpath>Defs/AbilityDef[defName="HVP_MarkingPulse"]/description</xpath>
-								<value>
-									<description>Weave a malicious hex that affects everyone around the target point, maximizing attack accuracy against them.</description>
-								</value>
-							</li>
-							<li Class="PatchOperationReplace">
 								<xpath>Defs/HediffDef[defName="HVP_MarkingDebuff"]/label</xpath>
 								<value>
 									<label>mystic marking</label>
-								</value>
-							</li>
-							<li Class="PatchOperationReplace">
-								<xpath>Defs/HediffDef[defName="HVP_MarkingDebuff"]/description</xpath>
-								<value>
-									<description>Attacks against this creature have maximized accuracy, guided along by death-craving spirits.</description>
 								</value>
 							</li>
 							<li Class="PatchOperationReplace">
@@ -642,19 +600,183 @@
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName="HVP_WordOfBlessing"]/description</xpath>
 								<value>
-									<description>Speak exaltant words of benediction, endowing a permanent buff of the target's choice upon it. Only one blessing may be active on an entity at a time; choosing a new one replaces the previous one.</description>
+									<description>Speak exaltant words of benediction, endowing a permanent buff of the target's choice upon it. No creature may have more than one blessing at a time; choosing a new one replaces the previous one.</description>
 								</value>
 							</li>
-							<li Class="PatchOperationReplace">
-								<xpath>Defs/AbilityDef[defName="HVP_TornadoLink"]/description</xpath>
-								<value>
-									<description>Channel the winds to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 5 arcane load per second.</description>
-								</value>
+							<li Class="PatchOperationFindMod">
+								<mods>
+									<li>Combat Extended</li>
+								</mods>
+								<match Class="PatchOperationSequence">
+									<operations>
+										<li Class="PatchOperationReplace">
+											<xpath>Defs/AbilityDef[defName="HVP_MarkingPulse"]/description</xpath>
+											<value>
+												<description>Weave a malicious hex that affects everyone around the target point. They become stunned on taking damage, and they are easier to suppress and stagger, less likely to dodge or parry, and less able to avoid traps.</description>
+											</value>
+										</li>
+										<li Class="PatchOperationReplace">
+											<xpath>Defs/HediffDef[defName="HVP_MarkingDebuff"]/description</xpath>
+											<value>
+												<description>Death-craving spirits wish the demise of this creature. It is stunned on taking damage.</description>
+											</value>
+										</li>
+										<li Class="PatchOperationReplace">
+											<xpath>Defs/AbilityDef[defName="HVP_TornadoLink"]/description</xpath>
+											<value>
+												<description>Channel the winds to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 4 arcane load per second.</description>
+											</value>
+										</li>
+									</operations>
+								</match>
+								<nomatch Class="PatchOperationSequence">
+									<operations>
+										<li Class="PatchOperationReplace">
+											<xpath>Defs/AbilityDef[defName="HVP_MarkingPulse"]/description</xpath>
+											<value>
+												<description>Weave a malicious hex that affects everyone around the target point, maximizing attack accuracy against them.</description>
+											</value>
+										</li>
+										<li Class="PatchOperationReplace">
+											<xpath>Defs/HediffDef[defName="HVP_MarkingDebuff"]/description</xpath>
+											<value>
+												<description>Attacks against this creature have maximized accuracy, guided along by death-craving spirits.</description>
+											</value>
+										</li>
+										<li Class="PatchOperationReplace">
+											<xpath>Defs/AbilityDef[defName="HVP_TornadoLink"]/description</xpath>
+											<value>
+												<description>Channel the winds to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 5 arcane load per second.</description>
+											</value>
+										</li>
+									</operations>
+								</nomatch>
 							</li>
 						</operations>
 					</match>
 				</li>
+				<li Class="PatchOperationFindMod">
+					<mods>
+						<li>Combat Extended</li>
+					</mods>
+					<match Class="PatchOperationSequence">
+						<operations>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName = "HVP_ParalysisLink"]/description</xpath>
+								<value>
+									<description>Maintain an astral connection to the target which will, after a certain point, cause the target to become paralyzed. This process incurs arcane load over time, and it will stop if the target moves more than 35 cells away or the caster is rendered incapable of spellcasting.\n\nTargets with more hit points or lower magical sensitivity take longer to paralyze.\n\nCosts 1 arcane load per second.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName = "HVP_PsyphonLink"]/description</xpath>
+								<value>
+									<description>Rapidly gain mana by siphoning it from the target spellcaster. This effect will end prematurely if the target runs out of mana, or if the target moves more than 35 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a manaleech link to.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName = "HVP_ParalyzingBuildup"]/description</xpath>
+								<value>
+									<description>Astral emanations from a nearby spellcaster will induce paralysis. Taking out the spellcaster or moving further than 35 cells away will terminate the buildup before it can take effect.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName = "HVP_PsyphonSucker"]/description</xpath>
+								<value>
+									<description>Mana is being transferred out of this character to another spellcaster. Moving further than 35 cells away will end this effect.</description>
+								</value>
+							</li>
+						</operations>
+					</match>
+					<nomatch Class="PatchOperationSequence">
+						<operations>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName = "HVP_ParalysisLink"]/description</xpath>
+								<value>
+									<description>Maintain an astral connection to the target which will, after a certain point, cause the target to become paralyzed. This process incurs arcane load over time, and it will stop if the target moves more than 30 cells away or the caster is rendered incapable of spellcasting.\n\nTargets with more hit points or lower magical sensitivity take longer to paralyze.\n\nCosts 1 arcane load per second.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName = "HVP_PsyphonLink"]/description</xpath>
+								<value>
+									<description>Rapidly gain mana by siphoning it from the target spellcaster. This effect will end prematurely if the target runs out of mana, or if the target moves more than 30 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a manaleech link to.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName = "HVP_ParalyzingBuildup"]/description</xpath>
+								<value>
+									<description>Astral emanations from a nearby spellcaster will induce paralysis. Taking out the spellcaster or moving further than 30 cells away will terminate the buildup before it can take effect.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName = "HVP_PsyphonSucker"]/description</xpath>
+								<value>
+									<description>Mana is being transferred out of this character to another spellcaster. Moving further than 30 cells away will end this effect.</description>
+								</value>
+							</li>
+						</operations>
+					</nomatch>
+				</li>
 			</operations>
 		</match>
+		<nomatch Class="PatchOperationFindMod">
+			<mods>
+				<li>Combat Extended</li>
+			</mods>
+			<match Class="PatchOperationSequence">
+				<operations>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/AbilityDef[defName = "HVP_ParalysisLink"]/description</xpath>
+						<value>
+							<description>Bathe the target in psychic frequencies which will, after a certain point, suffuse the target's body and induce paralysis. This process incurs neural heat over time, and it will stop if the target moves more than 35 cells away or the caster is rendered incapable of psycasting.\n\nTargets with more hit points or lower psychic sensitivity take longer to paralyze.\n\nCosts 1 neural heat per second.</description>
+						</value>
+					</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/AbilityDef[defName = "HVP_PsyphonLink"]/description</xpath>
+						<value>
+							<description>Rapidly gain psyfocus by siphoning it from the target psycaster. This effect will end prematurely if the target runs out of psyfocus, or if the target moves more than 35 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a psyphon link to.</description>
+						</value>
+					</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/HediffDef[defName = "HVP_ParalyzingBuildup"]/description</xpath>
+						<value>
+							<description>Psychic emanations from a nearby psycaster will induce paralysis. Taking out the psycaster or moving more than 35 cells away will terminate the buildup before it can take effect.</description>
+						</value>
+					</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/HediffDef[defName = "HVP_PsyphonSucker"]/description</xpath>
+						<value>
+							<description>Psyfocus is being transferred out of this character to another psycaster. Moving further than 35 cells away will end this effect.</description>
+						</value>
+					</li>
+					<li Class="PatchOperationFindMod">
+						<mods>
+							<li>Cooler Psycasts</li>
+						</mods>
+						<match Class="PatchOperationSequence">
+							<operations>
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/AbilityDef[defName="HVP_MarkingPulse"]/description</xpath>
+									<value>
+										<description>Render everyone around the target point incompetent at combat. They become stunned on taking damage, and they are easier to suppress and stagger, less likely to dodge or parry, and less able to avoid traps.</description>
+									</value>
+								</li>
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/HediffDef[defName="HVP_MarkingDebuff"]/description</xpath>
+									<value>
+										<description>This creature has been psychically rendered incompetent at combat. It will be stunned on taking damage.</description>
+									</value>
+								</li>
+								<li Class="PatchOperationReplace">
+									<xpath>Defs/AbilityDef[defName="HVP_TornadoLink"]/description</xpath>
+									<value>
+										<description>Use an alterable sequence of microscopic skipgates in the atmosphere to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 4 neural heat per second.</description>
+									</value>
+								</li>
+							</operations>
+						</match>
+					</li>
+				</operations>
+			</match>
+		</nomatch>
 	</Operation>
 </Patch>

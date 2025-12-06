@@ -43,5 +43,6 @@ See the full descriptions here: https://docs.google.com/document/d/1p9qs5bZcG81I
 		<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
 		<li>Ludeon.RimWorld.Royalty</li>
 		<li>Hautarche.HautsFramework</li>
+		<li>CETeam.CombatExtended</li>
 	</loadAfter>
 </ModMetaData>

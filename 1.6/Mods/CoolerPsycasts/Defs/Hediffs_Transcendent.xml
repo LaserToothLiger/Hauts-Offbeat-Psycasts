@@ -35,11 +35,28 @@
     <isBad>true</isBad>
     <stages>
       <li>
+		<statOffsets><!--since VEF's Targeting doesn't seem to work in CE, Marking Pulse instead just makes you much more skilled at flubbing combat-->
+		  <PawnTrapSpringChance MayRequire="CETeam.CombatExtended">1</PawnTrapSpringChance>
+		  <Suppressability MayRequire="CETeam.CombatExtended">0.5</Suppressability>
+		  <MeleeParryChance MayRequire="CETeam.CombatExtended">-0.12</MeleeParryChance>
+		  <MeleeDodgeChance MayRequire="CETeam.CombatExtended">-0.12</MeleeDodgeChance>
+		  <VEF_RangedDodgeChance MayRequire="CETeam.CombatExtended">-0.12</VEF_RangedDodgeChance>
+          <ArmorRating_Sharp MayRequire="CETeam.CombatExtended">-3.5</ArmorRating_Sharp>
+          <ArmorRating_Blunt MayRequire="CETeam.CombatExtended">-3.5</ArmorRating_Blunt>
+          <ArmorRating_Heat MayRequire="CETeam.CombatExtended">-0.35</ArmorRating_Heat>
+          <ArmorRating_Electric MayRequire="CETeam.CombatExtended">-0.35</ArmorRating_Electric>
+		</statOffsets>
+		<statFactors>
+		  <StaggerDurationFactor MayRequire="CETeam.CombatExtended">2</StaggerDurationFactor>
+		</statFactors>
       </li>
     </stages>
     <comps>
 		<li Class="VEF.Hediffs.HediffCompProperties_Targeting">
 			<alwaysHit>true</alwaysHit>
+		</li>
+		<li Class="HOP_CoolerPsycasts.HediffCompProperties_IShallStrikeYouDumb" MayRequire="CETeam.CombatExtended">
+			<stunTicks>180</stunTicks>
 		</li>
     </comps>
   </HediffDef>
@@ -158,6 +175,7 @@
 		  <ImmunityGainSpeed>0.5</ImmunityGainSpeed>
 		  <PainShockThreshold>0.3</PainShockThreshold>
 		  <ToxicResistance>0.5</ToxicResistance>
+		  <SmokeSensitivity MayRequire="CETeam.CombatExtended">-0.5</SmokeSensitivity>
 		  <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.5</VacuumResistance>
 		</statOffsets>
 		<statFactors>

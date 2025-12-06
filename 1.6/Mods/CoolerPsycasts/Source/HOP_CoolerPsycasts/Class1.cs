@@ -232,6 +232,32 @@ namespace HOP_CoolerPsycasts
             return base.ExtraLabelMouseAttachment(target);
         }
     }
+    public class HediffCompProperties_IShallStrikeYouDumb : HediffCompProperties
+    {
+        public HediffCompProperties_IShallStrikeYouDumb()
+        {
+            this.compClass = typeof(HediffComp_IShallStrikeYouDumb);
+        }
+        public int stunTicks;
+    }
+    public class HediffComp_IShallStrikeYouDumb : HediffComp
+    {
+        public HediffCompProperties_IShallStrikeYouDumb Props
+        {
+            get
+            {
+                return (HediffCompProperties_IShallStrikeYouDumb)this.props;
+            }
+        }
+        public override void Notify_PawnPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
+        {
+            base.Notify_PawnPostApplyDamage(dinfo, totalDamageDealt);
+            if (this.Pawn.stances != null && this.Pawn.stances.stunner != null)
+            {
+                this.Pawn.stances.stunner.StunFor(this.Props.stunTicks,dinfo.Instigator);
+            }
+        }
+    }
     public class CompProperties_AbilityDropSquad : CompProperties_AbilityEffect
     {
         public List<PawnKindDef> pawnKinds;

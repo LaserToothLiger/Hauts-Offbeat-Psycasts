@@ -137,7 +137,7 @@
   <AbilityDef ParentName="PsycastBase">
     <defName>HVP_MountainSkip</defName>
     <label>mountain skip</label>
-    <description>Teleport a large mass of rock. This can turn a targeted thin rock roof into overhead mountain. It can also turn overhead mountain, other roof types, or empty spaces adjacent to roofs into thin rock roof.</description>
+    <description>Teleport a large mass of rock. This can turn a targeted thin rock roof into overhead mountain. It can also turn overhead mountain, other roof types, or empty spaces that could support a roof into thin rock roof.</description>
     <level>4</level>
     <iconPath>Things/Mote/TempRoof</iconPath>
     <hostile>false</hostile>

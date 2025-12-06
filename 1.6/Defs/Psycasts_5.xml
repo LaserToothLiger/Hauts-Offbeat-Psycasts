@@ -18,7 +18,7 @@
     </statBases>
     <verbProperties>
       <warmupTime>1</warmupTime>
-      <range>24.9</range>
+      <range>19.9</range>
       <targetParams>
         <canTargetSelf>True</canTargetSelf>
         <canTargetAnimals>True</canTargetAnimals>
@@ -42,7 +42,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_MeteoroidSkip</defName>
     <label>meteoroid skip</label>
-    <description>Teleport the target chunk into the gravity well of a distant neutron star to vastly accelerate it, then quickly teleport it back to a position far above the starting point. It will land with explosive force shortly thereafter. Chunks made of more durable materials will cause more damage.\n\nShields that block mortar fire also block meteoroids.</description>
+    <description>Teleport the target chunk into the gravity well of a distant neutron star to vastly accelerate it, then quickly teleport it back to a position far above the target point. It will land with explosive force shortly thereafter. Chunks made of more durable materials will cause more damage.\n\nShields that block mortar fire also block meteoroids.</description>
     <level>5</level>
     <iconPath>Things/Skyfaller/Meteorite</iconPath>
     <writeCombatLog>True</writeCombatLog>
@@ -61,7 +61,7 @@
       </targetParams>
     </verbProperties>
     <comps>
-      <li Class = "HautsPsycasts.CompProperties_AbilityMSkip">
+      <li Class="HautsPsycasts.CompProperties_AbilityMSkip">
         <compClass>HautsPsycasts.CompAbilityEffect_MSkip</compClass>
         <destination>Selected</destination>
         <requiresLineOfSight>True</requiresLineOfSight>
@@ -205,7 +205,7 @@
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfSterility</defName>
     <label>word of sterility</label>
-    <description>Calibrate a system of skipgates by speaking to the target. The target will be flooded with short-lived medical mechanites that clear out one overdose, disease, toxic effect, or non-luciferium addiction; however, this will also put the target into a coma for three days, followed by pain-inducing discomfort for three days after that.</description>
+    <description>Calibrate a system of skipgates by speaking to the target. The target will be flooded with short-lived medical mechanites that clear out one overdose, disease, toxic effect, or non-luciferium addiction; however, this will also put the target into a coma for three days, followed by pain-inducing discomfort for three days after that.\n\nIf used to down a citizen of another faction, there will be diplomatic consequences.</description>
     <level>5</level>
     <iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
     <hostile>false</hostile>
@@ -234,7 +234,6 @@
 		  <li>ToxicBuildup</li>
 		  <li>DrugOverdose</li>
 		  <li>ResurrectionSickness</li>
-		  <!--<li MayRequire="Ludeon.RimWorld.Biotech">ToxGasExposure</li>-->
 		  <li>VEF_ToxicBuildup</li>
 		  <li MayRequire="SirMashedPotato.Ashlands">Mashed_Ashlands_AshBuildup</li>
 		  <li MayRequire="sarg.alphabiomes">AB_SporesAllergy</li>
@@ -247,15 +246,19 @@
 		  <li MayRequire="phil42.allergies">P42_ChronicSinusitis</li>
 		  <li MayRequire="phil42.allergies">P42_AllergenBuildup</li>
 		  <li MayRequire="phil42.allergies">Asthma</li>
+		  <li MayRequire="CETeam.CombatExtended">SmokeInhalation</li>
+		  <li MayRequire="CETeam.CombatExtended">VenomBuildup</li>
+		  <li MayRequire="CETeam.CombatExtended">Tranquilizer</li>
+		  <li MayRequire="CETeam.CombatExtended,Ludeon.RimWorld.Anomaly">BioferriteToxicity</li>
 		</otherAffectedHediffs>
 		<addsHediff>HVP_Sterility</addsHediff>
+        <goodwillImpactOnIncapacitating>-45</goodwillImpactOnIncapacitating>
       </li>
       <li Class="CompProperties_AbilitySocialInteraction">
         <interactionDef>HVP_WordOfSterility</interactionDef>
 		<canApplyToUnconscious>true</canApplyToUnconscious>
 		<canApplyToAsleep>true</canApplyToAsleep>
 		<canApplyToMentallyBroken>true</canApplyToMentallyBroken>
-        <goodwillImpact>-45</goodwillImpact>
       </li>
     </comps>
   </AbilityDef>

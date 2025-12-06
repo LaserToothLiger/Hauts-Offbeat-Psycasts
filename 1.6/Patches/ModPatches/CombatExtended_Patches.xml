@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Combat Extended</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<!--cast range scaling-->
+				<li Class="PatchOperationReplace"><!--9.9-->
+					<xpath>Defs/AbilityDef[defName="HVP_MountainSkip"]/verbProperties/range </xpath>
+					<value>
+						<range>12</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace"><!--11.9-->
+					<xpath>Defs/AbilityDef[defName="HVP_SinkholeSkip" or defName="HVP_Replicate"]/verbProperties/range </xpath>
+					<value>
+						<range>13</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace"><!--14.9-->
+					<xpath>Defs/AbilityDef[defName="HVP_Stuporzone"]/verbProperties/range </xpath>
+					<value>
+						<range>17.25</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace"><!--19.9-->
+					<xpath>Defs/AbilityDef[defName="HVP_EnergyTransfer" or defName="HVP_Carezone" or defName="HVP_SkillTransfer" or defName="HVP_PsyphonLink" or defName="HVP_Shield" or defName="HVP_FluxPulse" or defName="HVP_RejuvenationSkip"]/verbProperties/range </xpath>
+					<value>
+						<range>23</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace"><!--24.9-->
+					<xpath>Defs/AbilityDef[defName="HVP_Agonize" or defName="HVP_Stifle" or defName="HVP_ParalysisLink" or defName="HVP_Sensitize" or defName="HVP_TetherSkip" or defName="HVP_LightningStrike" or defName="HVP_Tremorzone" or defName="HVP_BoosterLink" or defName="HVP_Skiptheft"
+						or defName="HVP_TurretSkip" or defName="HVP_MeteoroidSkip" or defName="HVP_ReavingSkip" or defName="HVP_ThermalPinhole"]/verbProperties/range </xpath>
+					<value>
+						<range>28</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace"><!--29.9-->
+					<xpath>Defs/AbilityDef[defName="HVP_Surestep" or defName="HVP_EvictionSkip"]/verbProperties/range </xpath>
+					<value>
+						<range>34.5</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace"><!--44.9. Hive Call's extreme range is for sieging, so we scale it up to a little under sniper rifle range-->
+					<xpath>Defs/AbilityDef[defName="HVP_HiveCall"]/verbProperties/range </xpath>
+					<value>
+						<range>70</range>
+					</value>
+				</li>
+				<!--destination range scaling-->
+				<li Class="PatchOperationReplace"><!--19.9-->
+					<xpath>Defs/AbilityDef[defName="HVP_EnergyTransfer"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityTransferEnergy"]/range</xpath>
+					<value>
+						<range>23</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/AbilityDef[defName="HVP_SkillTransfer"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityTransferSkills"]/range</xpath>
+					<value>
+						<range>23</range>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace"><!--24.9-->
+					<xpath>Defs/AbilityDef[defName="HVP_MeteoroidSkip"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityMSkip"]/range</xpath>
+					<value>
+						<range>28</range>
+					</value>
+				</li>
+				<!--link max range scaling-->
+				<li Class="PatchOperationReplace"><!--30-->
+					<xpath>Defs/HediffDef[defName="HVP_HiddenParalysisMaintainer"]/comps/li[@Class="HautsPsycasts.HediffCompProperties_LinkBuildEntropy"]/maxDistance</xpath>
+					<value>
+						<maxDistance>35</maxDistance>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName="HVP_HiddenPsyphonMaintainer"]/comps/li[@Class="HautsPsycasts.HediffCompProperties_Psyphon"]/maxDistance</xpath>
+					<value>
+						<maxDistance>35</maxDistance>
+					</value>
+				</li>
+				<!--bleed rate reduction buffs get stronger because bleeding out is more dangerous in CE-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="HVP_CarezoneBuff"]/stages/li/totalBleedFactor</xpath>
+					<value>
+						<totalBleedFactor>0.6</totalBleedFactor>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="HVP_GetToSafety"]/stages/li/totalBleedFactor</xpath>
+					<value>
+						<totalBleedFactor>0.4</totalBleedFactor>
+					</value>
+				</li>
+				<!--damage buffs: Lightning Strike patched upward by a slightly larger factor than frag grenades' point-blank damage was. Reave patched up by roughly the same factor that humanlike torso hp was, as it is supposed to be lethal on certain body parts and near-lethal on all others.-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="HVP_LightningStrike"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityLightningStrike"]/damage</xpath>
+					<value>
+						<damage>16</damage>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="HVP_ReavingSkip"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityReave"]/damageToPawns</xpath>
+					<value>
+						<damageToPawns>44</damageToPawns>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/AbilityDef[defName="HVP_ReavingSkip"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityReave"]/damageToBuildings</xpath>
+					<value>
+						<damageToBuildings>176</damageToBuildings>
+					</value>
+				</li>
+				<!--Shield buff: as Combat Extended's apparent standard of 1.5x shield hp-->
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="HVP_PsychicShield"]/comps/li[@Class="HautsFramework.HediffCompProperties_DamageNegationShield"]/energyOnReset</xpath>
+					<value>
+						<energyOnReset>90</energyOnReset>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="HVP_PsychicShield"]/comps/li[@Class="HautsFramework.HediffCompProperties_DamageNegationShield"]/baseMaxEnergy</xpath>
+					<value>
+						<baseMaxEnergy>90</baseMaxEnergy>
+					</value>
+				</li>
+				<!--Turret Skip adjustment: as CE's changes to the regular mini turret-->
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/label</xpath>
+					<value>
+						<label>skipped mini-blaster turret</label>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/comps/li[@Class="CompProperties_Stunnable"]/affectedDamageDefs/li[.="Stun"]</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/thingClass</xpath>
+					<value>
+						<thingClass>CombatExtended.Building_TurretGunCE</thingClass>
+					</value>
+				</li>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/statBases</xpath>
+					<value>
+						<AimingAccuracy>0.75</AimingAccuracy>
+						<NightVisionEfficiency>0.6</NightVisionEfficiency>
+					</value>
+				</li>
+
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/statBases/ShootingAccuracyTurret</xpath>
+					<value>
+						<ShootingAccuracyTurret>1.35</ShootingAccuracyTurret>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/statBases/Mass</xpath>
+					<value>
+						<Mass>35</Mass>
+					</value>
+				</li>
+				<li Class="PatchOperationRemove">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/comps/li[@Class="CompProperties_Explosive"]</xpath>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/fillPercent</xpath>
+					<value>
+						<fillPercent>0.85</fillPercent>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/building/turretBurstCooldownTime</xpath>
+					<value>
+						<turretBurstCooldownTime>2.0</turretBurstCooldownTime>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/building/turretGunDef</xpath>
+					<value>
+						<turretGunDef>HVP_Gun_SkippedTurret</turretGunDef>
+					</value>
+				</li>
+				<li Class="PatchOperationFindMod">
+					<mods>
+						<li>Cooler Psycasts</li>
+					</mods>
+					<match Class="PatchOperationSequence">
+						<operations>
+							<!--cast ranges-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_PsyfocusTransfer"]/verbProperties/range </xpath>
+								<value>
+									<range>23</range>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_MarkingPulse"]/verbProperties/range </xpath>
+								<value>
+									<range>28</range>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace"><!--39.9 or 44.9; tornado link's huge casting range doesn't need to be buffed much-->
+								<xpath>Defs/AbilityDef[defName="HVP_SquadronCall" or defName="HVP_TornadoLink"]/verbProperties/range </xpath>
+								<value>
+									<range>55</range>
+								</value>
+							</li>
+							<!--destination ranges-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_PsyfocusTransfer"]/comps/li[@Class="HOP_CoolerPsycasts.CompProperties_AbilityTransferPsyfocus"]/range</xpath>
+								<value>
+									<range>23</range>
+								</value>
+							</li>
+							<!--max link ranges-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName="HVP_HiddenTornadoMaintainer"]/comps/li[@Class="HOP_CoolerPsycasts.HediffCompProperties_LinkTornado"]/maxDistance</xpath>
+								<value>
+									<maxDistance>70</maxDistance>
+								</value>
+							</li>
+							<!--word of blessing-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName="HVP_BlessingResilience"]/stages/li/statFactors/IncomingDamageFactor</xpath>
+								<value>
+									<IncomingDamageFactor>0.66</IncomingDamageFactor>
+								</value>
+							</li>
+							<!--tornado link cost reductions since tornados are not (as) impressive in CE-->
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName="HVP_HiddenTornadoMaintainer"]/comps/li[@Class="HOP_CoolerPsycasts.HediffCompProperties_LinkTornado"]/casterEntropyGainPerSecond</xpath>
+								<value>
+									<casterEntropyGainPerSecond>4</casterEntropyGainPerSecond>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName="HVP_TornadoLink"]/statBases/Ability_PsyfocusCost</xpath>
+								<value>
+									<Ability_PsyfocusCost>0.045</Ability_PsyfocusCost>
+								</value>
+							</li>
+						</operations>
+					</match>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

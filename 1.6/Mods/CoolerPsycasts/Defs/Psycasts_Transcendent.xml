@@ -131,6 +131,7 @@
 		  <li>Empire_Fighter_Janissary</li>
 		  <li>Empire_Fighter_Champion</li>
 		  <li>Empire_Fighter_Cataphract</li>
+		  <li MayRequire="OskarPotocki.VFE.Empire">VFEE_Deserter</li>
 		</pawnKinds>
 		<podPerStatCurve>
 		  <points>
@@ -198,7 +199,7 @@
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfBlessing</defName>
     <label>word of blessing</label>
-    <description>Speak a litany of flesh-warping archotechnic words to alter the cellular makeup of the target. This will grant a permanent buff of the target's choice. Only one blessing may be active on an entity at a time; choosing a new one replaces the previous one.</description>
+    <description>Speak a litany of flesh-warping archotechnic words to alter the cellular makeup of the target. This will grant a permanent buff of the target's choice. No creature may have more than one blessing at a time; choosing a new one replaces the previous one.</description>
     <level>9</level>
     <iconPath>PsycastAbilities_PlaceholderIcons/HVP_WordOfBlessing</iconPath>
     <hostile>false</hostile>

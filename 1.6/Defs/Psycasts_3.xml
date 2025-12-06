@@ -93,7 +93,7 @@
     </statBases>
     <verbProperties>
       <warmupTime>2</warmupTime>
-      <range>19.9</range>
+      <range>11.9</range>
       <targetParams>
         <canTargetItems>true</canTargetItems>
 		<canTargetBuildings>false</canTargetBuildings>
@@ -109,6 +109,7 @@
 		  <li>Manufactured</li>
 		  <li>ResourcesRaw</li>
 		  <li>Chunks</li>
+		  <li MayRequire="CETeam.CombatExtended">Ammo</li>
 		</allowedItemCategories>
 		<disallowedItemCategories>
 		  <li>EggsFertilized</li>

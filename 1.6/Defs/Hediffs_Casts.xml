@@ -80,6 +80,13 @@
 	<hediffClass>HautsFramework.Hediff_PreDamageModification</hediffClass>
     <isBad>false</isBad>
 	<everCurableByItem>false</everCurableByItem>
+    <stages>
+	  <li>
+        <statFactors>
+		  <Suppressability MayRequire="CETeam.CombatExtended">0</Suppressability>
+        </statFactors>
+      </li>
+    </stages>
 	<comps>
 	  <li Class="HautsPsycasts.HediffCompProperties_Forewarned">
 		<chance>1</chance>
@@ -156,7 +163,7 @@
   </HediffDef>
   <HediffDef>
     <defName>HVP_ParalyzingBuildup</defName>
-    <label>psychic paralysis link</label>
+    <label>paralysis link (victim)</label>
     <description>Psychic emanations from a nearby psycaster will induce paralysis. Taking out the psycaster or moving more than 30 cells away will terminate the buildup before it can take effect.</description>
     <hediffClass>HediffWithComps</hediffClass>
 	<initialSeverity>0.001</initialSeverity>
@@ -537,7 +544,7 @@
   </HediffDef>
   <HediffDef>
     <defName>HVP_BoosterBuff</defName>
-    <label>booster link</label>
+    <label>booster link (beneficiary)</label>
     <description>A psychically-induced mental boost to movement and manipulation capacities. Scales with psychic sensitivity.</description>
 	<hediffClass>HediffWithComps</hediffClass>
     <isBad>false</isBad>
@@ -641,6 +648,7 @@
 		<statOffsets>
 		  <ImmunityGainSpeed>0.125</ImmunityGainSpeed>
 		  <ToxicResistance>0.125</ToxicResistance>
+		  <SmokeSensitivity MayRequire="CETeam.CombatExtended">-0.125</SmokeSensitivity>
 		</statOffsets>
         <totalBleedFactor>0.5</totalBleedFactor>
       </li>
@@ -674,6 +682,7 @@
 		<statOffsets>
 		  <ImmunityGainSpeed>0.25</ImmunityGainSpeed>
 		  <ToxicResistance>0.25</ToxicResistance>
+		  <SmokeSensitivity MayRequire="CETeam.CombatExtended">-0.25</SmokeSensitivity>
 		</statOffsets>
         <totalBleedFactor>0</totalBleedFactor>
       </li>
@@ -989,6 +998,9 @@
 			  <PsychicSensitivity>0.4</PsychicSensitivity>
 			  <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">1</VacuumResistance>
 			</statOffsets>
+			<statFactors>
+			  <Suppressability MayRequire="CETeam.CombatExtended">0</Suppressability>
+			</statFactors>
 		  </li>
 		</degreeDatas>
         <modExtensions>
