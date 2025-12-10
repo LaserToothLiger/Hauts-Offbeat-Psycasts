@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
   
+  <AbilityDef ParentName="HVP_PsycastBaseCall">
+    <defName>HVP_DropPodCall</defName>
+    <label>drop pod call</label>
+    <description>Divert drop pods from orbital storage to the targeted location. The drop pods have a small chance to contain a small animal, but can otherwise contain resources or leave behind slag. The more psychic sensitivity the caster has, the more drop pods are spawned.</description>
+    <level>3</level>
+    <iconPath>Things/Special/DropPod</iconPath>
+    <hostile>false</hostile>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
+    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
+    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
+    <statBases>
+      <Ability_PsyfocusCost>0.25</Ability_PsyfocusCost>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>39.9</range>
+	  <useableInPocketMaps>false</useableInPocketMaps>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityDropPod">
+        <compClass>HautsPsycasts.CompAbilityEffect_DropPod</compClass>
+		<weightings>
+		  <li><key>resources</key><value>10</value></li>
+		  <li><key>slag</key><value>9</value></li>
+		  <li><key>animal</key><value>1</value></li>
+		  <!--<li><key>burnup</key><value>1</value></li>at present, because I am lazy, the keys are just strings instead of being like, the names of code or whatever. only the strings "resources", "slag", and "animal" do anything; anything else returns the fallback event, which is the pod burning up on entry and spraying ash on the floor-->
+		</weightings>
+		<podPerStatCurve>
+		  <points>
+            <li>(0, 1)</li>
+            <li>(1, 1)</li>
+            <li>(1.5, 2)</li>
+            <li>(2.5, 3)</li>
+            <li>(4, 4)</li>
+            <li>(8, 6)</li>
+            <li>(12, 8)</li>
+          </points>
+		</podPerStatCurve>
+		<statScalar>PsychicSensitivity</statScalar>
+		<giveHediffToPassengers>HVP_DropPodCrashShock</giveHediffToPassengers>
+      </li>
+    </comps>
+  </AbilityDef>
+  
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_LightningStrike</defName>
     <label>lightning strike</label>
@@ -70,61 +119,6 @@
         <destination>Caster</destination>
 		<applyToTarget>true</applyToTarget>
 		<applyToDest>true</applyToDest>
-      </li>
-      <li Class="CompProperties_AbilityFleckOnTarget">
-        <fleckDef>PsycastPsychicEffect</fleckDef>
-      </li>
-    </comps>
-  </AbilityDef>
-  
-  <AbilityDef ParentName="PsycastBaseSkip">
-    <defName>HVP_Replicate</defName>
-    <label>replicate</label>
-    <description>Teleports in a copy of the targeted resource item from somewhere else in the cosmos.\n\nItems worth more than 350 silver can't be replicated. If the target is an item stack exceeding 500 silver in value, the replica will be smaller in order to be at or under 500 silver in value.</description>
-    <level>3</level>
-    <iconPath>UI/Buttons/GiftMode</iconPath>
-    <hostile>false</hostile>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
-    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
-    <statBases>
-      <Ability_PsyfocusCost>0.35</Ability_PsyfocusCost>
-      <Ability_Duration>250</Ability_Duration>
-    </statBases>
-    <verbProperties>
-      <warmupTime>2</warmupTime>
-      <range>11.9</range>
-      <targetParams>
-        <canTargetItems>true</canTargetItems>
-		<canTargetBuildings>false</canTargetBuildings>
-		<canTargetPawns>false</canTargetPawns>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="HautsPsycasts.CompProperties_AbilityReplicate">
-        <compClass>HautsPsycasts.CompAbilityEffect_Replicate</compClass>
-        <psychic>True</psychic>
-		<allowedItemCategories>
-		  <li>Foods</li>
-		  <li>Manufactured</li>
-		  <li>ResourcesRaw</li>
-		  <li>Chunks</li>
-		  <li MayRequire="CETeam.CombatExtended">Ammo</li>
-		</allowedItemCategories>
-		<disallowedItemCategories>
-		  <li>EggsFertilized</li>
-		</disallowedItemCategories>
-		<marketValueLimitItem>350</marketValueLimitItem><!--originally implemented so you can't just ignore Anomaly content forever once you get 1 shard and just dupe it over and over, but has other uses-->
-		<marketValueLimitStack>500</marketValueLimitStack>
-		<fleckDefs>
-          <li>PsycastSkipInnerExit</li>
-          <li>PsycastSkipOuterRingExit</li>
-        </fleckDefs>
-        <scale>0.9</scale>
-        <sound>Psycast_Skip_Exit</sound>
-        <preCastTicks>5</preCastTicks>
-        <clamorType>Ability</clamorType>
-        <clamorRadius>10</clamorRadius>
       </li>
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDef>PsycastPsychicEffect</fleckDef>
