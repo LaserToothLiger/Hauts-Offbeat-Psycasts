@@ -1012,13 +1012,17 @@
 				</grantedHediffs>
             </li>
 			<li Class="HautsFramework.ExciseTraitExempt" />
+			<li Class="HautsFramework.VanishOnDeath">
+				<triggerOnRemoval>true</triggerOnRemoval>
+				<skipgateOut>true</skipgateOut>
+			</li>
 		</modExtensions>
 	</TraitDef>
   <HediffDef ParentName="HVT_TraitHediffBase">
 	<defName>HVP_IShallLiveForever</defName>
 	<label>i shall have no fear</label>
 	<description>For the archotechs are by my side.</description>
-	<hediffClass>HautsPsycasts.Hediff_ISLF</hediffClass>
+	<hediffClass>HautsFramework.Hediff_VanishOnDownedToo</hediffClass>
 	<isBad>false</isBad>
 	<initialSeverity>6</initialSeverity>
 	<stages>

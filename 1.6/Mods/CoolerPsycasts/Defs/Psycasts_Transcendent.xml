@@ -160,7 +160,7 @@
   <AbilityDef ParentName="HVP_PsycastBaseLink">
     <defName>HVP_TornadoLink</defName>
     <label>tornado link</label>
-    <description>Use an alterable sequence of microscopic skipgates in the atmosphere to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain nearby. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 5 neural heat per second.</description>
+    <description>Use an alterable sequence of microscopic skipgates in the atmosphere to create a tornado at the target point. The tornado lasts for at least three hours, or indefinitely longer if the caster can maintain focus and remain within 60 cells. While the link is maintained, the tornado remains in place and can be directed to a new location by subsequent recasts; otherwise, it wanders like a natural tornado.\n\nCosts 5 neural heat per second.</description>
     <level>9</level>
     <iconPath>PsycastAbilities_PlaceholderIcons/HVP_TornadoLink</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>

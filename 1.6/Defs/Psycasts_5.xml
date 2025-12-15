@@ -250,6 +250,8 @@
 		  <li MayRequire="CETeam.CombatExtended">VenomBuildup</li>
 		  <li MayRequire="CETeam.CombatExtended">Tranquilizer</li>
 		  <li MayRequire="CETeam.CombatExtended,Ludeon.RimWorld.Anomaly">BioferriteToxicity</li>
+		  <li MayRequire="sarg.alphaarmoury">AArmoury_Paralysis</li>
+		  <li MayRequire="sarg.alphaarmoury">AArmoury_Chemburster</li>
 		</otherAffectedHediffs>
 		<addsHediff>HVP_Sterility</addsHediff>
         <goodwillImpactOnIncapacitating>-45</goodwillImpactOnIncapacitating>
