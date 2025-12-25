@@ -2940,6 +2940,7 @@ namespace HautsPsycasts
             this.compClass = typeof(CompAbilityEffect_SpawnAlliedBuilding);
         }
         public bool isTrap;
+        public bool allowOnTrees = true;
     }
     public class CompAbilityEffect_SpawnAlliedBuilding : CompAbilityEffect
     {
@@ -2970,6 +2971,20 @@ namespace HautsPsycasts
                     Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + "AbilityOccupiedCells".Translate(), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
                 }
                 return false;
+            }
+            if (!this.Props.allowOnTrees)
+            {
+                foreach (Thing t in target.Cell.GetThingList(this.parent.pawn.Map))
+                {
+                    if (t.def.plant != null && t.def.plant.IsTree)
+                    {
+                        if (throwMessages)
+                        {
+                            Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + "AbilityOccupiedCells".Translate(), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
+                        }
+                        return false;
+                    }
+                }
             }
             if (this.Props.isTrap)
             {

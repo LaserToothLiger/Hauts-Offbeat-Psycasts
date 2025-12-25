@@ -112,6 +112,7 @@
       <li Class="HautsPsycasts.CompProperties_AbilitySpawnAlliedBuilding">
         <thingDef>HVP_TrapSinkhole</thingDef>
         <allowOnBuildings>False</allowOnBuildings>
+		<allowOnTrees>false</allowOnTrees>
         <clamorType>Ability</clamorType>
         <clamorRadius>7</clamorRadius>
         <sound>Psycast_Skip_Exit</sound>
