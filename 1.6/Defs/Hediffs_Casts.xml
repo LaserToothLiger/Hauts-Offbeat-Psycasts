@@ -96,6 +96,7 @@
 		<throwText>true</throwText>
 		<textToThrow>HVP_WarningBlock</textToThrow>
 		<mustBeConscious>true</mustBeConscious>
+		<removeBadAttachables>true</removeBadAttachables>
 	  </li>
 	</comps>
   </HediffDef>
