@@ -237,6 +237,9 @@
 		  <li>VEF_ToxicBuildup</li>
 		  <li MayRequire="SirMashedPotato.Ashlands">Mashed_Ashlands_AshBuildup</li>
 		  <li MayRequire="sarg.alphabiomes">AB_SporesAllergy</li>
+		  <li MayRequire="sarg.alphabiomes">AB_SporesAllergy_Heightened</li>
+		  <li MayRequire="sarg.alphabiomes">AB_AnimalSporesAllergy</li>
+		  <li MayRequire="sarg.alphabiomes">AB_Paralysis</li>
 		  <li MayRequire="Dubwise.Rimatomics">FatalRad</li>
 		  <li MayRequire="Dubwise.Rimatomics">RimatomicsRadiation</li>
 		  <li MayRequire="Dubwise.Rimatomics">RadiationIncurable</li>
@@ -252,6 +255,8 @@
 		  <li MayRequire="CETeam.CombatExtended,Ludeon.RimWorld.Anomaly">BioferriteToxicity</li>
 		  <li MayRequire="sarg.alphaarmoury">AArmoury_Paralysis</li>
 		  <li MayRequire="sarg.alphaarmoury">AArmoury_Chemburster</li>
+		  <li MayRequire="sarg.alphaanimals">AA_Paralysis</li>
+		  <li MayRequire="sarg.alphaanimals">AA_ToxicBuildup</li>
 		</otherAffectedHediffs>
 		<addsHediff>HVP_Sterility</addsHediff>
         <goodwillImpactOnIncapacitating>-45</goodwillImpactOnIncapacitating>

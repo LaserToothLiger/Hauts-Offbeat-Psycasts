@@ -2021,9 +2021,13 @@ namespace HautsPsycasts
                     GenTemperature.PushHeat(this.parent.PositionHeld, this.parent.MapHeld, magnitude * Math.Min(-this.Props.heatPerSecond, this.Props.desiredTemperatureRange.max - ambientTemperature));
                 }
             }
-            foreach (Fire fire in GenRadial.RadialDistinctThingsAround(this.parent.Position, this.parent.Map, this.Props.fireRadius, true).OfType<Fire>().Distinct<Fire>())
+            foreach (Thing thing in GenRadial.RadialDistinctThingsAround(this.parent.Position, this.parent.Map, this.Props.fireRadius, true))
             {
-                fire.TakeDamage(new DamageInfo(DamageDefOf.Extinguish,this.Props.fireExtinguishment));
+                BadAttachable ba = thing.def.GetModExtension<BadAttachable>();
+                if (ba != null && ba.extinguishingDamageDef != null)
+                {
+                    thing.TakeDamage(new DamageInfo(ba.extinguishingDamageDef, this.Props.fireExtinguishment));
+                }
             }
         }
         public override void CompTickRare()
