@@ -221,6 +221,7 @@
       <range>4.9</range>
       <drawAimPie>False</drawAimPie>
       <requireLineOfSight>False</requireLineOfSight>
+	  <targetable>false</targetable>
       <targetParams>
         <canTargetSelf>True</canTargetSelf>
       </targetParams>

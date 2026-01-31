@@ -80,6 +80,7 @@
       <drawAimPie>False</drawAimPie>
       <requireLineOfSight>False</requireLineOfSight>
 	  <useableInPocketMaps>false</useableInPocketMaps>
+	  <targetable>false</targetable>
       <targetParams>
         <canTargetSelf>true</canTargetSelf>
       </targetParams>

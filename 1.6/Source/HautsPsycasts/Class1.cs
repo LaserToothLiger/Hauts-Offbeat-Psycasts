@@ -3729,7 +3729,7 @@ namespace HautsPsycasts
             displayPsycastsLearnedPerLevel = ((int)settings.psycastsLearnedPerLevel).ToString();
             float origL = settings.psycastsLearnedPerLevel;
             Rect psycastsLearnedRect = new Rect(x + 5 + halfWidth, y, halfWidth - 15, 32);
-            settings.psycastsLearnedPerLevel = Widgets.HorizontalSlider(psycastsLearnedRect, settings.psycastsLearnedPerLevel, 1f, 4f, true, "HVT_SettingPLPL".Translate(), "1", "4", 1f);
+            settings.psycastsLearnedPerLevel = Widgets.HorizontalSlider(psycastsLearnedRect, settings.psycastsLearnedPerLevel, 1f, 4f, true, "HVP_SettingPLPL".Translate(), "1", "4", 1f);
             TooltipHandler.TipRegion(psycastsLearnedRect.LeftPart(1f), "HVP_TooltipSettingPLPL".Translate());
             if (origL != settings.psycastsLearnedPerLevel)
             {
