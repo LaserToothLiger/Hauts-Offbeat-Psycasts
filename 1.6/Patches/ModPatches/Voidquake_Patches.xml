@@ -21,6 +21,7 @@
 				<li Class="PatchOperationFindMod">
 					<mods>
 					  <li>RPG Adventure Flavour Pack</li>
+					  <li>RPG Adventure Flavour Pack - Fork</li>
 					</mods>
 					<match Class="PatchOperationFindMod">
 						<mods>
