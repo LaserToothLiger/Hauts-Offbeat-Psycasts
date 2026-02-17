@@ -142,7 +142,7 @@
     <label>skill transfer</label>
     <description>Transfer a higher skill level from the first target to the second target, prioritizing skills with the highest level disparity (ignoring aptitudes). Can only affect skills which both targets can use.</description>
     <level>2</level>
-    <iconPath>Things/Item/Special/MechSerumNeurotrainer</iconPath>
+    <iconPath>Psycasts/HVP_SkillTransfer</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>

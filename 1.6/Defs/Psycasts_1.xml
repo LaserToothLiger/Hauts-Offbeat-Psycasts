@@ -6,7 +6,7 @@
     <label>agonize</label>
     <description>Stimulate pain pathways in the target's nervous system for a short time. Affected mechanoids lose processing power instead.\n\n Multiple casts on the same target do not stack.</description>
     <level>1</level>
-    <iconPath>Things/Mote/IncapIcon</iconPath>
+    <iconPath>Psycasts/HVP_Agonize</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
@@ -42,7 +42,7 @@
     <label>energy transfer</label>
     <description>Transfer half of the first target's restfulness or mechanoid energy to the second target. Less effective if the first target has reduced psychic sensitivity. The recipient will gain more energy if the donor is larger than it, or less if the donor is smaller.</description>
     <level>1</level>
-    <iconPath>Things/Item/Resource/Milk</iconPath>
+    <iconPath>Psycasts/HVP_EnergyTransfer</iconPath>
     <writeCombatLog>False</writeCombatLog>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>

@@ -52,10 +52,10 @@
   
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_LightningStrike</defName>
-    <label>lightning strike</label>
+    <label>thunderbolt</label>
     <description>Use a precise series of skipgates to greatly alter the electric charge of the targeted point, prompting an immediate lightning strike. Unlike natural lightning, this directed attack is capable of slightly injuring mechanoids.</description>
     <level>3</level>
-    <iconPath>Weather/LightningBolt</iconPath>
+    <iconPath>Psycasts/HVP_LightningStrike</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <hostile>true</hostile>

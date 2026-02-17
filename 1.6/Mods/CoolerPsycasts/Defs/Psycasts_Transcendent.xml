@@ -6,7 +6,7 @@
     <label>psyfocus transfer</label>
     <description>Transfer up to 50% psyfocus from one psycaster to any psycaster other than oneself. The donor's loss is instant, while the recipient gains the psyfocus over a brief period.\n\nMultiple casts on the same recipient increase the amount of psyfocus the recipient will gain, but not the rate.</description>
     <level>7</level>
-    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_PsyfocusTransfer</iconPath>
+    <iconPath>Psycasts/HVP_PsyfocusTransfer</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
