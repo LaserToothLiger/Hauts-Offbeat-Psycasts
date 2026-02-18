@@ -89,7 +89,7 @@
     <label>sinkhole skip</label>
     <description>Use a skipgate to excavate a pocket underneath the target patch of ground, rendering it unstable. This acts like a trap, stunning whoever triggers it. Larger creatures are less affected.\n\nCannot be placed adjacent to other traps. Each sinkhole will naturally collapse on its own after 5 days.</description>
     <level>1</level>
-    <iconPath>Things/Mote/Stun</iconPath>
+    <iconPath>Psycasts/HVP_SinkholeSkip</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
@@ -126,7 +126,7 @@
     <label>stifle</label>
     <description>Disrupt the target's psychic presence, lowering its psychic sensitivity by an amount equal to half the caster's. If the target was already affected by Stifle, the stronger instance will take effect with its duration refreshed.</description>
     <level>1</level>
-    <iconPath>UI/Icons/HostilityResponse/Ignore</iconPath>
+    <iconPath>Psycasts/HVP_Stifle</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
@@ -202,7 +202,7 @@
     <label>word of warning</label>
     <description>Speak vague, ominous words to someone while subconsciously implanting a prediction of the next danger they will face. When the target would next take damage while conscious, this forewarning will allow them to negate the damage completely.</description>
     <level>1</level>
-    <iconPath>Things/Mote/ColonistFleeing</iconPath>
+    <iconPath>Psycasts/HVP_WordOfWarning</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
