@@ -54,7 +54,7 @@
     <label>paralysis link</label>
     <description>Bathe the target in psychic frequencies which will, after a certain point, suffuse the target's body and induce paralysis. This process incurs neural heat over time, and it will stop if the target moves more than 30 cells away or the caster is rendered incapable of psycasting.\n\nTargets with more hit points or lower psychic sensitivity take longer to paralyze.\n\nCosts 1 neural heat per second.</description>
     <level>2</level>
-    <iconPath>Things/Mote/SleepZ</iconPath>
+    <iconPath>Psycasts/HVP_ParalysisLink</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
@@ -97,7 +97,7 @@
     <label>sensitize</label>
     <description>Transfer a quarter of the caster's psychic sensitivity to the target. If the target was already affected by Sensitize, the stronger instance will take effect with its duration refreshed.</description>
     <level>2</level>
-    <iconPath>Things/Building/Misc/AnimusStone</iconPath>
+    <iconPath>Psycasts/HVP_Sensitize</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
@@ -182,7 +182,7 @@
     <label>tetherskip</label>
     <description>Generate a quiescent skipgate at the target's current location. Once its duration expires, the target leaves the current map, or the caster wills it, the skipgate activates, returning the target to its location at time of cast.</description>
     <level>2</level>
-    <iconPath>UI/Overlays/Rope</iconPath>
+    <iconPath>Psycasts/HVP_Tetherskip</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
@@ -242,7 +242,7 @@
     <label>word of contemplation</label>
     <description>Recite a litany of strange, archotechnic words with an underlying psychic suggestion to lull the target into a trancelike state. While in this state, the target will meditate and rest more effectively, but will feel disconnected from their body, reducing consciousness.</description>
     <level>2</level>
-    <iconPath>Things/Mote/Meditate</iconPath>
+    <iconPath>Psycasts/HVP_WordOfContemplation</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <statBases>

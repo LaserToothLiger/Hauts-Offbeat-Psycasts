@@ -5,7 +5,7 @@
     <label>word of warning</label>
     <workerClass>InteractionWorker</workerClass>
     <ignoreTimeSinceLastInteraction>True</ignoreTimeSinceLastInteraction>
-    <symbol>Things/Mote/SpeechSymbols/WordOfInspiration</symbol>
+    <symbol>WordInteractionBubbles/HVP_WordOfWarning</symbol>
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] psychically suggested that [RECIPIENT_nameDef] keep up [RECIPIENT_possessive] guard, in preparation for a future attack.</li>
@@ -17,7 +17,7 @@
     <label>word of contemplation</label>
     <workerClass>InteractionWorker</workerClass>
     <ignoreTimeSinceLastInteraction>True</ignoreTimeSinceLastInteraction>
-    <symbol>Things/Mote/SpeechSymbols/WordOfInspiration</symbol>
+    <symbol>WordInteractionBubbles/HVP_WordOfContemplation</symbol>
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] psychically hypnotized [RECIPIENT_nameDef] into a trancelike state.</li>
@@ -41,7 +41,7 @@
     <label>word of sterility</label>
     <workerClass>InteractionWorker</workerClass>
     <ignoreTimeSinceLastInteraction>True</ignoreTimeSinceLastInteraction>
-    <symbol>Things/Mote/SpeechSymbols/WordOfInspiration</symbol>
+    <symbol>WordInteractionBubbles/HVP_WordOfSterility</symbol>
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] carefully skipped medical mechanites into the body of [RECIPIENT_nameDef] to cure an adverse health condition.</li>

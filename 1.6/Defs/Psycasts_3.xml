@@ -6,7 +6,7 @@
     <label>drop pod call</label>
     <description>Divert drop pods from orbital storage to the targeted location. The drop pods have a small chance to contain a small animal, but can otherwise contain resources or leave behind slag. The more psychic sensitivity the caster has, the more drop pods are spawned.</description>
     <level>3</level>
-    <iconPath>Things/Special/DropPod</iconPath>
+    <iconPath>Psycasts/HVP_DropPodCall</iconPath>
     <hostile>false</hostile>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
@@ -131,7 +131,7 @@
     <label>shield</label>
     <description>Use subatomic skipgates to excite electromagnetic fields, creating a projectile repulsion field around the target. This shield can absorb up to 60 damage, but doesn't block anything a regular shield wouldn't and is just as susceptible to EMPs. It also does not regenerate. However, the target will still be able to use ranged weapons.</description>
     <level>3</level>
-    <iconPath>Things/Pawn/Humanlike/Apparel/ShieldBelt/ShieldBelt</iconPath>
+    <iconPath>Psycasts/HVP_Shield</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
@@ -204,7 +204,7 @@
     <label>vault skip</label>
     <description>Skips all nearby items into a distant vault unreachable by regular means. The caster may later retrieve all items from the vault at once. Every 10 objects (or stacks of objects) stored in this way consume 1% psyfocus per day.\n\nIf the caster dies with items stored in the vault, the vault’s contents will be returned to the caster’s location, but roughly one-third of the items may be lost.</description>
     <level>3</level>
-    <iconPath>Things/Building/Door/DoorSimple_MenuIcon</iconPath>
+    <iconPath>Psycasts/HVP_VaultSkip</iconPath>
     <targetRequired>False</targetRequired>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <writeCombatLog>false</writeCombatLog>

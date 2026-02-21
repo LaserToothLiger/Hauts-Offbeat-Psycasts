@@ -6,7 +6,7 @@
     <label>booster link</label>
     <description>Bathe the target in psychic frequencies which hone its mind, boosting moving and manipulation capacities. This process incurs neural heat over time, and it will stop if the target moves more than 60 cells away, the target is downed for more than 4 seconds, or the caster is rendered incapable of psycasting.\n\nCosts 2.5 neural heat per second.</description>
     <level>4</level>
-    <iconPath>Things/Item/Resource/Chemfuel</iconPath>
+    <iconPath>Psycasts/HVP_BoosterLink</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
@@ -140,7 +140,7 @@
     <label>replicate</label>
     <description>Teleports in a copy of the targeted resource item from somewhere else in the cosmos.\n\nItems worth more than 350 silver can't be replicated. If the target is an item stack exceeding 500 silver in value, the replica will be smaller in order to be at or under 500 silver in value.</description>
     <level>4</level>
-    <iconPath>UI/Buttons/GiftMode</iconPath>
+    <iconPath>Psycasts/HVP_Replicate</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
@@ -195,7 +195,7 @@
     <label>skiptheft</label>
     <description>Skip a random item carried or worn by the target into the caster's possession, slightly damaging it. If the target is hostile, this will preferentially steal their weapon, then their apparel, then things in their inventory; otherwise, the priority of items to steal is reversed. Stealing worn apparel, wielded weapons, or from a member of an ultratech faction will worsen relations with the target's faction.\n\nAlso raises the target's alert level by 5, making it more difficult to pickpocket them.</description>
     <level>4</level>
-    <iconPath>UI/Commands/FormCaravan</iconPath>
+    <iconPath>Psycasts/HVP_Skiptheft</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>

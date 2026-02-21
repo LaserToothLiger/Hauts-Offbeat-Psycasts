@@ -166,7 +166,7 @@
     <label>surestep</label>
     <description>Psychically guide the target's movement, slightly increasing their moving capacity and immunizing them to slowdown caused by different terrain types.</description>
     <level>1</level>
-    <iconPath>UI/Icons/HostilityResponse/Flee</iconPath>
+    <iconPath>Psycasts/HVP_Surestep</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>

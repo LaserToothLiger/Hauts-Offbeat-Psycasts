@@ -44,7 +44,7 @@
     <label>meteoroid skip</label>
     <description>Teleport the target chunk into the gravity well of a distant neutron star to vastly accelerate it, then quickly teleport it back to a position far above the target point. It will land with explosive force shortly thereafter. Chunks made of more durable materials will cause more damage.\n\nShields that block mortar fire also block meteoroids.</description>
     <level>5</level>
-    <iconPath>Things/Skyfaller/Meteorite</iconPath>
+    <iconPath>Psycasts/HVP_MeteoroidSkip</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <showPsycastEffects>False</showPsycastEffects>
 	<hostile>true</hostile>
@@ -80,7 +80,7 @@
     <label>reave</label>
     <description>Skip a portion of the target away from the rest of its body. Deals quadruple damage to buildings, and ignores any level of incoming damage factor other than total invulnerability.</description>
     <level>5</level>
-    <iconPath>UI/Designators/Slaughter</iconPath>
+    <iconPath>Psycasts/HVP_Reave</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
@@ -207,7 +207,7 @@
     <label>word of sterility</label>
     <description>Calibrate a system of skipgates by speaking to the target. The target will be flooded with short-lived medical mechanites that clear out one overdose, disease, toxic effect, or non-luciferium addiction; however, this will also put the target into a coma for three days, followed by pain-inducing discomfort for three days after that.\n\nIf used to down a citizen of another faction, there will be diplomatic consequences.</description>
     <level>5</level>
-    <iconPath>UI/Icons/ThingCategories/Medicine</iconPath>
+    <iconPath>Psycasts/HVP_WordOfSterility</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <statBases>
