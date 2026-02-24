@@ -874,16 +874,16 @@ namespace HautsPsycasts
             base.CompPostPostAdd(dinfo);
             this.intsTilUnwillingEnd = this.Props.intervalsTilUnwillingEnd;
         }
-        public override void CompPostTick(ref float severityAdjustment)
+        public override void CompPostTickInterval(ref float severityAdjustment, int delta)
         {
-            base.CompPostTick(ref severityAdjustment);
-            if (this.others != null)
+            base.CompPostTickInterval(ref severityAdjustment, delta);
+            if (this.others != null && this.Pawn.IsHashIntervalTick(15,delta))
             {
                 foreach (Thing t in this.others)
                 {
                     if (t is Pawn p && p.psychicEntropy != null)
                     {
-                        p.psychicEntropy.TryAddEntropy(this.Props.victimEntropyPerSecond / 60f, null, true, true);
+                        p.psychicEntropy.TryAddEntropy(this.Props.victimEntropyPerSecond / 4f, null, true, true);
                     }
                 }
             }
@@ -3048,6 +3048,7 @@ namespace HautsPsycasts
             this.compClass = typeof(HediffComp_LinkBuildEntropy);
         }
         public float casterEntropyGainPerSecond;
+        public int entropyPeriodicity = 1;
         public float severityPerLink;
         public bool casterMustBePsycastCapable = true;
         public bool casterMustBeConscious = true;
@@ -3113,9 +3114,9 @@ namespace HautsPsycasts
                 this.Pawn.health.RemoveHediff(this.parent);
                 return;
             }
-            if (this.Pawn.psychicEntropy != null)
+            if (this.Pawn.psychicEntropy != null && this.Pawn.IsHashIntervalTick(this.Props.entropyPeriodicity))
             {
-                this.Pawn.psychicEntropy.TryAddEntropy(this.Props.casterEntropyGainPerSecond * this.parent.Severity / 60f, null, true, true);
+                this.Pawn.psychicEntropy.TryAddEntropy(this.Props.casterEntropyGainPerSecond * this.parent.Severity / (60f/(float)this.Props.entropyPeriodicity), null, true, true);
                 if (this.Pawn.psychicEntropy.limitEntropyAmount && this.Pawn.psychicEntropy.EntropyRelativeValue > 1f)
                 {
                     this.Pawn.health.RemoveHediff(this.parent);

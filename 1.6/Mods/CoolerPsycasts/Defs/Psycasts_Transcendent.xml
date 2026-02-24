@@ -59,7 +59,7 @@
     <label>marking pulse</label>
     <description>Distort the psychic signatures of everyone around the target point, maximizing attack accuracy against them.</description>
     <level>8</level>
-    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Targetzone</iconPath>
+    <iconPath>Psycasts/HVP_MarkingPulse</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <statBases>
@@ -103,7 +103,7 @@
     <label>squadron call</label>
     <description>Summon rapid-response drop troopers from an orbital barge to the targeted location. These troopers are under the caster's control and will disappear after 6 hours or when downed. They may be slain without consequence.</description>
     <level>8</level>
-    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_SquadronCall</iconPath>
+    <iconPath>Psycasts/HVP_SquadronCall</iconPath>
     <hostile>false</hostile>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
@@ -201,7 +201,7 @@
     <label>word of blessing</label>
     <description>Speak a litany of flesh-warping archotechnic words to alter the cellular makeup of the target. This will grant a permanent buff of the target's choice. No creature may have more than one blessing at a time; choosing a new one replaces the previous one.</description>
     <level>9</level>
-    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_WordOfBlessing</iconPath>
+    <iconPath>Psycasts/HVP_WordOfBlessing</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <statBases>
@@ -240,7 +240,7 @@
     <label>voidquake</label>
     <description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged and living creatures will flee in fear - unless they are within the safe zone. The sunlight itself will dim briefly. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day psychic coma.\n\nUnlike a neuroquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
     <level>10</level>
-    <iconPath>PsycastAbilities_PlaceholderIcons/HVP_Datashock</iconPath>
+    <iconPath>Psycasts/HVP_Voidquake</iconPath>
     <hotKey>Misc12</hotKey>
     <jobDef>CastAbilityOnThingUninterruptible</jobDef>
     <targetRequired>False</targetRequired>

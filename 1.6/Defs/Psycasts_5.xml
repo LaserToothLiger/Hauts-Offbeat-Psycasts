@@ -6,7 +6,7 @@
     <label>flux pulse</label>
     <description>Use microscopic skipgates to suffuse the area around the target point with a mix of extremely hot and cold particles. This releases an EMP, and can cause heatstroke, hypothermia, and possibly burns.</description>
     <level>5</level>
-    <iconPath>UI/Commands/TempLower</iconPath>
+    <iconPath>Psycasts/HVP_FluxPulse</iconPath>
     <hostile>true</hostile>
     <writeCombatLog>True</writeCombatLog>
     <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
@@ -123,7 +123,7 @@
     <label>thermal pinhole</label>
     <description>Generate a system of microscopic skipgates linked to both a nearby star and the chilly atmospheres or hydrospheres of nearby lifeless moons and planets. This system reactively regulates the temperature, pushing out solar material to warm or freezing materials to cool, and even reacts to nearby flames, rapidly extinguishing them and snuffing out explosive wicks. It also produces a steady light that is both bright enough to work in and grow plants with.</description>
     <level>5</level>
-    <iconPath>Things/Building/Production/LampSun</iconPath>
+    <iconPath>Psycasts/HVP_ThermalPinhole</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>

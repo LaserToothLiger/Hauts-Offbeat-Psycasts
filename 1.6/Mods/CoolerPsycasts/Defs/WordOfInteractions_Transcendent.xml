@@ -2,13 +2,13 @@
 <Defs>
   <InteractionDef>
     <defName>HVP_WordOfBlessing</defName>
-    <label>word of warning</label>
+    <label>word of blessing</label>
     <workerClass>InteractionWorker</workerClass>
     <ignoreTimeSinceLastInteraction>True</ignoreTimeSinceLastInteraction>
-    <symbol>PsycastAbilities_PlaceholderIcons/HVP_WordOfBlessing</symbol>
+    <symbol>WordInteractionBubbles/HVP_WordOfBlessing</symbol>
     <logRulesInitiator>
       <rulesStrings>
-        <li>r_logentry->[INITIATOR_nameDef] psychically imbued the flesh of [RECIPIENT_nameDef] with mutability, allowing {RECIPIENT_objective} to attain a blessing of {RECIPIENT_possessive} choice.</li>
+        <li>r_logentry->[INITIATOR_nameDef] psychically imbued the flesh of [RECIPIENT_nameDef] with mutability, allowing [RECIPIENT_objective] to attain a blessing of [RECIPIENT_possessive] choice.</li>
       </rulesStrings>
     </logRulesInitiator>
   </InteractionDef>

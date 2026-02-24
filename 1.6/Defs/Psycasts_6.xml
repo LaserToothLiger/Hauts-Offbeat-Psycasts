@@ -6,7 +6,7 @@
     <label>evict</label>
     <description>Envelop the target in an uncontrolled skipgate which lacks most of the usual safeguards. It teleports the target somewhere far across the planet (or possibly even further beyond), removing it from the sphere of immediate concern.\n\nUnlike other skip abilities, weight, size, and lack of psychic sensitivity do not affect whether an object is targetable.</description>
     <level>6</level>
-    <iconPath>UI/Buttons/AbandonSpecificCount</iconPath>
+    <iconPath>Psycasts/HVP_Evict</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
@@ -61,7 +61,7 @@
     <label>fortune call</label>
     <description>Convince higher powers within the psychic field to arrange for one or more positive events to occur within the next 2-24 hours. The more psychic sensitivity the caster has, the more good events will happen. After casting, the caster will fall into a 2-day coma.</description>
     <level>6</level>
-    <iconPath>UI/Commands/ViewQuest</iconPath>
+    <iconPath>Psycasts/HVP_FortuneCall</iconPath>
     <hostile>false</hostile>
     <targetRequired>False</targetRequired>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
@@ -120,7 +120,7 @@
     <label>hive call</label>
     <description>Psychically irritate a subterranean insectoid colony, causing an infestation to surface around the target point. The more psychic sensitivity the caster has, the more insectoids will respond to the call.\n\nNo insectoids will surface if the target region is too cold, or if there are already more than 150 hives on the map.</description>
     <level>6</level>
-    <iconPath>World/WorldObjects/Expanding/Insects</iconPath>
+    <iconPath>Psycasts/HVP_HiveCall</iconPath>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
@@ -161,7 +161,7 @@
     <label>rejuvenation skip</label>
     <description>Suffuses the target with healing archites. It gradually heals wounds, removes scars, and even regrows lost body parts, but it is slow and decreases in potency each day. It is also calorie-intensive, leaving the target perpetually exhausted, hungry, sluggish, and pained; it also causes an increased risk of cancer for the next year. The effect ends prematurely if the target takes any damage.</description>
     <level>6</level>
-    <iconPath>Things/Item/Special/MechSerumHealer</iconPath>
+    <iconPath>Psycasts/HVP_RejuvenationSkip</iconPath>
     <writeCombatLog>false</writeCombatLog>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
@@ -245,7 +245,7 @@
     <label>word of melding</label>
     <description>Speak about becoming one with another while using psychic suggestion to lull the listener into a coma. Until the listener's coma is broken, the other's consciousness is boosted. The benefit of this ability can stack up to ten times.\n\nThe listener must be conscious, but can be downed. The neural architecture of children is too plastic to lull into a coma.</description>
     <level>6</level>
-    <iconPath>Things/Building/Misc/MultiAnalyzer</iconPath>
+    <iconPath>Psycasts/HVP_WordOfMelding</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>

@@ -149,6 +149,7 @@
 	  </li>
 	  <li Class="HautsPsycasts.HediffCompProperties_LinkBuildEntropy">
         <casterEntropyGainPerSecond>1</casterEntropyGainPerSecond>
+		<entropyPeriodicity>1</entropyPeriodicity>
 		<severityPerLink>1</severityPerLink>
 		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
 		<casterMustBeConscious>true</casterMustBeConscious>
@@ -414,6 +415,7 @@
         <casterEntropyGainPerSecond>0</casterEntropyGainPerSecond>
 		<severityPerLink>1</severityPerLink>
 		<victimEntropyPerSecond>12</victimEntropyPerSecond>
+		<entropyPeriodicity>1</entropyPeriodicity>
 		<psyfocusPerInterval>0.02</psyfocusPerInterval>
 		<intervalsTilUnwillingEnd>6</intervalsTilUnwillingEnd>
 		<stunTicksOnUnwillingEnd>180~200</stunTicksOnUnwillingEnd>
@@ -530,6 +532,7 @@
 	  </li>
 	  <li Class="HautsPsycasts.HediffCompProperties_LinkBuildEntropy">
         <casterEntropyGainPerSecond>2.5</casterEntropyGainPerSecond>
+		<entropyPeriodicity>1</entropyPeriodicity>
 		<severityPerLink>1</severityPerLink>
 		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
 		<casterMustBeConscious>true</casterMustBeConscious>

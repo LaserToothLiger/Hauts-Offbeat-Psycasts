@@ -53,7 +53,7 @@
     <label>word of melding</label>
     <workerClass>InteractionWorker</workerClass>
     <ignoreTimeSinceLastInteraction>True</ignoreTimeSinceLastInteraction>
-    <symbol>Things/Mote/SpeechSymbols/WordOfInspiration</symbol>
+    <symbol>WordInteractionBubbles/HVP_WordOfMelding</symbol>
     <logRulesInitiator>
       <rulesStrings>
         <li>r_logentry->[INITIATOR_nameDef] psychically melded [RECIPIENT_nameDef] into the consciousness of another.</li>

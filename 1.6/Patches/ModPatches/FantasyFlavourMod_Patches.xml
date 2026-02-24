@@ -671,7 +671,7 @@
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName = "HVP_PsyphonLink"]/description</xpath>
 								<value>
-									<description>Rapidly gain mana by siphoning it from the target spellcaster. This effect will end prematurely if the target runs out of mana, or if the target moves more than 35 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a manaleech link to.</description>
+									<description>Rapidly gain mana by siphoning it from the target spellcaster. The target also builds up arcane load. This effect will end prematurely if the target runs out of mana, or if the target moves more than 35 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a manaleech link to.</description>
 								</value>
 							</li>
 							<li Class="PatchOperationReplace">

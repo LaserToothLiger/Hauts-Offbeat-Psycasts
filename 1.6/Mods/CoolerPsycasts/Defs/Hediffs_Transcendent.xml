@@ -90,7 +90,7 @@
     <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <hotKey>Misc12</hotKey>
-	<iconPath>PsycastAbilities_PlaceholderIcons/HVP_WordOfBlessing</iconPath>
+	<iconPath>Psycasts/HVP_WordOfBlessing</iconPath>
 	<cooldownTicksRange>0</cooldownTicksRange>
     <statBases>
       <Ability_Duration>5000</Ability_Duration>
@@ -101,6 +101,7 @@
       <warmupTime>0</warmupTime>
 	  <range>0</range>
       <drawAimPie>False</drawAimPie>
+	  <targetable>false</targetable>
       <requireLineOfSight>False</requireLineOfSight>
       <targetParams>
         <canTargetSelf>true</canTargetSelf>
@@ -306,6 +307,7 @@
 	<comps>
 	  <li Class="HOP_CoolerPsycasts.HediffCompProperties_LinkTornado">
         <casterEntropyGainPerSecond>5</casterEntropyGainPerSecond>
+		<entropyPeriodicity>1</entropyPeriodicity>
 		<severityPerLink>1</severityPerLink>
 		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
 		<casterMustBeConscious>true</casterMustBeConscious>

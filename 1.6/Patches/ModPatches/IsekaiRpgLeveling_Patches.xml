@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>ISEKAI RPG LEVELING</li>
+		</mods>
+		<match Class="PatchOperationSequence"><!--since you always gain at least 3 xp (and at most 50 xp) from any instance of neural heat gain, you could get between 180 to 3000 xp per second from Link casts. Therefore, we have to make the entropy gain once per 15 ticks instead of once per 1.
+													They don't do this normally because it looks really weird in the neural heat bar, and I don't like that. However, I'll take looking weird over making my Link casts a super secret Isekai Protagonist Level Farm Technique-->
+			<operations>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="HVP_HiddenParalysisMaintainer" or defName="HVP_HiddenBoostMaintainer"]/comps/li[@Class="HautsPsycasts.HediffCompProperties_LinkBuildEntropy"]/entropyPeriodicity</xpath>
+					<value>
+					  <entropyPeriodicity>15</entropyPeriodicity>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>/Defs/HediffDef[defName="HVP_HiddenPsyphonMaintainer"]/comps/li[@Class="HautsPsycasts.HediffCompProperties_Psyphon"]/entropyPeriodicity</xpath>
+					<value>
+					  <entropyPeriodicity>15</entropyPeriodicity>
+					</value>
+				</li>
+				<li Class="PatchOperationFindMod">
+					<mods>
+						<li>Cooler Psycasts</li>
+					</mods>
+					<match Class="PatchOperationReplace">
+						<xpath>/Defs/HediffDef[defName="HVP_HiddenTornadoMaintainer"]/comps/li[@Class="HOP_CoolerPsycasts.HediffCompProperties_LinkTornado"]/entropyPeriodicity</xpath>
+						<value>
+						  <entropyPeriodicity>15</entropyPeriodicity>
+						</value>
+					</match>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

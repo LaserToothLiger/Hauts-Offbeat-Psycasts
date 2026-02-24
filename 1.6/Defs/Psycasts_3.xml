@@ -50,47 +50,12 @@
     </comps>
   </AbilityDef>
   
-  <AbilityDef ParentName="PsycastBaseSkip">
-    <defName>HVP_LightningStrike</defName>
-    <label>thunderbolt</label>
-    <description>Use a precise series of skipgates to greatly alter the electric charge of the targeted point, prompting an immediate lightning strike. Unlike natural lightning, this directed attack is capable of slightly injuring mechanoids.</description>
-    <level>3</level>
-    <iconPath>Psycasts/HVP_LightningStrike</iconPath>
-    <writeCombatLog>True</writeCombatLog>
-    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-    <hostile>true</hostile>
-    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
-    <statBases>
-      <Ability_EntropyGain>26</Ability_EntropyGain>
-      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
-      <Ability_EffectRadius>1.9</Ability_EffectRadius>
-    </statBases>
-    <verbProperties>
-      <warmupTime>0.2</warmupTime>
-      <range>24.9</range>
-      <useableInVacuum>false</useableInVacuum>
-      <targetParams>
-        <canTargetPawns>False</canTargetPawns>
-        <canTargetLocations>True</canTargetLocations>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="HautsPsycasts.CompProperties_AbilityLightningStrike">
-        <compClass>HautsPsycasts.CompAbilityEffect_LightningStrike</compClass>
-		<damage>14</damage>
-		<armorPenetration>1.25</armorPenetration>
-        <clamorType>Ability</clamorType>
-        <clamorRadius>25</clamorRadius>
-      </li>
-    </comps>
-  </AbilityDef>
-  
   <AbilityDef ParentName="HVP_PsycastBaseLink">
     <defName>HVP_PsyphonLink</defName>
     <label>psyphon link</label>
-    <description>Rapidly gain psyfocus by siphoning it from the target psycaster. This effect will end prematurely if the target runs out of psyfocus, or if the target moves more than 30 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a psyphon link to.</description>
+    <description>Rapidly gain psyfocus by siphoning it from the target psycaster. The target also builds up neural heat. This effect will end prematurely if the target runs out of psyfocus, or if the target moves more than 30 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a psyphon link to.</description>
     <level>3</level>
-    <iconPath>Things/Mote/PsychicEntropy</iconPath>
+    <iconPath>Psycasts/HVP_PsyphonLink</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
@@ -163,11 +128,46 @@
   </AbilityDef>
   
   <AbilityDef ParentName="PsycastBaseSkip">
+    <defName>HVP_LightningStrike</defName>
+    <label>thunderbolt</label>
+    <description>Use a precise series of skipgates to greatly alter the electric charge of the targeted point, prompting an immediate lightning strike. Unlike natural lightning, this directed attack is capable of slightly injuring mechanoids.</description>
+    <level>3</level>
+    <iconPath>Psycasts/HVP_LightningStrike</iconPath>
+    <writeCombatLog>True</writeCombatLog>
+    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
+    <hostile>true</hostile>
+    <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
+    <statBases>
+      <Ability_EntropyGain>26</Ability_EntropyGain>
+      <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
+      <Ability_EffectRadius>1.9</Ability_EffectRadius>
+    </statBases>
+    <verbProperties>
+      <warmupTime>0.2</warmupTime>
+      <range>24.9</range>
+      <useableInVacuum>false</useableInVacuum>
+      <targetParams>
+        <canTargetPawns>False</canTargetPawns>
+        <canTargetLocations>True</canTargetLocations>
+      </targetParams>
+    </verbProperties>
+    <comps>
+      <li Class="HautsPsycasts.CompProperties_AbilityLightningStrike">
+        <compClass>HautsPsycasts.CompAbilityEffect_LightningStrike</compClass>
+		<damage>14</damage>
+		<armorPenetration>1.25</armorPenetration>
+        <clamorType>Ability</clamorType>
+        <clamorRadius>25</clamorRadius>
+      </li>
+    </comps>
+  </AbilityDef>
+  
+  <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_Tremorzone</defName>
     <label>tremorzone</label>
     <description>Use a sequence of skipgates to periodically induce upheaval in the ground near the target point. This repeatedly staggers anyone nearby (unless they are floating or flying), and stuns turrets.</description>
     <level>3</level>
-    <iconPath>Things/Building/Natural/SteamGeyser</iconPath>
+    <iconPath>Psycasts/HVP_Tremorzone</iconPath>
     <writeCombatLog>True</writeCombatLog>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>

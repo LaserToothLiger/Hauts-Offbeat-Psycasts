@@ -49,7 +49,7 @@
     <description>Briefly swell with psychic power. The next psycast within 2 hours will not incur neural heat and will have 80% of its psyfocus cost refunded; if it is a skip psycast, its range will also be extended.</description>
     <level>4</level>
     <cooldownTicksRange>180000</cooldownTicksRange>
-    <iconPath>Things/Item/Special/PsylinkNeuroformer</iconPath>
+    <iconPath>Psycasts/HVP_Flare</iconPath>
     <hostile>false</hostile>
     <targetRequired>False</targetRequired>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
@@ -94,7 +94,7 @@
     <label>mountain skip</label>
     <description>Teleport a large mass of rock. This can turn a targeted thin rock roof into overhead mountain. It can also turn overhead mountain, other roof types, or empty spaces that could support a roof into thin rock roof.</description>
     <level>4</level>
-    <iconPath>Things/Mote/TempRoof</iconPath>
+    <iconPath>Psycasts/HVP_MountainSkip</iconPath>
     <hostile>false</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
@@ -242,7 +242,7 @@
     <label>turret skip</label>
     <description>Skip a mini-slugger turret from the storage of a mechanoid fleet to the target location, and psychically reprogram it to only target the caster's enemies. After 2 hours, a skipgate will teleport the turret back - unless it is about to explode.\n\nUnlike a conventionally deployed mini-slugger, this turret is oddly more accurate.</description>
     <level>4</level>
-    <iconPath>Things/Building/Mech/TurretMechMini_Base</iconPath>
+    <iconPath>Psycasts/HVP_TurretSkip</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
