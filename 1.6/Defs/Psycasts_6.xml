@@ -59,7 +59,7 @@
   <AbilityDef ParentName="HVP_PsycastBaseCall">
     <defName>HVP_FortuneCall</defName>
     <label>fortune call</label>
-    <description>Convince higher powers within the psychic field to arrange for one or more positive events to occur within the next 2-24 hours. The more psychic sensitivity the caster has, the more good events will happen. After casting, the caster will fall into a 2-day coma.</description>
+    <description>Convince higher powers within the psychic field to arrange for one or more positive events to occur within the next 2-24 hours. The more psychic sensitivity the caster has, the more good events will happen (to a max of 6 events at 1200% psychic sensitivity). After casting, the caster will fall into a 2-day coma.</description>
     <level>6</level>
     <iconPath>Psycasts/HVP_FortuneCall</iconPath>
     <hostile>false</hostile>
@@ -70,8 +70,8 @@
     <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
     <stunTargetWhileCasting>False</stunTargetWhileCasting>
     <statBases>
-      <Ability_PsyfocusCost>0.8</Ability_PsyfocusCost>
-      <Ability_Duration>2000</Ability_Duration>
+      <Ability_PsyfocusCost>0.95</Ability_PsyfocusCost>
+      <Ability_Duration>600</Ability_Duration>
     </statBases>
     <verbProperties>
       <warmupTime>6</warmupTime>
@@ -118,7 +118,7 @@
   <AbilityDef ParentName="HVP_PsycastBaseCall">
     <defName>HVP_HiveCall</defName>
     <label>hive call</label>
-    <description>Psychically irritate a subterranean insectoid colony, causing an infestation to surface around the target point. The more psychic sensitivity the caster has, the more insectoids will respond to the call.\n\nNo insectoids will surface if the target region is too cold, or if there are already more than 150 hives on the map.</description>
+    <description>Psychically irritate a subterranean insectoid colony, causing an infestation to surface around the target point. The more psychic sensitivity the caster has, the more insectoids will respond to the call (to a max of 100 hives at 8500% psychic sensitivity).\n\nNo insectoids will surface if the target region is too cold, or if there are already more than 150 hives on the map.</description>
     <level>6</level>
     <iconPath>Psycasts/HVP_HiveCall</iconPath>
     <hostile>true</hostile>
@@ -159,7 +159,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_RejuvenationSkip</defName>
     <label>rejuvenation skip</label>
-    <description>Suffuses the target with healing archites. It gradually heals wounds, removes scars, and even regrows lost body parts, but it is slow and decreases in potency each day. It is also calorie-intensive, leaving the target perpetually exhausted, hungry, sluggish, and pained; it also causes an increased risk of cancer for the next year. The effect ends prematurely if the target takes any damage.</description>
+    <description>Suffuse the target with healing archites. It gradually heals wounds, removes scars, and even regrows lost body parts, but it is slow and decreases in potency each day. It is also calorie-intensive, leaving the target perpetually exhausted, hungry, sluggish, and pained; it also causes an increased risk of cancer for the next year.\n\nThe beneficial effect ends prematurely if the target takes any damage.</description>
     <level>6</level>
     <iconPath>Psycasts/HVP_RejuvenationSkip</iconPath>
     <writeCombatLog>false</writeCombatLog>

@@ -127,7 +127,6 @@
 			<li>HVP_BlessingStasis</li>
 		</hediffs>
 		<menuString>HVP_BlessingMenu</menuString>
-        <onlyApplyToSelf>True</onlyApplyToSelf>
       </li>
 	  <li Class = "CompProperties_AbilityRemoveHediff">
         <compClass>CompAbilityEffect_RemoveHediff</compClass>
@@ -300,7 +299,7 @@
       <li>
         <becomeVisible>false</becomeVisible>
 		<damageFactors>
-		  <TornadoScratch>0.1</TornadoScratch>
+		  <TornadoScratch>0.02</TornadoScratch>
 		</damageFactors>
       </li>
     </stages>

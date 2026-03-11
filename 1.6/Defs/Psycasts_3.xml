@@ -4,7 +4,7 @@
   <AbilityDef ParentName="HVP_PsycastBaseCall">
     <defName>HVP_DropPodCall</defName>
     <label>drop pod call</label>
-    <description>Divert drop pods from orbital storage to the targeted location. The drop pods have a small chance to contain a small animal, but can otherwise contain resources or leave behind slag. The more psychic sensitivity the caster has, the more drop pods are spawned.</description>
+    <description>Divert drop pods from orbital storage to the targeted location. The drop pods have a small chance to contain a small animal, but can otherwise contain resources or leave behind slag. The more psychic sensitivity the caster has, the more drop pods are spawned (to a max of 8 pods at 1200% psychic sensitivity).</description>
     <level>3</level>
     <iconPath>Psycasts/HVP_DropPodCall</iconPath>
     <hostile>false</hostile>

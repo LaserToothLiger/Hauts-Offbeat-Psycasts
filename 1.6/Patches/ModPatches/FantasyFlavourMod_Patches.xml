@@ -290,7 +290,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_DropPodCall"]/description</xpath>
 					<value>
-						<description>Beckon the winds to blow random gliders to the targeted location. Each usually contains a small amount of resources or leaves behind metal slag, with a slight chance for a small animal instead.</description>
+						<description>Beckon the winds to blow random gliders to the targeted location. Each usually contains a small amount of resources or leaves behind metal slag, with a slight chance for a small animal instead. The more magic sensitivity the caster has, the more drop pods are spawned (to a max of 8 gliders at 1200% magic sensitivity).</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -454,13 +454,13 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_FortuneCall"]/description</xpath>
 					<value>
-						<description>Pluck the strands of fate to cause one or more positive events to occur within the next 2-24 hours. The more magic sensitivity the caster has, the more good events will happen. After casting, the caster will fall into a 2-day coma.</description>
+						<description>Pluck the strands of fate to cause one or more positive events to occur within the next 2-24 hours. The more magic sensitivity the caster has, the more good events will happen (to a max of 6 events at 1200% magic sensitivity). After casting, the caster will fall into a 2-day coma.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_HiveCall"]/description</xpath>
 					<value>
-						<description>Beckon to the dark powers of the earth, causing an infestation to surface around the target point. The more magic sensitivity the caster has, the more insectoids will respond to the call.\n\nNo insectoids will surface if the target region is too cold, or if there are already more than 150 hives on the map.</description>
+						<description>Beckon to the dark powers of the earth, causing an infestation to surface around the target point. The more magic sensitivity the caster has, the more insectoids will respond to the call (to a max of 100 hives at 8500% magic sensitivity).\n\nNo insectoids will surface if the target region is too cold, or if there are already more than 150 hives on the map.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -472,7 +472,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_RejuvenationSkip"]/description</xpath>
 					<value>
-						<description>Envelops the target in potent healing magic. It gradually heals wounds, removes scars, and even regrows lost body parts, but it decreases in potency each day. It also leaves the target perpetually exhausted, hungry, sluggish, and pained. The effect ends prematurely if the target takes any damage. It also greatly increases the risk of developing cancer for the next year.</description>
+						<description>Envelop the target in potent healing magic. It gradually heals wounds, removes scars, and even regrows lost body parts, but it decreases in potency each day. It also leaves the target perpetually exhausted, hungry, sluggish, and pained.\n\nThe beneficial effect ends prematurely if the target takes any damage. It also greatly increases the risk of developing cancer for the next year.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">

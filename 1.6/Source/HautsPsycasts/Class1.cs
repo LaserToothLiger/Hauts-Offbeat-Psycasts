@@ -2,25 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using RimWorld;
 using Verse;
 using HarmonyLib;
 using UnityEngine;
 using HautsFramework;
-using VEF;
 using Verse.Sound;
 using VEF.AnimalBehaviours;
 using RimWorld.QuestGen;
 using RimWorld.Planet;
 using System.Reflection;
-using static UnityEngine.GraphicsBuffer;
-using Verse.AI.Group;
-using Verse.Noise;
-using Verse.AI;
-using VEF.Abilities;
-using static System.Collections.Specialized.BitVector32;
-using System.Security.Cryptography;
 
 namespace HautsPsycasts
 {
@@ -128,203 +119,6 @@ namespace HautsPsycasts
                     }
                 }
             }
-        }
-    }
-
-    [DefOf]
-    public static class HVPDefOf
-    {
-        static HVPDefOf()
-        {
-            DefOfHelper.EnsureInitializedInCtor(typeof(HVPDefOf));
-        }
-        public static GameConditionDef HVP_BetterFlashstorm;
-        public static HediffDef HVP_Hammerspace;
-        public static HediffDef HVP_IShallLiveForever;
-        public static TraitDef HVP_Squaddie;
-    }
-    //level 1
-    public class Building_TrapStunner : Building_Trap
-    {
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            base.SpawnSetup(map, respawningAfterLoad);
-            if (!respawningAfterLoad)
-            {
-                SoundDefOf.TrapArm.PlayOneShot(new TargetInfo(base.Position, map, false));
-            }
-        }
-        protected override void SpringSub(Pawn p)
-        {
-            if (base.Spawned)
-            {
-                SoundDefOf.TrapSpring.PlayOneShot(new TargetInfo(base.Position, base.Map, false));
-            }
-            if (p == null)
-            {
-                return;
-            }
-            if (!StaticCollectionsClass.floating_animals.Contains(p))
-            {
-                int stunTime = (6 * Building_TrapStunner.DamageRandomFactorRange.RandomInRange / p.BodySize).SecondsToTicks();
-                p.stances.stunner.StunFor(stunTime, this, false, true, false);
-            }
-        }
-        private static readonly FloatRange DamageRandomFactorRange = new FloatRange(0.9f, 1.1f);
-    }
-    public class HediffCompProperties_Forewarned : HediffCompProperties_DamageNegation
-    {
-        public HediffCompProperties_Forewarned()
-        {
-            this.compClass = typeof(HediffComp_Forewarned);
-        }
-        public bool mustBeConscious;
-    }
-    public class HediffComp_Forewarned : HediffComp_DamageNegation
-    {
-        public new HediffCompProperties_Forewarned Props
-        {
-            get
-            {
-                return (HediffCompProperties_Forewarned)this.props;
-            }
-        }
-        public override bool ShouldDoModificationInner(DamageInfo dinfo)
-        {
-            if (this.Props.mustBeConscious && (this.Pawn.Downed || !this.Pawn.Awake() || this.Pawn.Suspended))
-            {
-                return false;
-            }
-            return base.ShouldDoModificationInner(dinfo);
-        }
-    }
-    public class CompProperties_AbilityTransferEnergy : CompProperties_EffectWithDest
-    {
-        public List<NeedDef> affectedMeters;
-        public float baseFractionTransferred;
-    }
-    public class CompAbilityEffect_TransferEnergy : CompAbilityEffect_WithDest
-    {
-        public new CompProperties_AbilityTransferEnergy Props
-        {
-            get
-            {
-                return (CompProperties_AbilityTransferEnergy)this.props;
-            }
-        }
-        public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
-        {
-            if (target.HasThing && dest.HasThing)
-            {
-                base.Apply(target, dest);
-                if (target.Thing is Pawn pawn && dest.Thing is Pawn pawn2)
-                {
-                    float toTransfer = 0f;
-                    List<Need> toTakeFrom = new List<Need>();
-                    List<Need> toGoTo = new List<Need>();
-                    foreach (NeedDef n in this.Props.affectedMeters)
-                    {
-                        Need need = pawn.needs.TryGetNeed(n);
-                        if (need != null)
-                        {
-                            toTransfer += need.CurLevelPercentage;
-                            toTakeFrom.Add(need);
-                        }
-                        Need need2 = pawn2.needs.TryGetNeed(n);
-                        if (need2 != null)
-                        {
-                            toGoTo.Add(need2);
-                        }
-                    }
-                    if (toTransfer > 0f && !toGoTo.NullOrEmpty())
-                    {
-                        toTransfer *= this.Props.baseFractionTransferred * Math.Min(1f, pawn.GetStatValue(StatDefOf.PsychicSensitivity));
-                        foreach (Need need in toTakeFrom)
-                        {
-                            need.CurLevelPercentage -= toTransfer / toTakeFrom.Count;
-                        }
-                        toTransfer *= pawn.BodySize / pawn2.BodySize;
-                        toTransfer /= toGoTo.Count;
-                        foreach (Need need2 in toGoTo)
-                        {
-                            need2.CurLevelPercentage += toTransfer;
-                        }
-                    }
-                }
-            }
-        }
-        public override TargetingParameters targetParams
-        {
-            get
-            {
-                return new TargetingParameters
-                {
-                    canTargetSelf = true,
-                    canTargetBuildings = false,
-                    canTargetAnimals = false,
-                    canTargetMechs = true,
-                    canTargetLocations = false
-                };
-            }
-        }
-        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
-        {
-            return target != this.selectedTarget && this.HasAnyNeedCheck(this.selectedTarget) && this.HasAnyNeedCheck(target) && base.ValidateTarget(target, showMessages);
-        }
-        public override bool CanHitTarget(LocalTargetInfo target)
-        {
-            return base.CanHitTarget(target) && this.HasAnyNeedCheck(target);
-        }
-        public override bool Valid(LocalTargetInfo target, bool showMessages = true)
-        {
-            AcceptanceReport acceptanceReport = this.HasAnyNeed(target);
-            if (!acceptanceReport)
-            {
-                if (showMessages && !acceptanceReport.Reason.NullOrEmpty() && target.Thing is Pawn pawn)
-                {
-                    Messages.Message("HVP_CannotTransfer".Translate(pawn.Named("PAWN")) + ": " + acceptanceReport.Reason, pawn, MessageTypeDefOf.RejectInput, false);
-                }
-                return false;
-            }
-            return base.Valid(target, showMessages);
-        }
-        private AcceptanceReport HasAnyNeed(LocalTargetInfo target)
-        {
-            if (!this.HasAnyNeedCheck(target))
-            {
-                return "HVP_NoTransferrableEnergy".Translate();
-            }
-            return true;
-        }
-        private bool HasAnyNeedCheck(LocalTargetInfo target)
-        {
-            if (target.Thing != null && target.Thing is Pawn p && p.GetStatValue(StatDefOf.PsychicSensitivity) > float.Epsilon)
-            {
-                bool anyNeed = false;
-                foreach (NeedDef n in this.Props.affectedMeters)
-                {
-                    Need need = p.needs.TryGetNeed(n);
-                    if (need != null)
-                    {
-                        anyNeed = true;
-                        break;
-                    }
-                }
-                if (!anyNeed)
-                {
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        }
-        public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
-        {
-            if (target.Thing != null && target.Thing is Pawn pawn)
-            {
-                return this.HasAnyNeed(target).Reason;
-            }
-            return base.ExtraLabelMouseAttachment(target);
         }
     }
     //level 2
@@ -504,7 +298,7 @@ namespace HautsPsycasts
                             pawnSkill2.Learn(pawnSkill2.XpRequiredForLevelUp, true,true);
                         }
                     }
-                    HautsUtility.LearnLanguage(pawn2,pawn,0.05f);
+                    ModCompatibilityUtility.LearnLanguage(pawn2,pawn,0.05f);
                 }
             }
         }
@@ -704,7 +498,7 @@ namespace HautsPsycasts
             base.CompPostMake();
             this.uiIcon = ContentFinder<Texture2D>.Get(this.Props.icon, true);
             this.buttonLabel = this.Props.buttonLabel.Translate();
-            this.buttonTooltip = (HautsUtility.IsHighFantasy() ? this.Props.buttonTooltipFantasy :this.Props.buttonTooltip).Translate();
+            this.buttonTooltip = (ModCompatibilityUtility.IsHighFantasy() ? this.Props.buttonTooltipFantasy :this.Props.buttonTooltip).Translate();
         }
         public override void CompPostTickInterval(ref float severityAdjustment, int delta)
         {
@@ -841,7 +635,7 @@ namespace HautsPsycasts
                 {
                     if (throwMessages)
                     {
-                        Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + (HautsUtility.IsHighFantasy() ? "HVP_NotAPsycasterF".Translate() : "HVP_NotAPsycaster".Translate()), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
+                        Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + (ModCompatibilityUtility.IsHighFantasy() ? "HVP_NotAPsycasterF".Translate() : "HVP_NotAPsycaster".Translate()), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
                     }
                     return false;
                 }
@@ -1629,7 +1423,7 @@ namespace HautsPsycasts
                         this.StealEquipment(p);
                     }
                 }
-                HautsUtility.IncreaseAlertLevel(p,this.Props.alertRaise);
+                PilferingSystemUtility.IncreaseAlertLevel(p,this.Props.alertRaise);
             }
         }
         public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
@@ -1759,7 +1553,7 @@ namespace HautsPsycasts
     {
         protected override void Impact()
         {
-            if (HautsUtility.CanBeHitByAirToSurface(base.Position, base.Map, false))
+            if (HautsMiscUtility.CanBeHitByAirToSurface(base.Position, base.Map, false))
             {
                 if (this.chunk == null)
                 {
@@ -2498,7 +2292,7 @@ namespace HautsPsycasts
                     forced = true,
                     points = StorytellerUtility.DefaultThreatPointsNow(this.parent.pawn.MapHeld ?? Find.AnyPlayerHomeMap),
                 };
-                List<IncidentDef> incidents = HautsUtility.goodEventPool.Where((IncidentDef id) => !this.Props.excludedGoodEvents.Contains(id) && id.Worker.CanFireNow(incidentParms)).ToList();
+                List<IncidentDef> incidents = GoodAndBadIncidentsUtility.goodEventPool.Where((IncidentDef id) => !this.Props.excludedGoodEvents.Contains(id) && id.Worker.CanFireNow(incidentParms)).ToList();
                 Find.Storyteller.incidentQueue.Add(incidents.RandomElement(), Find.TickManager.TicksGame + this.Props.delayTicks.RandomInRange, incidentParms, 60000);
             }
         }
@@ -2527,7 +2321,7 @@ namespace HautsPsycasts
         {
             get
             {
-                string costString = HautsUtility.IsHighFantasy() ? "HVP_EvictionSkipCostsF" : "HVP_EvictionSkipCosts";
+                string costString = ModCompatibilityUtility.IsHighFantasy() ? "HVP_EvictionSkipCostsF" : "HVP_EvictionSkipCosts";
                 StringBuilder stringBuilder = new StringBuilder(costString.Translate() + ":");
                 stringBuilder.AppendLine();
                 foreach (CurvePoint point in this.psyfocusCostPerVictimSize.Points)
@@ -2640,7 +2434,7 @@ namespace HautsPsycasts
                 {
                     if (showMessages)
                     {
-                        string notEnoughPsyfocus = HautsUtility.IsHighFantasy() ? "HVP_CommandPsycastNotEnoughPsyfocusForSizeF" : "HVP_CommandPsycastNotEnoughPsyfocusForSize";
+                        string notEnoughPsyfocus = ModCompatibilityUtility.IsHighFantasy() ? "HVP_CommandPsycastNotEnoughPsyfocusForSizeF" : "HVP_CommandPsycastNotEnoughPsyfocusForSize";
                         Messages.Message("HVP_CommandPsycastNotEnoughPsyfocusForSize".Translate(num.ToStringPercent(), this.parent.pawn.psychicEntropy.CurrentPsyfocus.ToStringPercent("0.#"), this.parent.def.label.Named("PSYCASTNAME"), this.parent.pawn.Named("CASTERNAME")), this.parent.pawn, MessageTypeDefOf.RejectInput, false);
                     }
                     return false;
@@ -2796,7 +2590,7 @@ namespace HautsPsycasts
             base.CompPostMake();
             this.uiIcon = ContentFinder<Texture2D>.Get(this.Props.icon, true);
             this.buttonLabel = this.Props.buttonLabel.Translate();
-            this.buttonTooltip = (HautsUtility.IsHighFantasy() ? this.Props.buttonTooltipFantasy : this.Props.buttonTooltip).Translate();
+            this.buttonTooltip = (ModCompatibilityUtility.IsHighFantasy() ? this.Props.buttonTooltipFantasy : this.Props.buttonTooltip).Translate();
         }
         public override void Notify_PawnPostApplyDamage(DamageInfo dinfo, float totalDamageDealt)
         {
@@ -2937,110 +2731,6 @@ namespace HautsPsycasts
         }
     }
     //pertinent to psycasts at multiple levels
-    public class CompProperties_AbilitySpawnAlliedBuilding : CompProperties_AbilitySpawn
-    {
-        public CompProperties_AbilitySpawnAlliedBuilding()
-        {
-            this.compClass = typeof(CompAbilityEffect_SpawnAlliedBuilding);
-        }
-        public bool isTrap;
-        public bool allowOnTrees = true;
-    }
-    public class CompAbilityEffect_SpawnAlliedBuilding : CompAbilityEffect
-    {
-        public new CompProperties_AbilitySpawnAlliedBuilding Props
-        {
-            get
-            {
-                return (CompProperties_AbilitySpawnAlliedBuilding)this.props;
-            }
-        }
-        public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
-        {
-            base.Apply(target, dest);
-            Thing thingToSpawn = ThingMaker.MakeThing(this.Props.thingDef);
-            thingToSpawn.SetFaction(this.parent.pawn.Faction ?? null);
-            GenSpawn.Spawn(thingToSpawn, target.Cell, this.parent.pawn.Map, WipeMode.Vanish);
-            if (this.Props.sendSkipSignal)
-            {
-                CompAbilityEffect_Teleport.SendSkipUsedSignal(target, this.parent.pawn);
-            }
-        }
-        public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
-        {
-            if (target.Cell.Filled(this.parent.pawn.Map) || (!this.Props.allowOnBuildings && target.Cell.GetEdifice(this.parent.pawn.Map) != null))
-            {
-                if (throwMessages)
-                {
-                    Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + "AbilityOccupiedCells".Translate(), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
-                }
-                return false;
-            }
-            if (!this.Props.allowOnTrees)
-            {
-                foreach (Thing t in target.Cell.GetThingList(this.parent.pawn.Map))
-                {
-                    if (t.def.plant != null && t.def.plant.IsTree)
-                    {
-                        if (throwMessages)
-                        {
-                            Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + "AbilityOccupiedCells".Translate(), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
-                        }
-                        return false;
-                    }
-                }
-            }
-            if (this.Props.isTrap)
-            {
-                foreach (IntVec3 c in GenAdj.OccupiedRect(target.Cell, this.Props.thingDef.defaultPlacingRot, this.Props.thingDef.Size).ExpandedBy(1))
-                {
-                    List<Thing> list = this.parent.pawn.Map.thingGrid.ThingsListAt(c);
-                    for (int i = 0; i < list.Count; i++)
-                    {
-                        Thing thing2 = list[i];
-                        if ((thing2.def.category == ThingCategory.Building && thing2.def.building.isTrap) || ((thing2.def.IsBlueprint || thing2.def.IsFrame) && thing2.def.entityDefToBuild is ThingDef && ((ThingDef)thing2.def.entityDefToBuild).building.isTrap))
-                        {
-                            if (throwMessages)
-                            {
-                                Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + "CannotPlaceAdjacentTrap".Translate(), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
-                            }
-                            return false;
-                        }
-                    }
-                }
-            }
-            TerrainAffordanceDef terrainAffordanceNeed = this.Props.thingDef.GetTerrainAffordanceNeed(this.Props.thingDef.defaultStuff);
-            if (terrainAffordanceNeed != null)
-            {
-                CellRect cellRect = GenAdj.OccupiedRect(target.Cell, this.Props.thingDef.defaultPlacingRot, this.Props.thingDef.Size);
-                cellRect.ClipInsideMap(this.parent.pawn.Map);
-                foreach (IntVec3 c2 in cellRect)
-                {
-                    if (!this.parent.pawn.Map.terrainGrid.TerrainAt(c2).affordances.Contains(terrainAffordanceNeed))
-                    {
-                        if (throwMessages)
-                        {
-                            Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + "TerrainCannotSupport".Translate(this.Props.thingDef), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
-                        }
-                        return false;
-                    }
-                    List<Thing> thingList = c2.GetThingList(this.parent.pawn.Map);
-                    for (int i = 0; i < thingList.Count; i++)
-                    {
-                        if (thingList[i].def.entityDefToBuild is TerrainDef terrainDef && !terrainDef.affordances.Contains(terrainAffordanceNeed))
-                        {
-                            if (throwMessages)
-                            {
-                                Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + "TerrainCannotSupport".Translate(this.Props.thingDef), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
-                            }
-                            return false;
-                        }
-                    }
-                }
-            }
-            return true;
-        }
-    }
     public class HediffCompProperties_LinkBuildEntropy : HediffCompProperties_MultiLink
     {
         public HediffCompProperties_LinkBuildEntropy()
@@ -3257,251 +2947,6 @@ namespace HautsPsycasts
             this.exactRotation += this.rotationRate * deltaTime;
         }
     }
-    //flashstorm buff
-    public class CompProperties_AbilityBetterFlashstorm : CompProperties_AbilityEffect
-    {
-        public CompProperties_AbilityBetterFlashstorm()
-        {
-            this.compClass = typeof(CompAbilityEffect_BetterFlashstorm);
-        }
-        public IntRange randomStrikePeriodicity;
-        public IntRange targetedStrikePeriodicity;
-        public float damage;
-        public float armorPenetration;
-        public IntRange initialStrikeDelay;
-    }
-    public class CompAbilityEffect_BetterFlashstorm : CompAbilityEffect
-    {
-        public new CompProperties_AbilityBetterFlashstorm Props
-        {
-            get
-            {
-                return (CompProperties_AbilityBetterFlashstorm)this.props;
-            }
-        }
-        public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
-        {
-            base.Apply(target, dest);
-            Map map = this.parent.pawn.Map;
-            if (HVP_Mod.settings.buffFlashstorm)
-            {
-                Thing conditionCauser = GenSpawn.Spawn(ThingDefOf.Flashstorm, target.Cell, this.parent.pawn.Map, WipeMode.Vanish);
-                GameCondition_BetterFlashstorm gameCondition_Flashstorm = (GameCondition_BetterFlashstorm)GameConditionMaker.MakeCondition(HVPDefOf.HVP_BetterFlashstorm, -1);
-                gameCondition_Flashstorm.centerLocation = target.Cell.ToIntVec2;
-                gameCondition_Flashstorm.ticksBetweenStrikes = this.Props.randomStrikePeriodicity;
-                gameCondition_Flashstorm.ticksBetweenAPBolts = this.Props.targetedStrikePeriodicity;
-                gameCondition_Flashstorm.apBoltDamage = this.Props.damage;
-                gameCondition_Flashstorm.apBoltAP = this.Props.armorPenetration;
-                gameCondition_Flashstorm.areaRadiusOverride = new IntRange(Mathf.RoundToInt(this.parent.def.EffectRadius), Mathf.RoundToInt(this.parent.def.EffectRadius));
-                gameCondition_Flashstorm.Duration = Mathf.RoundToInt((float)this.parent.def.EffectDuration(this.parent.pawn).SecondsToTicks());
-                gameCondition_Flashstorm.suppressEndMessage = true;
-                gameCondition_Flashstorm.initialStrikeDelay = this.Props.initialStrikeDelay;
-                gameCondition_Flashstorm.conditionCauser = conditionCauser;
-                gameCondition_Flashstorm.ambientSound = true;
-                gameCondition_Flashstorm.caster = this.parent.pawn;
-                map.gameConditionManager.RegisterCondition(gameCondition_Flashstorm);
-                this.ApplyGoodwillImpact(target, gameCondition_Flashstorm.AreaRadius);
-            } else {
-                Thing conditionCauser = GenSpawn.Spawn(ThingDefOf.Flashstorm, target.Cell, this.parent.pawn.Map, WipeMode.Vanish);
-                GameCondition_Flashstorm gameCondition_Flashstorm = (GameCondition_Flashstorm)GameConditionMaker.MakeCondition(GameConditionDefOf.Flashstorm, -1);
-                gameCondition_Flashstorm.centerLocation = target.Cell.ToIntVec2;
-                gameCondition_Flashstorm.areaRadiusOverride = new IntRange(Mathf.RoundToInt(this.parent.def.EffectRadius), Mathf.RoundToInt(this.parent.def.EffectRadius));
-                gameCondition_Flashstorm.Duration = Mathf.RoundToInt((float)this.parent.def.EffectDuration(this.parent.pawn).SecondsToTicks());
-                gameCondition_Flashstorm.suppressEndMessage = true;
-                gameCondition_Flashstorm.initialStrikeDelay = new IntRange(60, 180);
-                gameCondition_Flashstorm.conditionCauser = conditionCauser;
-                gameCondition_Flashstorm.ambientSound = true;
-                map.gameConditionManager.RegisterCondition(gameCondition_Flashstorm);
-                this.ApplyGoodwillImpact(target, gameCondition_Flashstorm.AreaRadius);
-            }
-        }
-        private void ApplyGoodwillImpact(LocalTargetInfo target, int radius)
-        {
-            if (this.parent.pawn.Faction != Faction.OfPlayer)
-            {
-                return;
-            }
-            this.affectedFactionCache.Clear();
-            foreach (Thing thing in GenRadial.RadialDistinctThingsAround(target.Cell, this.parent.pawn.Map, (float)radius, true))
-            {
-                Pawn p;
-                if ((p = (thing as Pawn)) != null && thing.Faction != null && thing.Faction != this.parent.pawn.Faction && !thing.Faction.HostileTo(this.parent.pawn.Faction) && !this.affectedFactionCache.Contains(thing.Faction) && (base.Props.applyGoodwillImpactToLodgers || !p.IsQuestLodger()))
-                {
-                    this.affectedFactionCache.Add(thing.Faction);
-                    Faction.OfPlayer.TryAffectGoodwillWith(thing.Faction, base.Props.goodwillImpact, true, true, HistoryEventDefOf.UsedHarmfulAbility, null);
-                }
-            }
-            this.affectedFactionCache.Clear();
-        }
-        public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
-        {
-            if (target.Cell.Roofed(this.parent.pawn.Map))
-            {
-                if (throwMessages)
-                {
-                    Messages.Message("CannotUseAbility".Translate(this.parent.def.label) + ": " + "AbilityRoofed".Translate(), target.ToTargetInfo(this.parent.pawn.Map), MessageTypeDefOf.RejectInput, false);
-                }
-                return false;
-            }
-            return true;
-        }
-        private HashSet<Faction> affectedFactionCache = new HashSet<Faction>();
-    }
-    public class GameCondition_BetterFlashstorm : GameCondition
-    {
-        public int AreaRadius
-        {
-            get
-            {
-                return this.areaRadius;
-            }
-        }
-        public override void ExposeData()
-        {
-            base.ExposeData();
-            Scribe_Values.Look<IntVec2>(ref this.centerLocation, "centerLocation", default(IntVec2), false);
-            Scribe_Values.Look<int>(ref this.areaRadius, "areaRadius", 0, false);
-            Scribe_Values.Look<IntRange>(ref this.areaRadiusOverride, "areaRadiusOverride", default(IntRange), false);
-            Scribe_Values.Look<IntRange>(ref this.ticksBetweenStrikes, "ticksBetweenStrikes", default(IntRange), false);
-            Scribe_Values.Look<IntRange>(ref this.ticksBetweenAPBolts, "ticksBetweenAPBolts", default(IntRange), false);
-            Scribe_Values.Look<float>(ref this.apBoltDamage, "apBoltDamage", 10f, false);
-            Scribe_Values.Look<float>(ref this.apBoltAP, "apBoltAP", 0f, false);
-            Scribe_Values.Look<int>(ref this.nextLightningTicks, "nextLightningTicks", 0, false);
-            Scribe_Values.Look<int>(ref this.nextAPBoltTicks, "nextAPBoltTicks", 0, false);
-            Scribe_Values.Look<IntRange>(ref this.initialStrikeDelay, "initialStrikeDelay", default(IntRange), false);
-            Scribe_Values.Look<bool>(ref this.ambientSound, "ambientSound", false, false);
-            Scribe_Values.Look<bool>(ref this.avoidConditionCauser, "avoidConditionCauser", false, false);
-            Scribe_References.Look<Pawn>(ref this.caster, "caster", false);
-        }
-        public override void Init()
-        {
-            base.Init();
-            this.areaRadius = ((this.areaRadiusOverride == IntRange.Zero) ? GameCondition_BetterFlashstorm.AreaRadiusRange.RandomInRange : this.areaRadiusOverride.RandomInRange);
-            this.nextLightningTicks = Find.TickManager.TicksGame + this.initialStrikeDelay.RandomInRange;
-            this.nextAPBoltTicks = Find.TickManager.TicksGame + this.ticksBetweenAPBolts.RandomInRange;
-            if (this.centerLocation.IsInvalid)
-            {
-                this.FindGoodCenterLocation();
-            }
-        }
-        public override void GameConditionTick()
-        {
-            if (Find.TickManager.TicksGame > this.nextLightningTicks)
-            {
-                Vector2 vector = Rand.UnitVector2 * Rand.Range(0f, (float)this.areaRadius);
-                IntVec3 intVec = new IntVec3((int)Math.Round((double)vector.x) + this.centerLocation.x, 0, (int)Math.Round((double)vector.y) + this.centerLocation.z);
-                if (this.IsGoodLocationForStrike(intVec))
-                {
-                    base.SingleMap.weatherManager.eventHandler.AddEvent(new WeatherEvent_LightningStrike(base.SingleMap, intVec));
-                    this.nextLightningTicks = Find.TickManager.TicksGame + this.ticksBetweenStrikes.RandomInRange;
-                }
-            }
-            if (Find.TickManager.TicksGame > this.nextAPBoltTicks)
-            {
-                Vector2 vector = Rand.UnitVector2 * Rand.Range(0f, (float)this.areaRadius);
-                IntVec3 intVec = new IntVec3((int)Math.Round((double)vector.x) + this.centerLocation.x, 0, (int)Math.Round((double)vector.y) + this.centerLocation.z);
-                if (this.caster != null && this.caster.Faction != null)
-                {
-                    foreach (Thing t in GenRadial.RadialDistinctThingsAround(this.conditionCauser.Position, base.SingleMap, this.areaRadius, true))
-                    {
-                        if (t.HostileTo(this.caster) && t.def.useHitPoints && Rand.Chance(0.1f) && this.IsGoodLocationForStrike(t.PositionHeld))
-                        {
-                            intVec = t.PositionHeld;
-                        }
-                    }
-                }
-                if (this.IsGoodLocationForStrike(intVec))
-                {
-                    HVPUtility.ArmourPiercingBolt(intVec,base.SingleMap,this.caster??this.conditionCauser,(int)this.apBoltDamage,this.apBoltAP);
-                    this.nextAPBoltTicks = Find.TickManager.TicksGame + this.ticksBetweenAPBolts.RandomInRange;
-                }
-            }
-            if (this.ambientSound)
-            {
-                if (this.soundSustainer == null || this.soundSustainer.Ended)
-                {
-                    this.soundSustainer = SoundDefOf.FlashstormAmbience.TrySpawnSustainer(SoundInfo.InMap(new TargetInfo(this.centerLocation.ToIntVec3, base.SingleMap, false), MaintenanceType.PerTick));
-                    return;
-                }
-                this.soundSustainer.Maintain();
-            }
-        }
-        public override void End()
-        {
-            base.SingleMap.weatherDecider.DisableRainFor(30000);
-            base.End();
-        }
-        private void FindGoodCenterLocation()
-        {
-            if (base.SingleMap.Size.x <= 16 || base.SingleMap.Size.z <= 16)
-            {
-                throw new Exception("Map too small for flashstorm.");
-            }
-            for (int i = 0; i < 10; i++)
-            {
-                this.centerLocation = new IntVec2(Rand.Range(8, base.SingleMap.Size.x - 8), Rand.Range(8, base.SingleMap.Size.z - 8));
-                if (this.IsGoodCenterLocation(this.centerLocation))
-                {
-                    break;
-                }
-            }
-        }
-        private bool IsGoodLocationForStrike(IntVec3 loc)
-        {
-            return loc.InBounds(base.SingleMap) && !loc.Roofed(base.SingleMap) && loc.Standable(base.SingleMap) && (!this.avoidConditionCauser || this.conditionCauser == null || !this.conditionCauser.OccupiedRect().ExpandedBy(2).Contains(loc));
-        }
-        private bool IsGoodCenterLocation(IntVec2 loc)
-        {
-            int num = 0;
-            int num2 = (int)(3.1415927f * (float)this.areaRadius * (float)this.areaRadius / 2f);
-            foreach (IntVec3 loc2 in this.GetPotentiallyAffectedCells(loc))
-            {
-                if (this.IsGoodLocationForStrike(loc2))
-                {
-                    num++;
-                }
-                if (num >= num2)
-                {
-                    break;
-                }
-            }
-            return num >= num2;
-        }
-        private IEnumerable<IntVec3> GetPotentiallyAffectedCells(IntVec2 center)
-        {
-            int num;
-            for (int x = center.x - this.areaRadius; x <= center.x + this.areaRadius; x = num)
-            {
-                for (int z = center.z - this.areaRadius; z <= center.z + this.areaRadius; z = num)
-                {
-                    if ((center.x - x) * (center.x - x) + (center.z - z) * (center.z - z) <= this.areaRadius * this.areaRadius)
-                    {
-                        yield return new IntVec3(x, 0, z);
-                    }
-                    num = z + 1;
-                }
-                num = x + 1;
-            }
-            yield break;
-        }
-        public static IntRange AreaRadiusRange = new IntRange(45, 60);
-        public IntRange ticksBetweenStrikes = new IntRange(160, 400);
-        public IntRange ticksBetweenAPBolts = new IntRange(492,492);
-        public float apBoltDamage = 10;
-        public float apBoltAP = 0f;
-        private const int RainDisableTicksAfterConditionEnds = 30000;
-        private const int AvoidConditionCauserExpandRect = 2;
-        public IntVec2 centerLocation = IntVec2.Invalid;
-        public IntRange areaRadiusOverride = IntRange.Zero;
-        public IntRange initialStrikeDelay = IntRange.Zero;
-        public bool ambientSound;
-        private int areaRadius;
-        private int nextLightningTicks;
-        private int nextAPBoltTicks;
-        private Sustainer soundSustainer;
-        public bool avoidConditionCauser;
-        public Pawn caster;
-    }
     //utility methods
     public class HVPUtility
     {
@@ -3685,84 +3130,5 @@ namespace HautsPsycasts
             }
             return curableHediffs;
         }
-    }
-    public class HVP_Settings : ModSettings
-    {
-        public float psytrainersForSaleMultiplier = 1f;
-        public float psycastsLearnedPerLevel = 1f;
-        public bool buffFlashstorm = true;
-        public override void ExposeData()
-        {
-            Scribe_Values.Look(ref psytrainersForSaleMultiplier, "psytrainersForSaleMultiplier", 1f);
-            Scribe_Values.Look(ref psycastsLearnedPerLevel, "psycastsLearnedPerLevel", 1f);
-            Scribe_Values.Look(ref buffFlashstorm, "buffFlashstorm", true);
-            base.ExposeData();
-        }
-    }
-    public class HVP_Mod : Mod
-    {
-        public HVP_Mod(ModContentPack content) : base(content)
-        {
-            HVP_Mod.settings = GetSettings<HVP_Settings>();
-        }
-        public override void DoSettingsWindowContents(Rect inRect)
-        {
-            //number of psytrainers for sale multiplier
-            float x = inRect.xMin, y = inRect.yMin + 25, halfWidth = inRect.width * 0.5f;
-            displayPsytrainerSaleMultiplier = ((int)settings.psytrainersForSaleMultiplier).ToString();
-            float origR = settings.psytrainersForSaleMultiplier;
-            Rect psytrainerSaleRect = new Rect(x + 10, y, halfWidth - 15, 32);
-            settings.psytrainersForSaleMultiplier = Widgets.HorizontalSlider(psytrainerSaleRect, settings.psytrainersForSaleMultiplier, 1f, 3f, true, "HVP_SettingPSM".Translate(), "1x", "3x", 1f);
-            TooltipHandler.TipRegion(psytrainerSaleRect.LeftPart(1f), "HVP_TooltipPsytrainerSaleMulti".Translate());
-            if (origR != settings.psytrainersForSaleMultiplier)
-            {
-                displayPsytrainerSaleMultiplier= ((int)settings.psytrainersForSaleMultiplier).ToString() + "x";
-            }
-            y += 32;
-            string origStringR = displayPsytrainerSaleMultiplier;
-            displayPsytrainerSaleMultiplier = Widgets.TextField(new Rect(x + 10, y, 50, 32), displayPsytrainerSaleMultiplier);
-            if (!displayPsytrainerSaleMultiplier.Equals(origStringR))
-            {
-                this.ParseInput(displayPsytrainerSaleMultiplier, settings.psytrainersForSaleMultiplier, out settings.psytrainersForSaleMultiplier);
-            }
-            y -= 32;
-            //number of psycasts learned per level
-            displayPsycastsLearnedPerLevel = ((int)settings.psycastsLearnedPerLevel).ToString();
-            float origL = settings.psycastsLearnedPerLevel;
-            Rect psycastsLearnedRect = new Rect(x + 5 + halfWidth, y, halfWidth - 15, 32);
-            settings.psycastsLearnedPerLevel = Widgets.HorizontalSlider(psycastsLearnedRect, settings.psycastsLearnedPerLevel, 1f, 4f, true, "HVP_SettingPLPL".Translate(), "1", "4", 1f);
-            TooltipHandler.TipRegion(psycastsLearnedRect.LeftPart(1f), "HVP_TooltipSettingPLPL".Translate());
-            if (origL != settings.psycastsLearnedPerLevel)
-            {
-                displayPsycastsLearnedPerLevel = ((int)settings.psycastsLearnedPerLevel).ToString();
-            }
-            y += 32;
-            string origStringL = displayPsycastsLearnedPerLevel;
-            displayPsycastsLearnedPerLevel = Widgets.TextField(new Rect(x + 5 + halfWidth, y, 50, 32), displayPsycastsLearnedPerLevel);
-            if (!displayPsycastsLearnedPerLevel.Equals(origStringL))
-            {
-                this.ParseInput(displayPsycastsLearnedPerLevel, settings.psycastsLearnedPerLevel, out settings.psycastsLearnedPerLevel);
-            }
-            //buff flashstorm? YES DEFINITELY ABSOLUTELY
-            Listing_Standard listingStandard = new Listing_Standard();
-            listingStandard.Begin(inRect);
-            listingStandard.CheckboxLabeled("HVP_SettingBuffFlashstorm".Translate(), ref settings.buffFlashstorm, "HVP_TooltipBuffFlashstorm".Translate());
-            listingStandard.End();
-            base.DoSettingsWindowContents(inRect);
-        }
-        private void ParseInput(string buffer, float origValue, out float newValue)
-        {
-            if (!float.TryParse(buffer, out newValue))
-                newValue = origValue;
-            if (newValue < 0)
-                newValue = origValue;
-        }
-        public override string SettingsCategory()
-        {
-            return "Hauts' Offbeat Psycasts";
-        }
-        public static HVP_Settings settings;
-        public string displayPsytrainerSaleMultiplier;
-        public string displayPsycastsLearnedPerLevel;
     }
 }

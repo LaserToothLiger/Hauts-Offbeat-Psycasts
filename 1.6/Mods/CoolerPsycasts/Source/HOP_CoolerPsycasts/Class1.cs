@@ -1,13 +1,9 @@
 ﻿using HautsFramework;
 using HautsPsycasts;
 using RimWorld;
-using RimWorld.Planet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 using Verse;
 using Verse.AI.Group;
@@ -203,7 +199,7 @@ namespace HOP_CoolerPsycasts
         {
             if (!this.HasPsyfocusBarCheck(target))
             {
-                return !HautsUtility.IsHighFantasy() ? "HVP_NotAPsycaster".Translate() : "HVP_NotAPsycasterF".Translate();
+                return !ModCompatibilityUtility.IsHighFantasy() ? "HVP_NotAPsycaster".Translate() : "HVP_NotAPsycasterF".Translate();
             }
             return true;
         }
@@ -211,7 +207,7 @@ namespace HOP_CoolerPsycasts
         {
             if (!this.HasPsyfocusBarCheck(this.selectedTarget) || !this.HasPsyfocusBarCheck(target))
             {
-                return !HautsUtility.IsHighFantasy() ? "HVP_NotAPsycaster".Translate() : "HVP_NotAPsycasterF".Translate();
+                return !ModCompatibilityUtility.IsHighFantasy() ? "HVP_NotAPsycaster".Translate() : "HVP_NotAPsycasterF".Translate();
             }
             return true;
         }

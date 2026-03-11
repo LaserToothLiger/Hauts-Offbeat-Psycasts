@@ -61,8 +61,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbilitySpawnAlliedBuilding.cs" />
+    <Compile Include="BetterFlashstorm.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="DefsOf.cs" />
+    <Compile Include="ModSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Psycasts_LvlOne.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
