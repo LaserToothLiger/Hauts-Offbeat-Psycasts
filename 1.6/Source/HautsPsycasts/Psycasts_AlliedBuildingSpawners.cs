@@ -1,10 +1,13 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using VEF.AnimalBehaviours;
 using Verse;
+using Verse.Sound;
 
 namespace HautsPsycasts
 {
     /*derivative of AbilitySpawn that sets the spawned thing to the caster's faction, and requires the targeted cell's terrain to be capable of supporting the spawned thing.
+     * Used by Sinkhole Skip (lvl 1) and Turret Skip (lvl 4).
      * isTrap: prevents targeting of a cell adjacent to any trap building or blueprint thereof
      * allowOnTrees: allows for the targeting of a cell that has a tree. Like any other plant, AbilitySpawn will destroy the tree if necessary to make room for its spawn*/
     public class CompProperties_AbilitySpawnAlliedBuilding : CompProperties_AbilitySpawn
@@ -109,6 +112,87 @@ namespace HautsPsycasts
                 }
             }
             return true;
+        }
+    }
+    //sinkhole traps do not work on VEF floating pawns. They otherwise inflict a stun when sprung; duration scales inversely with the victim's body size
+    public class Building_TrapStunner : Building_Trap
+    {
+        public override void SpawnSetup(Map map, bool respawningAfterLoad)
+        {
+            base.SpawnSetup(map, respawningAfterLoad);
+            if (!respawningAfterLoad)
+            {
+                SoundDefOf.TrapArm.PlayOneShot(new TargetInfo(base.Position, map, false));
+            }
+        }
+        protected override void SpringSub(Pawn p)
+        {
+            if (base.Spawned)
+            {
+                SoundDefOf.TrapSpring.PlayOneShot(new TargetInfo(base.Position, base.Map, false));
+            }
+            if (p == null)
+            {
+                return;
+            }
+            if (!StaticCollectionsClass.floating_animals.Contains(p))
+            {
+                int stunTime = (6 * Building_TrapStunner.DamageRandomFactorRange.RandomInRange / p.BodySize).SecondsToTicks();
+                p.stances.stunner.StunFor(stunTime, this, false, true, false);
+            }
+        }
+        private static readonly FloatRange DamageRandomFactorRange = new FloatRange(0.9f, 1.1f);
+    }
+    //governs skipped turrets' timed life. The various unique fields here are S/VFX that play when the timed life is up
+    public class CompProperties_SkipBackAfterDelay : CompProperties_DestroyAfterDelay
+    {
+        public CompProperties_SkipBackAfterDelay()
+        {
+            this.compClass = typeof(CompSkipBackAfterDelay);
+        }
+        public FleckDef fleck1;
+        public FleckDef fleck2;
+        public float fleckScale;
+        public SoundDef sound;
+    }
+    public class CompSkipBackAfterDelay : CompDestroyAfterDelay
+    {
+        public new CompProperties_SkipBackAfterDelay Props
+        {
+            get
+            {
+                return (CompProperties_SkipBackAfterDelay)this.props;
+            }
+        }
+        public override void CompTick()
+        {
+            if (this.TicksLeft <= 0 && !this.parent.Destroyed)
+            {
+                CompExplosive cexp = this.parent.TryGetComp<CompExplosive>();
+                if (cexp != null && cexp.wickStarted)
+                {
+                    return;
+                }
+                if (this.Props.fleck1 != null)
+                {
+                    FleckCreationData dataStatic = FleckMaker.GetDataStatic(this.parent.Position.ToVector3Shifted(), this.parent.Map, this.Props.fleck1, this.Props.fleckScale);
+                    dataStatic.rotationRate = (float)Rand.Range(-30, 30);
+                    dataStatic.rotation = (float)(90 * Rand.RangeInclusive(0, 3));
+                    this.parent.Map.flecks.CreateFleck(dataStatic);
+                    if (this.Props.fleck2 != null)
+                    {
+                        FleckCreationData dataStatic2 = FleckMaker.GetDataStatic(this.parent.Position.ToVector3Shifted(), this.parent.Map, this.Props.fleck2, this.Props.fleckScale);
+                        dataStatic2.rotationRate = (float)Rand.Range(-30, 30);
+                        dataStatic2.rotation = (float)(90 * Rand.RangeInclusive(0, 3));
+                        this.parent.Map.flecks.CreateFleck(dataStatic2);
+                    }
+                }
+                if (this.Props.sound != null)
+                {
+                    this.Props.sound.PlayOneShot(new TargetInfo(this.parent.Position, this.parent.Map, false));
+                }
+                this.parent.Destroy(this.Props.destroyMode);
+            }
         }
     }
 }

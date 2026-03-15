@@ -2,13 +2,13 @@
 using RimWorld;
 using System;
 using System.Collections.Generic;
-using VEF.AnimalBehaviours;
+using System.Linq;
 using Verse;
-using Verse.Sound;
 
 namespace HautsPsycasts
 {
-    /*Energy Transfer
+    /*Despite having similar names, icons, and premises, the "___ Transfer" psycasts don't actually share a common imperative chassis.
+     * Energy Transfer
      * affectedMeters: removes from any of these needs the first target has, and adds to any of these needs the second target has. If a party has multiple such needs, the amount removed/added from each is reduced commensurately.
      * baseFractionTransferred: takes [this percentage*first target's psysens] of the current level of a need.
      * The amount that the second target's needs gain is based on the amount the first target lost, multiplied by the first target's body size.*/
@@ -141,60 +141,135 @@ namespace HautsPsycasts
             return base.ExtraLabelMouseAttachment(target);
         }
     }
-    //sinkhole traps do not work on VEF floating pawns. They otherwise inflict a stun when sprung; duration scales inversely with the victim's body size
-    public class Building_TrapStunner : Building_Trap
+    /*Skill Transfer has no unique, XML-modifiable parameters for its base function (at least currently).
+     * languageLearningPower: the base amount of progress you get towards learning the skill donor's language. (this is a Cybranian - Rim Langauges thing, and only works if the caster is of your faction)*/
+    public class CompProperties_AbilityTransferSkills : CompProperties_EffectWithDest
     {
-        public override void SpawnSetup(Map map, bool respawningAfterLoad)
-        {
-            base.SpawnSetup(map, respawningAfterLoad);
-            if (!respawningAfterLoad)
-            {
-                SoundDefOf.TrapArm.PlayOneShot(new TargetInfo(base.Position, map, false));
-            }
-        }
-        protected override void SpringSub(Pawn p)
-        {
-            if (base.Spawned)
-            {
-                SoundDefOf.TrapSpring.PlayOneShot(new TargetInfo(base.Position, base.Map, false));
-            }
-            if (p == null)
-            {
-                return;
-            }
-            if (!StaticCollectionsClass.floating_animals.Contains(p))
-            {
-                int stunTime = (6 * Building_TrapStunner.DamageRandomFactorRange.RandomInRange / p.BodySize).SecondsToTicks();
-                p.stances.stunner.StunFor(stunTime, this, false, true, false);
-            }
-        }
-        private static readonly FloatRange DamageRandomFactorRange = new FloatRange(0.9f, 1.1f);
+        public float languageLearningPower = 0.05f;
     }
-    //Word of Warning's buff is a DamageNegation comp that only works if the pawn isn't downed or sleeping. Regardless of whether that condition is met, the cost is paid on taking damage; as set up in XML, this causes its removal
-    public class HediffCompProperties_Forewarned : HediffCompProperties_DamageNegation
+    public class CompAbilityEffect_TransferSkills : CompAbilityEffect_WithDest
     {
-        public HediffCompProperties_Forewarned()
-        {
-            this.compClass = typeof(HediffComp_Forewarned);
-        }
-        public bool mustBeConscious;
-    }
-    public class HediffComp_Forewarned : HediffComp_DamageNegation
-    {
-        public new HediffCompProperties_Forewarned Props
+        public new CompProperties_AbilityTransferSkills Props
         {
             get
             {
-                return (HediffCompProperties_Forewarned)this.props;
+                return (CompProperties_AbilityTransferSkills)this.props;
             }
         }
-        public override bool ShouldDoModificationInner(DamageInfo dinfo)
+        public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
         {
-            if (this.Props.mustBeConscious && (this.Pawn.Downed || !this.Pawn.Awake() || this.Pawn.Suspended))
+            if (target.HasThing && dest.HasThing)
+            {
+                base.Apply(target, dest);
+                if (target.Thing is Pawn pawn && dest.Thing is Pawn pawn2 && pawn.skills != null && pawn2.skills != null)
+                {
+                    Dictionary<SkillDef, int> skillDiffs = new Dictionary<SkillDef, int>();
+                    foreach (SkillRecord s in pawn.skills.skills)
+                    {
+                        if (!s.TotallyDisabled)
+                        {
+                            SkillRecord s2 = pawn2.skills.GetSkill(s.def);
+                            if (s2 != null && !s2.TotallyDisabled)
+                            {
+                                skillDiffs.Add(s.def, s.GetLevel(false) - s2.GetLevel(false));
+                            }
+                        }
+                    }
+                    if (skillDiffs.Count > 0)
+                    {
+                        int highestSkillDiff = skillDiffs.Values.Max();
+                        SkillDef toTransfer = skillDiffs.Keys.Where((SkillDef sd) => skillDiffs.TryGetValue(sd) >= highestSkillDiff).RandomElement();
+                        if (toTransfer != null)
+                        {
+                            SkillRecord pawnSkill = pawn.skills.GetSkill(toTransfer);
+                            SkillRecord pawnSkill2 = pawn2.skills.GetSkill(toTransfer);
+                            pawnSkill.Learn(-pawnSkill.xpSinceLastLevel - (Rand.Value * SkillRecord.XpRequiredToLevelUpFrom(pawnSkill.GetLevel(false) - 1)), true, true);
+                            pawnSkill2.Learn(pawnSkill2.XpRequiredForLevelUp, true, true);
+                        }
+                    }
+                    ModCompatibilityUtility.LearnLanguage(pawn2, pawn, this.Props.languageLearningPower);
+                }
+            }
+        }
+        public override TargetingParameters targetParams
+        {
+            get
+            {
+                return new TargetingParameters
+                {
+                    canTargetSelf = true,
+                    canTargetBuildings = false,
+                    canTargetAnimals = false,
+                    canTargetMechs = true,
+                    canTargetLocations = false
+                };
+            }
+        }
+        public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
+        {
+            return target != this.selectedTarget && this.HasAnyHigherSkills(target, this.selectedTarget) && base.ValidateTarget(target, showMessages);
+        }
+        public override bool CanHitTarget(LocalTargetInfo target)
+        {
+            return base.CanHitTarget(target) && this.HasAnySkillsCheck(target);
+        }
+        public override bool Valid(LocalTargetInfo target, bool showMessages = true)
+        {
+            AcceptanceReport acceptanceReport = this.HasAnySkills(target);
+            if (!acceptanceReport)
+            {
+                if (showMessages && !acceptanceReport.Reason.NullOrEmpty() && target.Thing is Pawn pawn)
+                {
+                    Messages.Message("HVP_CannotTransfer".Translate(pawn.Named("PAWN")) + ": " + acceptanceReport.Reason, pawn, MessageTypeDefOf.RejectInput, false);
+                }
+                return false;
+            }
+            return base.Valid(target, showMessages);
+        }
+        private AcceptanceReport HasAnySkills(LocalTargetInfo target)
+        {
+            if (!this.HasAnySkillsCheck(target))
+            {
+                return "HVP_NoTransferrableSkills".Translate();
+            }
+            return true;
+        }
+        private AcceptanceReport HasAnyHigherSkills(LocalTargetInfo target, LocalTargetInfo selectedTarget)
+        {
+            if (!this.HasAnySkillsCheck(this.selectedTarget) || !this.HasAnySkillsCheck(target))
             {
                 return false;
             }
-            return base.ShouldDoModificationInner(dinfo);
+            bool donorHasAnyHigherSkill = false;
+            foreach (SkillRecord sr in target.Pawn.skills.skills)
+            {
+                if (!sr.TotallyDisabled && !this.selectedTarget.Pawn.skills.GetSkill(sr.def).TotallyDisabled && sr.Level > this.selectedTarget.Pawn.skills.GetSkill(sr.def).Level)
+                {
+                    donorHasAnyHigherSkill = true;
+                    break;
+                }
+            }
+            if (donorHasAnyHigherSkill)
+            {
+                return true;
+            }
+            return "HVP_NoLowerSkills".Translate();
+        }
+        private bool HasAnySkillsCheck(LocalTargetInfo target)
+        {
+            if (target.Thing != null && target.Thing is Pawn p && p.GetStatValue(StatDefOf.PsychicSensitivity) > float.Epsilon && p.skills != null && p.skills.skills.ContainsAny((SkillRecord sr) => !sr.TotallyDisabled))
+            {
+                return true;
+            }
+            return false;
+        }
+        public override string ExtraLabelMouseAttachment(LocalTargetInfo target)
+        {
+            if (target.Thing != null && target.Thing is Pawn pawn)
+            {
+                return this.HasAnySkills(target).Reason;
+            }
+            return base.ExtraLabelMouseAttachment(target);
         }
     }
 }

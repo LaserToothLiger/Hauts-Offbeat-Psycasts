@@ -170,6 +170,7 @@
         <clamorRadius>10</clamorRadius>
         <destClamorType>Ability</destClamorType>
         <destClamorRadius>10</destClamorRadius>
+		<languageLearningPower>0.05</languageLearningPower><!--language learning effect with RimLanguages. More is better-->
       </li>
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDef>PsycastPsychicEffect</fleckDef>

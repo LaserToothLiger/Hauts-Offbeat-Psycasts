@@ -28,9 +28,9 @@
       <li Class="HautsPsycasts.CompProperties_AbilityDropPod">
         <compClass>HautsPsycasts.CompAbilityEffect_DropPod</compClass>
 		<weightings>
-		  <li><key>resources</key><value>10</value></li>
-		  <li><key>slag</key><value>9</value></li>
-		  <li><key>animal</key><value>1</value></li>
+		  <li><key>Resources</key><value>10</value></li>
+		  <li><key>Slag</key><value>9</value></li>
+		  <li><key>Animal</key><value>1</value></li>
 		  <!--<li><key>burnup</key><value>1</value></li>at present, because I am lazy, the keys are just strings instead of being like, the names of code or whatever. only the strings "resources", "slag", and "animal" do anything; anything else returns the fallback event, which is the pod burning up on entry and spraying ash on the floor-->
 		</weightings>
 		<podPerStatCurve>

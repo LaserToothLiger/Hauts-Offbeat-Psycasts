@@ -594,7 +594,7 @@
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName="HVP_SquadronCall"]/description</xpath>
 								<value>
-									<description>Summon daring warriors from the heavens to the targeted location. They take orders from the caster, but will disappear after 6 hours or when downed. They may be slain without consequence.</description>
+									<description>Summon daring warriors from the heavens to the targeted location. The more magic sensitivity the caster has, the more warriors are summoned (to a max of 25 warriors at 2000% magic sensitivity). They take orders from the caster, but will disappear after 6 hours or when downed. They may be slain without consequence.</description>
 								</value>
 							</li>
 							<!--level 9-->

@@ -34,7 +34,7 @@
         <clamorRadius>10</clamorRadius>
         <destClamorType>Ability</destClamorType>
         <destClamorRadius>10</destClamorRadius>
-		<hediffToSelf>HVP_TransferredPsyfocus</hediffToSelf>
+		<hediffToRecipient>HVP_TransferredPsyfocus</hediffToRecipient>
 		<maxPsyfocusStolen>0.5</maxPsyfocusStolen>
 		<maxPsyfocusReceived>0.5</maxPsyfocusReceived>
 		<severityPerStolenPsyfocus>2</severityPerStolenPsyfocus><!--you'd get 2 hours per 100% psyfocus stolen, since the hediff's severity depletes by 1 per hour-->
@@ -101,7 +101,7 @@
   <AbilityDef ParentName="HVP_PsycastBaseCall">
     <defName>HVP_SquadronCall</defName>
     <label>squadron call</label>
-    <description>Summon rapid-response drop troopers from an orbital barge to the targeted location. These troopers are under the caster's control and will disappear after 6 hours or when downed. They may be slain without consequence.</description>
+    <description>Summon rapid-response drop troopers from an orbital barge to the targeted location. The more psychic sensitivity the caster has, the more troopers are summoned (to a max of 25 troopers at 2000% psychic sensitivity). These troopers are under the caster's control and will disappear after 6 hours or when downed. They may be slain without consequence.</description>
     <level>8</level>
     <iconPath>Psycasts/HVP_SquadronCall</iconPath>
     <hostile>false</hostile>
