@@ -239,7 +239,7 @@
     <defName>HVP_Voidquake</defName>
     <label>voidquake</label>
     <description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged and living creatures will flee in fear - unless they are within the safe zone. The sunlight itself will dim briefly. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day psychic coma.\n\nUnlike a neuroquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
-    <level>10</level>
+    <level>9</level>
     <iconPath>Psycasts/HVP_Voidquake</iconPath>
     <hotKey>Misc12</hotKey>
     <jobDef>CastAbilityOnThingUninterruptible</jobDef>

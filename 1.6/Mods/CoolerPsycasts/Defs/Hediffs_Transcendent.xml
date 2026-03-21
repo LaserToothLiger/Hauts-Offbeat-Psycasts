@@ -138,6 +138,9 @@
   
   <HediffDef ParentName="HVT_TraitHediffBase" Name="HVP_BlessingHediff" Abstract="True">
     <hediffClass>HOP_CoolerPsycasts.HediffBlessing</hediffClass>
+	<minSeverity>0.001</minSeverity>
+	<initialSeverity>1</initialSeverity>
+	<maxSeverity>1</maxSeverity>
   </HediffDef>
   <HediffDef ParentName="HVP_BlessingHediff">
     <defName>HVP_BlessingSpirit</defName>
@@ -145,6 +148,11 @@
     <description>Psychic competence granted by the Word of Blessing.</description>
     <stages>
 	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
 		<statOffsets>
 		  <MeditationFocusGain>0.05</MeditationFocusGain>
 		  <PsychicSensitivity>0.6</PsychicSensitivity>
@@ -158,6 +166,11 @@
     <description>An enhanced capacity for learning granted by the Word of Blessing.</description>
     <stages>
 	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
 		<statOffsets>
 		  <GlobalLearningFactor>0.75</GlobalLearningFactor>
 		  <LearningRateFactor MayRequire="Ludeon.RimWorld.Biotech">0.75</LearningRateFactor>
@@ -171,6 +184,11 @@
     <description>Resistance to injury and environmental hazards granted by the Word of Blessing.</description>
     <stages>
 	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
 		<statOffsets>
 		  <ImmunityGainSpeed>0.5</ImmunityGainSpeed>
 		  <PainShockThreshold>0.3</PainShockThreshold>
@@ -179,7 +197,7 @@
 		  <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.5</VacuumResistance>
 		</statOffsets>
 		<statFactors>
-		  <IncomingDamageFactor>0.5</IncomingDamageFactor>
+		  <IncomingDamageFactor>0.75</IncomingDamageFactor>
 		  <VEF_MassCarryCapacity>1.5</VEF_MassCarryCapacity>
 		</statFactors>
 	  </li>
@@ -191,6 +209,11 @@
     <description>Vitality granted by the Word of Blessing.</description>
     <stages>
 	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
 		<statOffsets>
 		  <InjuryHealingFactor>1</InjuryHealingFactor>
 		</statOffsets>
@@ -207,6 +230,11 @@
     <description>Speed granted by the Word of Blessing.</description>
     <stages>
 	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
 		<statFactors>
 		  <PawnTrapSpringChance>0</PawnTrapSpringChance>
 		</statFactors>
@@ -225,6 +253,11 @@
     <description>Motor skill granted by the Word of Blessing.</description>
     <stages>
 	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
 		<capMods>
           <li>
             <capacity>Manipulation</capacity>
@@ -240,6 +273,11 @@
     <description>A connection with the natural world granted by the Word of Blessing.</description>
     <stages>
 	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
 		<statOffsets>
 		  <PlantWorkSpeed>1</PlantWorkSpeed>
 		  <TameAnimalChance>0.2</TameAnimalChance>
@@ -257,6 +295,11 @@
     <description>Influence over others granted by the Word of Blessing.</description>
     <stages>
 	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
 		<statOffsets>
 		  <ArrestSuccessChance>0.2</ArrestSuccessChance>
 		  <NegotiationAbility>0.2</NegotiationAbility>
@@ -275,6 +318,11 @@
     <description>Heavily reduced dependency on external factors for survival and gratification, granted by the Word of Blessing.</description>
     <stages>
 	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
 		<statFactors>
 		  <RestFallRateFactor>0.1</RestFallRateFactor>
 		  <JoyFallRateFactor>0.1</JoyFallRateFactor>

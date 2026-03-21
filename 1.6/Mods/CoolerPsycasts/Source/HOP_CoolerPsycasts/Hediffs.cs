@@ -33,7 +33,7 @@ namespace HOP_CoolerPsycasts
             }
         }
     }
-    //Blessings from Word of Blessing cannot coexist on the same pawn, because they remove each other
+    //Blessings from Word of Blessing cannot coexist on the same pawn, because they remove each other. They also fade if the victim is psychically deaf
     public class HediffBlessing : Hediff
     {
         public override void PostAdd(DamageInfo? dinfo)
@@ -50,6 +50,14 @@ namespace HOP_CoolerPsycasts
             foreach (Hediff h in otherBlessings)
             {
                 this.pawn.health.RemoveHediff(h);
+            }
+        }
+        public override void TickInterval(int delta)
+        {
+            base.TickInterval(delta);
+            if (this.pawn.IsHashIntervalTick(250))
+            {
+                this.Severity = this.pawn.GetStatValue(StatDefOf.PsychicSensitivity) <= float.Epsilon ? this.def.minSeverity : this.def.maxSeverity;
             }
         }
     }

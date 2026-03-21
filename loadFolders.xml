@@ -6,7 +6,7 @@
 	<v1.6>
 		<li>/</li>
 		<li>1.6</li>
-		<li IfModActive="metalocif.coolerpsycasts">1.6/Mods/CoolerPsycasts</li>
-		<li IfModActive="CETeam.CombatExtended">1.6/Mods/CombatExtended</li>
+		<li IfModActive="metalocif.coolerpsycasts">1.6/Mods/CoolerPsycasts</li><!--adds six psycasts of level 7+-->
+		<li IfModActive="CETeam.CombatExtended">1.6/Mods/CombatExtended</li><!--skipped turret never runs out of ammo-->
 	</v1.6>
 </loadFolders>

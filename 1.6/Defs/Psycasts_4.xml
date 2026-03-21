@@ -147,7 +147,6 @@
     <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
     <statBases>
       <Ability_PsyfocusCost>0.35</Ability_PsyfocusCost>
-      <Ability_Duration>250</Ability_Duration>
     </statBases>
     <verbProperties>
       <warmupTime>2</warmupTime>
