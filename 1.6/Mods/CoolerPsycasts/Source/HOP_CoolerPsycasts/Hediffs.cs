@@ -133,4 +133,44 @@ namespace HOP_CoolerPsycasts
             }
         }
     }
+    /*voidquake inflicts a hediff on the caster.
+     * mentalStateMTBdays: MTB this many days...
+     * mentalStateRoster: do a random mental STATE from this list*/
+    public class HediffCompProperties_VoidExposure : HediffCompProperties_SeverityPerDay
+    {
+        public HediffCompProperties_VoidExposure()
+        {
+            this.compClass = typeof(HediffComp_VoidExposure);
+        }
+        public float mentalStateMTBdays;
+        public List<MentalStateDef> mentalStateRoster;
+    }
+    public class HediffComp_VoidExposure : HediffComp_SeverityPerDay
+    {
+        public HediffCompProperties_VoidExposure Props
+        {
+            get
+            {
+                return (HediffCompProperties_VoidExposure)this.props;
+            }
+        }
+        public override void CompPostTickInterval(ref float severityAdjustment, int delta)
+        {
+            base.CompPostTickInterval(ref severityAdjustment, delta);
+            if (this.Pawn.IsHashIntervalTick(1020) && this.Pawn.mindState != null && this.Pawn.mindState.mentalStateHandler != null && !this.Pawn.mindState.mentalStateHandler.InMentalState && Rand.MTBEventOccurs(this.Props.mentalStateMTBdays, 60000f, 1020f))
+            {
+                List<MentalStateDef> msds = this.Props.mentalStateRoster;
+                while (msds.Count > 0)
+                {
+                    MentalStateDef msd = msds.RandomElement();
+                    if (this.Pawn.mindState.mentalStateHandler.TryStartMentalState(msd))
+                    {
+                        break;
+                    } else {
+                        msds.Remove(msd);
+                    }
+                }
+            }
+        }
+    }
 }

@@ -59,7 +59,7 @@
   <AbilityDef ParentName="HVP_PsycastBaseCall">
     <defName>HVP_FortuneCall</defName>
     <label>fortune call</label>
-    <description>Convince higher powers within the psychic field to arrange for one or more positive events to occur within the next 2-24 hours. The more psychic sensitivity the caster has, the more good events will happen (to a max of 6 events at 1200% psychic sensitivity). After casting, the caster will fall into a 2-day coma.</description>
+    <description>Convince higher powers within the psychic field to arrange for one or more positive events to occur within the next 2-24 hours. The more psychic sensitivity the caster has, the more good events will happen (to a max of 6 events at 1200% psychic sensitivity). After casting, the caster will fall into a half-day coma.</description>
     <level>6</level>
     <iconPath>Psycasts/HVP_FortuneCall</iconPath>
     <hostile>false</hostile>

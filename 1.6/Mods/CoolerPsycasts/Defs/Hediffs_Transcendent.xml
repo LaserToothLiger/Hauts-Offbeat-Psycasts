@@ -372,8 +372,7 @@
 	</comps>
   </HediffDef>
   
-  <!--level 10:
-  voidquake-->
+  <!--voidquake-->
   <HediffDef>
     <defName>HVP_VoidquakeMalus</defName>
     <label>voidquake</label>
@@ -406,6 +405,36 @@
         </capMods>
       </li>
     </stages>
+  </HediffDef>
+  <HediffDef>
+    <defName>HVP_VoidquakeSelf</defName>
+    <label>void exposure</label>
+    <description>Psychological backlash from the casting of a voidquake, resulting in frequent mental breaks regardless of mood.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+	<initialSeverity>10</initialSeverity>
+    <stages>
+      <li>
+		<statOffsets>
+		  <MentalBreakThreshold>0.1</MentalBreakThreshold>
+		</statOffsets>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HOP_CoolerPsycasts.HediffCompProperties_VoidExposure">
+        <severityPerDay>-1</severityPerDay>
+		<showDaysToRecover>true</showDaysToRecover>
+		<mentalStateMTBdays>5</mentalStateMTBdays>
+		<mentalStateRoster>
+		  <li>Berserk</li>
+		  <li>CorpseObsession</li>
+		  <li>Wander_Psychotic</li>
+		  <li>InsultingSpree</li>
+		  <li MayRequire="Ludeon.RimWorld.Anomaly">InsaneRamblings</li>
+		  <li MayRequire="Ludeon.RimWorld.Anomaly">TerrifyingHallucinations</li>
+		  <!--<li MayRequire="Ludeon.RimWorld.Anomaly">HumanityBreak</li> you need the appropriate precept for this to work-->
+		</mentalStateRoster>
+      </li>
+    </comps>
   </HediffDef>
   
 </Defs>

@@ -302,7 +302,8 @@ namespace HOP_CoolerPsycasts
     /*Voidquake
      * incidentDef: creates this incident on cast
      * mentalState: inflicts this state on non-Anomaly organic pawns
-     * hediffMechs|Entities: inflicts this hediff on non-Anomaly non-flesh pawns|Anomaly pawns*/
+     * hediffMechs|Entities: inflicts this hediff on non-Anomaly non-flesh pawns|Anomaly pawns
+     * bonusHediffOnSelf: give this hediff to the caster*/
     public class CompProperties_AbilityVoidquake : CompProperties_AbilityEffect
     {
         public CompProperties_AbilityVoidquake()
@@ -313,6 +314,7 @@ namespace HOP_CoolerPsycasts
         public MentalStateDef mentalState;
         public HediffDef hediffMechs;
         public HediffDef hediffEntities;
+        public HediffDef bonusHediffOnSelf;
     }
     public class CompAbilityEffect_Voidquake : CompAbilityEffect
     {
@@ -354,6 +356,16 @@ namespace HOP_CoolerPsycasts
                     parms = Find.Storyteller.storytellerComps.First((StorytellerComp x) => x is StorytellerComp_OnOffCycle || x is StorytellerComp_RandomMain).GenerateParms(this.Props.incidentDef.category, parms.target);
                 }
                 this.Props.incidentDef.Worker.TryExecute(parms);
+            }
+            if (this.Props.bonusHediffOnSelf != null)
+            {
+                Hediff h = this.parent.pawn.health.hediffSet.GetFirstHediffOfDef(this.Props.bonusHediffOnSelf);
+                if (h != null)
+                {
+                    h.Severity += h.def.initialSeverity;
+                } else {
+                    this.parent.pawn.health.AddHediff(HediffMaker.MakeHediff(this.Props.bonusHediffOnSelf, this.parent.pawn, null));
+                }
             }
             base.Apply(target, dest);
         }

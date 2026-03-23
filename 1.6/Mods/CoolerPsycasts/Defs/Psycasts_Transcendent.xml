@@ -199,7 +199,7 @@
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfBlessing</defName>
     <label>word of blessing</label>
-    <description>Speak a litany of flesh-warping archotechnic words to alter the cellular makeup of the target. This will grant a permanent buff of the target's choice. No creature may have more than one blessing at a time; choosing a new one replaces the previous one.</description>
+    <description>Speak a litany of flesh-warping archotechnic words to alter the cellular makeup of the target. This will grant a permanent buff of the target's choice. No creature may have more than one blessing at a time; choosing a new one replaces the previous one.\n\nBlessings can improve psychic ability, learning speed, constitution, longevity and regeneration, speed, manipulation, caravan speed and animal/plant work, social prowess, or the length of time one can go without satisfying one's needs.</description>
     <level>9</level>
     <iconPath>Psycasts/HVP_WordOfBlessing</iconPath>
     <hostile>false</hostile>
@@ -232,13 +232,10 @@
       </li>
     </comps>
   </AbilityDef>
-  
-  <!--level 10-->
-
   <AbilityDef ParentName="PsycastBase">
     <defName>HVP_Voidquake</defName>
     <label>voidquake</label>
-    <description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged and living creatures will flee in fear - unless they are within the safe zone. The sunlight itself will dim briefly. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day psychic coma.\n\nUnlike a neuroquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
+    <description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged and living creatures will flee in fear - unless they are within the safe zone. The sunlight itself will dim briefly. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day psychic coma and have a lingering propensity for severe mental breaks for up to five days past that.\n\nUnlike a neuroquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
     <level>9</level>
     <iconPath>Psycasts/HVP_Voidquake</iconPath>
     <hotKey>Misc12</hotKey>
@@ -274,6 +271,7 @@
 		<mentalState>PanicFlee</mentalState>
         <hediffMechs>HVP_VoidquakeMalus</hediffMechs>
         <hediffEntities>HVP_VoidquakeBonus</hediffEntities>
+		<bonusHediffOnSelf>HVP_VoidquakeSelf</bonusHediffOnSelf>
       </li>
       <li Class="CompProperties_AbilityGiveHediff">
         <compClass>CompAbilityEffect_GiveHediff</compClass>
