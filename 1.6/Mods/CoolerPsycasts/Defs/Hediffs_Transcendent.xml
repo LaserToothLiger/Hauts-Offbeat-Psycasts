@@ -126,6 +126,7 @@
 			<li>HVP_BlessingCharisma</li>
 			<li>HVP_BlessingStasis</li>
 		</hediffs>
+		<removeExistingOptionsFromPawn>true</removeExistingOptionsFromPawn>
 		<menuString>HVP_BlessingMenu</menuString>
       </li>
 	  <li Class = "CompProperties_AbilityRemoveHediff">

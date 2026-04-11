@@ -83,6 +83,14 @@ namespace HautsPsycasts
         }
         public override bool ValidateTarget(LocalTargetInfo target, bool showMessages = true)
         {
+            if (target.Pawn != null && target.Pawn.GetStatValue(StatDefOf.PsychicSensitivity) < float.Epsilon)
+            {
+                if (showMessages)
+                {
+                    Messages.Message("HVP_CannotTransfer".Translate(target.Pawn.Named("PAWN")) + ": " + "AbilityTargetPsychicallyDeaf".Translate(), target.Pawn, MessageTypeDefOf.RejectInput, false);
+                }
+                return false;
+            }
             return target != this.selectedTarget && this.HasAnyNeedCheck(this.selectedTarget) && this.HasAnyNeedCheck(target) && base.ValidateTarget(target, showMessages);
         }
         public override bool CanHitTarget(LocalTargetInfo target)
@@ -112,7 +120,7 @@ namespace HautsPsycasts
         }
         private bool HasAnyNeedCheck(LocalTargetInfo target)
         {
-            if (target.Thing != null && target.Thing is Pawn p && p.GetStatValue(StatDefOf.PsychicSensitivity) > float.Epsilon)
+            if (target.Thing != null && target.Thing is Pawn p)
             {
                 bool anyNeed = false;
                 foreach (NeedDef n in this.Props.affectedMeters)

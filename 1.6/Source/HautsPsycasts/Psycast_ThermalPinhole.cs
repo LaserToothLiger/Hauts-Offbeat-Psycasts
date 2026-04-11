@@ -1,13 +1,15 @@
 ﻿using HautsFramework;
+using RimWorld;
 using System;
 using Verse;
 
 namespace HautsPsycasts
 {
-    /*Thermal Pinhole was also supposed to extinguish wicks on lit explosives, but for some reason I walked this back. Currently doesn't do that. Instead...
-     * heatPerSecond: pushes positive or negative heat of up to this amount every 60 ticks. The directionality is whichever would bring the current local temperature into...
+    /*heatPerSecond: pushes positive or negative heat of up to this amount every 60 ticks. The directionality is whichever would bring the current local temperature into...
      * desiredTemperatureRange: ...this range. If already in this range, don't push heat
      * fireExtinguishment: how much extinguishing damage is dealt to each BadAttachable (fire, VGE astrofire, VQE Cryptoforge cryptofreeze...) that is found within fireRadius cells
+     *      (also, within that radius, each pulse also extinguishes the wicks of explosives e.g. landmines or chemfuel. This isn't advertised in the ability tooltip because it's not a surefire reliable effect w/ some mods that
+     *      add explosive items which detonate nigh-instantly, e.g. Combat Extended. I don't want players thinking "oh cool, it stops explosives from going off!" and then WHOOM because its entire timer elapsed between 2 pulses)
      * effecterDef: nifty little visual effect to distinguish thermal pinholes from regular solar pinholes (although a slightly different color and the skipgate overlay help with that too)*/
     public class CompProperties_ThermoPusher : CompProperties
     {
@@ -80,6 +82,11 @@ namespace HautsPsycasts
                 if (ba != null && ba.extinguishingDamageDef != null)
                 {
                     thing.TakeDamage(new DamageInfo(ba.extinguishingDamageDef, this.Props.fireExtinguishment));
+                }
+                CompExplosive ce = thing.TryGetComp<CompExplosive>();
+                if (ce != null && ce.wickStarted)
+                {
+                    ce.StopWick();
                 }
             }
         }

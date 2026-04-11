@@ -246,7 +246,7 @@
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
     <statBases>
-      <Ability_EntropyGain>30</Ability_EntropyGain>
+      <Ability_EntropyGain>35</Ability_EntropyGain>
       <Ability_PsyfocusCost>0.03</Ability_PsyfocusCost>
       <Ability_EffectRadius>44.9</Ability_EffectRadius>
       <Ability_Duration>84</Ability_Duration>
