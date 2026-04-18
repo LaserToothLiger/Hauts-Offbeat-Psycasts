@@ -231,24 +231,18 @@ namespace HautsPsycasts
                     if (!Rand.Chance(chanceToLose) || !this.innerContainer[i].def.destroyable)
                     {
                         this.innerContainer.TryDrop(this.innerContainer[i], this.Pawn.PositionHeld, this.Pawn.MapHeld, ThingPlaceMode.Near, out Thing thing);
-                    }
-                    else
-                    {
+                    } else {
                         this.innerContainer[i].Destroy();
                         lostAnItem = true;
                     }
                 }
-            }
-            else if (this.Pawn.IsCaravanMember())
-            {
+            } else if (this.Pawn.IsCaravanMember()) {
                 for (int i = this.innerContainer.Count - 1; i >= 0; i--)
                 {
                     if (!Rand.Chance(chanceToLose) || !this.innerContainer[i].def.destroyable)
                     {
                         this.innerContainer.TryTransferToContainer(this.innerContainer[i], this.Pawn.inventory.innerContainer, this.innerContainer[i].stackCount, out Thing thing);
-                    }
-                    else
-                    {
+                    } else {
                         this.innerContainer[i].Destroy();
                         lostAnItem = true;
                     }

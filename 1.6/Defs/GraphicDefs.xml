@@ -197,10 +197,10 @@
 			<needsMaintenance>true</needsMaintenance>
 		</mote>
 		<graphicData>
-		  <graphicClass>Graphic_Single</graphicClass>
+		  <graphicClass>Graphic_Mote</graphicClass>
 		  <color>(0.4,0.9,0.5,0.5)</color>
 		  <texPath>Things/Mote/FeedbackExtinguish</texPath>
-		  <drawSize>1</drawSize>
+		  <drawSize>1.4</drawSize>
 		</graphicData>
 	  </ThingDef>
   <ThingDef ParentName="MoteBase">
@@ -233,29 +233,12 @@
 			<needsMaintenance>true</needsMaintenance>
 		</mote>
 		<graphicData>
-		  <graphicClass>Graphic_Single</graphicClass>
+		  <graphicClass>Graphic_Mote</graphicClass>
 		  <color>(1,0.8,0.8,1)</color>
 		  <texPath>UI/Overlays/ArrowGhost</texPath>
-		  <drawSize>1</drawSize>
-		  <drawOffset>(0,0,0.37)</drawOffset>
+		  <drawSize>1.5</drawSize>
+		  <drawOffset>(0,0,1)</drawOffset>
 		</graphicData>
 	  </ThingDef>
-  <ThingDef ParentName="MoteBase">
-    <defName>HVP_Mote_ControlBeam</defName>
-    <thingClass>MoteDualAttached</thingClass>
-    <altitudeLayer>MoteLow</altitudeLayer>
-    <mote>
-      <fadeInTime>0.1</fadeInTime>
-      <fadeOutTime>0.1</fadeOutTime>
-      <solidTime>999999</solidTime>
-      <needsMaintenance>True</needsMaintenance>
-      <rotateTowardsTarget>True</rotateTowardsTarget>
-      <scaleToConnectTargets>True</scaleToConnectTargets>
-    </mote>
-    <graphicData>
-      <shaderType>MoteGlow</shaderType>
-      <texPath>Things/Mote/PsychicLinkLine</texPath>
-    </graphicData>
-  </ThingDef>
   
 </Defs>

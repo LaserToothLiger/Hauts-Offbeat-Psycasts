@@ -4,7 +4,7 @@
   <AbilityDef ParentName="PsycastBase">
     <defName>HVP_Agonize</defName>
     <label>agonize</label>
-    <description>Stimulate pain pathways in the target's nervous system for a short time. Affected mechanoids lose processing power instead.\n\n Multiple casts on the same target do not stack.</description>
+    <description>Stimulate pain pathways in the target's nervous system for a short time. Affected mechanoids lose processing power instead.\n\nMultiple casts on the same target do not stack.</description>
     <level>1</level>
     <iconPath>Psycasts/HVP_Agonize</iconPath>
     <writeCombatLog>True</writeCombatLog>

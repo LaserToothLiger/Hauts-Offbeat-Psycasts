@@ -399,7 +399,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_ThermalPinhole"]/description</xpath>
 					<value>
-						<description>Generate a small ball of celestial sunlight. It will hover in place, providing enough light to work by and grow plants in, as well as suppressing nearby fires and adjusting the local temperature to that of a lukewarm day.</description>
+						<description>Generate a small ball of celestial sunlight. It will hover in place, providing enough light to work by and grow plants in. It also influences the local temperature towards that of a lukewarm day, and it even extinguishes nearby fires and lit explosives once a second.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">

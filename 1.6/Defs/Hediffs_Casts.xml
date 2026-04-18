@@ -299,9 +299,7 @@
 		<soundExit>Psycast_Skip_Exit</soundExit>
         <stunTicks>18~60</stunTicks>
       </li>
-      <li Class="HediffCompProperties_Disappears">
-        <showRemainingTime>True</showRemainingTime>
-      </li>
+      <li Class="HediffCompProperties_Disappears" />
       <li Class="HediffCompProperties_DisappearsOnDeath"/>
 	</comps>
   </HediffDef>
@@ -579,6 +577,7 @@
 	  <li Class="HautsFramework.HediffCompProperties_MoteConditional">
 		<mote>HVP_BoosterVictimMote</mote>
 		<scale>1</scale>
+		<useHeadOffsetAboveOneBodySize>true</useHeadOffsetAboveOneBodySize>
 	  </li>
 	</comps>
   </HediffDef>

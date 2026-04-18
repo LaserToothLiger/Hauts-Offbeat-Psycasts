@@ -290,6 +290,9 @@
 		<stopAtActivity>9999</stopAtActivity>
       </li>
     </comps>
+	<modExtensions>
+	  <li Class="CoolPsycasts.NotUsableByAvatar"/>
+	</modExtensions>
   </AbilityDef>
   
 </Defs>

@@ -157,7 +157,7 @@ namespace HautsPsycasts
         //gizmos granted to the controller of a Link psycast, Tetherskip, or Vault Skip only appear if this returns true for the pawn. Basically, are you a player-controlled psycaster? Dev mode bypasses need for player control
         public static bool ShouldShowExtraPsycastGizmo(Pawn p)
         {
-            return (p.IsPlayerControlled || DebugSettings.ShowDevGizmos) && p.Awake() && !p.DeadOrDowned && !p.Suspended && !p.InMentalState && p.HasPsylink && p.GetStatValue(StatDefOf.PsychicSensitivity) > float.Epsilon;
+            return (p.IsPlayerControlled || (p.IsInCaravan() && p.IsColonist) || DebugSettings.ShowDevGizmos) && p.Awake() && !p.DeadOrDowned && !p.Suspended && !p.InMentalState && p.HasPsylink && p.GetStatValue(StatDefOf.PsychicSensitivity) > float.Epsilon;
         }
     }
 }

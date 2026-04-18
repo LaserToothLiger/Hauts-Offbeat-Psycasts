@@ -121,7 +121,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_ThermalPinhole</defName>
     <label>thermal pinhole</label>
-    <description>Generate a system of microscopic skipgates linked to both a nearby star and the chilly atmospheres or hydrospheres of nearby lifeless moons and planets. This system reactively regulates the temperature, pushing out solar material to warm or freezing materials to cool, and even extinguishing nearby fires. It also produces a steady light that is both bright enough to work in and grow plants with.</description>
+    <description>Generate a system of microscopic skipgates linked to both a nearby star and the chilly atmospheres or hydrospheres of nearby lifeless moons and planets, allowing it to reactively regulate temperature.\n\nIt produces a steady light that is both bright enough to work in and grow plants with. It also emits heat when it's colder than room temperature, or absorbs heat when it's hotter. It even extinguishes nearby fires and lit explosives once a second.</description>
     <level>5</level>
     <iconPath>Psycasts/HVP_ThermalPinhole</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
