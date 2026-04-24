@@ -53,7 +53,7 @@
   <AbilityDef ParentName="HVP_PsycastBaseLink">
     <defName>HVP_PsyphonLink</defName>
     <label>psyphon link</label>
-    <description>Rapidly gain psyfocus by siphoning it from the target psycaster. The target also builds up neural heat. This effect will end prematurely if the target runs out of psyfocus, or if the target moves more than 30 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a psyphon link to.</description>
+    <description>Rapidly gain psyfocus by siphoning it from the target psycaster. The target also builds up neural heat. This effect ends prematurely at will, if the target runs out of psyfocus, or if the target is more than 30 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster and the target.</description>
     <level>3</level>
     <iconPath>Psycasts/HVP_PsyphonLink</iconPath>
     <hostile>false</hostile>
@@ -94,7 +94,7 @@
   <AbilityDef ParentName="PsycastBase">
     <defName>HVP_Shield</defName>
     <label>shield</label>
-    <description>Use subatomic skipgates to excite electromagnetic fields, creating a projectile repulsion field around the target. This shield can absorb up to 60 damage, but doesn't block anything a regular shield wouldn't and is just as susceptible to EMPs. It also does not regenerate. However, the target will still be able to use ranged weapons.</description>
+    <description>Use subatomic skipgates to excite electromagnetic fields, creating a projectile repulsion field around the target. This shield can absorb up to 60 damage, but doesn't regenerate, doesn't block anything a regular shield wouldn't, and is susceptible to EMPs. However, the target may still use ranged weapons.</description>
     <level>3</level>
     <iconPath>Psycasts/HVP_Shield</iconPath>
     <writeCombatLog>True</writeCombatLog>
@@ -202,7 +202,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_VaultSkip</defName>
     <label>vault skip</label>
-    <description>Skips all nearby items into a distant vault unreachable by regular means. The caster may later retrieve all items from the vault at once. Every 10 objects (or stacks of objects) stored in this way consume 1% psyfocus per day.\n\nIf the caster dies with items stored in the vault, the vault’s contents will be returned to the caster’s location, but roughly one-third of the items may be lost.</description>
+    <description>Skips all nearby unattended items into a distant vault unreachable by regular means. The caster may later retrieve all items from the vault at once. Every 10 objects (or stacks of objects) stored in this way consume 1% psyfocus per day.\n\nIf the caster dies with items stored in the vault, the vault’s contents will be returned to the caster’s location, but roughly one-third of the items may be lost.</description>
     <level>3</level>
     <iconPath>Psycasts/HVP_VaultSkip</iconPath>
     <targetRequired>False</targetRequired>

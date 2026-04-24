@@ -149,7 +149,6 @@
 	  </li>
 	  <li Class="HautsPsycasts.HediffCompProperties_LinkBuildEntropy">
         <casterEntropyGainPerSecond>1</casterEntropyGainPerSecond>
-		<entropyPeriodicity>1</entropyPeriodicity>
 		<severityPerLink>1</severityPerLink>
 		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
 		<casterMustBeConscious>true</casterMustBeConscious>
@@ -413,7 +412,6 @@
         <casterEntropyGainPerSecond>0</casterEntropyGainPerSecond>
 		<severityPerLink>1</severityPerLink>
 		<victimEntropyPerSecond>12</victimEntropyPerSecond>
-		<entropyPeriodicity>1</entropyPeriodicity>
 		<psyfocusPerInterval>0.02</psyfocusPerInterval>
 		<intervalsTilUnwillingEnd>6</intervalsTilUnwillingEnd>
 		<stunTicksOnUnwillingEnd>180~200</stunTicksOnUnwillingEnd>
@@ -530,7 +528,6 @@
 	  </li>
 	  <li Class="HautsPsycasts.HediffCompProperties_LinkBuildEntropy">
         <casterEntropyGainPerSecond>2.5</casterEntropyGainPerSecond>
-		<entropyPeriodicity>1</entropyPeriodicity>
 		<severityPerLink>1</severityPerLink>
 		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
 		<casterMustBeConscious>true</casterMustBeConscious>
@@ -1027,17 +1024,16 @@
 	<description>For the archotechs are by my side.</description>
 	<hediffClass>HautsFramework.Hediff_VanishOnDownedToo</hediffClass>
 	<isBad>false</isBad>
-	<initialSeverity>6</initialSeverity>
 	<stages>
 	  <li>
 		<becomeVisible>false</becomeVisible>
 	  </li>
 	</stages>
 	<comps>
-	  <li Class="HediffCompProperties_SeverityPerDay">
-		<severityPerDay>-24</severityPerDay>
-		<showDaysToRecover>true</showDaysToRecover>
-	  </li>
+      <li Class="HediffCompProperties_DisappearsAndKills">
+        <disappearsAfterTicks>15000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
 	</comps>
   </HediffDef>
   

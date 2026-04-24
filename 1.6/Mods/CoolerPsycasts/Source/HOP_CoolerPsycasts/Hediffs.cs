@@ -33,6 +33,16 @@ namespace HOP_CoolerPsycasts
             }
         }
     }
+    public class Hediff_ChooseBlessing : HediffWithComps
+    {
+        public override void PostAdd(DamageInfo? dinfo)
+        {
+            if (this.pawn.abilities == null) {
+                this.pawn.abilities = new Pawn_AbilityTracker(this.pawn);
+            }
+            base.PostAdd(dinfo);
+        }
+    }
     //Blessings from Word of Blessing fade if the victim is psychically deaf
     public class HediffBlessing : Hediff
     {

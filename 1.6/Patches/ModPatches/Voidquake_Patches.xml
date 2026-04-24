@@ -30,13 +30,13 @@
 						<match Class="PatchOperationReplace">
 							<xpath>Defs/AbilityDef[defName = "HVP_Voidquake"]/description</xpath>
 							<value>
-								<description>Briefly invoke the overwhelming power of the Void. Golems and other constructs will be permanently damaged, living creatures will flee in fear, and unnatural entities will become empowered - unless they are within the safe zone. An unnatural darkness will also descend over the region. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day coma.\n\nUnlike a mindquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
+								<description>Briefly invoke the overwhelming power of the Void. Golems and other constructs will be permanently damaged, living creatures will flee in fear, and unnatural entities will become empowered - unless they are within the safe zone. An unnatural darkness will also descend over the region. After the quake, the caster will go into a five-day coma (and have a lingering propensity for severe mental breaks for up to five days past that).\n\nUnlike a mindquake, a voidquake leaves no lasting repercussions on the psyches of anyone but the caster, and its effect does not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
 							</value>
 						</match>
 						<nomatch Class="PatchOperationReplace">
 							<xpath>Defs/AbilityDef[defName = "HVP_Voidquake"]/description</xpath>
 							<value>
-								<description>Briefly invoke the overwhelming power of the Void. Golems and other constructs will be permanently damaged, and living creatures will flee in fear - unless they are within the safe zone. The very sunlight itself will briefly dim. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day coma.\n\nUnlike a mindquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
+								<description>Briefly invoke the overwhelming power of the Void. Golems and other constructs will be permanently damaged, and living creatures will flee in fear - unless they are within the safe zone. The very sunlight itself will briefly dim. After the quake, the caster will go into a five-day coma (and have a lingering propensity for severe mental breaks for up to five days past that).\n\nUnlike a mindquake, a voidquake leaves no lasting repercussions on the psyches of anyone but the caster, and its effect does not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
 							</value>
 						</nomatch>
 					</match>
@@ -47,7 +47,7 @@
 						<match Class="PatchOperationReplace">
 							<xpath>Defs/AbilityDef[defName = "HVP_Voidquake"]/description</xpath>
 							<value>
-								<description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged, living creatures will flee in fear, and unnatural entities will become empowered - unless they are within the safe zone. An unnatural darkness will also descend over the region. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day psychic coma.\n\nUnlike a neuroquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
+								<description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged, living creatures will flee in fear, and unnatural entities will become empowered - unless they are within the safe zone. An unnatural darkness will also descend over the region. After the quake, the caster will go into a five-day psychic coma (and have a lingering propensity for severe mental breaks for up to five days past that).\n\nUnlike a neuroquake, a voidquake leaves no lasting repercussions on the psyches of anyone but the caster, and its effect does not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
 							</value>
 						</match>
 					</nomatch>

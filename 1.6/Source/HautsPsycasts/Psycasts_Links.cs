@@ -8,9 +8,6 @@ namespace HautsPsycasts
 {
     /*Shared property of the hidden hediffs given to Link casters.
      * casterEntropyGainPerSecond: increase neural heat by [this amount * this hediff's current severity] per 60 ticks
-     * entropyPeriodicity: how often that entropy is gained. It normally iterates every tick because only doing it every few ticks results in awkward-looking visible jitters on the pawn's neural heat bar,
-     *   but certain other mods may necessitate adding the entropy in less frequent chunks. ISEKAI RPG LEVELING (the name is in capslock) grants xp per neural heat gain (scaling w/ the amount, but min 3 per gain),
-     *   which means if not for the xpath ISEKAI RPG LEVELING patch that makes the entropyPeriodicity of all Link casts less frequent, you'd get insane xp from just maintaining a single Link.
      * severityPerLink: multiple Links of the same type with the same caster are all handled in one hidden hediff. To scale up the neural heat gain linearly with each Link of the same type, each Link should contribute
      *   an identical amount of added severity.
      * casterMustBePsycastCapable: Links automatically get removed if this hediff's pawn isn't a psycaster or has 0% psysens.
@@ -26,7 +23,6 @@ namespace HautsPsycasts
             this.compClass = typeof(HediffComp_LinkBuildEntropy);
         }
         public float casterEntropyGainPerSecond;
-        public int entropyPeriodicity = 1;
         public float severityPerLink;
         public bool casterMustBePsycastCapable = true;
         public bool casterMustBeConscious = true;
@@ -82,25 +78,25 @@ namespace HautsPsycasts
         {
             this.others.Clear();
         }
-        public override void CompPostTick(ref float severityAdjustment)
+        public override void CompPostTickInterval(ref float severityAdjustment, int delta)
         {
-            base.CompPostTick(ref severityAdjustment);
+            base.CompPostTickInterval(ref severityAdjustment, delta);
             this.parent.Severity = this.others != null ? this.others.Count : this.parent.Severity;
             if (!this.Pawn.Spawned || (this.Props.casterMustBePsycastCapable && (this.Pawn.psychicEntropy == null || !this.Pawn.psychicEntropy.IsPsychicallySensitive)) || (this.Props.casterMustBeConscious && (this.Pawn.DeadOrDowned || this.Pawn.Suspended || !this.Pawn.Awake())))
             {
                 this.Pawn.health.RemoveHediff(this.parent);
                 return;
             }
-            if (this.Pawn.psychicEntropy != null && this.Pawn.IsHashIntervalTick(this.Props.entropyPeriodicity))
+            if (this.Pawn.psychicEntropy != null)
             {
-                this.Pawn.psychicEntropy.TryAddEntropy(this.Props.casterEntropyGainPerSecond * this.parent.Severity / (60f / (float)this.Props.entropyPeriodicity), null, true, true);
+                this.Pawn.psychicEntropy.TryAddEntropy(this.Props.casterEntropyGainPerSecond * this.parent.Severity * delta / 60f, null, true, true);
                 if (this.Pawn.psychicEntropy.limitEntropyAmount && this.Pawn.psychicEntropy.EntropyRelativeValue > 1f)
                 {
                     this.Pawn.health.RemoveHediff(this.parent);
                     return;
                 }
             }
-            this.ticksToNextDamage--;
+            this.ticksToNextDamage -= delta;
             if (this.ticksToNextDamage <= 0)
             {
                 this.DoPeriodicDamage();

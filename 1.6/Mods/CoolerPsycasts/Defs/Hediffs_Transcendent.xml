@@ -61,82 +61,7 @@
     </comps>
   </HediffDef>
   <!--level 9:
-  word of blessing-->
-  <HediffDef ParentName="HVT_TraitHediffBase">
-    <defName>HVP_WordOfBlessingSelf</defName>
-    <label>choose blessing</label>
-    <description>Choose a blessing to gain permanently.</description>
-    <isBad>false</isBad>
-	<everCurableByItem>false</everCurableByItem>
-    <hediffClass>HediffWithComps</hediffClass>
-    <comps>
-      <li Class="HediffCompProperties_GiveAbility">
-        <abilityDefs>
-          <li>HVP_WordOfBlessingSelf</li>
-        </abilityDefs>
-      </li>
-    </comps>
-  </HediffDef>
-  <AbilityDef>
-    <defName>HVP_WordOfBlessingSelf</defName>
-    <label>choose blessing</label>
-    <description>Choose a blessing to gain permanently.</description>
-    <jobDef>CastAbilityOnThing</jobDef>
-    <targetRequired>False</targetRequired>
-    <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
-    <stunTargetWhileCasting>False</stunTargetWhileCasting>
-    <showPsycastEffects>False</showPsycastEffects>
-    <displayGizmoWhileUndrafted>True</displayGizmoWhileUndrafted>
-    <disableGizmoWhileUndrafted>False</disableGizmoWhileUndrafted>
-    <casterMustBeCapableOfViolence>false</casterMustBeCapableOfViolence>
-    <hotKey>Misc12</hotKey>
-	<iconPath>Psycasts/HVP_WordOfBlessing</iconPath>
-	<cooldownTicksRange>0</cooldownTicksRange>
-    <statBases>
-      <Ability_Duration>5000</Ability_Duration>
-      <Ability_EffectRadius>0</Ability_EffectRadius>
-    </statBases>
-    <verbProperties>
-      <verbClass>Verb_CastAbility</verbClass>
-      <warmupTime>0</warmupTime>
-	  <range>0</range>
-      <drawAimPie>False</drawAimPie>
-	  <targetable>false</targetable>
-      <requireLineOfSight>False</requireLineOfSight>
-      <targetParams>
-        <canTargetSelf>true</canTargetSelf>
-        <canTargetPawns>false</canTargetPawns>
-        <canTargetBuildings>false</canTargetBuildings>
-        <canTargetAnimals>false</canTargetAnimals>
-        <canTargetHumans>false</canTargetHumans>
-        <canTargetMechs>false</canTargetMechs>
-      </targetParams>
-    </verbProperties>
-    <comps>
-      <li Class="HautsFramework.CompProperties_AbilityGiveHediffFromMenu">
-        <compClass>HautsFramework.CompAbilityEffect_GiveHediffFromMenu</compClass>
-        <hediffs>
-			<li>HVP_BlessingSpirit</li>
-			<li>HVP_BlessingIntelligence</li>
-			<li>HVP_BlessingResilience</li>
-			<li>HVP_BlessingLongevity</li>
-			<li>HVP_BlessingCelerity</li>
-			<li>HVP_BlessingDexterity</li>
-			<li>HVP_BlessingAttunement</li>
-			<li>HVP_BlessingCharisma</li>
-			<li>HVP_BlessingStasis</li>
-		</hediffs>
-		<removeExistingOptionsFromPawn>true</removeExistingOptionsFromPawn>
-		<menuString>HVP_BlessingMenu</menuString>
-      </li>
-	  <li Class = "CompProperties_AbilityRemoveHediff">
-        <compClass>CompAbilityEffect_RemoveHediff</compClass>
-		<hediffDef>HVP_WordOfBlessingSelf</hediffDef>
-		<applyToSelf>true</applyToSelf>
-	  </li>
-    </comps>
-  </AbilityDef>
-  
+  word of blessing-->  
   <HediffDef ParentName="HVT_TraitHediffBase" Name="HVP_BlessingHediff" Abstract="True">
     <hediffClass>HOP_CoolerPsycasts.HediffBlessing</hediffClass>
 	<minSeverity>0.001</minSeverity>
@@ -200,6 +125,7 @@
 		<statFactors>
 		  <IncomingDamageFactor>0.75</IncomingDamageFactor>
 		  <VEF_MassCarryCapacity>1.5</VEF_MassCarryCapacity>
+		  <CarryWeight MayRequire="CETeam.CombatExtended">1.5</CarryWeight>
 		</statFactors>
 	  </li>
     </stages>
@@ -332,6 +258,7 @@
 		  <BladderRateMultiplier MayRequire="Dubwise.DubsBadHygiene">0.1</BladderRateMultiplier>
 		</statFactors>
 		<hungerRateFactor>0.1</hungerRateFactor>
+		<totalBleedFactor>0.1</totalBleedFactor>
 	  </li>
     </stages>
   </HediffDef>
@@ -355,7 +282,6 @@
 	<comps>
 	  <li Class="HOP_CoolerPsycasts.HediffCompProperties_LinkTornado">
         <casterEntropyGainPerSecond>5</casterEntropyGainPerSecond>
-		<entropyPeriodicity>1</entropyPeriodicity>
 		<severityPerLink>1</severityPerLink>
 		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
 		<casterMustBeConscious>true</casterMustBeConscious>

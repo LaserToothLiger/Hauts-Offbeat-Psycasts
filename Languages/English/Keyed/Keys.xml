@@ -62,7 +62,8 @@
 <HVP_DropPodDefault>The summoned drop pod depressurized during atmospheric entry, rendering its contents to ash.</HVP_DropPodDefault><!--Drop Pod Call ash outcome-->
 <HVP_PsychicKidnapping>A psycaster belonging to the {0} faction used Word of Safety to kidnap {1}.</HVP_PsychicKidnapping>
 <!--UI: Word of Blessing menu-->
-<HVP_BlessingMenu>Choose a blessing to instill within {0}.</HVP_BlessingMenu>
+<HVP_BlessingMenu>Choose a blessing to grant {0}.</HVP_BlessingMenu>
+<HVP_BlessingMenuMulti>Choose a blessing to grant all affected creatures.</HVP_BlessingMenuMulti>
 <!--Mod settings-->
 <HVP_SettingPSM>Amount of psytrainers sold by traders</HVP_SettingPSM>
 <HVP_TooltipPsytrainerSaleMulti>Scales the amount of psytrainers traders will sell; at 2x, a trader who would ordinarily sell 1-3 psytrainers will sell 2-6. This won't cause traders who don't sell psytrainers to start doing so.</HVP_TooltipPsytrainerSaleMulti>

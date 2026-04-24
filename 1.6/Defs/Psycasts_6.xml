@@ -88,13 +88,12 @@
     <comps>
       <li Class="HautsPsycasts.CompProperties_AbilityArrangeFortune">
         <compClass>HautsPsycasts.CompAbilityEffect_ArrangeFortune</compClass>
-		<delayTicks>50~600</delayTicks>
+		<delayTicks>5000~60000</delayTicks>
 		<excludedGoodEvents>
 		  <li>SelfTame</li>
 		</excludedGoodEvents>
 		<eventPerStatCurve>
 		  <points>
-            <li>(0, 1)</li>
             <li>(1, 1)</li>
             <li>(3, 3)</li>
             <li>(5, 4)</li>
@@ -144,7 +143,6 @@
 		<hivePerStatCurve>
 		  <points>
             <li>(0, 3)</li>
-            <li>(1, 7)</li>
             <li>(3, 15)</li>
             <li>(5, 20)</li>
             <li>(85, 100)</li>
@@ -159,7 +157,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_RejuvenationSkip</defName>
     <label>rejuvenation skip</label>
-    <description>Suffuse the target with healing archites. It gradually heals wounds, removes scars, and even regrows lost body parts, but it is slow and decreases in potency each day. It is also calorie-intensive, leaving the target perpetually exhausted, hungry, sluggish, and pained; it also causes an increased risk of cancer for the next year.\n\nThe beneficial effect ends prematurely if the target takes any damage.</description>
+    <description>Suffuse the target with healing archites. It gradually heals wounds, removes scars, and even regrows lost body parts, but it is slow and decreases in potency each day. It is calorie-intensive, leaving the target perpetually exhausted, hungry, sluggish, and pained; it also causes an increased risk of cancer for the next year.\n\nThe beneficial effect ends prematurely if the target takes any damage.</description>
     <level>6</level>
     <iconPath>Psycasts/HVP_RejuvenationSkip</iconPath>
     <writeCombatLog>false</writeCombatLog>
@@ -243,7 +241,7 @@
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfMelding</defName>
     <label>word of melding</label>
-    <description>Speak about becoming one with another while using psychic suggestion to lull the listener into a coma. Until the listener's coma is broken, the other's consciousness is boosted. The benefit of this ability can stack up to ten times.\n\nThe listener must be conscious, but can be downed. The neural architecture of children is too plastic to lull into a coma.</description>
+    <description>Speak about becoming one with another while using psychic suggestion to lull the listener into a coma. Until the listener's coma is broken, the other's consciousness is boosted. Any one person can benefit from up to ten meldings at once.\n\nThe neural architecture of children is too plastic to lull into a coma.</description>
     <level>6</level>
     <iconPath>Psycasts/HVP_WordOfMelding</iconPath>
     <hostile>false</hostile>

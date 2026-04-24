@@ -112,7 +112,7 @@
     <statBases>
       <Ability_PsyfocusCost>0.2</Ability_PsyfocusCost>
       <Ability_EntropyGain>110</Ability_EntropyGain>
-      <Ability_Duration>250</Ability_Duration>
+      <Ability_Duration>252</Ability_Duration>
     </statBases>
     <verbProperties>
       <warmupTime>1</warmupTime>
@@ -199,7 +199,7 @@
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfBlessing</defName>
     <label>word of blessing</label>
-    <description>Speak a litany of flesh-warping archotechnic words to alter the cellular makeup of the target. This will grant a permanent buff of the target's choice. No creature may have more than one blessing at a time; choosing a new one replaces the previous one.\n\nBlessings can improve psychic ability, learning speed, constitution, longevity and regeneration, speed, manipulation, caravan speed and animal/plant work, social prowess, or the length of time one can go without satisfying one's needs.</description>
+    <description>Speak a litany of flesh-warping archotechnic words to alter the cellular makeup of the target, granting a permanent buff of the caster's choice from the following list:\n\n-Psychic ability\n-Learning speed\n-Resistance to damage and adverse conditions\n-Longevity and healing\n-Speed\n-Manipulation\n-Caravan speed and animal/plant work\n-Social prowess\n-The length of time one can go without satisfying one's needs\n\nInflicting a new blessing replaces any previous one.</description>
     <level>9</level>
     <iconPath>Psycasts/HVP_WordOfBlessing</iconPath>
     <hostile>false</hostile>
@@ -215,10 +215,22 @@
       </targetParams>
     </verbProperties>
     <comps>
-      <li Class="CompProperties_AbilityGiveHediff">
-        <compClass>CompAbilityEffect_GiveHediff</compClass>
-        <hediffDef>HVP_WordOfBlessingSelf</hediffDef>
-        <psychic>True</psychic>
+      <li Class="HautsFramework.CompProperties_AbilityGiveHediffFromMenu">
+        <compClass>HautsFramework.CompAbilityEffect_GiveHediffFromMenuMulti</compClass>
+        <hediffs>
+			<li>HVP_BlessingSpirit</li>
+			<li>HVP_BlessingIntelligence</li>
+			<li>HVP_BlessingResilience</li>
+			<li>HVP_BlessingLongevity</li>
+			<li>HVP_BlessingCelerity</li>
+			<li>HVP_BlessingDexterity</li>
+			<li>HVP_BlessingAttunement</li>
+			<li>HVP_BlessingCharisma</li>
+			<li>HVP_BlessingStasis</li>
+		</hediffs>
+		<removeExistingOptionsFromPawn>true</removeExistingOptionsFromPawn>
+		<menuString>HVP_BlessingMenu</menuString>
+		<menuStringPlural>HVP_BlessingMenuMulti</menuStringPlural>
       </li>
       <li Class="CompProperties_AbilitySocialInteraction">
         <interactionDef>HVP_WordOfBlessing</interactionDef>
@@ -235,7 +247,7 @@
   <AbilityDef ParentName="PsycastBase">
     <defName>HVP_Voidquake</defName>
     <label>voidquake</label>
-    <description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged and living creatures will flee in fear - unless they are within the safe zone. The sunlight itself will dim briefly. Casting this takes 12 seconds of meditation, and afterwards, the caster will go into a five-day psychic coma and have a lingering propensity for severe mental breaks for up to five days past that.\n\nUnlike a neuroquake, the effects of a voidquake leave no lasting repercussions on the psyche and do not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
+    <description>Tear open a brief, localized breach between reality and the Void. Mechanoids will be permanently damaged and living creatures will flee in fear - unless they are within the safe zone. The sunlight itself will dim briefly. After the quake, the caster will go into a five-day psychic coma (and have a lingering propensity for severe mental breaks for up to five days past that).\n\nUnlike a neuroquake, a voidquake leaves no lasting repercussions on the psyches of anyone but the caster, and its effect does not extend further across the world, so it does not worsen diplomatic relations with other factions.</description>
     <level>9</level>
     <iconPath>Psycasts/HVP_Voidquake</iconPath>
     <hotKey>Misc12</hotKey>

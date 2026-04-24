@@ -4,7 +4,7 @@
   <AbilityDef ParentName="HVP_PsycastBaseLink">
     <defName>HVP_BoosterLink</defName>
     <label>booster link</label>
-    <description>Bathe the target in psychic frequencies which hone its mind, boosting moving and manipulation capacities. This process incurs neural heat over time, and it will stop if the target moves more than 60 cells away, the target is downed for more than 4 seconds, or the caster is rendered incapable of psycasting.\n\nCosts 2.5 neural heat per second.</description>
+    <description>Bathe the target in psychic frequencies which hone its mind, boosting moving and manipulation capacities. This process incurs neural heat over time; it ends prematurely at will, if the target is more than 60 cells away, if the target is downed for more than 4 seconds, or if the caster is incapable of psycasting.\n\nCosts 2.5 neural heat per second.</description>
     <level>4</level>
     <iconPath>Psycasts/HVP_BoosterLink</iconPath>
     <writeCombatLog>True</writeCombatLog>
@@ -202,7 +202,6 @@
     <statBases>
       <Ability_EntropyGain>15</Ability_EntropyGain>
       <Ability_PsyfocusCost>0.13</Ability_PsyfocusCost>
-      <Ability_Duration>250</Ability_Duration>
     </statBases>
     <verbProperties>
       <warmupTime>0.2</warmupTime>

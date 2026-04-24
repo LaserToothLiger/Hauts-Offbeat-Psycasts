@@ -65,7 +65,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_SinkholeSkip"]/description</xpath>
 					<value>
-						<description>Geomantically excavate a pocket underneath the target patch of ground, rendering it unstable. This acts like a trap, stunning whoever triggers it. Larger creatures are less affected.\n\nCannot be placed adjacent to other traps. Each sinkhole will naturally collapse on its own after 5 days.</description>
+						<description>Geomantically excavate a pocket underneath the target patch of ground, rendering it unstable. This acts like a trap, stunning whoever triggers it. Larger creatures are less affected, and floating or flying creatures are entirely unaffected.\n\nCannot be placed adjacent to other traps. Each sinkhole will naturally collapse on its own after 5 days.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -186,7 +186,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_WordOfContemplation"]/description</xpath>
 					<value>
-						<description>Recite litany from the arcane mysteries to lull the target into a trancelike state. While in this state, the target will meditate and rest more effectively, but will feel disconnected from their body, reducing consciousness.</description>
+						<description>Recite litany from the arcane mysteries to lull the target into a trancelike state. The target will meditate and rest more effectively, but will feel disconnected from their body, reducing consciousness.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -223,7 +223,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/AbilityDef[defName = "HVP_Shield"]/description</xpath>
 					<value>
-						<description>Envelop the target in a mystic ward. This ward can absorb up to 60 damage, but it only blocks explosions and projectiles, and lightning disruptions can dispel it instantly. Unlike certain other kinds of wards, it does not regenerate.</description>
+						<description>Envelop the target in a mystic ward. This ward can absorb up to 60 damage, but it only blocks explosions and projectiles, and lightning disruptions can dispel it instantly. Unlike certain other kinds of wards, it does not regenerate, but also does not forbid ranged attacks.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -342,9 +342,9 @@
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
-					<xpath>Defs/AbilityDef[defName = "HVP_TurretSkip"]/description</xpath>
+					<xpath>Defs/ThingDef[defName = "HVP_SkippedTurret"]/label</xpath>
 					<value>
-						<description>Conjure an elaborate clockwork contraption which fires projectiles at nearby enemies. It will vanish after 1 hour - unless it is about to explode.</description>
+						<label>clockwork defender</label>
 					</value>
 				</li>
 				<!--level 5 psycasts-->
@@ -423,7 +423,7 @@
 				<li Class="PatchOperationReplace">
 					<xpath>Defs/HediffDef[defName = "HVP_Intervened"]/description</xpath>
 					<value>
-						<description>A fully activated Word of Safety ward. It has enhanced protective potency but will burn out soon.</description>
+						<description>A fully activated safety ward. It has enhanced protective potency but will burn out soon.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -436,6 +436,12 @@
 					<xpath>Defs/AbilityDef[defName = "HVP_WordOfSterility"]/description</xpath>
 					<value>
 						<description>Speak to the target, invoking the spirits of wellness. The target will be cured of one overdose, disease, toxic effect, or non-luciferium addiction. However, it will also strain the target's body, causing a coma for three days and lingering discomfort for three days after that.</description>
+					</value>
+				</li>
+				<li Class="PatchOperationReplace">
+					<xpath>Defs/HediffDef[defName = "HVP_Sterility"]/description</xpath>
+					<value>
+						<description>An imbalance in the humors, caused by the "sterilization" of a harmful medical condition. The coma lasts for three days, but discomfort persists for up to three days after that.</description>
 					</value>
 				</li>
 				<li Class="PatchOperationReplace">
@@ -601,7 +607,19 @@
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName="HVP_WordOfBlessing"]/description</xpath>
 								<value>
-									<description>Speak exaltant words of benediction, endowing a permanent buff of the target's choice upon it. No creature may have more than one blessing at a time; choosing a new one replaces the previous one.\n\nBlessings can improve mystic ability, learning speed, constitution, longevity and regeneration, speed, manipulation, caravan speed and animal/plant work, social prowess, or the length of time one can go without satisfying one's needs.</description>
+									<description>Speak exaltant words of benediction, endowing the target with a permanent buff of the caster's choice from the following list:\n\n-Magical ability\n-Learning speed\n-Resistance to damage and adverse conditions\n-Longevity and healing\n-Speed\n-Manipulation\n-Caravan speed and animal/plant work\n-Social prowess\n-The length of time one can go without satisfying one's needs\n\nInflicting a new blessing replaces any previous one.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/HediffDef[defName="HVP_BlessingSpirit"]/description</xpath>
+								<value>
+									<description>Magical competence granted by the Word of Blessing.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/InteractionDef[defName = "HVP_WordOfBlessing"]/logRulesInitiator/rulesStrings/li</xpath>
+								<value>
+									<li>r_logentry->[INITIATOR_nameDef] endowed [RECIPIENT_nameDef] with a potent blessing.</li>
 								</value>
 							</li>
 							<li Class="PatchOperationFindMod">
@@ -613,7 +631,7 @@
 										<li Class="PatchOperationReplace">
 											<xpath>Defs/AbilityDef[defName="HVP_MarkingPulse"]/description</xpath>
 											<value>
-												<description>Weave a malicious hex that affects everyone around the target point. They become stunned on taking damage, and they are easier to suppress and stagger, less likely to dodge or parry, and less able to avoid traps.</description>
+												<description>Weave a malicious hex that affects everyone around the target point. They become stunned on taking damage; they are also easier to suppress and stagger, less likely to dodge or parry, and less able to avoid traps.</description>
 											</value>
 										</li>
 										<li Class="PatchOperationReplace">
@@ -671,7 +689,7 @@
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/AbilityDef[defName = "HVP_PsyphonLink"]/description</xpath>
 								<value>
-									<description>Rapidly gain mana by siphoning it from the target spellcaster. The target also builds up arcane load. This effect will end prematurely if the target runs out of mana, or if the target moves more than 35 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster, the target, and anyone else the caster has attached a manaleech link to.</description>
+									<description>Rapidly gain mana by siphoning it from the target spellcaster. The target also builds up arcane load. This effect will end prematurely if the target runs out of mana, or if the target moves more than 35 cells away.\n\nUnwilling targets can also end the effect after a short delay, stunning the caster and the target.</description>
 								</value>
 							</li>
 							<li Class="PatchOperationReplace">
@@ -684,6 +702,18 @@
 								<xpath>Defs/HediffDef[defName = "HVP_PsyphonSucker"]/description</xpath>
 								<value>
 									<description>Mana is being transferred out of this character to another spellcaster. Moving further than 35 cells away will end this effect.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName = "HVP_TurretSkip"]/description</xpath>
+								<value>
+									<description>Conjure an elaborate clockwork contraption which fires projectiles at nearby enemies. It will vanish after 2 hours.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName = "HVP_SkippedTurret"]/description</xpath>
+								<value>
+									<description>A stationary golem which launches sling bullets at nearby foes. Vanishes after 2 hours.</description>
 								</value>
 							</li>
 						</operations>
@@ -712,6 +742,18 @@
 								<xpath>Defs/HediffDef[defName = "HVP_PsyphonSucker"]/description</xpath>
 								<value>
 									<description>Mana is being transferred out of this character to another spellcaster. Moving further than 30 cells away will end this effect.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/AbilityDef[defName = "HVP_TurretSkip"]/description</xpath>
+								<value>
+									<description>Conjure an elaborate clockwork contraption which fires projectiles at nearby enemies. It will vanish after 2 hours - unless it is about to explode.</description>
+								</value>
+							</li>
+							<li Class="PatchOperationReplace">
+								<xpath>Defs/ThingDef[defName = "HVP_SkippedTurret"]/description</xpath>
+								<value>
+									<description>A stationary golem which launches sling bullets at nearby foes. May explode when damaged. Vanishes after 2 hours.</description>
 								</value>
 							</li>
 						</operations>
@@ -749,6 +791,12 @@
 							<description>Psyfocus is being transferred out of this character to another psycaster. Moving further than 35 cells away will end this effect.</description>
 						</value>
 					</li>
+					<li Class="PatchOperationReplace">
+						<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/label</xpath>
+						<value>
+							<label>skipped mini-blaster turret</label>
+						</value>
+					</li>
 					<li Class="PatchOperationFindMod">
 						<mods>
 							<li>Cooler Psycasts</li>
@@ -758,7 +806,7 @@
 								<li Class="PatchOperationReplace">
 									<xpath>Defs/AbilityDef[defName="HVP_MarkingPulse"]/description</xpath>
 									<value>
-										<description>Render everyone around the target point incompetent at combat. They become stunned on taking damage, and they are easier to suppress and stagger, less likely to dodge or parry, and less able to avoid traps.</description>
+										<description>Render everyone around the target point incompetent at combat. They become stunned on taking damage; they are also easier to suppress and stagger, less likely to dodge or parry, and less able to avoid traps.</description>
 									</value>
 								</li>
 								<li Class="PatchOperationReplace">

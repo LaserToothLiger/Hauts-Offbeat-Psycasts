@@ -182,9 +182,7 @@ namespace HOP_CoolerPsycasts
                 if (Rand.Chance(0.5f))
                 {
                     pawns.Add(pawnToDrop);
-                }
-                else
-                {
+                } else {
                     pawns2.Add(pawnToDrop);
                 }
             }

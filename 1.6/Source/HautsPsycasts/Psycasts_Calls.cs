@@ -148,14 +148,7 @@ namespace HautsPsycasts
             int ets = this.EventsToSpawn;
             for (int i = 0; i < ets; i++)
             {
-                IncidentParms incidentParms = new IncidentParms
-                {
-                    target = this.parent.pawn.MapHeld ?? Find.AnyPlayerHomeMap,
-                    forced = true,
-                    points = StorytellerUtility.DefaultThreatPointsNow(this.parent.pawn.MapHeld ?? Find.AnyPlayerHomeMap),
-                };
-                List<IncidentDef> incidents = GoodAndBadIncidentsUtility.goodEventPool.Where((IncidentDef id) => !this.Props.excludedGoodEvents.Contains(id) && id.Worker.CanFireNow(incidentParms)).ToList();
-                Find.Storyteller.incidentQueue.Add(incidents.RandomElement(), Find.TickManager.TicksGame + this.Props.delayTicks.RandomInRange, incidentParms, 60000);
+                GoodAndBadIncidentsUtility.MakeGoodEvent(this.parent.pawn,this.Props.delayTicks.RandomInRange,this.Props.excludedGoodEvents);
             }
         }
     }

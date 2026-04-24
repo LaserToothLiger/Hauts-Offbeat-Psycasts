@@ -185,9 +185,7 @@ namespace HautsPsycasts
                                 {
                                     faction.kidnapped.Kidnap(this.Pawn, null);
                                     Messages.Message("HVP_PsychicKidnapping".Translate(this.faction.Name, this.Pawn.Name.ToStringShort), MessageTypeDefOf.NegativeEvent, false);
-                                }
-                                else
-                                {
+                                } else {
                                     if (this.Pawn.Spawned)
                                     {
                                         this.Pawn.ExitMap(false, this.Pawn.def.defaultPlacingRot);
@@ -248,9 +246,7 @@ namespace HautsPsycasts
                                     beds.RemoveAt(i);
                                 }
                             }
-                        }
-                        else if (this.Pawn.RaceProps.Humanlike && this.Pawn.DevelopmentalStage <= DevelopmentalStage.Baby)
-                        {
+                        } else if (this.Pawn.RaceProps.Humanlike && this.Pawn.DevelopmentalStage <= DevelopmentalStage.Baby) {
                             for (int i = beds.Count - 1; i >= 0; i--)
                             {
                                 if (!beds[i].ForHumanBabies)
@@ -258,9 +254,7 @@ namespace HautsPsycasts
                                     beds.RemoveAt(i);
                                 }
                             }
-                        }
-                        else
-                        {
+                        } else {
                             for (int i = beds.Count - 1; i >= 0; i--)
                             {
                                 if (!beds[i].def.building.bed_humanlike || beds[i].ForHumanBabies)
@@ -273,7 +267,7 @@ namespace HautsPsycasts
                         {
                             /*effect is dependent on relation to caster: same/allied/neutral/null-faction should go to free-people beds, hostile-faction to prison
                              animal beds can't be prisoner or slave beds, so animals default to free-people*/
-                            if (ModsConfig.IdeologyActive && this.Pawn.IsSlave && this.Pawn.SlaveFaction == this.faction)
+                            if (ModsConfig.IdeologyActive && this.Pawn.IsSlave && this.Pawn.Faction == this.faction)
                             {
                                 for (int i = beds.Count - 1; i >= 0; i--)
                                 {
@@ -282,9 +276,7 @@ namespace HautsPsycasts
                                         beds.RemoveAt(i);
                                     }
                                 }
-                            }
-                            else if (this.Pawn.RaceProps.Animal)
-                            {
+                            } else if (this.Pawn.RaceProps.Animal) {
                                 for (int i = beds.Count - 1; i >= 0; i--)
                                 {
                                     if (beds[i].ForPrisoners || beds[i].ForSlaves)
@@ -292,9 +284,7 @@ namespace HautsPsycasts
                                         beds.RemoveAt(i);
                                     }
                                 }
-                            }
-                            else if (this.Pawn.IsPrisoner && this.Pawn.guest.HostFaction == this.faction)
-                            {
+                            } else if (this.Pawn.IsPrisoner && this.Pawn.guest.HostFaction == this.faction) {
                                 for (int i = beds.Count - 1; i >= 0; i--)
                                 {
                                     if (!beds[i].ForPrisoners)
@@ -302,9 +292,7 @@ namespace HautsPsycasts
                                         beds.RemoveAt(i);
                                     }
                                 }
-                            }
-                            else if (this.Pawn.Faction != null)
-                            {
+                            } else if (this.Pawn.Faction != null) {
                                 if (this.Pawn.Faction.AllyOrNeutralTo(this.faction))
                                 {
                                     for (int i = beds.Count - 1; i >= 0; i--)
@@ -314,9 +302,7 @@ namespace HautsPsycasts
                                             beds.RemoveAt(i);
                                         }
                                     }
-                                }
-                                else if (map.ParentFaction != null && (map.ParentFaction == this.faction || map.ParentFaction.AllyOrNeutralTo(this.faction)))
-                                {
+                                } else if (map.ParentFaction != null && (map.ParentFaction == this.faction || map.ParentFaction.AllyOrNeutralTo(this.faction))) {
                                     for (int i = beds.Count - 1; i >= 0; i--)
                                     {
                                         if (!beds[i].ForPrisoners)
@@ -324,14 +310,10 @@ namespace HautsPsycasts
                                             beds.RemoveAt(i);
                                         }
                                     }
-                                }
-                                else
-                                {
+                                } else {
                                     beds.Clear();
                                 }
-                            }
-                            else
-                            {
+                            } else {
                                 for (int i = beds.Count - 1; i >= 0; i--)
                                 {
                                     if (!beds[i].ForPrisoners)
@@ -379,15 +361,11 @@ namespace HautsPsycasts
                                     if (medicalBeds.Count > 0)
                                     {
                                         this.GoToBedInner(medicalBeds);
-                                    }
-                                    else
-                                    {
+                                    } else {
                                         this.GoToBedInner(beds);
                                     }
                                     anyBed = true;
-                                }
-                                else
-                                {
+                                } else {
                                     anyBed = false;
                                 }
                             }

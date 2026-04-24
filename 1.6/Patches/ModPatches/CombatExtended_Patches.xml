@@ -127,13 +127,7 @@
 						<baseMaxEnergy>90</baseMaxEnergy>
 					</value>
 				</li>
-				<!--Turret Skip adjustment: as CE's changes to the regular mini turret-->
-				<li Class="PatchOperationReplace">
-					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/label</xpath>
-					<value>
-						<label>skipped mini-blaster turret</label>
-					</value>
-				</li>
+				<!--Turret Skip adjustment: as CE's changes to the regular mini turret, except for the renaming. The renaming is in FantasyFlavourMod_Patches, at the bottom-->
 				<li Class="PatchOperationRemove">
 					<xpath>Defs/ThingDef[defName="HVP_SkippedTurret"]/comps/li[@Class="CompProperties_Stunnable"]/affectedDamageDefs/li[.="Stun"]</xpath>
 				</li>
@@ -227,7 +221,7 @@
 							<li Class="PatchOperationReplace">
 								<xpath>Defs/HediffDef[defName="HVP_BlessingResilience"]/stages/li/statFactors/IncomingDamageFactor</xpath>
 								<value>
-									<IncomingDamageFactor>0.66</IncomingDamageFactor>
+									<IncomingDamageFactor>0.82</IncomingDamageFactor>
 								</value>
 							</li>
 							<!--tornado link cost reductions since tornados are not (as) impressive in CE-->

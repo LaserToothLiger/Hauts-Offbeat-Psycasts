@@ -52,7 +52,7 @@
   <AbilityDef ParentName="HVP_PsycastBaseLink">
     <defName>HVP_ParalysisLink</defName>
     <label>paralysis link</label>
-    <description>Bathe the target in psychic frequencies which will, after a certain point, suffuse the target's body and induce paralysis. This process incurs neural heat over time, and it will stop if the target moves more than 30 cells away or the caster is rendered incapable of psycasting.\n\nTargets with more hit points or lower psychic sensitivity take longer to paralyze.\n\nCosts 1 neural heat per second.</description>
+    <description>Bathe the target in psychic frequencies which induce paralysis if sustained for long enough. This process incurs neural heat over time; it ends prematurely on demand, if the target is more than 30 cells away, or the caster is incapable of psycasting.\n\nTargets with more hit points or lower psychic sensitivity take longer to paralyze.\n\nCosts 1 neural heat per second.</description>
     <level>2</level>
     <iconPath>Psycasts/HVP_ParalysisLink</iconPath>
     <writeCombatLog>True</writeCombatLog>
@@ -105,7 +105,7 @@
     <statBases>
       <Ability_EntropyGain>10</Ability_EntropyGain>
       <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
-      <Ability_Duration>250</Ability_Duration>
+      <Ability_Duration>252</Ability_Duration>
     </statBases>
     <verbProperties>
       <warmupTime>0.2</warmupTime>
@@ -126,7 +126,6 @@
 		<hediffToSelf>HVP_SensitizeNerf</hediffToSelf>
 		<severitySelf>1</severitySelf>
         <psychic>True</psychic>
-        <goodwillImpact>-15</goodwillImpact>
       </li>
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDef>PsycastPsychicEffect</fleckDef>
@@ -213,7 +212,7 @@
 		<overridePreviousDurationTarg>true</overridePreviousDurationTarg>
 		<overridePreviousDurationDest>true</overridePreviousDurationDest>
         <psychic>True</psychic>
-        <goodwillImpact>-45</goodwillImpact>
+        <goodwillImpact>-20</goodwillImpact>
         <destination>Caster</destination>
 		<applyToTarget>true</applyToTarget>
 		<applyToDest>true</applyToDest>
@@ -241,7 +240,7 @@
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfContemplation</defName>
     <label>word of contemplation</label>
-    <description>Recite a litany of strange, archotechnic words with an underlying psychic suggestion to lull the target into a trancelike state. While in this state, the target will meditate and rest more effectively, but will feel disconnected from their body, reducing consciousness.</description>
+    <description>Recite a litany of strange, archotechnic words with an underlying psychic suggestion to lull the target into a trancelike state. The target will meditate and rest more effectively, but will feel disconnected from their body, reducing consciousness.</description>
     <level>2</level>
     <iconPath>Psycasts/HVP_WordOfContemplation</iconPath>
     <hostile>false</hostile>

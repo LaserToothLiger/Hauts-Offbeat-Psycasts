@@ -21,7 +21,7 @@
       <range>19.9</range>
       <targetParams>
         <canTargetSelf>True</canTargetSelf>
-        <canTargetAnimals>True</canTargetAnimals>
+        <canTargetPawns>False</canTargetPawns>
         <canTargetLocations>True</canTargetLocations>
       </targetParams>
     </verbProperties>
@@ -42,7 +42,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_MeteoroidSkip</defName>
     <label>meteoroid skip</label>
-    <description>Teleport the target chunk into the gravity well of a distant neutron star to vastly accelerate it, then quickly teleport it back to a position far above the target point. It will land with explosive force shortly thereafter. Chunks made of more durable materials will cause more damage.\n\nShields that block mortar fire also block meteoroids.</description>
+    <description>Teleport the target chunk into the gravity well of a distant neutron star to vastly accelerate it, then quickly teleport it back to a position far above the target point. It will land with explosive force shortly thereafter. Chunks of more durable materials will cause more damage.\n\nShields that block mortar fire also block meteoroids.</description>
     <level>5</level>
     <iconPath>Psycasts/HVP_MeteoroidSkip</iconPath>
     <writeCombatLog>True</writeCombatLog>
@@ -121,7 +121,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_ThermalPinhole</defName>
     <label>thermal pinhole</label>
-    <description>Generate a system of microscopic skipgates linked to both a nearby star and the chilly atmospheres or hydrospheres of nearby lifeless moons and planets, allowing it to reactively regulate temperature.\n\nIt produces a steady light that is both bright enough to work in and grow plants with. It also emits heat when it's colder than room temperature, or absorbs heat when it's hotter. It even extinguishes nearby fires and lit explosives once a second.</description>
+    <description>Generate a system of microscopic skipgates linked to both a nearby star and the chilly surface of a lifeless planemo, allowing it to reactively regulate temperature.\n\nIt produces a steady light that is bright enough to work in and grow plants with. It also emits heat when it's colder than room temperature, or absorbs heat when it's hotter. It even extinguishes nearby fires and lit explosives once a second.</description>
     <level>5</level>
     <iconPath>Psycasts/HVP_ThermalPinhole</iconPath>
     <canUseAoeToGetTargets>False</canUseAoeToGetTargets>
@@ -168,7 +168,7 @@
   <AbilityDef ParentName="WordOfBase">
     <defName>HVP_WordOfSafety</defName>
     <label>word of safety</label>
-    <description>Calibrate a reactive skipgate and psychically reprogram nearby medical mechanites by speaking to the target. The mechanites make the target less vulnerable to damage, slower to bleed, and less susceptible to toxins or disease. Additionally, when the target is next downed, the mechanites will enter a brief state of increased potency, and the target will be skipped to a nearby unoccupied bed if possible.</description>
+    <description>Psychically calibrate a reactive skipgate and reprogram nearby medical mechanites by speaking to the target. The target becomes less vulnerable to damage, slower to bleed, and less susceptible to toxins or disease. Additionally, when the target is downed, these benefits will briefly improve before being lost, and the target will be skipped to a nearby unoccupied bed if possible.</description>
     <level>5</level>
     <iconPath>Psycasts/HVP_WordOfSafety</iconPath>
     <hostile>false</hostile>
@@ -235,28 +235,31 @@
 		  <li>DrugOverdose</li>
 		  <li>ResurrectionSickness</li>
 		  <li>VEF_ToxicBuildup</li>
+		  <li>Abasia</li>
 		  <li MayRequire="SirMashedPotato.Ashlands">Mashed_Ashlands_AshBuildup</li>
-		  <li MayRequire="sarg.alphabiomes">AB_SporesAllergy</li>
-		  <li MayRequire="sarg.alphabiomes">AB_SporesAllergy_Heightened</li>
-		  <li MayRequire="sarg.alphabiomes">AB_AnimalSporesAllergy</li>
-		  <li MayRequire="sarg.alphabiomes">AB_Paralysis</li>
-		  <li MayRequire="Dubwise.Rimatomics">FatalRad</li>
-		  <li MayRequire="Dubwise.Rimatomics">RimatomicsRadiation</li>
-		  <li MayRequire="Dubwise.Rimatomics">RadiationIncurable</li>
 		  <li MayRequire="phil42.allergies">P42_AnaphylacticShock</li>
 		  <li MayRequire="phil42.allergies">P42_TightThroat</li>
 		  <li MayRequire="phil42.allergies">P42_PinkEye</li>
 		  <li MayRequire="phil42.allergies">P42_ChronicSinusitis</li>
 		  <li MayRequire="phil42.allergies">P42_AllergenBuildup</li>
 		  <li MayRequire="phil42.allergies">Asthma</li>
-		  <li MayRequire="CETeam.CombatExtended">SmokeInhalation</li>
-		  <li MayRequire="CETeam.CombatExtended">VenomBuildup</li>
-		  <li MayRequire="CETeam.CombatExtended">Tranquilizer</li>
-		  <li MayRequire="CETeam.CombatExtended,Ludeon.RimWorld.Anomaly">BioferriteToxicity</li>
 		  <li MayRequire="sarg.alphaarmoury">AArmoury_Paralysis</li>
 		  <li MayRequire="sarg.alphaarmoury">AArmoury_Chemburster</li>
 		  <li MayRequire="sarg.alphaanimals">AA_Paralysis</li>
 		  <li MayRequire="sarg.alphaanimals">AA_ToxicBuildup</li>
+		  <li MayRequire="sarg.alphabiomes">AB_SporesAllergy</li>
+		  <li MayRequire="sarg.alphabiomes">AB_SporesAllergy_Heightened</li>
+		  <li MayRequire="sarg.alphabiomes">AB_AnimalSporesAllergy</li>
+		  <li MayRequire="sarg.alphabiomes">AB_Paralysis</li>
+		  <li MayRequire="CETeam.CombatExtended">SmokeInhalation</li>
+		  <li MayRequire="CETeam.CombatExtended">VenomBuildup</li>
+		  <li MayRequire="CETeam.CombatExtended">Tranquilizer</li>
+		  <li MayRequire="CETeam.CombatExtended,Ludeon.RimWorld.Anomaly">BioferriteToxicity</li>
+		  <li MayRequire="Dubwise.Rimatomics">FatalRad</li>
+		  <li MayRequire="Dubwise.Rimatomics">RimatomicsRadiation</li>
+		  <li MayRequire="Dubwise.Rimatomics">RadiationIncurable</li>
+		  <li MayRequire="notdvd.fraymod">dvd_InfusionDrawback</li>
+		  <li MayRequire="notdvd.fraymod">dvd_PsyfogDebuff</li>
 		</otherAffectedHediffs>
 		<addsHediff>HVP_Sterility</addsHediff>
         <goodwillImpactOnIncapacitating>-45</goodwillImpactOnIncapacitating>

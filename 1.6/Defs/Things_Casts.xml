@@ -360,7 +360,7 @@
       </li>
       <li Class="HautsPsycasts.CompProperties_ThermoPusher">
         <compClass>HautsPsycasts.CompThermoPusher</compClass>
-        <heatPerSecond>10</heatPerSecond>
+        <heatPerSecond>18</heatPerSecond>
 		<desiredTemperatureRange>19~23</desiredTemperatureRange>
 		<fireExtinguishment>10</fireExtinguishment>
 		<fireRadius>5.8</fireRadius>
