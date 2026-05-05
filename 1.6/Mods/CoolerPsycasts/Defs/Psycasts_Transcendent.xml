@@ -42,9 +42,6 @@
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDef>PsycastPsychicEffect</fleckDef>
       </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
 	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
         <activityOffset>75</activityOffset>
 		<stopAtActivity>9999</stopAtActivity>
@@ -89,9 +86,6 @@
       <li Class="CompProperties_AbilityFleckOnTarget">
         <fleckDef>PsycastPsychicEffect</fleckDef>
       </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
 	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
         <activityOffset>100</activityOffset>
 		<stopAtActivity>9999</stopAtActivity>
@@ -146,9 +140,6 @@
 		<statScalar>PsychicSensitivity</statScalar>
 		<giveTraitToPassengers>HVP_Squaddie</giveTraitToPassengers>
       </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
 	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
         <activityOffset>150</activityOffset>
 		<stopAtActivity>9999</stopAtActivity>
@@ -187,9 +178,6 @@
         <allowOnBuildings>True</allowOnBuildings>
 		<linkHediff>HVP_HiddenTornadoMaintainer</linkHediff>
       </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
 	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
         <activityOffset>200</activityOffset>
 		<stopAtActivity>9999</stopAtActivity>
@@ -235,9 +223,6 @@
       <li Class="CompProperties_AbilitySocialInteraction">
         <interactionDef>HVP_WordOfBlessing</interactionDef>
       </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
 	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
         <activityOffset>50</activityOffset>
 		<stopAtActivity>9999</stopAtActivity>
@@ -294,9 +279,6 @@
         <fleckDef>PsychicApplyNeuroquake</fleckDef>
         <sound>Psycast_Neuroquake_Effect</sound>
       </li>
-      <li Class="CoolPsycasts.CompProperties_AbilityDestroyFactionRelations">
-	    <unlessHediff>CoolPsycasts_PsychicSilencer</unlessHediff>
-	  </li>
 	  <li Class = "CoolPsycasts.CompProperties_AbilityCauseArchotechActivity">
         <activityOffset>500</activityOffset>
 		<stopAtActivity>9999</stopAtActivity>
