@@ -1,9 +1,54 @@
 ﻿using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
 
 namespace HautsPsycasts
 {
+    //allows armor piercing bolts (from Thunderbolt and buffed Flashstorm) to have good vfx that last for more than one frame
+    [StaticConstructorOnStartup]
+    public class WeatherEvent_ArmourPiercingBolt : WeatherEvent_LightningFlash
+    {
+        public WeatherEvent_ArmourPiercingBolt(Map map): base(map)
+        {
+        }
+        public WeatherEvent_ArmourPiercingBolt(Map map, IntVec3 forcedStrikeLoc): base(map)
+        {
+            this.strikeLoc = forcedStrikeLoc;
+        }
+        public override void FireEvent()
+        {
+            WeatherEvent_LightningStrike.DoStrike(this.strikeLoc, this.map, ref this.boltMesh);
+        }
+        public static void DoStrike(IntVec3 strikeLoc, Map map, ref Mesh boltMesh)
+        {
+            SoundDefOf.Thunder_OffMap.PlayOneShotOnCamera(map);
+            if (!strikeLoc.IsValid)
+            {
+                strikeLoc = CellFinderLoose.RandomCellWith((IntVec3 sq) => sq.Standable(map) && !map.roofGrid.Roofed(sq), map, 1000);
+            }
+            boltMesh = LightningBoltMeshPool.RandomBoltMesh;
+            if (!strikeLoc.Fogged(map))
+            {
+                Vector3 vector = strikeLoc.ToVector3Shifted();
+                for (int i = 0; i < 4; i++)
+                {
+                    FleckMaker.ThrowSmoke(vector, map, 1.5f);
+                    FleckMaker.ThrowMicroSparks(vector, map);
+                    FleckMaker.ThrowLightningGlow(vector, map, 1.5f);
+                }
+            }
+            SoundInfo soundInfo = SoundInfo.InMap(new TargetInfo(strikeLoc, map, false), MaintenanceType.None);
+            SoundDefOf.Thunder_OnMap.PlayOneShot(soundInfo);
+        }
+        public override void WeatherEventDraw()
+        {
+            Graphics.DrawMesh(this.boltMesh, this.strikeLoc.ToVector3ShiftedWithAltitude(AltitudeLayer.Weather), Quaternion.identity, FadedMaterialPool.FadedVersionOf(WeatherEvent_ArmourPiercingBolt.LightningMat, this.LightningBrightness), 0);
+        }
+        private IntVec3 strikeLoc = IntVec3.Invalid;
+        private Mesh boltMesh;
+        private static readonly Material LightningMat = MatLoader.LoadMat("Weather/LightningBolt", -1);
+    }
     //the skipgates that intermittently appear around skipped turrets and thermal pinholes
     public class CompProperties_SkipgateOverlay : CompProperties
     {

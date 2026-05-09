@@ -14,26 +14,8 @@ namespace HautsPsycasts
          * wow the joke behind this method's name was a lot funnier back when that PoE 2 pre-EA video came out showing off the crossbow for the first time*/
         public static void ArmourPiercingBolt(IntVec3 strikeLoc, Map map, Thing caster, int damage, float armorPenetration)
         {
-            SoundDefOf.Thunder_OffMap.PlayOneShotOnCamera(map);
-            if (!strikeLoc.IsValid)
-            {
-                strikeLoc = CellFinderLoose.RandomCellWith((IntVec3 sq) => sq.Standable(map) && !map.roofGrid.Roofed(sq), map, 1000);
-            }
-            Mesh boltMesh = LightningBoltMeshPool.RandomBoltMesh;
-            if (!strikeLoc.Fogged(map))
-            {
-                GenExplosion.DoExplosion(strikeLoc, map, 1.9f, DamageDefOf.Flame, caster, damage, armorPenetration, null, null, null, null, null, 0f, 1, null, null, 255, false, null, 0f, 1, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f, null, null);
-                Vector3 loc = strikeLoc.ToVector3Shifted();
-                for (int i = 0; i < 4; i++)
-                {
-                    FleckMaker.ThrowSmoke(loc, map, 1.5f);
-                    FleckMaker.ThrowMicroSparks(loc, map);
-                    FleckMaker.ThrowLightningGlow(loc, map, 1.5f);
-                }
-            }
-            SoundInfo info = SoundInfo.InMap(new TargetInfo(strikeLoc, map, false), MaintenanceType.None);
-            SoundDefOf.Thunder_OnMap.PlayOneShot(info);
-            Graphics.DrawMesh(boltMesh, strikeLoc.ToVector3ShiftedWithAltitude(AltitudeLayer.Weather), Quaternion.identity, FadedMaterialPool.FadedVersionOf(MatLoader.LoadMat("Weather/LightningBolt", -1), 1f), 0);
+            map.weatherManager.eventHandler.AddEvent(new WeatherEvent_ArmourPiercingBolt(map,strikeLoc));
+            GenExplosion.DoExplosion(strikeLoc, map, 1.9f, DamageDefOf.Flame, caster, damage, armorPenetration, null, null, null, null, null, 0f, 1, null, null, 255, false, null, 0f, 1, 0f, false, null, null, null, true, 1f, 0f, true, null, 1f, null, null);
         }
         /*spawns the specified pawn at the specified "anchor" Thing's position. They don't even have to be on the same map, but the anchor must be spawned (otherwise the only effect of TetherSkipBack is to destroy the anchor).
          * Used by both the actual Tetherskip, and Word of Safety's teleportation effect*/
