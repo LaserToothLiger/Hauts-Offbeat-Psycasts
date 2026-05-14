@@ -45,7 +45,6 @@
           </points>
 		</psyfocusCostPerVictimSize>
 		<immunePawnKinds>
-		  <li MayRequire="metalocif.coolerpsycasts">CoolPsycasts_ArchotechSplinter</li>
 		</immunePawnKinds>
         <clamorType>Ability</clamorType>
         <clamorRadius>20</clamorRadius>

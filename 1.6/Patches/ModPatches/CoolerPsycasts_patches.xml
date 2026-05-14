@@ -17,6 +17,17 @@
 						</value>
 					</match>
 				</li>
+				<li Class="PatchOperationFindMod">
+					<mods>
+						<li>Combat Extended</li>
+					</mods>
+					<nomatch Class="PatchOperationAdd">
+						<xpath>/Defs/AbilityDef[defName="HVP_EvictionSkip"]/comps/li[@Class="HautsPsycasts.CompProperties_AbilityEvict"]/immunePawnKinds</xpath>
+						<value>
+							<li>CoolPsycasts_ArchotechSplinter</li>
+						</value>
+					</nomatch>
+				</li>
 			</operations>
 		</match>
 	</Operation>
