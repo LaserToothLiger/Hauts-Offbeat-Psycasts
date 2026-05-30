@@ -129,7 +129,7 @@
   
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_LightningStrike</defName>
-    <label>thunderbolt</label>
+    <label>smite</label>
     <description>Use a precise series of skipgates to greatly alter the electric charge of the targeted point, prompting an immediate lightning strike. Unlike natural lightning, this directed attack is capable of slightly injuring mechanoids.</description>
     <level>3</level>
     <iconPath>Psycasts/HVP_LightningStrike</iconPath>
@@ -138,7 +138,7 @@
     <hostile>true</hostile>
     <casterMustBeCapableOfViolence>true</casterMustBeCapableOfViolence>
     <statBases>
-      <Ability_EntropyGain>26</Ability_EntropyGain>
+      <Ability_EntropyGain>22</Ability_EntropyGain>
       <Ability_PsyfocusCost>0.02</Ability_PsyfocusCost>
       <Ability_EffectRadius>1.9</Ability_EffectRadius>
     </statBases>
