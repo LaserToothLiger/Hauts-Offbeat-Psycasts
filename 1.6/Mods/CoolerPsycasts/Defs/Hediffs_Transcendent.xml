@@ -121,6 +121,10 @@
 		  <ToxicResistance>0.5</ToxicResistance>
 		  <SmokeSensitivity MayRequire="CETeam.CombatExtended">-0.5</SmokeSensitivity>
 		  <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.5</VacuumResistance>
+		  <HeatNullNaniteResistance MayRequire="Snow.KraltechIndustries.Rebalanced">0.25</HeatNullNaniteResistance>
+		  <ColdNullNaniteResistance MayRequire="Snow.KraltechIndustries.Rebalanced">0.25</ColdNullNaniteResistance>
+		  <AntiOrgToxinResistance MayRequire="Snow.KraltechIndustries.Rebalanced">0.25</AntiOrgToxinResistance>
+		  <NecrotionResistance MayRequire="zal.taofc">0.25</NecrotionResistance>
 		</statOffsets>
 		<statFactors>
 		  <IncomingDamageFactor>0.75</IncomingDamageFactor>
