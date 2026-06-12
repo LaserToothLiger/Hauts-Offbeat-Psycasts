@@ -125,6 +125,7 @@ namespace HautsPsycasts
         public List<IncidentDef> excludedGoodEvents = new List<IncidentDef>();
         public SimpleCurve eventPerStatCurve;
         public StatDef statScalar;
+        public int minEventImpact;
     }
     public class CompAbilityEffect_ArrangeFortune : CompAbilityEffect
     {
@@ -148,7 +149,7 @@ namespace HautsPsycasts
             int ets = this.EventsToSpawn;
             for (int i = 0; i < ets; i++)
             {
-                GoodAndBadIncidentsUtility.MakeGoodEvent(this.parent.pawn,this.Props.delayTicks.RandomInRange,this.Props.excludedGoodEvents);
+                GoodAndBadIncidentsUtility.MakeGoodEvent(this.parent.pawn, this.Props.delayTicks.RandomInRange, this.Props.excludedGoodEvents, minImpact: this.Props.minEventImpact);
             }
         }
     }

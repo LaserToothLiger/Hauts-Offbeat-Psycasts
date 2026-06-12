@@ -88,9 +88,10 @@
       <li Class="HautsPsycasts.CompProperties_AbilityArrangeFortune">
         <compClass>HautsPsycasts.CompAbilityEffect_ArrangeFortune</compClass>
 		<delayTicks>5000~60000</delayTicks>
-		<excludedGoodEvents>
+		<!--<excludedGoodEvents>
 		  <li>SelfTame</li>
-		</excludedGoodEvents>
+		</excludedGoodEvents>-->
+		<minEventImpact>1</minEventImpact>
 		<eventPerStatCurve>
 		  <points>
             <li>(1, 1)</li>
