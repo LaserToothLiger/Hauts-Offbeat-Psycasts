@@ -130,6 +130,7 @@
 		  <IncomingDamageFactor>0.75</IncomingDamageFactor>
 		  <VEF_MassCarryCapacity>1.5</VEF_MassCarryCapacity>
 		  <CarryWeight MayRequire="CETeam.CombatExtended">1.5</CarryWeight>
+		  <VEF_SunSicknessBuildupMultiplier MayRequire="VanillaExpanded.VEE">0.75</VEF_SunSicknessBuildupMultiplier>
 		</statFactors>
 	  </li>
     </stages>
