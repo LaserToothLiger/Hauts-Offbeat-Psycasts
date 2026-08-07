@@ -192,7 +192,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_Skiptheft</defName>
     <label>skiptheft</label>
-    <description>Skip a random item carried or worn by the target into the caster's possession, slightly damaging it. If the target is hostile, this will preferentially steal their weapon, then their apparel, then things in their inventory; otherwise, the priority of items to steal is reversed. Stealing worn apparel, wielded weapons, or from a member of an ultratech faction will worsen relations with the target's faction.\n\nAlso raises the target's alert level by 5, making it more difficult to pickpocket them.</description>
+    <description>Skip a random item carried or worn by the target into the caster's possession, slightly damaging it. If the target is hostile, this will preferentially steal their weapon, then their apparel, then things in their inventory; otherwise, the priority of items to steal is reversed. Stealing worn apparel, wielded weapons, or from a member of an ultratech faction will worsen relations with the target's faction.\n\nAlso raises the target's alert level by +200%, making it more difficult to pickpocket them.</description>
     <level>4</level>
     <iconPath>Psycasts/HVP_Skiptheft</iconPath>
     <hostile>false</hostile>
