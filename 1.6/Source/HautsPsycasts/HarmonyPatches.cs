@@ -99,21 +99,7 @@ namespace HautsPsycasts
                 int psycastsToAward = (int)HVP_Mod.settings.psycastsLearnedPerLevel - 1;
                 if (psycastsToAward > 0 && __instance.pawn.abilities != null)
                 {
-                    List<RimWorld.AbilityDef> psycastsOfLevel = new List<RimWorld.AbilityDef>();
-                    foreach (RimWorld.AbilityDef a in DefDatabase<RimWorld.AbilityDef>.AllDefs)
-                    {
-                        if (a.IsPsycast && a.level == abilityLevel && __instance.pawn.abilities.GetAbility(a) == null)
-                        {
-                            psycastsOfLevel.Add(a);
-                        }
-                    }
-                    while (psycastsToAward > 0 && psycastsOfLevel.Count > 0)
-                    {
-                        RimWorld.AbilityDef abilityDef = psycastsOfLevel.RandomElement();
-                        __instance.pawn.abilities.GainAbility(abilityDef);
-                        psycastsOfLevel.Remove(abilityDef);
-                        psycastsToAward--;
-                    }
+                    HVPUtility.LearnBonusPsycast(__instance,abilityLevel,psycastsToAward);
                 }
             }
         }

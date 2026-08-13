@@ -81,7 +81,7 @@ namespace HautsPsycasts
                 {
                     this.chunk = ThingDefOf.ChunkSlagSteel;
                 }
-                float damageMulti = Meteoroid.ChunkMeteorDamageMulti(this.chunk);
+                float damageMulti = Meteoroid.ChunkMeteorDamageMulti(this.chunk)*this.power;
                 int totalDamage = GenMath.RoundRandom((float)this.def.skyfaller.explosionDamage.defaultDamage * this.def.skyfaller.explosionDamageFactor * damageMulti);
                 GenExplosion.DoExplosion(base.Position, base.Map, this.def.skyfaller.explosionRadius, this.def.skyfaller.explosionDamage, this.caster ?? null, totalDamage, -1f, null, null, null, null, null, 0f, 1, null, null, 255, false, null, 0f, 1, 0f, false, null, (!this.def.skyfaller.damageSpawnedThings) ? this.innerContainer.ToList<Thing>() : null, null, true, 1f, 0f, true, null, 1f, null, preExplosionSpawnSingleThingDef: ThingDefOf.Filth_BlastMark);
             }
@@ -140,13 +140,16 @@ namespace HautsPsycasts
             base.ExposeData();
             Scribe_Defs.Look<ThingDef>(ref this.chunk, "chunk");
             Scribe_References.Look<Pawn>(ref this.caster, "caster", false);
+            Scribe_Values.Look<float>(ref power, "power", 1f);
         }
         public ThingDef chunk;
         public Pawn caster;
+        public float power = 1f;
     }
     public class CompProperties_AbilityMSkip : CompProperties_EffectWithDest
     {
         public ThingDef skyfaller;
+        public float damageMultiPerStackCountPastFirst = 0.25f;
     }
     public class CompAbilityEffect_MSkip : CompAbilityEffect_WithDest
     {
@@ -171,9 +174,7 @@ namespace HautsPsycasts
                             FleckCreationData dataAttachedOverlay = FleckMaker.GetDataAttachedOverlay(pawn, FleckDefOf.PsycastSkipFlashEntry, new Vector3(-0.5f, 0f, -0.5f), 1f, -1f);
                             dataAttachedOverlay.link.detachAfterTicks = 5;
                             pawn.Map.flecks.CreateFleck(dataAttachedOverlay);
-                        }
-                        else
-                        {
+                        } else {
                             FleckMaker.Static(t.CenterVector3, this.parent.pawn.Map, FleckDefOf.PsycastSkipFlashEntry, 1f);
                         }
                         FleckMaker.Static(d.Cell, this.parent.pawn.Map, FleckDefOf.PsycastSkipInnerExit, 1f);
@@ -220,6 +221,7 @@ namespace HautsPsycasts
                     Meteoroid meteoroid = (Meteoroid)GenSpawn.Spawn(SkyfallerMaker.MakeSkyfaller(this.Props.skyfaller), destination.Cell, pawn.Map, WipeMode.Vanish);
                     meteoroid.caster = pawn;
                     meteoroid.chunk = target.Thing.def;
+                    meteoroid.power = 1f+((target.Thing.stackCount -1f)*this.Props.damageMultiPerStackCountPastFirst);
                     target.Thing.Destroy();
                 }
             }

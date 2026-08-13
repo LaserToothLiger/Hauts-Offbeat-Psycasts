@@ -1,8 +1,6 @@
 ﻿using RimWorld;
 using RimWorld.Planet;
-using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Verse;
 using Verse.Sound;
 
@@ -140,6 +138,25 @@ namespace HautsPsycasts
         public static bool ShouldShowExtraPsycastGizmo(Pawn p)
         {
             return (p.IsPlayerControlled || (p.IsInCaravan() && p.IsColonist) || DebugSettings.ShowDevGizmos) && p.Awake() && !p.DeadOrDowned && !p.Suspended && !p.InMentalState && p.HasPsylink && p.GetStatValue(StatDefOf.PsychicSensitivity) > float.Epsilon;
+        }
+        //
+        public static void LearnBonusPsycast(Hediff_Psylink psylink, int abilityLevel, int psycastsToAward)
+        {
+            List<AbilityDef> psycastsOfLevel = new List<AbilityDef>();
+            foreach (AbilityDef a in DefDatabase<AbilityDef>.AllDefs)
+            {
+                if (a.IsPsycast && a.level == abilityLevel && psylink.pawn.abilities.GetAbility(a) == null)
+                {
+                    psycastsOfLevel.Add(a);
+                }
+            }
+            while (psycastsToAward > 0 && psycastsOfLevel.Count > 0)
+            {
+                AbilityDef abilityDef = psycastsOfLevel.RandomElement();
+                psylink.pawn.abilities.GainAbility(abilityDef);
+                psycastsOfLevel.Remove(abilityDef);
+                psycastsToAward--;
+            }
         }
     }
 }

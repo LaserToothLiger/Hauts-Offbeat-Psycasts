@@ -71,6 +71,7 @@
         <clamorRadius>10</clamorRadius>
         <destClamorType>Ability</destClamorType>
         <destClamorRadius>10</destClamorRadius>
+		<damageMultiPerStackCountPastFirst>0.3</damageMultiPerStackCountPastFirst>
       </li>
     </comps>
   </AbilityDef>
@@ -260,6 +261,7 @@
 		  <li MayRequire="Dubwise.Rimatomics">RadiationIncurable</li>
 		  <li MayRequire="notdvd.fraymod">dvd_InfusionDrawback</li>
 		  <li MayRequire="notdvd.fraymod">dvd_PsyfogDebuff</li>
+		  <li MayRequire="MrKociak.EMPAffectsBionics">EMPBI_CyberneticToxicLeak</li>
 		</otherAffectedHediffs>
 		<addsHediff>HVP_Sterility</addsHediff>
         <goodwillImpactOnIncapacitating>-45</goodwillImpactOnIncapacitating>
