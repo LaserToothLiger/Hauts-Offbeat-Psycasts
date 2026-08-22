@@ -595,6 +595,7 @@
 	    <statOffsets>
 		  <Hauts_PsycastFocusRefund>0.8</Hauts_PsycastFocusRefund>
 		  <Hauts_SkipcastRangeFactor>0.25</Hauts_SkipcastRangeFactor>
+		  <Hauts_TierOnePsycastCostOffset>-1</Hauts_TierOnePsycastCostOffset>
 		</statOffsets>
 		<statFactors>
 		  <PsychicEntropyGain>0.05</PsychicEntropyGain>

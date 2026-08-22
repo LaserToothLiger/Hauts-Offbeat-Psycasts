@@ -46,7 +46,7 @@
   <AbilityDef ParentName="PsycastBase">
     <defName>HVP_Flare</defName>
     <label>flare</label>
-    <description>Briefly swell with psychic power. The next psycast within 2 hours will not incur neural heat and will have 80% of its psyfocus cost refunded; if it is a skip psycast, its range will also be extended.</description>
+    <description>Briefly swell with psychic power. The next psycast within 2 hours will not incur neural heat and will have a portion of its psyfocus cost refunded (100% if it's a first-level psycast; 80% otherwise). If it is a skip psycast, its range will also be extended.</description>
     <level>4</level>
     <cooldownTicksRange>180000</cooldownTicksRange>
     <iconPath>Psycasts/HVP_Flare</iconPath>
@@ -138,7 +138,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_Replicate</defName>
     <label>replicate</label>
-    <description>Teleports in a copy of the targeted resource item from somewhere else in the cosmos.\n\nItems worth more than 350 silver can't be replicated. If the target is an item stack exceeding 500 silver in value, the replica will be smaller in order to be at or under 500 silver in value.</description>
+    <description>Teleport in a copy of the targeted resource item from somewhere else in the cosmos.\n\nItems worth more than 350 silver apiece can't be replicated. If the target is an item stack exceeding 500 silver in value, the replica will be smaller in order to be at or under 500 silver in value.</description>
     <level>4</level>
     <iconPath>Psycasts/HVP_Replicate</iconPath>
     <hostile>false</hostile>

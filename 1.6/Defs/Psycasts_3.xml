@@ -202,7 +202,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_VaultSkip</defName>
     <label>vault skip</label>
-    <description>Skips all nearby unattended items into a distant vault unreachable by regular means. The caster may later retrieve all items from the vault at once. Every 10 objects (or stacks of objects) stored in this way consume 1% psyfocus per day.\n\nIf the caster dies with items stored in the vault, the vault’s contents will be returned to the caster’s location, but roughly one-third of the items may be lost.</description>
+    <description>Skip all nearby unattended items into a distant vault unreachable by regular means. The caster may later retrieve all items from the vault at once. Every 10 objects (or stacks of objects) stored in this way consume 1% psyfocus per day.\n\nIf the caster dies with items stored in the vault, the vault’s contents will be returned to the caster’s location, but roughly one-third of the items may be lost.</description>
     <level>3</level>
     <iconPath>Psycasts/HVP_VaultSkip</iconPath>
     <targetRequired>False</targetRequired>

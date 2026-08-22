@@ -42,7 +42,7 @@
   <AbilityDef ParentName="PsycastBaseSkip">
     <defName>HVP_MeteoroidSkip</defName>
     <label>meteoroid skip</label>
-    <description>Teleport the target chunk into the gravity well of a distant neutron star to vastly accelerate it, then quickly teleport it back to a position far above the target point. It will land with explosive force shortly thereafter. Chunks of more durable materials will cause more damage.\n\nShields that block mortar fire also block meteoroids.</description>
+    <description>Teleport the target chunk into the gravity well of a distant neutron star to vastly accelerate it, then quickly teleport it back to a position far above the target point. It will land with explosive force shortly thereafter. Chunks of more durable materials and/or greater stack size will cause more damage.\n\nShields that block mortar fire also block meteoroids.</description>
     <level>5</level>
     <iconPath>Psycasts/HVP_MeteoroidSkip</iconPath>
     <writeCombatLog>True</writeCombatLog>
