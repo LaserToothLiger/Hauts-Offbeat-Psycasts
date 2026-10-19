@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+  
+  <!--level 7:
+  psyfocus transfer-->
+  <HediffDef>
+    <defName>HVP_TransferredPsyfocus</defName>
+    <label>transferred psyfocus</label>
+    <description>Psyfocus transferred from another psycaster.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <hediffClass>HediffWithComps</hediffClass>
+	<initialSeverity>0.001</initialSeverity>
+    <stages>
+      <li>
+		<statOffsets>
+		  <Hauts_PsyfocusRegenRate>12</Hauts_PsyfocusRegenRate>
+		</statOffsets>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HediffCompProperties_SeverityPerDay">
+        <severityPerDay>-24</severityPerDay>
+		<showDaysToRecover>true</showDaysToRecover>
+      </li>
+    </comps>
+  </HediffDef>
+  
+  <!--level 8:
+  marking pulse-->
+  <HediffDef ParentName="PsycastHediffBase">
+    <defName>HVP_MarkingDebuff</defName>
+    <label>psychic mark</label>
+    <description>Anyone attacking this creature receives psychic guidance, maximizing the accuracy of their attacks.</description>
+    <isBad>true</isBad>
+    <stages>
+      <li>
+		<statOffsets><!--since VEF's Targeting doesn't seem to work in CE, Marking Pulse instead just makes you much more skilled at flubbing combat-->
+		  <PawnTrapSpringChance MayRequire="CETeam.CombatExtended">1</PawnTrapSpringChance>
+		  <Suppressability MayRequire="CETeam.CombatExtended">0.5</Suppressability>
+		  <MeleeParryChance MayRequire="CETeam.CombatExtended">-0.12</MeleeParryChance>
+		  <MeleeDodgeChance MayRequire="CETeam.CombatExtended">-0.12</MeleeDodgeChance>
+		  <VEF_RangedDodgeChance MayRequire="CETeam.CombatExtended">-0.12</VEF_RangedDodgeChance>
+          <ArmorRating_Sharp MayRequire="CETeam.CombatExtended">-3.5</ArmorRating_Sharp>
+          <ArmorRating_Blunt MayRequire="CETeam.CombatExtended">-3.5</ArmorRating_Blunt>
+          <ArmorRating_Heat MayRequire="CETeam.CombatExtended">-0.35</ArmorRating_Heat>
+          <ArmorRating_Electric MayRequire="CETeam.CombatExtended">-0.35</ArmorRating_Electric>
+		</statOffsets>
+		<statFactors>
+		  <StaggerDurationFactor MayRequire="CETeam.CombatExtended">2</StaggerDurationFactor>
+		</statFactors>
+      </li>
+    </stages>
+    <comps>
+		<li Class="VEF.Hediffs.HediffCompProperties_Targeting">
+			<alwaysHit>true</alwaysHit>
+		</li>
+		<li Class="HOP_CoolerPsycasts.HediffCompProperties_IShallStrikeYouDumb" MayRequire="CETeam.CombatExtended">
+			<stunTicks>180</stunTicks>
+		</li>
+    </comps>
+  </HediffDef>
+  <!--level 9:
+  word of blessing-->  
+  <HediffDef ParentName="HVT_TraitHediffBase" Name="HVP_BlessingHediff" Abstract="True">
+    <hediffClass>HOP_CoolerPsycasts.HediffBlessing</hediffClass>
+	<minSeverity>0.001</minSeverity>
+	<initialSeverity>1</initialSeverity>
+	<maxSeverity>1</maxSeverity>
+  </HediffDef>
+  <HediffDef ParentName="HVP_BlessingHediff">
+    <defName>HVP_BlessingSpirit</defName>
+    <label>blessing of spirit</label>
+    <description>Psychic competence granted by the Word of Blessing.</description>
+    <stages>
+	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
+		<statOffsets>
+		  <MeditationFocusGain>0.05</MeditationFocusGain>
+		  <PsychicSensitivity>0.6</PsychicSensitivity>
+		</statOffsets>
+	  </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVP_BlessingHediff">
+    <defName>HVP_BlessingIntelligence</defName>
+    <label>blessing of intelligence</label>
+    <description>An enhanced capacity for learning granted by the Word of Blessing.</description>
+    <stages>
+	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
+		<statOffsets>
+		  <GlobalLearningFactor>0.75</GlobalLearningFactor>
+		  <LearningRateFactor MayRequire="Ludeon.RimWorld.Biotech">0.75</LearningRateFactor>
+		</statOffsets>
+	  </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVP_BlessingHediff">
+    <defName>HVP_BlessingResilience</defName>
+    <label>blessing of resilience</label>
+    <description>Resistance to injury and environmental hazards granted by the Word of Blessing.</description>
+    <stages>
+	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
+		<statOffsets>
+		  <ImmunityGainSpeed>0.5</ImmunityGainSpeed>
+		  <PainShockThreshold>0.3</PainShockThreshold>
+		  <ToxicResistance>0.5</ToxicResistance>
+		  <SmokeSensitivity MayRequire="CETeam.CombatExtended">-0.5</SmokeSensitivity>
+		  <VacuumResistance MayRequire="Ludeon.RimWorld.Odyssey">0.5</VacuumResistance>
+		  <HeatNullNaniteResistance MayRequire="Snow.KraltechIndustries.Rebalanced">0.25</HeatNullNaniteResistance>
+		  <ColdNullNaniteResistance MayRequire="Snow.KraltechIndustries.Rebalanced">0.25</ColdNullNaniteResistance>
+		  <AntiOrgToxinResistance MayRequire="Snow.KraltechIndustries.Rebalanced">0.25</AntiOrgToxinResistance>
+		  <NecrotionResistance MayRequire="zal.taofc">0.25</NecrotionResistance>
+		</statOffsets>
+		<statFactors>
+		  <IncomingDamageFactor>0.75</IncomingDamageFactor>
+		  <VEF_MassCarryCapacity>1.5</VEF_MassCarryCapacity>
+		  <CarryWeight MayRequire="CETeam.CombatExtended">1.5</CarryWeight>
+		  <VEF_SunSicknessBuildupMultiplier MayRequire="VanillaExpanded.VEE">0.75</VEF_SunSicknessBuildupMultiplier>
+		</statFactors>
+	  </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVP_BlessingHediff">
+    <defName>HVP_BlessingLongevity</defName>
+    <label>blessing of longevity</label>
+    <description>Vitality granted by the Word of Blessing.</description>
+    <stages>
+	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
+		<statOffsets>
+		  <InjuryHealingFactor>1</InjuryHealingFactor>
+		</statOffsets>
+		<statFactors>
+		  <LifespanFactor>1.5</LifespanFactor>
+		</statFactors>
+        <regeneration MayRequire="Ludeon.RimWorld.Anomaly">1</regeneration>
+	  </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVP_BlessingHediff">
+    <defName>HVP_BlessingCelerity</defName>
+    <label>blessing of celerity</label>
+    <description>Speed granted by the Word of Blessing.</description>
+    <stages>
+	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
+		<statFactors>
+		  <PawnTrapSpringChance>0</PawnTrapSpringChance>
+		</statFactors>
+		<capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <postFactor>1.1</postFactor>
+          </li>
+        </capMods>
+	  </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVP_BlessingHediff">
+    <defName>HVP_BlessingDexterity</defName>
+    <label>blessing of dexterity</label>
+    <description>Motor skill granted by the Word of Blessing.</description>
+    <stages>
+	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
+		<capMods>
+          <li>
+            <capacity>Manipulation</capacity>
+            <postFactor>1.25</postFactor>
+          </li>
+        </capMods>
+	  </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVP_BlessingHediff">
+    <defName>HVP_BlessingAttunement</defName>
+    <label>blessing of attunement</label>
+    <description>A connection with the natural world granted by the Word of Blessing.</description>
+    <stages>
+	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
+		<statOffsets>
+		  <PlantWorkSpeed>1</PlantWorkSpeed>
+		  <TameAnimalChance>0.2</TameAnimalChance>
+		  <TrainAnimalChance>0.2</TrainAnimalChance>
+		  <ForagedNutritionPerDay>0.35</ForagedNutritionPerDay>
+		  <CaravanBonusSpeedFactor>0.1</CaravanBonusSpeedFactor>
+		  <Hauts_MaxDryadFactor MayRequire="Ludeon.RimWorld.Ideology">0.25</Hauts_MaxDryadFactor>
+		</statOffsets>
+	  </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVP_BlessingHediff">
+    <defName>HVP_BlessingCharisma</defName>
+    <label>blessing of charisma</label>
+    <description>Influence over others granted by the Word of Blessing.</description>
+    <stages>
+	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
+		<statOffsets>
+		  <ArrestSuccessChance>0.2</ArrestSuccessChance>
+		  <NegotiationAbility>0.2</NegotiationAbility>
+		  <SocialImpact>0.1</SocialImpact>
+		  <TradePriceImprovement>0.03</TradePriceImprovement>
+		  <ConversionPower MayRequire="Ludeon.RimWorld.Ideology">0.2</ConversionPower>
+		  <SuppressionPower MayRequire="Ludeon.RimWorld.Ideology">0.1</SuppressionPower>
+		  <ActivitySuppressionRate MayRequire="Ludeon.RimWorld.Anomaly">0.04</ActivitySuppressionRate>
+		</statOffsets>
+	  </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVP_BlessingHediff">
+    <defName>HVP_BlessingStasis</defName>
+    <label>blessing of stasis</label>
+    <description>Heavily reduced dependency on external factors for survival and gratification, granted by the Word of Blessing.</description>
+    <stages>
+	  <li>
+	    <minSeverity>0.001</minSeverity>
+		<label>inactive</label>
+	  </li>
+	  <li>
+	    <minSeverity>1</minSeverity>
+		<statFactors>
+		  <RestFallRateFactor>0.1</RestFallRateFactor>
+		  <JoyFallRateFactor>0.1</JoyFallRateFactor>
+		  <ThirstRateMultiplier MayRequire="Dubwise.DubsBadHygiene">0.1</ThirstRateMultiplier>
+		  <HygieneRateMultiplier MayRequire="Dubwise.DubsBadHygiene">0.1</HygieneRateMultiplier>
+		  <BladderRateMultiplier MayRequire="Dubwise.DubsBadHygiene">0.1</BladderRateMultiplier>
+		</statFactors>
+		<hungerRateFactor>0.1</hungerRateFactor>
+		<totalBleedFactor>0.1</totalBleedFactor>
+	  </li>
+    </stages>
+  </HediffDef>
+  <!--tornado link-->
+  <HediffDef>
+    <defName>HVP_HiddenTornadoMaintainer</defName>
+    <label>atmokinetic signal</label>
+    <description>Controls the Tornado Link.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+	<initialSeverity>0.001</initialSeverity>
+    <stages>
+      <li>
+        <becomeVisible>false</becomeVisible>
+		<damageFactors>
+		  <TornadoScratch>0.02</TornadoScratch>
+		</damageFactors>
+      </li>
+    </stages>
+	<comps>
+	  <li Class="HOP_CoolerPsycasts.HediffCompProperties_LinkTornado">
+        <casterEntropyGainPerSecond>5</casterEntropyGainPerSecond>
+		<severityPerLink>1</severityPerLink>
+		<casterMustBePsycastCapable>true</casterMustBePsycastCapable>
+		<casterMustBeConscious>true</casterMustBeConscious>
+		<maxDistance>60</maxDistance>
+		<customMote>HVP_Mote_ParalysisBeam</customMote>
+		<ticksToNextDamage>60</ticksToNextDamage><!--it doesn't actually do damage, but this is how often it sets certain control-related properties of the tornado-->
+	    <icon>Things/Mote/PsycastSkipFlash</icon>
+		<buttonLabel>HVP_NoTornadoLabel</buttonLabel>
+		<buttonTooltip>HVP_NoTornadoText</buttonTooltip>
+		<wanderSpeed>0.028333334</wanderSpeed><!--this is the natural speed for tornadoes, to which they will return if the link breaks down-->
+		<controlledSpeed>0.1</controlledSpeed><!--this, on the other hand, is the speed of a tornado under the control of a psycaster. NYOOOOOOOOOM-->
+		<secsForAiToLetLoose>40</secsForAiToLetLoose><!--all AI-controlled psycasters e.g. the splinter avatar will unlink from their tornadoes once they reach 40s of age, for the because. (This is the part where the tornado kills you.)-->
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath"/>
+	</comps>
+  </HediffDef>
+  
+  <!--voidquake-->
+  <HediffDef>
+    <defName>HVP_VoidquakeMalus</defName>
+    <label>voidquake</label>
+    <description>Psychically-induced reduction in processing power.</description>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+		<capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.5</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  <HediffDef ParentName="HVT_TraitHediffBase">
+    <defName>HVP_VoidquakeBonus</defName>
+    <label>voidquake</label>
+    <description>A stronger connection to the Void.</description>
+    <isBad>false</isBad>
+	<everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li>
+		<capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>0.2</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+  <HediffDef>
+    <defName>HVP_VoidquakeSelf</defName>
+    <label>void exposure</label>
+    <description>Psychological backlash from the casting of a voidquake, resulting in frequent mental breaks regardless of mood.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+	<initialSeverity>10</initialSeverity>
+    <stages>
+      <li>
+		<statOffsets>
+		  <MentalBreakThreshold>0.1</MentalBreakThreshold>
+		</statOffsets>
+      </li>
+    </stages>
+    <comps>
+      <li Class="HOP_CoolerPsycasts.HediffCompProperties_VoidExposure">
+        <severityPerDay>-1</severityPerDay>
+		<showDaysToRecover>true</showDaysToRecover>
+		<mentalStateMTBdays>5</mentalStateMTBdays>
+		<mentalStateRoster>
+		  <li>Berserk</li>
+		  <li>CorpseObsession</li>
+		  <li>Wander_Psychotic</li>
+		  <li>InsultingSpree</li>
+		  <li MayRequire="Ludeon.RimWorld.Anomaly">InsaneRamblings</li>
+		  <li MayRequire="Ludeon.RimWorld.Anomaly">TerrifyingHallucinations</li>
+		  <!--<li MayRequire="Ludeon.RimWorld.Anomaly">HumanityBreak</li> you need the appropriate precept for this to work-->
+		</mentalStateRoster>
+      </li>
+    </comps>
+  </HediffDef>
+  
+</Defs>

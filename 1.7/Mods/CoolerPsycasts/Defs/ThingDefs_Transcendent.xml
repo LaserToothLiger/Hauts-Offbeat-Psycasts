@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <!--tornado link-->
+  <ThingDef ParentName="EtherealThingBase">
+    <defName>HVP_LinkedTornado</defName>
+    <label>tornado</label>
+    <thingClass>HOP_CoolerPsycasts.LinkedTornado</thingClass>
+    <tickerType>Normal</tickerType>
+    <drawerType>RealtimeOnly</drawerType>
+    <drawOffscreen>true</drawOffscreen>
+    <seeThroughFog>true</seeThroughFog>
+    <alwaysFlee>true</alwaysFlee>
+    <comps>
+      <li Class="CompProperties_WindSource" />
+    </comps>
+  </ThingDef>
+  
+</Defs>

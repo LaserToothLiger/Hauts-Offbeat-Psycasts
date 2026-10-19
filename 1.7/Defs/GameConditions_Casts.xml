@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <GameConditionDef>
+    <defName>HVP_BetterFlashstorm</defName>
+    <conditionClass>HautsPsycasts.GameCondition_BetterFlashstorm</conditionClass>
+    <label>flashstorm</label>
+    <description>A freak localized storm is blasting a small area with repeated lightning strikes.</description>
+    <endMessage>The flashstorm is over.</endMessage>
+    <letterText>A freak localized flashstorm is striking a small area with lightning. This can cause massive fires.</letterText>
+    <letterDef>NegativeEvent</letterDef>
+    <preventRain>true</preventRain>
+    <canBePermanent>true</canBePermanent>
+    <jumpToSourceKey>ClickToJumpToFlashstorm</jumpToSourceKey>
+    <allowUnderground>false</allowUnderground>
+  </GameConditionDef>
+  
+</Defs>

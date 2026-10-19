@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Hauts' Added Traits</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations><!--eviction skip cant hit woke-->
+				<li Class="PatchOperationAdd">
+					<xpath>/Defs/AbilityDef[defName="HVP_EvictionSkip"]/comps</xpath>
+					<value>
+						<li Class="HautsTraitsRoyalty.CompProperties_AbilityCantTargetWoke">
+							<compClass>HautsTraitsRoyalty.CompAbilityEffect_CantTargetWoke</compClass>
+					    </li>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+</Patch>

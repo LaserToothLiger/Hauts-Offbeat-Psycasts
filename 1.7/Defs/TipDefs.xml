@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <TipSetDef>
+    <defName>HVP_Tipset</defName>
+    <tips>
+      <li TKey="HVP_TZone">The Tremorzone psycast staggers creatures caught in its radius - even those ordinarily immune to direct psycast effects. However, fliers and entities immune to stagger are unaffected.</li>
+      <li TKey="HVP_PsyDeafening">Both the Stifle and Sensitize psycasts can be used to lower the caster's own psychic sensitivity, which can save their sanity during a psychic drone.</li>
+      <li TKey="HVP_ZoneAoE">Zone psycasts penetrate walls. For example, a single Carezone can boost the healing of patients in different bedrooms, so long as their beds are close enough.</li>
+      <li TKey="HVP_Paralyzed">Paralysis Link can be used on its own to subdue prisoners or slaves without risk of injury - or in conjunction with normal attacks to bring down foes on the field of battle.</li>
+      <li TKey="HVP_SleepToMech" MayRequire="Ludeon.RimWorld.Biotech">The Energy Transfer psycast can convert a living creature's need for sleep into a mechanoid's need for energy. With enough "living batteries", you can circumvent the need for rechargers completely.</li>
+    </tips>
+  </TipSetDef>
+
+</Defs>

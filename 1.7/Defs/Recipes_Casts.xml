@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <RecipeDef ParentName="SurgeryFlesh">
+    <defName>HVP_CureMelding</defName>
+    <label>anti-melding mechanite infusion</label>
+    <description>This special medical operation uses a massive dose of mechanites to saturate brain tissue and execute a coordinated restructure of neural activity without damaging the brain. It permanently cures a patient's Word of Melding-induced coma, but consumes a large amount of glitterworld medicine.</description>
+    <workerClass>Recipe_RemoveHediff</workerClass>
+    <jobString>Infusing anti-melding mechanites.</jobString>
+    <workAmount>2000</workAmount>
+    <hideBodyPartNames>true</hideBodyPartNames>
+    <isViolation>false</isViolation>
+    <targetsBodyPart>false</targetsBodyPart>
+    <removesHediff>HVP_MeldingComa</removesHediff>
+    <successfullyRemovedHediffMessage>{0} has successfully cured {1}'s Word of Melding-induced coma.</successfullyRemovedHediffMessage>
+    <skillRequirements>
+      <Medicine>5</Medicine>
+    </skillRequirements>
+    <ingredients>
+      <li>
+        <filter>
+          <thingDefs>
+            <li>MedicineUltratech</li>
+          </thingDefs>
+        </filter>
+        <count>10</count>
+      </li>
+    </ingredients>
+    <fixedIngredientFilter>
+      <categories>
+        <li>Medicine</li>
+      </categories>
+    </fixedIngredientFilter>
+  </RecipeDef>
+  
+</Defs>

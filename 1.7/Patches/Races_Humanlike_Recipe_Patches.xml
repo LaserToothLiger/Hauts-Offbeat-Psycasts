@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Patch>
+	
+	<Operation Class="PatchOperationConditional">
+		<xpath>/Defs/ThingDef[@Name="Human"]/recipes</xpath>
+		<nomatch Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="Human"]</xpath>
+			<value>
+				<recipes>
+					<li>HVP_CureMelding</li>
+				</recipes>
+			</value>
+		</nomatch>
+		<match Class="PatchOperationAdd">
+			<xpath>/Defs/ThingDef[@Name="Human"]/recipes</xpath>
+			<value>
+				<li>HVP_CureMelding</li>
+			</value>
+		</match>
+	</Operation>
+	
+</Patch>
