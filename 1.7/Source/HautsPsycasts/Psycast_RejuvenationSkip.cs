@@ -81,7 +81,7 @@ namespace HautsPsycasts
                     {
                         Hediff h = injuries.RandomElement();
                         float toHeal = Math.Min(h.Severity, 1f);
-                        h.Severity -= toHeal;
+                        h.Heal(toHeal);
                     } else if (missingParts.Count > 0) {
                         Hediff h = missingParts.RandomElement();
                         BodyPartRecord part = h.Part;

@@ -1,5 +1,6 @@
 ﻿using HautsFramework;
 using RimWorld;
+using VEF.Things;
 using Verse;
 
 namespace HautsPsycasts
@@ -69,9 +70,7 @@ namespace HautsPsycasts
                 if (ambientTemperature < this.Props.desiredTemperatureRange.min)
                 {
                     GenTemperature.PushHeat(this.parent.PositionHeld, this.parent.MapHeld, magnitude * Math.Min(this.Props.heatPerSecond, this.Props.desiredTemperatureRange.min - ambientTemperature));
-                }
-                else if (ambientTemperature > this.Props.desiredTemperatureRange.max)
-                {
+                } else if (ambientTemperature > this.Props.desiredTemperatureRange.max) {
                     GenTemperature.PushHeat(this.parent.PositionHeld, this.parent.MapHeld, magnitude * Math.Min(-this.Props.heatPerSecond, this.Props.desiredTemperatureRange.max - ambientTemperature));
                 }
             }
@@ -81,6 +80,8 @@ namespace HautsPsycasts
                 if (ba != null && ba.extinguishingDamageDef != null)
                 {
                     thing.TakeDamage(new DamageInfo(ba.extinguishingDamageDef, this.Props.fireExtinguishment));
+                } else if (thing.def is CustomFireDef cfd && cfd.extinguishDamageDef != null) {
+                    thing.TakeDamage(new DamageInfo(cfd.extinguishDamageDef, this.Props.fireExtinguishment));
                 }
                 CompExplosive ce = thing.TryGetComp<CompExplosive>();
                 if (ce != null && ce.wickStarted)
